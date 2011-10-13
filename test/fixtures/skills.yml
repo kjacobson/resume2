@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  title: MyString
+  abbreviation: MyString
+  slug: MyString
+  discipline_id: 1
+  rank: 1
+
+two:
+  title: MyString
+  abbreviation: MyString
+  slug: MyString
+  discipline_id: 1
+  rank: 1

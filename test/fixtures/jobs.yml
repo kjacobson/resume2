@@ -1,0 +1,31 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user_id: 1
+  title: MyString
+  employer: MyString
+  start_month: 1
+  start_year: 1
+  end_month: 1
+  end_year: 1
+  project: MyString
+  url: MyString
+  status: MyString
+  short_desc: MyText
+  long_desc: MyText
+  reason: MyString
+
+two:
+  user_id: 1
+  title: MyString
+  employer: MyString
+  start_month: 1
+  start_year: 1
+  end_month: 1
+  end_year: 1
+  project: MyString
+  url: MyString
+  status: MyString
+  short_desc: MyText
+  long_desc: MyText
+  reason: MyString

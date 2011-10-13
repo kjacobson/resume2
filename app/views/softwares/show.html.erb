@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @software.title %>
+</p>
+
+<p>
+  <b>Slug:</b>
+  <%= @software.slug %>
+</p>
+
+<p>
+  <b>Rank:</b>
+  <%= @software.rank %>
+</p>
+
+
+<%= link_to 'Edit', edit_software_path(@software) %> |
+<%= link_to 'Back', softwares_path %>

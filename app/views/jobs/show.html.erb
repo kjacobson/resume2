@@ -1,0 +1,70 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @job.user_id %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @job.title %>
+</p>
+
+<p>
+  <b>Employer:</b>
+  <%= @job.employer %>
+</p>
+
+<p>
+  <b>Start month:</b>
+  <%= @job.start_month %>
+</p>
+
+<p>
+  <b>Start year:</b>
+  <%= @job.start_year %>
+</p>
+
+<p>
+  <b>End month:</b>
+  <%= @job.end_month %>
+</p>
+
+<p>
+  <b>End year:</b>
+  <%= @job.end_year %>
+</p>
+
+<p>
+  <b>Project:</b>
+  <%= @job.project %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%= @job.url %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @job.status %>
+</p>
+
+<p>
+  <b>Short desc:</b>
+  <%= @job.short_desc %>
+</p>
+
+<p>
+  <b>Long desc:</b>
+  <%= @job.long_desc %>
+</p>
+
+<p>
+  <b>Reason:</b>
+  <%= @job.reason %>
+</p>
+
+
+<%= link_to 'Edit', edit_job_path(@job) %> |
+<%= link_to 'Back', jobs_path %>

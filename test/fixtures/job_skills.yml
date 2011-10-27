@@ -1,9 +1,21 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
+  id: 1
   job_id: 1
   skill_id: 1
 
 two:
-  job_id: 1
-  skill_id: 1
+  id: 2
+  job_id: 2
+  skill_id: 2
+
+three:
+  id: 3
+  job_id: 2
+  skill_id: 3
+
+four:
+  id: 4
+  job_id: 3
+  skill_id: 3

@@ -8,8 +8,9 @@ class Job < ActiveRecord::Base
     has_many :skills, :through => :job_skills
     has_many :job_softwares, :dependent => :destroy
     has_many :softwares, :through => :job_softwares
-    has_many :job_years, :dependent => :destroy
     has_many :highlights, :dependent => :destroy
+    has_many :resume_jobs, :dependent => :destroy
+    has_many :resumes, :through => :resume_jobs, :uniq => true
     belongs_to :user
 
     def disciplines
@@ -27,15 +28,15 @@ class Job < ActiveRecord::Base
     end
 
     def short_start_month
-        self.short_month(self.start_month)
+        Job.short_month(self.start_month)
     end
     def short_end_month
-        self.short_month(self.end_month)
+        Job.short_month(self.end_month)
     end
     def long_start_month
-        self.month_converter(self.end_month)
+        Job.month_converter(self.start_month)
     end
     def long_end_month
-        self.month_converter(self.end_month)
+        Job.month_converter(self.end_month)
     end
 end

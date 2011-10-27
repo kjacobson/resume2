@@ -1,31 +1,49 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
+  id: 1
   user_id: 1
-  title: MyString
-  employer: MyString
+  title: Designer
+  employer: Design Inc.
   start_month: 1
-  start_year: 1
-  end_month: 1
-  end_year: 1
-  project: MyString
-  url: MyString
-  status: MyString
-  short_desc: MyText
-  long_desc: MyText
-  reason: MyString
+  start_year: 2010
+  end_month: 0
+  end_year: 2011
+  project: Design Project
+  url: http://design.com
+  status: Full-time
+  short_desc: Did some design
+  long_desc: Did lots of design
+  reason:
 
 two:
+  id: 2
   user_id: 1
-  title: MyString
-  employer: MyString
-  start_month: 1
-  start_year: 1
-  end_month: 1
-  end_year: 1
-  project: MyString
-  url: MyString
-  status: MyString
-  short_desc: MyText
-  long_desc: MyText
-  reason: MyString
+  title: Developer
+  employer: Development, Inc.
+  start_month: 4
+  start_year: 2007
+  end_month: 9
+  end_year: 2009
+  project: Dev Project
+  url: http://stackoverflow.com
+  status: Contract
+  short_desc: Did some development
+  long_desc: Did a whole lot of development
+  reason: Contract expired
+
+three:
+  id: 3
+  user_id: 1
+  title: Designer and Developer
+  employer: Skytap, Inc.
+  start_month: 7
+  start_year: 2008
+  end_month: 11
+  end_year: 2009
+  project: The Cloud
+  url: http://cloud.skytap.com
+  status: Full-time
+  short_desc: Did some development and some design
+  long_desc: Did design and development for a cloud-computing web application
+  reason: Got bored

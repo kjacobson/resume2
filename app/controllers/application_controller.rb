@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  config.filter_parameters += [:password, :password_confirmation]
   helper_method :current_user_session, :current_user
 
   private
@@ -12,5 +11,12 @@ class ApplicationController < ActionController::Base
     def current_user
       return @current_user if defined?(@current_user)
       @current_user = current_user_session && current_user_session.user
+    end
+  
+    def require_known_user
+      unless current_user
+         redirect_to :homepage, :notice => 'You must be an admin to access the requested resource.'
+         return false
+      end
     end
 end

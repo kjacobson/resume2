@@ -1,9 +1,21 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
+  id: 1
   job_id: 1
   software_id: 1
 
 two:
+  id: 2
   job_id: 1
+  software_id: 2
+
+three:
+  id: 3
+  job_id: 2
   software_id: 1
+
+four:
+  id: 4
+  job_id: 2
+  software_id: 2

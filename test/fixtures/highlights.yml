@@ -1,11 +1,25 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
+  id: 1
   job_id: 1
   skill_id: 1
   description: MyText
 
 two:
+  id: 2
   job_id: 1
-  skill_id: 1
+  skill_id: 2
   description: MyText
+
+three:
+  id: 3
+  job_id: 2
+  skill_id: 2
+  description: Highlight
+
+four:
+  id: 4
+  job_id: 2
+  skill_id: 3
+  description: Another highlight

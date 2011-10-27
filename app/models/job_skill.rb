@@ -4,6 +4,7 @@ class JobSkill < ActiveRecord::Base
 
     belongs_to :job
     belongs_to :skill
+    belongs_to :user
 
     after_save :rank_skills
 

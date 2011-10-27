@@ -1,0 +1,25 @@
+<h1>Listing resume_jobs</h1>
+
+<table>
+  <tr>
+    <th>Resume</th>
+    <th>Job</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @resume_jobs.each do |resume_job| %>
+  <tr>
+    <td><%= resume_job.resume_id %></td>
+    <td><%= resume_job.job_id %></td>
+    <td><%= link_to 'Show', resume_job %></td>
+    <td><%= link_to 'Edit', edit_resume_job_path(resume_job) %></td>
+    <td><%= link_to 'Destroy', resume_job, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Resume job', new_resume_job_path %>

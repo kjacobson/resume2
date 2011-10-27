@@ -1,11 +1,13 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  title: MyString
-  slug: MyString
+  id: 1
+  title: Photoshop
+  slug: photoshop
   rank: 1
 
 two:
-  title: MyString
-  slug: MyString
+  id: 2
+  title: Eclipse
+  slug: eclipse
   rank: 1

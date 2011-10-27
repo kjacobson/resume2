@@ -1,10 +1,14 @@
 class Year
     attr_accessor :value
 
-    def jobs
-        Job.where("start_year >= :val AND end_year <= :val", {:val => self.id})
+    def initialize(value)
+        self.value = value
     end
-    def skill
+
+    def jobs
+        Job.where("start_year <= ? AND end_year >= ?", self.value, self.value)
+    end
+    def skills
         self.jobs.flat_map{ |j| j.skills }.uniq
     end
     def softwares

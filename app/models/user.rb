@@ -7,6 +7,6 @@ class User < ActiveRecord::Base
   has_many :highlights
 
   acts_as_authentic do |c|
-    c.my_config_option = my_value # for available options see documentation in: Authlogic::ActsAsAuthentic
+    c.validate_email_field = true
   end # block optional
 end

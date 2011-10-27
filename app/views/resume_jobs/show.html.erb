@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Resume:</b>
+  <%= @resume_job.resume_id %>
+</p>
+
+<p>
+  <b>Job:</b>
+  <%= @resume_job.job_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_resume_job_path(@resume_job) %> |
+<%= link_to 'Back', resume_jobs_path %>

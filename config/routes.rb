@@ -1,20 +1,71 @@
 Resume2::Application.routes.draw do
-  resources :softwares
+  resources :resume_highlights
 
-  resources :skills
+  resources :resume_jobs
 
-  resources :highlights
+  resources :softwares do
+      resources :jobs
+      resources :years
+  end
 
-  resources :disciplines
+  resources :skills do
+      resources :jobs
+      resources :years
+      resources :highlights
+  end
+  resources :highlights do
+      resources :jobs
+      resources :skills
+  end
 
-  resources :jobs
+  resources :disciplines do
+      resources :jobs
+      resources :skills
+  end
+
+  resources :jobs do
+      resources :skills
+      resources :job_skills
+      resources :softwares
+      resources :job_softwares
+      resources :highlights
+      resources :disciplines
+  end
 
   resources :resumes
 
   resource :user_session
   resource :account, :controller => 'users'
-  resources :users
+  resources :users do
+      resources :jobs
+      resources :skills
+      resources :job_skills
+      resources :softwares
+      resources :job_softwares
+      resources :highlights
+      resources :disciplines
+      resources :years
+      # everything but resumes should be private to owner
+      resources :resumes do
+          resources :jobs
+          resources :skills
+          resources :job_skills
+          resources :softwares
+          resources :job_softwares
+          resources :highlights
+          resources :disciplines
+          resources :years
+      end
+  end
 
+  resources :home
+
+  root :to => 'home#index', :as => :homepage
+
+  resources :users, :user_sessions
+  match 'login' => 'user_sessions#new', :as => :login
+  match 'logout' => 'user_sessions#destroy', :as => :logout
+    
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

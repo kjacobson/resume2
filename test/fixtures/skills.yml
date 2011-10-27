@@ -1,15 +1,25 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  title: MyString
-  abbreviation: MyString
-  slug: MyString
+  id: 1
+  title: Wireframing
+  abbreviation:
+  slug: wireframing
   discipline_id: 1
   rank: 1
 
 two:
-  title: MyString
-  abbreviation: MyString
-  slug: MyString
-  discipline_id: 1
+  id: 2
+  title: Cascading Style Sheets
+  abbreviation: CSS
+  slug: css
+  discipline_id: 2
+  rank: 1
+
+three:
+  id: 3
+  title: HTML
+  abbreviation:
+  slug: html
+  discipline_id: 2
   rank: 1

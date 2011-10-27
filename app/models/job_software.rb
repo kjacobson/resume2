@@ -6,6 +6,7 @@ class JobSoftware < ActiveRecord::Base
 
     belongs_to :job
     belongs_to :software
+    belongs_to :user
 
     def rank_softwares
         Software.rank_softwares

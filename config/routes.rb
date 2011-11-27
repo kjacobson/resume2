@@ -1,64 +1,69 @@
 Resume2::Application.routes.draw do
-  resources :resume_highlights
-
-  resources :resume_jobs
-
-  resources :softwares do
-      resources :jobs
-      resources :years
+  resources :users do
+    resources :resumes
+    resources :jobs
+    resources :skills
+    resources :softwares
+    resources :disciplines
   end
 
-  resources :skills do
+  namespace :users do
+    namespace :resumes do
       resources :jobs
-      resources :years
+      resources :skills
+      resources :softwares
+      resources :disciplines
       resources :highlights
-  end
-  resources :highlights do
-      resources :jobs
-      resources :skills
+    end
   end
 
-  resources :disciplines do
-      resources :jobs
-      resources :skills
+  resources :resumes do
+    resources :jobs
+    resources :highlights
   end
 
   resources :jobs do
-      resources :skills
-      resources :job_skills
-      resources :softwares
-      resources :job_softwares
-      resources :highlights
-      resources :disciplines
+    resources :skills, :only => [:index, :new, :edit]
+    resources :softwares, :only => [:index, :new, :edit]
+    resources :highlights, :only => [:index, :new, :edit]
   end
 
-  resources :resumes
+  resources :skills do
+    resources :jobs, :only => :index
+    resources :highlights, :only => :index
+    resources :years, :only => :index
+  end
+
+  resources :softwares do
+    resources :jobs, :only => :index
+    resources :years, :only => :index
+  end
+
+  resources :highlights
+
+  resources :resume_jobs, :as => :r_jobs
+
+  resources :disciplines do
+    resources :skills, :only => :index
+    resources :jobs, :only => :index
+  end
+
+  resources :job_skills, :as => :j_skills
+
+  resources :job_softwares, :as => :j_softwares
+
+  resources :resume_highlights, :as => :r_highlights
+
+  resources :years do
+    resources :jobs, :only => :index
+    resources :skills, :only => :index
+    resources :softwares, :only => :index
+  end
 
   resource :user_session
   resource :account, :controller => 'users'
-  resources :users do
-      resources :jobs
-      resources :skills
-      resources :job_skills
-      resources :softwares
-      resources :job_softwares
-      resources :highlights
-      resources :disciplines
-      resources :years
-      # everything but resumes should be private to owner
-      resources :resumes do
-          resources :jobs
-          resources :skills
-          resources :job_skills
-          resources :softwares
-          resources :job_softwares
-          resources :highlights
-          resources :disciplines
-          resources :years
-      end
-  end
 
-  resources :home
+  resources :home, :only => :index
 
   root :to => 'home#index', :as => :homepage
 

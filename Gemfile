@@ -1,13 +1,12 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.3'
+gem 'rails', '3.1.3'
 
 # Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+#gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3-ruby', :require => 'sqlite3'
-
-# gem 'mysql2'
+gem 'mysql2'
 gem 'authlogic', :git => "git://github.com/odorcicd/authlogic.git", :branch => "rails3"
 gem 'htmlentities'
 gem 'haml'
@@ -21,7 +20,7 @@ gem 'sass'
 
 # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
 # gem 'ruby-debug'
-# gem 'ruby-debug19'
+gem 'ruby-debug19'
 
 # Bundle the extra gems:
 # gem 'bj'

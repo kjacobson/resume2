@@ -6,6 +6,10 @@ class Software < ActiveRecord::Base
     has_many :jobs, :through => :job_softwares
     belongs_to :user
 
+    def years
+      self.jobs.flat_map{ |j| j.years }.uniq
+    end
+
     def self.rank_softwares
         softwares = self.all
         softwares = softwares.sort! { |a,b| b.job_softwares.count <=> a.job_softwares.count }

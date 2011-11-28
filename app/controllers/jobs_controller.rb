@@ -6,18 +6,23 @@ class JobsController < ApplicationController
   def index
     @order_by = !params[:order_by].nil? ? params[:order_by] : "end_year"
     @direction = !params[:direction].nil? ? params[:direction] : "DESC"
+    if @order_by == "end_year"
+      @secondary_sort = ", end_month " + @direction
+    else
+      @secondary_sort = ""
+    end
     
     if !params[:skill_id].nil?
-        @skill = Skill.find_by_id(params[:skill_id]).order(@order_by + " " + @direction)
-        @jobs = @skill.jobs
+        @skill = Skill.find_by_id(params[:skill_id])
+        @jobs = @skill.jobs.order(@order_by + " " + @direction)
     elsif !params[:software_id].nil?
-        @software = Software.find_by_id(params[:software_id]).order(@order_by + " " + @direction)
-        @jobs = @software.jobs
+        @software = Software.find_by_id(params[:software_id])
+        @jobs = @software.jobs.order(@order_by + " " + @direction)
     elsif !params[:year_id].nil?
-        @year = Year.find_by_value(params[:year_id]).order(@order_by + " " + @direction)
-        @jobs = @year.jobs
+        @year = Year.find_by_value(params[:year_id])
+        @jobs = @year.jobs.order(@order_by + " " + @direction)
     else
-        @jobs = Job.find(:all, :order => @order_by + " " + @direction)
+        @jobs = Job.find(:all, :order => @order_by + " " + @direction + @secondary_sort)
     end
 
     respond_to do |format|

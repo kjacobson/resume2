@@ -17,6 +17,12 @@ class Job < ActiveRecord::Base
         self.skills.flat_map{ |sk| sk.discipline }.uniq
     end
 
+    def years
+      years = []
+      self.start_year.upto(self.end_year) { |y| years.push(y) }
+      return years
+    end
+
     def self.month_converter month
         months = ["Present","January","February","March","April","May","June","July","August","September","October","November", "December"]
         return months[month]

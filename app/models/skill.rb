@@ -7,6 +7,10 @@ class Skill < ActiveRecord::Base
     belongs_to :discipline
     belongs_to :user
 
+    def years
+      self.jobs.flat_map{ |j| j.years }.uniq
+    end
+
     def shortest_name
         if !abbreviation.nil? and abbreviation != ""
             return abbreviation

@@ -1,4 +1,6 @@
 class SkillsController < ApplicationController
+  before_filter :require_known_user, :only => [:new, :create, :edit, :update, :destroy]
+
   # GET /skills
   # GET /skills.json
   def index

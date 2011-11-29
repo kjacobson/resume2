@@ -1,34 +1,38 @@
 class HighlightsController < ApplicationController
+  before_filter :require_known_user, :only => [:new, :create, :edit, :update, :destroy]
+
   # GET /highlights
-  # GET /highlights.xml
+  # GET /highlights.json
   def index
-    @highlights = Highlight.all
+    @order_by = !params[:order_by].nil? ? params[:order_by] : "id"
+    @direction = !params[:direction].nil? ? params[:direction] : "ASC"
+    @highlights = Highlight.find(:all, :order => @order_by + " " + @direction)
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @highlights }
+      format.json  { render :json => @highlights }
     end
   end
 
   # GET /highlights/1
-  # GET /highlights/1.xml
+  # GET /highlights/1.json
   def show
     @highlight = Highlight.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @highlight }
+      format.json  { render :json => @highlight }
     end
   end
 
   # GET /highlights/new
-  # GET /highlights/new.xml
+  # GET /highlights/new.json
   def new
     @highlight = Highlight.new
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @highlight }
+      format.json  { render :json => @highlight }
     end
   end
 
@@ -38,46 +42,49 @@ class HighlightsController < ApplicationController
   end
 
   # POST /highlights
-  # POST /highlights.xml
+  # POST /highlights.json
   def create
     @highlight = Highlight.new(params[:highlight])
+    # TODO: something needs to happen with this
+    @resume = Resume.find(params[:resume_id])
+    @highlight.resume_id = @resume.id
 
     respond_to do |format|
       if @highlight.save
         format.html { redirect_to(@highlight, :notice => 'Highlight was successfully created.') }
-        format.xml  { render :xml => @highlight, :status => :created, :location => @highlight }
+        format.json  { render :json => @highlight, :status => :created, :location => @highlight }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @highlight.errors, :status => :unprocessable_entity }
+        format.json  { render :json => @highlight.errors, :status => :unprocessable_entity }
       end
     end
   end
 
   # PUT /highlights/1
-  # PUT /highlights/1.xml
+  # PUT /highlights/1.json
   def update
     @highlight = Highlight.find(params[:id])
 
     respond_to do |format|
       if @highlight.update_attributes(params[:highlight])
         format.html { redirect_to(@highlight, :notice => 'Highlight was successfully updated.') }
-        format.xml  { head :ok }
+        format.json  { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @highlight.errors, :status => :unprocessable_entity }
+        format.json  { render :json => @highlight.errors, :status => :unprocessable_entity }
       end
     end
   end
 
   # DELETE /highlights/1
-  # DELETE /highlights/1.xml
+  # DELETE /highlights/1.json
   def destroy
     @highlight = Highlight.find(params[:id])
     @highlight.destroy
 
     respond_to do |format|
       format.html { redirect_to(highlights_url) }
-      format.xml  { head :ok }
+      format.json  { head :ok }
     end
   end
 end

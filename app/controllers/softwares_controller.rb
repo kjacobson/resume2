@@ -1,4 +1,6 @@
 class SoftwaresController < ApplicationController
+  before_filter :require_known_user, :only => [:new, :create, :edit, :update, :destroy]
+
   # GET /softwares
   # GET /softwares.json
   def index

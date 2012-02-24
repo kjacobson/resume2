@@ -1,0 +1,24 @@
+<ol class="job-list birds-eye">
+    <% @jobs.each do |job| %>
+        <li>
+            <%= decode(job.employer) %>,
+            <%= render :partial => 'years/link_to_year', :locals => {:year => job.start_year} %>
+            &ndash;
+            <%= render :partial => 'years/link_to_year', :locals => {:year => job.end_year} %>
+            <p>
+                <%= render :partial => 'jobs/link_to_job', :locals => { :job => job } %>,
+                <span class="deemphasized job-status"><%= decode(job.status) %></span>
+            </p>
+            <p>
+                <%= decode(job.short_desc) %>
+            </p>
+
+            <strong>Skills used:</strong>
+            <%= render :partial => 'skills/small_list', :locals => {:skills => job.skills} %>
+
+            <strong>Software used:</strong>
+            <%= render :partial => 'softwares/list', :locals => {:softwares => job.softwares, :abbreviated => false} %>
+
+        </li>
+    <% end %>
+</ol>

@@ -1,0 +1,23 @@
+<table>
+    <tr>
+        <% if !current_user.nil? %>
+            <th class="d10 numericData">
+                <%= render :partial => 'shared/sortable_link', :locals => { :header => 'ID', :column_name => 'id' } %>
+            </th>
+        <% end %>
+        <th class="d40">
+            <%= render :partial => 'shared/sortable_link', :locals => { :header => 'Title', :column_name => 'title' } %>
+        </th>
+    </tr>
+
+    <% @skills.each do |skill| %>
+        <tr>
+            <% if !current_user.nil? %>
+                <td class="numericData"><%= skill.id %></td>
+            <% end %>
+            <td>
+                <%= render :partial => 'link_to_skill', :locals => {:skill => skill} %>
+            </td>
+        </tr>
+    <% end %>
+</table>

@@ -1,0 +1,29 @@
+<table>
+    <tr>
+        <% if !current_user.nil? %>
+            <th class="d10">
+                <%= render :partial => 'shared/sortable_link', :locals => { :header => 'ID', :column_name => 'id' } %>
+            </th>
+        <% end %>
+        <th class="d10">
+            Skill<%#= render :partial => 'shared/sortable_link', :locals => { :header => 'Skill', :column_name => 'skill' } %>
+        </th>
+        <th class="d40">
+            Job<%#= render :partial => 'shared/sortable_link', :locals => { :header => 'Job', :column_name => 'job' } %>
+        </th>
+    </tr>
+
+    <% @highlights.each do |highlight| %>
+        <tr>
+            <% if !current_user.nil? %>
+                <td><%= highlight.id %></td>
+            <% end %>
+            <td>
+                <%= render :partial => 'skills/link_to_skill', :locals => { :skill => highlight.skill } %>
+            </td>
+            <td>
+                <%= render :partial => 'jobs/link_to_job', :locals => { :job => highlight.job } %>
+            </td>
+        </tr>
+    <% end %>
+</table>

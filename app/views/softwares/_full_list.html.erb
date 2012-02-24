@@ -1,0 +1,23 @@
+<table>
+    <tr>
+        <% if !current_user.nil? %>
+            <th class="d10">
+                <%= render :partial => 'shared/sortable_link', :locals => { :header => 'ID', :column_name => 'id' } %>
+            </th>
+        <% end %>
+        <th class="d40">
+            <%= render :partial => 'shared/sortable_link', :locals => { :header => 'Title', :column_name => 'title' } %>
+        </th>
+    </tr>
+
+    <% @softwares.each do |software| %>
+        <tr>
+            <% if !current_user.nil? %>
+                <td><%= software.id %></td>
+            <% end %>
+            <td>
+                <%= render :partial => 'softwares/link_to_software', :locals => { :software => software, :abbreviated => false } %>
+            </td>
+        </tr>
+    <% end %>
+</table>

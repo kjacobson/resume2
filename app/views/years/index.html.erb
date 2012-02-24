@@ -1,0 +1,11 @@
+<% content_for :head do %>
+    <hgroup>
+        <h1>Listing years</h1>
+    </hgroup>
+<% end %>
+
+<% content_for :main do %>
+    <section class="primary extended">
+        <%= render :partial => 'years/full_list' %>
+    </section>
+<% end %>

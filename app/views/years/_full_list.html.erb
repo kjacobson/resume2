@@ -1,0 +1,23 @@
+<table>
+    <tr>
+        <% if !current_user.nil? %>
+            <th class="d10 numericData">
+                <%= render :partial => 'shared/sortable_link', :locals => { :header => 'ID', :column_name => 'id' } %>
+            </th>
+        <% end %>
+        <th class="d40">
+                <%= render :partial => 'shared/sortable_link', :locals => { :header => 'Value', :column_name => 'value' } %>
+        </th>
+    </tr>
+
+    <% @years.each do |year| %>
+        <tr>
+            <% if !current_user.nil? %>
+                <td class="numericData"><%= year.id %></td>
+            <% end %>
+            <td>
+                <%= render :partial => 'link_to_year', :locals => { :year => year.value } %>
+            </td>
+        </tr>
+    <% end %>
+</table>

@@ -1,0 +1,140 @@
+/*
+ * SCALE:
+ * 0.375em   = 6
+ * 0.4375em  = 7
+ * 0.5em     = 8
+ * 0.5625em  = 9
+ * 0.625em   = 10
+ * 0.6875em  = 11
+ * 0.75em    = 12
+ * 0.875em   = 14
+ * 1.125em   = 18
+ * 1.3125em  = 21
+ * 1.5em     = 24
+ * 2.25em    = 36
+ * 3em       = 48
+ * 4.5em     = 72
+ *
+ * Assume:
+ * 1em = 16px
+ * line-height = 24px
+ * baseline = 6px
+ */
+body {
+  /* also "Lucida Grande","Lucida Sans Unicode" */
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 100%;
+  line-height: 1.5em; }
+
+#main hgroup h1 {
+  font-size: 2.25em;
+  font-weight: normal;
+  line-height: 1.5em;
+  margin: 1em 0 0; }
+
+#main hgroup h2 {
+  font-size: 1.5em;
+  font-weight: normal;
+  line-height: 1.5em;
+  margin: 0 0 0.5em; }
+
+header nav a {
+  font-size: 1.3125em;
+  line-height: 1.42857em; }
+
+section h1 {
+  font-size: 1.5em;
+  font-weight: normal;
+  line-height: 1.5em;
+  margin: 0.375em 0 0; }
+
+section h2 {
+  font-weight: normal; }
+
+section.primary p {
+  font-size: 1em;
+  line-height: 1.5em;
+  margin: 0 0 1.5em; }
+
+section.primary .job-list .job-title {
+  font-size: 1.125em; }
+
+section.secondary h2 {
+  font-size: 1.125em;
+  line-height: 1.333em;
+  margin: 0; }
+
+footer p {
+  font-size: 0.875em;
+  line-height: 2.28571em; }
+
+/* BASIC FORMATTING */
+strong {
+  font-weight: bold; }
+
+em {
+  font-style: italic; }
+
+/* LINKS */
+a:link,
+a:active,
+a:visited {
+  text-decoration: none; }
+
+/* BREADCRUMBS */
+.breadcrumb-separator {
+  font-weight: bold; }
+
+/* HEADINGS */
+h1 a,
+h2 a {
+  text-decoration: none; }
+
+.primary-type-short-desc {
+  font-style: italic;
+  padding-bottom: 1em; }
+
+/* TABLES */
+th, td {
+  text-align: left; }
+
+section.primary th {
+  font-size: 1.3125em; }
+
+th .sort-link {
+  text-decoration: none; }
+
+/* LISTS */
+.highlight-list li {
+  margin-bottom: 0.75em; }
+
+.primary-type-sub-list {
+  list-style: square inside none;
+  padding: 0; }
+
+.sub-list-organizational-module {
+  margin-bottom: 1em; }
+
+section.secondary .primary-type-title {
+  font-size: 0.875em;
+  line-height: 1.28571em; }
+
+section.secondary .year-title {
+  font-size: 1.125em;
+  line-height: 1.333em;
+  margin-right: 0.6667em; }
+
+section.primary .job-list.birds-eye .job-title {
+  font-size: 1.3125em;
+  line-height: 1.5em; }
+
+.job-list.birds-eye .skill-list li:not(:last-child) a:after,
+.job-list.birds-eye .software-list li:not(:last-child) a:after {
+  color: #444;
+  content: ","; }
+
+/* DETAILS (<dl>s) */
+.primary-type-details dt,
+.primary-type-details dd {
+  line-height: 1.875em;
+  margin-bottom: 0.375em; }

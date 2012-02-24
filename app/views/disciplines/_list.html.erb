@@ -1,0 +1,7 @@
+<ul class="organizational-type-list discipline-list">
+    <% @disciplines.each do |discipline| %>
+        <li>
+            <%= render :partial => 'disciplines/link_to_discipline', :locals => { :discipline => discipline } %>
+        </li>
+    <% end %>
+</ul>

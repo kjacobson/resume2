@@ -1,0 +1,106 @@
+/*
+ *
+ * COLOR PALETTE
+ * http://www.colourlovers.com/palette/1510816/Dulce
+ *
+ * Near-neutral: #5f5245;
+ * Darkest: #bb6318;
+ * Middle: #e08529;
+ * Light: #f9ca7e;
+ * Lightest: #f5d99A;
+ *
+ * Default text: #444;
+ * Deemphasized text: #888;
+ * Table-striping: #f6f6f6;
+ * almost gray: #e9e7e0;
+ */
+body {
+  color: #444444; }
+
+.deemphasized {
+  color: #888888; }
+
+section.primary {
+  border-top: 1px solid #f6f6f6; }
+
+section.secondary {
+  background: #fff;
+  border-top: 1px solid #f6f6f6; }
+
+footer {
+  background: #444444;
+  background: #000;
+  color: #fff; }
+
+/* JOB (etc) details */
+.primary-type-short-desc {
+  color: #888888; }
+
+section.primary .primary-type-details dt {
+  color: #888888; }
+
+/* NAV */
+header nav {
+  background: #000; }
+
+header nav a {
+  color: #fff; }
+
+/* BREADCRUMBS */
+.breadcrumb-separator {
+  color: #888888; }
+
+/* NOTICES */
+header p.notice {
+  background-color: #e08529; }
+
+/* HEADINGS */
+h1 a:link,
+h1 a:active,
+h1 a:visited {
+  color: #444444; }
+
+h2 a:link,
+h2 a:visited {
+  color: #5f5245; }
+
+h2 a:hover,
+h2 a:focus {
+  color: #e08529; }
+
+#main hgroup h2 {
+  color: #888888; }
+
+/* TABLES */
+th a:link {
+  color: #5f5245; }
+
+th .sort-link:visited {
+  color: #444444; }
+
+tr {
+  border-bottom: 1px solid #f6f6f6; }
+
+/*tr.alt {*/
+/*background-color: $tableStriping;*/
+/*}*/
+/* LINKS */
+a:link {
+  color: #e08529; }
+
+a:active {
+  color: #f9ca7e; }
+
+a:visited {
+  color: #bb6318; }
+
+a:link:hover,
+a:link:focus {
+  color: #bb6318; }
+
+/* LISTS */
+.primary-type-sub-list {
+  color: #d3d3d3; }
+
+.job-list.birds-eye > li {
+  border-color: #e9e7e0 white white; }

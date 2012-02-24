@@ -1,0 +1,14 @@
+<ol class="job-list">
+    <% @jobs.each do |job| %>
+        <li>
+            <%= render :partial => 'jobs/link_to_job', :locals => { :job => job } %>,
+            <span class="deemphasized job-status"><%= decode(job.status) %></span>
+            <p>
+                <%= decode(job.employer) %>,
+                <%= render :partial => 'years/link_to_year', :locals => {:year => job.start_year} %>
+                &ndash;
+                <%= render :partial => 'years/link_to_year', :locals => {:year => job.end_year} %>
+            </p>
+        </li>
+    <% end %>
+</ol>

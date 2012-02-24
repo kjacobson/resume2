@@ -1,0 +1,5 @@
+<ol class="skill-list">
+    <% skills.each do |skill| %>
+        <li><%= render :partial => 'skills/link_to_skill', :locals => {:skill => skill} %></li>
+    <% end %>
+</ol>

@@ -1,0 +1,117 @@
+/*
+ *
+ * COLOR PALETTE
+ * http://www.colourlovers.com/palette/1510816/Dulce
+ *
+ * Near-neutral: #5f5245;
+ * Darkest: #bb6318;
+ * Middle: #e08529;
+ * Light: #f9ca7e;
+ * Lightest: #f5d99A;
+ *
+ * Default text: #444;
+ * Deemphasized text: #888;
+ * Table-striping: #f6f6f6;
+ * almost gray: #e9e7e0;
+ */
+@import "color-vars";
+
+body {
+    color: $defaultText;
+}
+.deemphasized {
+    color: $deemphasizedText;
+}
+    section.primary {
+        border-top: 1px solid $tableStriping;
+    }
+    section.secondary {
+        background: #fff;
+        border-top: 1px solid $tableStriping;
+    }
+    footer {
+        background: $defaultText;
+        background: #000;
+        color: #fff;
+    }
+
+/* JOB (etc) details */
+.primary-type-short-desc {
+    color: $deemphasizedText;    
+}
+section.primary .primary-type-details dt {
+    color: $deemphasizedText;
+}
+
+/* NAV */
+header nav {
+    background: #000;
+}
+    header nav a {
+        color: #fff;
+    }
+
+/* BREADCRUMBS */
+.breadcrumb-separator {
+    color: $deemphasizedText;
+}
+
+/* NOTICES */
+header p.notice {
+    background-color: $middle;
+}
+
+/* HEADINGS */
+h1 a:link,
+h1 a:active,
+h1 a:visited {
+    color: $defaultText;
+}
+h2 a:link,
+h2 a:visited {
+    color: $nearNeutral
+}
+h2 a:hover,
+h2 a:focus {
+    color: $middle;
+}
+#main hgroup h2 {
+    color: $deemphasizedText;
+}
+
+/* TABLES */
+th a:link {
+    color: $nearNeutral;
+}
+th .sort-link:visited {
+    color: $defaultText;
+}
+tr {
+    border-bottom: 1px solid $tableStriping;
+}
+/*tr.alt {*/
+    /*background-color: $tableStriping;*/
+/*}*/
+
+/* LINKS */
+a:link {
+    color: $middle;
+}
+a:active {
+    color: $light;
+}
+a:visited {
+    color: $darkest;
+}
+a:link:hover,
+a:link:focus {
+    color: $darkest;    
+}
+
+/* LISTS */
+.primary-type-sub-list {
+    color: #d3d3d3;
+}
+.job-list.birds-eye > li {
+    border-color: $almostGray #fff #fff;
+}

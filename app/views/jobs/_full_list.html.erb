@@ -1,0 +1,37 @@
+<table>
+    <thead>
+        <tr>
+            <th class="d30">
+                <%= render :partial => 'shared/sortable_link', :locals => { :header => 'Title', :column_name => 'title' } %>
+            </th>
+            <th class="d20">
+                <%= render :partial => 'shared/sortable_link', :locals => { :header => 'Employer/Client', :column_name => 'employer' } %>
+            </th>
+            <th class="d20">
+                <%= render :partial => 'shared/sortable_link', :locals => { :header => 'Years', :column_name => 'start_year' } %>
+            </th>
+            <th class="d30">
+                <%= render :partial => 'shared/sortable_link', :locals => { :header => 'Brief Description', :column_name => 'short_desc' } %>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @jobs.each_with_index do |job, index| %>
+            <% isAlt = (index == 1 || (index % 2) == 1) %>
+            <tr <% if isAlt then %>class="alt"<% end %>>
+                <td>
+                    <%= render :partial => 'jobs/link_to_job', :locals => {:job => job} %>
+                </td>
+                <td><%= decode(job.employer) %></td>
+                <td>
+                    <%= render :partial => 'years/link_to_year', :locals => {:year => job.start_year} %>
+                    &ndash;
+                    <%= render :partial => 'years/link_to_year', :locals => {:year => job.end_year} %>
+                </td>
+                <td>
+                    <%= decode(job.short_desc) %>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

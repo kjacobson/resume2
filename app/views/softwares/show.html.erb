@@ -1,20 +1,14 @@
-<p id="notice"><%= notice %></p>
+<% content_for :head do %>
+    <hgroup>
+        <h1>
+          <%= decode(@software.title) %>
+        </h1>
+    </hgroup>
+<% end %>
 
-<p>
-  <b>Title:</b>
-  <%= @software.title %>
-</p>
-
-<p>
-  <b>Slug:</b>
-  <%= @software.slug %>
-</p>
-
-<p>
-  <b>Rank:</b>
-  <%= @software.rank %>
-</p>
-
-
-<%= link_to 'Edit', edit_software_path(@software) %> |
-<%= link_to 'Back', softwares_path %>
+<% content_for :main do %>
+    <section class="primary">
+        <h1>Positions involving <%= decode(@software.title) %></h1>
+        <%= render :partial => 'jobs/small_list' %>
+    </section>
+<% end %>

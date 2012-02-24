@@ -1,30 +1,31 @@
-<p id="notice"><%= notice %></p>
+<% content_for :head do %>
+    <hgroup>
+        <h1 class="primary-type-title skill-title">
+          <%= decode(@skill.title) %>
+        </h1>
+    </hgroup>
+<% end %>
 
-<p>
-  <b>Title:</b>
-  <%= @skill.title %>
-</p>
+<% content_for :main do %>
+    <section class="primary">
+        <h1>Positions involving <%= decode(@skill.title) %></h1>
+        <%= render :partial => 'jobs/small_list' %>
 
-<p>
-  <b>Abbreviation:</b>
-  <%= @skill.abbreviation %>
-</p>
+        <% if current_user %>
+            <%= link_to 'Edit', edit_skill_path(@skill) %> |
+            <%= link_to 'Back', skills_path %>
+        <% end %>
+    </section>
 
-<p>
-  <b>Slug:</b>
-  <%= @skill.slug %>
-</p>
+    <% if @highlights.count >= 1 %>
+        <section class="secondary associations associatedHighlights">
+            <h1>Highlights:</h1>
+            <%= render :partial => 'highlights/list' %>
+        </section>
+    <% end %>
 
-<p>
-  <b>Discipline:</b>
-  <%= @skill.discipline_id %>
-</p>
-
-<p>
-  <b>Rank:</b>
-  <%= @skill.rank %>
-</p>
-
-
-<%= link_to 'Edit', edit_skill_path(@skill) %> |
-<%= link_to 'Back', skills_path %>
+    <section class="secondary">
+        <h1>Years this skill was used</h1>
+        <%= render :partial => 'years/list', :locals => { :years => @years } %>
+    </section>
+<% end %>

@@ -19,4 +19,12 @@ class ApplicationController < ActionController::Base
          return false
       end
     end
+
+    def require_user_match
+      unless current_user.id === params[:user_id]
+        redirect_to :homepage, :notice => "You can't see that"
+        return false
+      end
+    end
+
 end

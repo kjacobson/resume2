@@ -54,6 +54,8 @@ Resume2::Application.routes.draw do
 
   resources :resume_highlights, :as => :r_highlights
 
+  resources :users
+
   resources :years do
     resources :jobs, :only => :index
     resources :skills, :only => :index
@@ -70,6 +72,7 @@ Resume2::Application.routes.draw do
   resources :users, :user_sessions
   match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout
+  match 'signup' => 'users#new', :as => :signup
     
   # The priority is based upon order of creation:
   # first created -> highest priority.

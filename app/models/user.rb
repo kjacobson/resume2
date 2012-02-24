@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :cvs
+  has_many :resumes
 
   has_many :jobs
   has_many :skills

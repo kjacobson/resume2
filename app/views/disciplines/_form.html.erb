@@ -1,4 +1,4 @@
-<%= form_for(@discipline) do |f| %>
+<%= form_for(@discipline, :url => user_cv_discipline_path) do |f| %>
   <% if @discipline.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@discipline.errors.count, "error") %> prohibited this discipline from being saved:</h2>

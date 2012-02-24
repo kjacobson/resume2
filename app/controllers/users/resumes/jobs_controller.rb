@@ -37,7 +37,7 @@ class JobsController < ApplicationController
     @job = Job.find(params[:id])
     @skills = @job.skills.order("rank DESC")
     @softwares = @job.softwares.order("title ASC")
-    @years = @job.years.sort! { |a,b| a <=> b }
+    @years = @job.years.order("value DESC")
     @highlights = @job.highlights.order("skill_id")
     @disciplines = @job.disciplines
 
@@ -61,8 +61,6 @@ class JobsController < ApplicationController
   # GET /jobs/1/edit
   def edit
     @job = Job.find(params[:id])
-    @skills = Job.skills
-    @softwares = Job.softwares
   end
 
   # POST /jobs
@@ -70,7 +68,6 @@ class JobsController < ApplicationController
   def create
     @job = Job.new(params[:job])
     @job.user_id = current_user.id
-
 
     respond_to do |format|
       if @job.save
@@ -87,30 +84,6 @@ class JobsController < ApplicationController
   # PUT /jobs/1.json
   def update
     @job = Job.find(params[:id])
-    @skills = params[:job][:skills]
-    if !@skills.nil? && @skills != ""
-      @skills.split(",").each do |s|
-        sk = Skill.find_by_title(s)
-        if !sk
-          sk = Skill.new({:title => s, :slug => s})
-          sk.save
-        end
-        js = JobSkill.new({:job_id => @job.id, :skill_id => sk.id})
-        js.save
-      end
-    end                         
-    @softwares = params[:job][:softwares]
-    if !@softwares.nil? && @softwares != ""
-      @softwares.split(",").each do |s|
-        so = Software.find_by_title(s)
-        if !so
-          so = Software.new({:title => s, :slug => s})
-          so.save
-        end
-        js = JobSoftware.new({:job_id => @job.id, :software_id => so.id})
-        js.save
-      end
-    end
 
     respond_to do |format|
       if @job.update_attributes(params[:job])

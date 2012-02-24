@@ -1,4 +1,4 @@
-<%= form_for(@software) do |f| %>
+<%= form_for(@software, :url => user_cv_highlight_path) do |f| %>
   <% if @software.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@software.errors.count, "error") %> prohibited this software from being saved:</h2>
@@ -15,13 +15,10 @@
     <%= f.label :title %><br />
     <%= f.text_field :title %>
   </div>
+
   <div class="field">
     <%= f.label :slug %><br />
     <%= f.text_field :slug %>
-  </div>
-  <div class="field">
-    <%= f.label :rank %><br />
-    <%= f.text_field :rank %>
   </div>
   <div class="actions">
     <%= f.submit %>

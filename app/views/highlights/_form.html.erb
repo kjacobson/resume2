@@ -1,4 +1,4 @@
-<%= form_for(@highlight) do |f| %>
+<%= form_for(@highlight, :url => user_cv_highlight_path) do |f| %>
   <% if @highlight.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@highlight.errors.count, "error") %> prohibited this highlight from being saved:</h2>

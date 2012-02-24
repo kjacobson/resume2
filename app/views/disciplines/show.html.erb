@@ -1,10 +1,16 @@
-<p id="notice"><%= notice %></p>
+<% content_for :head do %>
+    <hgroup>
+        <h1>
+            <%= decode(@discipline.title) %>
+        </h1>
+    </hgroup>
+<% end %>
 
-<p>
-  <b>Title:</b>
-  <%= @discipline.title %>
-</p>
-
-
-<%= link_to 'Edit', edit_discipline_path(@discipline) %> |
-<%= link_to 'Back', disciplines_path %>
+<% content_for :main do %>
+    <section class="primary">
+        <hgroup>
+            <h1>Skills</h1>
+        </hgroup>
+        <%= render :partial => 'skills/small_list', :locals => { :skills => @skills } %>
+    </section>
+<% end %>

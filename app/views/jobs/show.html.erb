@@ -1,70 +1,95 @@
-<p id="notice"><%= notice %></p>
+<% content_for :head do %>
+    <hgroup>
+        <h1 class="primary-type-title job-title">
+          <%= decode(@job.title) %>
+        </h1>
+    </hgroup>
+    <p class="primary-type-short-desc job-short-desc">
+      <%= decode(@job.short_desc) %>
+    </p>
+<% end %>
 
-<p>
-  <b>User:</b>
-  <%= @job.user_id %>
-</p>
+<% content_for :main do %>
+    <section class="primary details job-details">
 
-<p>
-  <b>Title:</b>
-  <%= @job.title %>
-</p>
+        <h1>Details</h1>
+        <dl class="primary-type-details job-details">
+            <dt>Employer</dt>
+            <dd><%= decode(@job.employer) %></dd>
 
-<p>
-  <b>Employer:</b>
-  <%= @job.employer %>
-</p>
+            <% if !@job.status.nil? and @job.status != "" %>
+              <dt>Status</dt>
+              <dd><%= decode(@job.status) %></dd>
+            <% end %>
 
-<p>
-  <b>Start month:</b>
-  <%= @job.start_month %>
-</p>
+            <% if !@job.project.nil? and @job.project != "" %>
+              <dt>Project</dt>
+              <dd><%= decode(@job.project) %></dd>
+            <% end %>
 
-<p>
-  <b>Start year:</b>
-  <%= @job.start_year %>
-</p>
+            <% if !@job.url.nil? and @job.url != "" %>
+              <dt>URL</dt>
+              <dd>
+                  <a href="<%= @job.url %>" rel="external" title="View this project">
+                      <%= @job.url %>
+                  </a>
+              </dd>
+            <% end %>
 
-<p>
-  <b>End month:</b>
-  <%= @job.end_month %>
-</p>
+            <dt>Dates</dt>
+            <dd>
+                <%= @job.short_start_month %><% if !@job.start_month.nil? and !@job.start_year.nil? %>, <% end %>
+                <%= render :partial => 'years/link_to_year', :locals => {:year => @job.start_year} %>
+                &ndash;
+                <%= @job.short_end_month %><% if !@job.end_month.nil? and !@job.end_year.nil? %>, <% end %>
+                <%= render :partial => 'years/link_to_year', :locals => {:year => @job.end_year} %>
+            </dd>
 
-<p>
-  <b>End year:</b>
-  <%= @job.end_year %>
-</p>
+            <dt>Summary</dt>
+            <dd>
+                <p>
+                    <%= decode(@job.long_desc) %>
+                </p>
+            </dd>
 
-<p>
-  <b>Project:</b>
-  <%= @job.project %>
-</p>
+            <% if !@job.reason.nil? and @job.reason != "" %>
+                <dt>Reason for leaving</dt>
+                <dd>
+                    <p>
+                        <%= decode(@job.reason) %>
+                    </p>
+                </dd>
+            <% end %>
+        </dl>
+    </section>
 
-<p>
-  <b>Url:</b>
-  <%= @job.url %>
-</p>
+    <% if @highlights.count >= 1 %>
+        <section class="secondary associations associatedHighlights">
+                <h1>Highlights</h1>
+                <%= render :partial => 'highlights/list' %>
+        </section>
+    <% elsif @softwares.count >= 1 %>
+        <section class="secondary associations associatedSoftware">
+                <h1>Software used</h1>
+                <%= render :partial => 'softwares/list', :locals => { :softwares => @softwares, :abbreviated => false } %>
+        </section>
+    <% end %>
 
-<p>
-  <b>Status:</b>
-  <%= @job.status %>
-</p>
+    <% if @skills.count >= 1 %>
+        <section class="secondary extended associations associatedSkills">
+            <h1>Skills used</h1>
+            <% if !@disciplines.nil? and @disciplines.count >= 1 %>
+                <%= render :partial => 'skills/small_list_by_discipline', :locals => {:disciplines => @disciplines, :skills => @skills} %>
+            <% else %>
+                <%= render :partial => 'skills/small_list', :locals => {:skills => @skills} %>
+            <% end %>
+        </section>     
+    <% end %>
 
-<p>
-  <b>Short desc:</b>
-  <%= @job.short_desc %>
-</p>
-
-<p>
-  <b>Long desc:</b>
-  <%= @job.long_desc %>
-</p>
-
-<p>
-  <b>Reason:</b>
-  <%= @job.reason %>
-</p>
-
-
-<%= link_to 'Edit', edit_job_path(@job) %> |
-<%= link_to 'Back', jobs_path %>
+    <% if @highlights.count >= 1 && @softwares.count >= 1 %>
+        <section class="secondary associations associatedSoftware">
+                <h1>Software used:</h1>
+                <%= render :partial => 'softwares/list', :locals => { :softwares => @softwares, :abbreviated => false } %>
+        </section>
+    <% end %>
+<% end %>

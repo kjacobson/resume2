@@ -1,15 +1,19 @@
-<p id="notice"><%= notice %></p>
+<% content_for :head do %>
+    <p id="notice"><%= notice %></p>
+<% end %>
 
-<p>
-  <b>User:</b>
-  <%= @resume.user_id %>
-</p>
+<% content_for :main do %>
+    <p>
+      <b>User:</b>
+      <%= @resume.user_id %>
+    </p>
 
-<p>
-  <b>Title:</b>
-  <%= @resume.title %>
-</p>
+    <p>
+      <b>Title:</b>
+      <%= @resume.title %>
+    </p>
 
 
-<%= link_to 'Edit', edit_resume_path(@resume) %> |
-<%= link_to 'Back', resumes_path %>
+    <%= link_to 'Edit', edit_resume_path(@resume) %> |
+    <%= link_to 'Back', resumes_path %>
+<% end %>

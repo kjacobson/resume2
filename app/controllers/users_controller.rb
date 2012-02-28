@@ -14,15 +14,13 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
+    @resume = @user.resumes.build(params[:resume])
 
     if @user.save
-      if !params[:user][:resume_name].nil? and !params[:user][:resume_name].nil?
-          @resume = Resume.new(params[:user][:resume_name])
-          if @resume.save
-            redirect_to resume_path(@resume)
-          else
-            redirect_to user_path(@user)
-          end
+      if @resume.save
+        redirect_to resume_path(@resume)
+      else
+        redirect_to user_path(@user)
       end
 
       flash[:notice] = "Account registered!"

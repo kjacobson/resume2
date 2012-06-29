@@ -17,7 +17,7 @@
         <% end %>
     </section>
 
-    <% if @highlights.count >= 1 %>
+    <% if !@highlights.nil? and @highlights.count >= 1 %>
         <section class="secondary associations associatedHighlights">
             <h1>Highlights:</h1>
             <%= render :partial => 'highlights/list' %>

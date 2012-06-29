@@ -29,10 +29,19 @@
           <%= f.password_field :password_confirmation %>
       </div>
 
-
-      <label for="resume_title">Give your first resume a name</label><br />
-      <%= text_field :resume, :title %>
+      <fieldset>
+          <label for="resume_title">Give your first resume a name</label><br />
+          <%= text_field :resume, :title %>
+      </fieldset>
   <% end %>
+  <fieldset>
+      <label for="disciplines">What disciplines do you work in?</label><br />
+      <input type="text" name="disciplines[]" id="disciplines" placeholder="e.g. front-end development"/><br />
+      <input type="text" name="disciplines[]" placeholder="e.g. information architecture"/><br />
+      <input type="text" name="disciplines[]" placeholder="e.g. database architecture"/><br />
+      <input type="text" name="disciplines[]" placeholder="e.g. content strategy"/>
+      <p>Don't worry, you can always enter more later, or just skip this step altogether for now.</p>
+  </fieldset>
 
   <div class="actions">
     <%= f.submit %>

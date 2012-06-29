@@ -11,6 +11,10 @@
     </div>
   <% end %>
 
+    <% if !params[:resume_id].nil? %>
+        <input type="hidden" name="resume_id" value="<%= params[:resume_id] %>" />
+    <% end %>
+
     <div class="field">
         <%= f.label :title %><br />
         <%= f.text_field :title %>
@@ -38,6 +42,14 @@
     <div class="field">
         <%= f.label :end_month %><br />
         <%= f.text_field :end_month %>
+    </div>
+    <div class="field">
+        <%= f.label :start_year %><br />
+        <%= f.text_field :start_year %>
+    </div>
+    <div class="field">
+        <%= f.label :end_year %><br />
+        <%= f.text_field :end_year %>
     </div>
     <div class="field">
         <%= f.label :short_desc, "Short description" %><br />

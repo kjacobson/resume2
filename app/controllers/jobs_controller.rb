@@ -1,5 +1,65 @@
 class JobsController < ApplicationController
   before_filter :require_known_user, :only => [:new, :create, :edit, :update, :destroy]
+
+  def save_skills(skills, job, user)
+    skills.each do |sk|
+      sk = sk.strip()
+      do_job_skill = false
+      skill = Skill.find_by_title(sk)
+      if skill.nil?
+        skill = Skill.new({:title => sk, :slug => sk.gsub(" ","-")})
+        if skill.save
+          do_job_skill = true
+        end
+      else
+        do_job_skill = true
+      end
+      if do_job_skill
+        save_job_skill(skill, job, user)
+      end
+    end
+  end
+
+  def save_job_skill(skill, job, user)
+    js = job.job_skills.find_by_skill_id(skill.id)
+    if js.nil?
+      js = JobSkill.new({:job_id => job.id, :skill_id => skill.id, :user_id => user.id})
+      if js.save
+        logger.debug "Saved a job skill!"
+        logger.debug js.id
+      end
+    end
+  end
+
+  def save_softwares(softwares, job, user)
+    softwares.each do |so|
+      so = so.strip()
+      do_job_software = false
+      software = Software.find_by_title(so)
+      if software.nil?
+        software = Software.new({:title => so, :slug => so.gsub(" ","-")})
+        if software.save
+          do_job_software = true
+        end
+      else
+        do_job_software = true
+      end
+      if do_job_software
+          save_job_software(software, job, user)
+      end
+    end
+  end
+
+  def save_job_software(software, job, user)
+    js = job.job_softwares.find_by_software_id(software.id)
+    if js.nil?
+      js = JobSoftware.new({:job_id => @job.id, :software_id => software.id, :user_id => user.id})
+      if js.save
+        logger.debug "Saved a job software!"
+        logger.debug js.id
+      end
+    end
+  end
   
   # GET /jobs
   # GET /jobs.json
@@ -51,6 +111,11 @@ class JobsController < ApplicationController
   # GET /jobs/new.json
   def new
     @job = Job.new
+    @skills = []
+    @softwares = []
+    if !params[:resume_id].nil?
+      @r_job = ResumeJob.new
+    end
 
     respond_to do |format|
       format.html # new.html.erb
@@ -61,8 +126,8 @@ class JobsController < ApplicationController
   # GET /jobs/1/edit
   def edit
     @job = Job.find(params[:id])
-    @skills = Job.skills
-    @softwares = Job.softwares
+    @skills = @job.skills
+    @softwares = @job.softwares
   end
 
   # POST /jobs
@@ -70,11 +135,24 @@ class JobsController < ApplicationController
   def create
     @job = Job.new(params[:job])
     @job.user_id = current_user.id
+    @skills = params[:skills]
 
 
     respond_to do |format|
       if @job.save
-        format.html { redirect_to(new_job_skill_path(@job.id), :notice => 'Job was successfully created. Now enter the skills you used.') }
+        skills = params[:skills]
+        if !skills.nil? && skills != ""
+          skills = skills.split(',')
+          save_skills(skills, @job, current_user)
+        end
+
+        softwares = params[:softwares]
+        if !softwares.nil? && softwares != ""
+          softwares = softwares.split(',')
+          save_softwares(softwares, @job, current_user)
+        end
+
+        format.html { redirect_to(job_path(current_user, @job.id)) }
         format.json  { render :json => @job, :status => :created, :location => @job }
       else
         format.html { render :action => "new" }
@@ -87,34 +165,21 @@ class JobsController < ApplicationController
   # PUT /jobs/1.json
   def update
     @job = Job.find(params[:id])
-    @skills = params[:job][:skills]
-    if !@skills.nil? && @skills != ""
-      @skills.split(",").each do |s|
-        sk = Skill.find_by_title(s)
-        if !sk
-          sk = Skill.new({:title => s, :slug => s})
-          sk.save
-        end
-        js = JobSkill.new({:job_id => @job.id, :skill_id => sk.id})
-        js.save
-      end
-    end                         
-    @softwares = params[:job][:softwares]
-    if !@softwares.nil? && @softwares != ""
-      @softwares.split(",").each do |s|
-        so = Software.find_by_title(s)
-        if !so
-          so = Software.new({:title => s, :slug => s})
-          so.save
-        end
-        js = JobSoftware.new({:job_id => @job.id, :software_id => so.id})
-        js.save
-      end
+    skills = params[:skills]
+    if !skills.nil? && skills != ""
+      skills = skills.split(',')
+      save_skills(skills, @job, current_user)
+    end
+    
+    softwares = params[:softwares]
+    if !softwares.nil? && softwares != ""
+      softwares = softwares.split(',')
+      save_softwares(softwares, @job, current_user)
     end
 
     respond_to do |format|
       if @job.update_attributes(params[:job])
-        format.html { redirect_to(@job, :notice => 'Job was successfully updated.') }
+        format.html { redirect_to(job_path(current_user, @job, :notice => 'Job was successfully updated.')) }
         format.json  { head :ok }
       else
         format.html { render :action => "edit" }

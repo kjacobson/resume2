@@ -1,67 +1,77 @@
 Resume2::Application.routes.draw do
-  resources :users do
-    resources :resumes
+  namespace :trends do
+    resources :disciplines
     resources :jobs
     resources :skills
     resources :softwares
+    resources :resumes
+    resources :years
+  end
+
+  namespace :admin do
     resources :disciplines
+    resources :highlights
+    resources :jobs
+    resources :job_skills, :as => :j_skills
+    resources :job_softwares, :as => :j_softwares
+    resources :skills
+    resources :softwares
+    resources :resumes
+    resources :resume_highlights, :as => :r_highlights
+    resources :resume_jobs, :as => :r_jobs
+    resources :users
   end
 
-  namespace :users do
-    namespace :resumes do
-      resources :jobs
-      resources :skills
-      resources :softwares
-      resources :disciplines
-      resources :highlights
-    end
-  end
-
-  resources :resumes do
+  # non-admin and non-trends routes will always require a user
+  # if a user is viewing any page belonging to a user other than the one he is logged in as,
+  # routes will require user AND resume
+  scope "users/:user" do
     resources :jobs
     resources :highlights
+    resources :resumes
+
+    scope "(resumes/:resume)" do
+      resources :disciplines do
+        resources :skills, :only => :index
+        resources :jobs, :only => :index
+      end
+
+      resources :highlights
+
+      resources :jobs do
+        resources :skills, :only => [:index, :new, :edit]
+        resources :softwares, :only => [:index, :new, :edit]
+        resources :highlights, :only => [:index, :new, :edit]
+      end
+
+      resources :skills do
+        resources :jobs, :only => :index
+        resources :highlights, :only => :index
+        resources :years, :only => :index
+      end
+
+      resources :softwares do
+        resources :jobs, :only => :index
+        resources :years, :only => :index
+      end
+
+      resources :years do
+        resources :jobs, :only => :index
+        resources :skills, :only => :index
+        resources :softwares, :only => :index
+      end
+    end
+
+    resources :job_skills, :as => :j_skills
+
+    resources :job_softwares, :as => :j_softwares
+
+    resources :resume_highlights, :as => :r_highlights
+
+    resources :resume_jobs, :as => :r_jobs
   end
-
-  resources :jobs do
-    resources :skills, :only => [:index, :new, :edit]
-    resources :softwares, :only => [:index, :new, :edit]
-    resources :highlights, :only => [:index, :new, :edit]
-  end
-
-  resources :skills do
-    resources :jobs, :only => :index
-    resources :highlights, :only => :index
-    resources :years, :only => :index
-  end
-
-  resources :softwares do
-    resources :jobs, :only => :index
-    resources :years, :only => :index
-  end
-
-  resources :highlights
-
-  resources :resume_jobs, :as => :r_jobs
-
-  resources :disciplines do
-    resources :skills, :only => :index
-    resources :jobs, :only => :index
-  end
-
-  resources :job_skills, :as => :j_skills
-
-  resources :job_softwares, :as => :j_softwares
-
-  resources :resume_highlights, :as => :r_highlights
 
   resources :users
-
-  resources :years do
-    resources :jobs, :only => :index
-    resources :skills, :only => :index
-    resources :softwares, :only => :index
-  end
-
   resource :user_session
   resource :account, :controller => 'users'
 

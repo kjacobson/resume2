@@ -1,4 +1,14 @@
 class UsersController < ApplicationController
+  def save_disciplines(disciplines, user)
+    disciplines.each do |di|
+      di = di.strip()
+      disc = Discipline.new({:title => di, :user_id => user.id})
+      if disc.save
+        logger.debug "Saved a discpline: #{di}"
+      end
+    end
+  end
+
   def index
     @users = User.find(:all)
     respond_to do |format|
@@ -15,15 +25,18 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     @resume = @user.resumes.build(params[:resume])
-
+    @disciplines = params[:disciplines]
+    @disciplines.keep_if {|d| d.strip() != ""}
     if @user.save
       if @resume.save
-        redirect_to resume_path(@resume)
+        save_disciplines(@disciplines, current_user)
+
+        flash[:notice] = "So far, so good. Now enter a job to start filling your resume."
+        redirect_to new_job_path(@user, :resume_id => @resume.id)
       else
+        flash[:notice] = "Your account has been set up, but there was an error creating your first blank resume."
         redirect_to user_path(@user)
       end
-
-      flash[:notice] = "Account registered!"
     else
       render :action => :new
     end

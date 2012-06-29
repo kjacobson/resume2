@@ -29,6 +29,7 @@ class SkillsController < ApplicationController
     @skill = Skill.find(params[:id])
     @jobs = @skill.jobs.order("end_year DESC, end_month DESC")
     @years = @skill.years
+    @highlights = Highlight.find_all_by_skill_id(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb

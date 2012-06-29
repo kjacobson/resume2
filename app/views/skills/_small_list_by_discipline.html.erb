@@ -1,5 +1,5 @@
 <% disciplines.each do |discipline| %>
-    <% skills_by_discipline = skills.find_all {|sk| sk.discipline_id == discipline.id} %>
+    <% skills_by_discipline = skills.find_all_by_discipline_id(discipline.id) %>
     <% if skills_by_discipline.count >= 1 %>
         <div class="sub-list-organizational-module discipline-with-skills">
             <h2>

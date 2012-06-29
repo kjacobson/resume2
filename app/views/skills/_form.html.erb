@@ -1,33 +1,37 @@
 <%= form_for(@skill, :url => user_cv_highlight_path) do |f| %>
-  <% if @skill.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@skill.errors.count, "error") %> prohibited this skill from being saved:</h2>
+    <% if @skill.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(@skill.errors.count, "error") %> prohibited this skill from being saved:</h2>
 
-      <ul>
-      <% @skill.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+            <ul>
+                <% @skill.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+        <%= f.label :title %><br />
+        <%= f.text_field :title %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :abbreviation %><br />
-    <%= f.text_field :abbreviation %>
-  </div>
-  <div class="field">
-    <%= f.label :discipline_id %><br />
-    <%= f.text_field :discipline_id %>
-  </div>
-  <div class="field">
-    <%= f.label :slug %><br />
-    <%= f.text_field :slug %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="field">
+        <%= f.label :abbreviation %><br />
+        <%= f.text_field :abbreviation %>
+    </div>
+    <div class="field">
+        <%= f.label :slug %><br />
+        <%= f.text_field :slug %>
+    </div>
+    <div class="field">
+        <%= f.label :discipline_id %><br />
+        <select id="discipline_id" name="discipline_id">
+            <% @disciplines.each do |discipline| %>
+                <option value="<%= discipline.id %>"><%= discipline.title %></option>
+            <% end %>
+        </select>
+    </div>
+    <div class="actions">
+        <%= f.submit %>
+    </div>
 <% end %>

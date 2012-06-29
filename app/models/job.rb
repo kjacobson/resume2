@@ -14,7 +14,11 @@ class Job < ActiveRecord::Base
     belongs_to :user
 
     def disciplines
-        self.skills.flat_map{ |sk| sk.discipline }.uniq
+        disciplines = self.skills.flat_map{ |sk| sk.discipline }.uniq
+        if disciplines.first.nil?
+          disciplines = []
+        end
+        return disciplines
     end
 
     def years

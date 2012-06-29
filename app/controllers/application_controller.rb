@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :current_user_session, :current_user
+  before_filter :require_user_match, :only => [:new, :create, :edit, :update]
 
   private
     def current_user_session
@@ -27,4 +28,13 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    def is_user_match?
+      current_user.id === params[:user_id]
+    end
+
+    def set_user_match_var
+      if is_user_match?
+        @user_match = true
+      end
+    end
 end

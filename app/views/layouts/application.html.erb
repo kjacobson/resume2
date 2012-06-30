@@ -9,18 +9,20 @@
         <link rel="stylesheet" type="text/css" href="/stylesheets/color.css" media="screen" />
     </head>
     <body class="<%= params[:controller] %> <%= params[:action] %>">
-        <div id="main">
-            <p class="notice"><%= flash[:notice] %></p>
-            <%= yield :head %>
-            <%= yield :main %>
+        <div id="wrapper">
+            <div id="main">
+                <p class="notice"><%= flash[:notice] %></p>
+                <%= yield :head %>
+                <%= yield :main %>
+            </div>
+            <header>
+                <nav>
+                </nav>
+            </header>
+            <footer>
+                <p>Copyright Kyle Jacobson, 2011</p>
+            </footer>
         </div>
-        <header>
-            <nav>
-            </nav>
-        </header>
-        <footer>
-            <p>Copyright Kyle Jacobson, 2011</p>
-        </footer>
         <script>
             var _gaq = _gaq || [];
                 _gaq.push(['_setAccount', 'UA-1350599-6']);

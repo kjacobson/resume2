@@ -2,12 +2,29 @@ $bodyWidth: 100%;
 $numberOfColumns: 24;
 $smallestColumnWidth: $bodyWidth / $numberOfColumns;
 
+* {
+  box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    position: relative;
+    width: 100%;
+}
+
 body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+#wrapper {
     height: auto;
     min-height: 100%;
-    overflow: auto;
     position: absolute;
-    width: 100%;
+    top: 0;
 }
     header {
         display: block;
@@ -18,16 +35,20 @@ body {
             display: block;
         }
     #main {
-        padding: 0 $smallestColumnWidth 2em;
+        padding: 0 $smallestColumnWidth 4em;
     }
         section {
             padding-bottom: 1em;
         }
     footer {
+        bottom: 0;
         clear: both;
         display: block;
         height: 2em;
+        left: 0;
         padding: 0 $smallestColumnWidth;
+        position: absolute;
+        right: 0;
     }
 
 /* DEFAULT */

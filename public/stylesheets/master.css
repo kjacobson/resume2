@@ -186,12 +186,27 @@ section.primary .job-list.birds-eye .job-title {
   line-height: 1.875em;
   margin-bottom: 0.375em; }
 
+* {
+  box-sizing: border-box; }
+
+html {
+  height: 100%;
+  position: relative;
+  width: 100%; }
+
 body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  width: 100%; }
+
+#wrapper {
   height: auto;
   min-height: 100%;
-  overflow: auto;
   position: absolute;
-  width: 100%; }
+  top: 0; }
 
 header {
   display: block;
@@ -202,16 +217,20 @@ header nav {
   display: block; }
 
 #main {
-  padding: 0 4.167% 2em; }
+  padding: 0 4.167% 4em; }
 
 section {
   padding-bottom: 1em; }
 
 footer {
+  bottom: 0;
   clear: both;
   display: block;
   height: 2em;
-  padding: 0 4.167%; }
+  left: 0;
+  padding: 0 4.167%;
+  position: absolute;
+  right: 0; }
 
 /* DEFAULT */
 .breadcrumbs {

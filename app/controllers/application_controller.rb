@@ -26,8 +26,8 @@ class ApplicationController < ActionController::Base
       action = params[:action]
       return if ["user_sessions","users"].include?(controller) and ["new","create"].include?(action)
       unless current_user.id === params[:user_id].to_i
-        flash[:notice] = "You can't access this page, as it belongs to a different user. You: #{current_user.id}."
-        return false
+        flash[:notice] = "You can't access this page, as it belongs to a different user."
+        redirect_to :homepage
       end
     end
 

@@ -1,4 +1,14 @@
 class ResumesController < ApplicationController
+  before_filter :set_instance_vars, :only => [:show, :edit, :update]
+
+  def set_instance_vars
+    @resume = Resume.find(params[:id])
+    @user = @resume.user
+    @jobs = @user.jobs
+    #@skills = @resume.skills
+    #@softwares = @resume.softwares
+  end
+
   # GET /resumes
   # GET /resumes.xml
   def index
@@ -13,7 +23,6 @@ class ResumesController < ApplicationController
   # GET /resumes/1
   # GET /resumes/1.xml
   def show
-    @resume = Resume.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,7 +43,7 @@ class ResumesController < ApplicationController
 
   # GET /resumes/1/edit
   def edit
-    @resume = Resume.find(params[:id])
+    @user_jobs = @user.jobs
   end
 
   # POST /resumes
@@ -56,8 +65,6 @@ class ResumesController < ApplicationController
   # PUT /resumes/1
   # PUT /resumes/1.xml
   def update
-    @resume = Resume.find(params[:id])
-
     respond_to do |format|
       if @resume.update_attributes(params[:resume])
         format.html { redirect_to(@resume, :notice => 'Resume was successfully updated.') }

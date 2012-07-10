@@ -64,6 +64,10 @@ class JobsController < ApplicationController
   # GET /jobs
   # GET /jobs.json
   def index
+    if params[:resume_id].nil?
+      require_user_match
+      return
+    end
     @order_by = !params[:order_by].nil? ? params[:order_by] : "end_year"
     @direction = !params[:direction].nil? ? params[:direction] : "DESC"
     if @order_by == "end_year"

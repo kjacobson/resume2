@@ -18,7 +18,8 @@ body {
   height: auto;
   min-height: 100%;
   position: absolute;
-  top: 0; }
+  top: 0;
+  width: 100%; }
 
 header {
   display: block;

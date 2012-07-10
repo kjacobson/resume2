@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :current_user_session, :current_user
-  before_filter :require_user_match, :only => [:new, :create, :edit, :update]
+  before_filter :require_user_match, :except => [:signup, :login, :logout, :index, :show]
 
   private
     def current_user_session
@@ -16,14 +16,17 @@ class ApplicationController < ActionController::Base
   
     def require_known_user
       unless current_user
-         redirect_to :homepage, :notice => 'You must be an admin to access the requested resource.'
+         redirect_to :homepage, :notice => 'You must be an logged in to access the requested resource.'
          return false
       end
     end
 
     def require_user_match
-      unless current_user.id === params[:user_id]
-        redirect_to :homepage, :notice => "You can't see that"
+      controller = params[:controller]
+      action = params[:action]
+      return if ["user_sessions","users"].include?(controller) and ["new","create"].include?(action)
+      unless current_user.id === params[:user_id].to_i
+        flash[:notice] = "You can't access this page, as it belongs to a different user. You: #{current_user.id}."
         return false
       end
     end
@@ -33,8 +36,6 @@ class ApplicationController < ActionController::Base
     end
 
     def set_user_match_var
-      if is_user_match?
-        @user_match = true
-      end
+        @user_match = is_user_match?
     end
 end

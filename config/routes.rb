@@ -25,7 +25,7 @@ Resume2::Application.routes.draw do
   # non-admin and non-trends routes will always require a user
   # if a user is viewing any page belonging to a user other than the one he is logged in as,
   # routes will require user AND resume
-  scope "users/:user" do
+  scope "users/:user_id" do
     resources :jobs
     resources :highlights
     resources :resumes

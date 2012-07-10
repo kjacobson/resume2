@@ -9,5 +9,11 @@
 <% content_for :main do %>
     <section class="primary extended">
         <a href="/signup" rel="internal" title="">Sign up</a>
+        <% if current_user %>
+            <a href="/logout" rel="internal" title="">Log out</a>
+        <% else %>
+            <a href="/login" rel="internal" title="">Log in</a>
+        <% end %>
+
     </section>
 <% end %>

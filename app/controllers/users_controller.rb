@@ -23,6 +23,8 @@ class UsersController < ApplicationController
   end
 
   def create
+    @user_session = UserSession.find
+    @user_session.destroy
     @user = User.new(params[:user])
     @resume = @user.resumes.build(params[:resume])
     @disciplines = params[:disciplines]

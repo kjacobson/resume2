@@ -78,7 +78,6 @@
     <% if @skills.count >= 1 %>
         <section class="secondary extended associations associatedSkills">
             <h1>Skills used</h1>
-            <% debugger %>
             <% if !@disciplines.nil? and @disciplines.count >= 1 %>
                 <%= render :partial => 'skills/small_list_by_discipline', :locals => {:disciplines => @disciplines, :skills => @skills} %>
             <% else %>

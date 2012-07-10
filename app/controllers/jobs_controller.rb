@@ -63,6 +63,7 @@ class JobsController < ApplicationController
         do_job_software = true
       end
       if do_job_software
+          save_user_software(software, user)
           save_job_software(software, job, user)
       end
     end

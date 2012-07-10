@@ -3,9 +3,10 @@ class Skill < ActiveRecord::Base
 
     has_many :job_skills, :dependent => :destroy
     has_many :jobs, :through => :job_skills, :uniq => true
+    has_many :user_skills
+    has_many :users, :through => :user_skills
     has_many :highlights, :dependent => :destroy
     belongs_to :discipline
-    belongs_to :user
 
     def years
       self.jobs.flat_map{ |j| j.years }.uniq

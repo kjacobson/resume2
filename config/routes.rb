@@ -20,6 +20,8 @@ Resume2::Application.routes.draw do
     resources :resume_highlights, :as => :r_highlights
     resources :resume_jobs, :as => :r_jobs
     resources :users
+    resources :user_softwares, :as => :u_softwares
+    resources :user_skills, :as => :u_skills
   end
 
   # non-admin and non-trends routes will always require a user
@@ -69,6 +71,10 @@ Resume2::Application.routes.draw do
     resources :resume_highlights, :as => :r_highlights
 
     resources :resume_jobs, :as => :r_jobs
+
+    resources :user_softwares, :as => :u_skills, :only => [:create, :update, :destroy]
+
+    resources :user_skills, :as => :u_softwares, :only => [:create, :update, :destroy]
   end
 
   resources :users

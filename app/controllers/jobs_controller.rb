@@ -15,7 +15,21 @@ class JobsController < ApplicationController
         do_job_skill = true
       end
       if do_job_skill
+        save_user_skill(skill, user)
         save_job_skill(skill, job, user)
+      end
+    end
+  end
+
+  def save_user_skill(skill, user)
+    us = user.user_skills.find_by_skill_id(skill.id)
+    if us.nil?
+      us = UserSkill.new({:user_id => user.id, :skill_id => skill.id})
+      if us.save
+        logger.debug "Saved a user_skill!"
+        logger.debug us.id
+      else
+        return false
       end
     end
   end
@@ -27,8 +41,12 @@ class JobsController < ApplicationController
       if js.save
         logger.debug "Saved a job skill!"
         logger.debug js.id
+      else
+        return false
       end
     end
+
+    return true
   end
 
   def save_softwares(softwares, job, user)
@@ -50,6 +68,19 @@ class JobsController < ApplicationController
     end
   end
 
+  def save_user_software(software, user)
+    us = user.user_softwares.find_by_software_id(software.id)
+    if us.nil?
+      us = UserSoftware.new({:user_id => user.id, :software_id => software.id})
+      if us.save
+        logger.debug "Saved a user_software!"
+        logger.debug us.id
+      else
+        return false
+      end
+    end
+  end
+
   def save_job_software(software, job, user)
     js = job.job_softwares.find_by_software_id(software.id)
     if js.nil?
@@ -57,8 +88,12 @@ class JobsController < ApplicationController
       if js.save
         logger.debug "Saved a job software!"
         logger.debug js.id
+      else
+        return false
       end
     end
+
+    return true
   end
   
   # GET /jobs

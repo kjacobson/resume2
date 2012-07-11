@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120710050217) do
+ActiveRecord::Schema.define(:version => 20120711044832) do
 
   create_table "disciplines", :force => true do |t|
     t.string   "title"
@@ -110,13 +110,10 @@ ActiveRecord::Schema.define(:version => 20120710050217) do
     t.string   "title"
     t.string   "abbreviation"
     t.string   "slug"
-    t.integer  "discipline_id"
     t.integer  "rank"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "skills", ["discipline_id"], :name => "index_skills_on_discipline_id"
 
   create_table "softwares", :force => true do |t|
     t.string   "title"
@@ -136,6 +133,7 @@ ActiveRecord::Schema.define(:version => 20120710050217) do
     t.integer  "skill_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "discipline_id"
   end
 
   create_table "user_softwares", :force => true do |t|

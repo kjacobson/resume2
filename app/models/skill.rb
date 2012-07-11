@@ -6,7 +6,6 @@ class Skill < ActiveRecord::Base
     has_many :user_skills
     has_many :users, :through => :user_skills
     has_many :highlights, :dependent => :destroy
-    belongs_to :discipline
 
     def years
       self.jobs.flat_map{ |j| j.years }.uniq
@@ -18,6 +17,16 @@ class Skill < ActiveRecord::Base
         else
             return title
         end
+    end
+
+    def discipline(user)
+      us = UserSkill.find_by_user_id(user.id)
+      if !us.nil?
+        discipline = us.discipline
+        return discipline
+      else
+        return false
+      end
     end
 
     def self.rank_skills

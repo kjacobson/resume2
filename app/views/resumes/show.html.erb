@@ -3,17 +3,36 @@
 <% end %>
 
 <% content_for :main do %>
-    <p>
-      <b>User:</b>
-      <%= @resume.user_id %>
-    </p>
+    <section class="primary">
+        <h1>Recent Positions/Projects</h1>
 
-    <p>
-      <b>Title:</b>
-      <%= @resume.title %>
-    </p>
+        <%= render :partial => "jobs/small_list" %>
+        [&hellip;] <a href="/jobs" rel="internal" title="">See all jobs</a>
+    </section>
+
+    <section class="secondary">
+        <% jobs_count = Job.count %>
+        <h1>Disciplines</h1>
+        <%= render :partial => "disciplines/list" %>
+    </section>
+
+    <section class="secondary">
+        <h1>
+            <a href="/softwares" rel="internal" title="See a list of software applications I've used professionally">Software</a>
+        </h1>
+
+        <%= render :partial => "softwares/list", :locals => { :softwares => @softwares, :abbreviated => true} %>
+    </section>
+
+    <section class="secondary extended">
+        <h1>
+            <a href="/skills" rel="internal" title="See a list of my skills">Skills</a>
+        </h1>
+
+        <%= render :partial => "skills/small_list_by_discipline", :locals => { :disciplines => @disciplines, :skills => @skills } %>
+    </section>
 
 
-    <%= link_to 'Edit', edit_resume_path(@resume) %> |
+    <%= link_to 'Add jobs', edit_resume_path(@resume) if @user_match %> |
     <%= link_to 'Back', resumes_path %>
 <% end %>

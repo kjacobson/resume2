@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :user_softwares
   has_many :softwares, :through => :user_softwares
   has_many :highlights
+  has_many :disciplines
 
   acts_as_authentic do |c|
     c.validate_email_field = true

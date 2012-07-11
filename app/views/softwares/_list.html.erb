@@ -1,8 +1,12 @@
-<ol class="software-list">
-    <% softwares.each do |software| %>
-        <li><%= render :partial => 'softwares/link_to_software', :locals => {:software => software} %></li>
+<% if !@softwares.nil? %>
+    <ol class="software-list">
+        <% softwares.each do |software| %>
+            <li><%= render :partial => 'softwares/link_to_software', :locals => {:software => software} %></li>
+        <% end %>
+    </ol>
+    <% if abbreviated %>
+        [&hellip;] <a href="/softwares" rel="internal" title="See all software programs I&rsquo;ve used professionally">see the whole list</a>
     <% end %>
-</ol>
-<% if abbreviated %>
-    [&hellip;] <a href="/softwares" rel="internal" title="See all software programs I&rsquo;ve used professionally">see the whole list</a>
+<% else %>
+    No software programs
 <% end %>

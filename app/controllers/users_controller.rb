@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :require_user_match, :only => [:show, :edit, :update]
+
   def save_disciplines(disciplines, user)
     disciplines.each do |di|
       di = di.strip()

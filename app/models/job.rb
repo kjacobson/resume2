@@ -14,8 +14,9 @@ class Job < ActiveRecord::Base
     belongs_to :user
 
     def disciplines
-        disciplines = self.skills.flat_map{ |sk| sk.discipline }.uniq
-        if disciplines.first.nil?
+        u = self.user
+        disciplines = self.skills.flat_map{ |sk| sk.discipline(u) }.uniq
+        if disciplines.first.nil? or !disciplines.first
           disciplines = []
         end
         return disciplines
@@ -28,6 +29,9 @@ class Job < ActiveRecord::Base
     end
 
     def self.month_converter month
+        if month.nil?
+          month = 0
+        end
         months = ["Present","January","February","March","April","May","June","July","August","September","October","November", "December"]
         return months[month]
     end

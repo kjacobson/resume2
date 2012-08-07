@@ -24,7 +24,7 @@ class JobsController < ApplicationController
   def save_user_skill(skill, user)
     us = user.user_skills.find_by_skill_id(skill.id)
     if us.nil?
-      us = UserSkill.new({:user_id => user.id, :skill_id => skill.id})
+      us = UserSkill.new({:user_id => user.id, :skill_id => skill.id, :discipline_id => 0})
       if us.save
         logger.debug "Saved a user_skill!"
         logger.debug us.id

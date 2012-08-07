@@ -21,7 +21,7 @@ class Skill < ActiveRecord::Base
 
     def discipline(user)
       us = UserSkill.find_by_user_id(user.id)
-      if !us.nil?
+      if !us.nil? and !us.discipline_id.nil?
         discipline = us.discipline
         return discipline
       else

@@ -46,6 +46,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @resumes = @user.resumes
+    @user_match = is_user_match?
   end
 
   def edit

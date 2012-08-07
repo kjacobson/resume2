@@ -3,26 +3,10 @@
 <% end %>
 
 <% content_for :main do %>
-    <p>
-      <b>Email:</b>
-      <%= @user.email %>
-    </p>
-
-    <p>
-      <b>Crypted password:</b>
-      <%= @user.crypted_password %>
-    </p>
-
-    <p>
-      <b>Password salt:</b>
-      <%= @user.password_salt %>
-    </p>
-
-    <p>
-      <b>Persistence token:</b>
-      <%= @user.persistence_token %>
-    </p>
-
+    <section class="primary">
+        <h1>Your resumes</h1>
+        <%= render :partial => 'resumes/list', :locals => {:user => @user, :resumes => @resumes} %>
+    </section>
 
     <%= link_to 'Edit', edit_user_path(@user) if @user_match %> |
     <%= link_to 'Back', users_path %>

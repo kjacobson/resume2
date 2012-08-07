@@ -25,14 +25,21 @@ class ApplicationController < ActionController::Base
       controller = params[:controller]
       action = params[:action]
       return if ["user_sessions","users"].include?(controller) and ["new","create"].include?(action)
-      unless current_user.id === params[:user_id].to_i
+      unless is_user_match?
         flash[:notice] = "You can't access this page, as it belongs to a different user."
         redirect_to :homepage
       end
     end
 
     def is_user_match?
-      current_user.id === params[:user_id]
+      if !params[:user_id].nil?
+        page_user_id = params[:user_id].to_i
+      elsif params[:controller] == "users" and !params[:id].nil?
+        page_user_id = params[:id].to_i
+      else
+        page_user_id = nil
+      end
+      current_user.id === page_user_id
     end
 
     def set_user_match_var

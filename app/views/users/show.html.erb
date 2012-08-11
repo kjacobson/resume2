@@ -8,6 +8,5 @@
         <%= render :partial => 'resumes/list', :locals => {:user => @user, :resumes => @resumes} %>
     </section>
 
-    <%= link_to 'Edit', edit_user_path(@user) if @user_match %> |
-    <%= link_to 'Back', users_path %>
+    <%= link_to 'Your account', edit_user_path(@user) if @user_match %>
 <% end %>

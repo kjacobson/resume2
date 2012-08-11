@@ -1,6 +1,6 @@
 <% disciplines.each do |discipline| %>
     <% skills_by_discipline = discipline.skills(@user) %>
-    <% if skills_by_discipline.count >= 1 %>
+    <% if skills_by_discipline %>
         <div class="sub-list-organizational-module discipline-with-skills">
             <h2>
                 <%= render :partial => 'disciplines/link_to_discipline', :locals => {:discipline => discipline} %>

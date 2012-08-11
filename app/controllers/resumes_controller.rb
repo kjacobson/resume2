@@ -7,6 +7,7 @@ class ResumesController < ApplicationController
     @jobs = @user.jobs.order("end_year DESC")
     @skills = @resume.skills.sort { |a,b| a.title <=> b.title }
     @softwares = @resume.softwares.sort { |a,b| b.rank <=> a.rank }
+    @disciplines = @resume.disciplines
   end
 
   # GET /resumes
@@ -24,7 +25,6 @@ class ResumesController < ApplicationController
   # GET /resumes/1.xml
   def show
     @jobs = @jobs[0..6]
-    @disciplines = Discipline.find_all_by_user_id(@user.id)
     @softwares = @softwares[0..4]
 
     respond_to do |format|

@@ -4,8 +4,13 @@ class Discipline < ActiveRecord::Base
     belongs_to :user
 
     def skills(user)
-        user_skills = discipline.user_skills.reject { |us| us.user_id != user.id }
-        skills = user_skills.flat_map { |us| us.skill }.uniq
+      user_skills = UserSkill.where(:user_id => user.id, :discipline_id => self.id)
+      skills = []
+      if user_skills.count > 0
+        user_skills.each do |us|
+          skills.push(user_skill.skill)
+        end
+      end
     end
 
 

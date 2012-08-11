@@ -20,9 +20,9 @@ class Skill < ActiveRecord::Base
     end
 
     def discipline(user)
-      us = UserSkill.find_by_user_id(user.id)
-      if !us.nil? and !us.discipline_id.nil?
-        discipline = us.discipline
+      user_skills = UserSkill.where(:user_id => user.id, :skill_id => self.id)
+      if user_skills.count == 1 and !user_skills.first.discipline_id.nil?
+        discipline = user_skills.first.discipline
         return discipline
       else
         return false

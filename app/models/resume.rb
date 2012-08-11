@@ -15,6 +15,10 @@ class Resume < ActiveRecord::Base
       return skills
     end
 
+    def disciplines
+      disciplines = self.skills.flat_map{ |sk| sk.discipline }.uniq
+    end
+
     def softwares
       softwares = self.jobs.flat_map{ |j| j.softwares }.uniq
       if softwares.first.nil?

@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :current_user_session, :current_user
   before_filter :require_user_match, :except => [:signup, :login, :logout, :index, :show]
+  before_filter :set_user_match_var
 
   private
     def current_user_session

@@ -6,14 +6,21 @@
     <section class="primary">
         <h1>Recent Positions/Projects</h1>
 
-        <%= render :partial => "jobs/small_list" %>
-        [&hellip;] <a href="/jobs" rel="internal" title="">See all jobs</a>
+        <% if @jobs.count >= 1 %>
+            <%= render :partial => "jobs/small_list" %>
+            [&hellip;] <a href="/jobs" rel="internal" title="">See all jobs</a>
+        <% end %>
+
+
+        <%= link_to 'Add jobs', edit_resume_path(@resume) if @user_match %>
     </section>
 
     <section class="secondary">
         <% jobs_count = Job.count %>
         <h1>Disciplines</h1>
-        <%= render :partial => "disciplines/list" %>
+        <% if @disciplines.count >= 1 %>
+            <%= render :partial => "disciplines/list" %>
+        <% end %>
     </section>
 
     <section class="secondary">
@@ -21,7 +28,9 @@
             <a href="/softwares" rel="internal" title="See a list of software applications I've used professionally">Software</a>
         </h1>
 
-        <%= render :partial => "softwares/list", :locals => { :softwares => @softwares, :abbreviated => true} %>
+        <% if @softwares.count >= 1 %>
+            <%= render :partial => "softwares/list", :locals => { :softwares => @softwares, :abbreviated => true} %>
+        <% end %>
     </section>
 
     <section class="secondary extended">
@@ -29,10 +38,10 @@
             <a href="/skills" rel="internal" title="See a list of my skills">Skills</a>
         </h1>
 
-        <%= render :partial => "skills/small_list_by_discipline", :locals => { :disciplines => @disciplines, :skills => @skills } %>
+        <% if @disciplines and @disciplines.count >= 1 %>
+            <%= render :partial => "skills/small_list_by_discipline", :locals => { :disciplines => @disciplines, :skills => @skills } %>
+        <% elsif @skills.count >= 1 %>
+            <%=  render :partial => "skills/small_list", :locals => {:skills => @skills } %>
+        <% end %>
     </section>
-
-
-    <%= link_to 'Add jobs', edit_resume_path(@resume) if @user_match %> |
-    <%= link_to 'Back', resumes_path %>
 <% end %>

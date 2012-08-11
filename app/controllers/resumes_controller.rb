@@ -4,7 +4,7 @@ class ResumesController < ApplicationController
   def set_instance_vars
     @resume = Resume.find(params[:id])
     @user = @resume.user
-    @jobs = @user.jobs.order("end_year DESC")
+    @jobs = @resume.jobs.order("end_year DESC")
     @skills = @resume.skills.sort { |a,b| a.title <=> b.title }
     @softwares = @resume.softwares.sort { |a,b| b.rank <=> a.rank }
     @disciplines = @resume.disciplines

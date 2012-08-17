@@ -14,14 +14,15 @@
 
         <%= link_to 'Add jobs', edit_resume_path(@resume) if @user_match %>
     </section>
+    <% if @disciplines.count >= 1 or @user_match %>
+        <section class="secondary">
+            <% jobs_count = Job.count %>
+            <h1>Disciplines</h1>
+            <%= render :partial => "disciplines/list", :locals => { :disciplines => @disciplines } unless @disciplines.count == 0 %>
 
-    <section class="secondary">
-        <% jobs_count = Job.count %>
-        <h1>Disciplines</h1>
-        <% if @disciplines.count >= 1 %>
-            <%= render :partial => "disciplines/list" %>
-        <% end %>
-    </section>
+            <%= link_to 'Add disciplines', edit_resume_path(@resume) if @user_match %>
+        </section>
+    <% end %>
 
     <section class="secondary">
         <h1>
@@ -41,7 +42,7 @@
         <% if @disciplines and @disciplines.count >= 1 %>
             <%= render :partial => "skills/small_list_by_discipline", :locals => { :disciplines => @disciplines, :skills => @skills } %>
         <% elsif @skills.count >= 1 %>
-            <%=  render :partial => "skills/small_list", :locals => {:skills => @skills } %>
+            <%=  render :partial => "skills/small_list", :locals => { :resume => @resume, :skills => @skills } %>
         <% end %>
     </section>
 <% end %>

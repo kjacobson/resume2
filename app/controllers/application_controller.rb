@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
       else
         page_user_id = nil
       end
-      current_user.id === page_user_id
+      return !current_user.nil? ? current_user.id === page_user_id : false
     end
 
     def set_user_match_var

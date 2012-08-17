@@ -7,7 +7,7 @@ class ResumesController < ApplicationController
     @jobs = @resume.jobs.order("end_year DESC")
     @skills = @resume.skills.sort { |a,b| a.title <=> b.title }
     @softwares = @resume.softwares.sort { |a,b| b.rank <=> a.rank }
-    @disciplines = @resume.disciplines
+    @disciplines = @resume.disciplines.delete_if { |d| d.nil? }
   end
 
   # GET /resumes

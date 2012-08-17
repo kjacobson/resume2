@@ -26,14 +26,16 @@ class UsersController < ApplicationController
 
   def create
     @user_session = UserSession.find
-    @user_session.destroy
+    if !@user_session.nil?
+      @user_session.destroy
+    end
     @user = User.new(params[:user])
     @resume = @user.resumes.build(params[:resume])
     @disciplines = params[:disciplines]
     @disciplines.keep_if {|d| d.strip() != ""}
     if @user.save
       if @resume.save
-        save_disciplines(@disciplines, current_user)
+        save_disciplines(@disciplines, @user)
 
         flash[:notice] = "So far, so good. Now enter a job to start filling your resume."
         redirect_to new_job_path(@user, :resume_id => @resume.id)

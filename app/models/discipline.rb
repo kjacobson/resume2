@@ -2,6 +2,7 @@ class Discipline < ActiveRecord::Base
     validates_presence_of :title
     validates_uniqueness_of :title
     belongs_to :user
+    has_many :user_skills
 
     def skills(user)
       user_skills = UserSkill.where(:user_id => user.id, :discipline_id => self.id)

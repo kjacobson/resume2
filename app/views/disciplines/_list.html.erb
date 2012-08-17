@@ -1,6 +1,6 @@
 <ul class="organizational-type-list discipline-list">
-    <% if !@disciplines.nil? %>
-        <% @disciplines.each do |discipline| %>
+    <% if !disciplines.nil? and disciplines.length > 0 %>
+        <% disciplines.each do |discipline| %>
             <li>
                 <%= render :partial => 'disciplines/link_to_discipline', :locals => { :discipline => discipline } %>
             </li>

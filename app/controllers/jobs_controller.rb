@@ -153,9 +153,6 @@ class JobsController < ApplicationController
     @job = Job.new
     @skills = []
     @softwares = []
-    if !params[:resume_id].nil?
-      @r_job = ResumeJob.new
-    end
 
     respond_to do |format|
       format.html # new.html.erb
@@ -180,6 +177,16 @@ class JobsController < ApplicationController
 
     respond_to do |format|
       if @job.save
+        if !params[:resume_id].nil?
+          @resume = Resume.find(params[:resume_id])
+          if @resume
+            @r_job = ResumeJob.new({:resume_id => @resume.id, :job_id => @job.id})
+            if @r_job.save
+              logger.debug "Saved a ResumeJob"
+            end
+          end
+        end
+
         skills = params[:skills]
         if !skills.nil? && skills != ""
           skills = skills.split(',')
@@ -192,7 +199,7 @@ class JobsController < ApplicationController
           save_softwares(softwares, @job, current_user)
         end
 
-        format.html { redirect_to(job_path(current_user, @job.id)) }
+        format.html { redirect_to(job_path(current_user, @resume, @job.id)) }
         format.json  { render :json => @job, :status => :created, :location => @job }
       else
         format.html { render :action => "new" }

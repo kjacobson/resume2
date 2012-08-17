@@ -1,4 +1,5 @@
 class UserSessionsController < ApplicationController
+  skip_before_filter :require_user_match, :only => [:new, :create, :destroy]
   # GET /user_sessions/new
   # GET /user_sessions/new.xml
   def new
@@ -31,10 +32,12 @@ class UserSessionsController < ApplicationController
   # DELETE /user_sessions/1.xml
   def destroy
     @user_session = UserSession.find
-    @user_session.destroy
+    if @user_session
+      @user_session.destroy
+    end
 
     respond_to do |format|
-      format.html { redirect_to(:users, :notice => 'Goodbye!') }
+      format.html { redirect_to(:homepage, :notice => 'Goodbye!') }
       format.xml  { head :ok }
     end
   end

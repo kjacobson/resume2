@@ -15,7 +15,13 @@ class Resume < ActiveRecord::Base
     end
 
     def disciplines
-      disciplines = self.skills.flat_map{ |sk| sk.discipline }.uniq
+      user = User.find(self.user_id)
+      if user
+        disciplines = self.skills.flat_map{ |sk| sk.discipline(user) }.uniq
+      else
+        disciplines = []
+      end
+      return disciplines
     end
 
     def softwares

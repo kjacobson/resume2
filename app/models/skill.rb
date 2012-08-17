@@ -25,7 +25,7 @@ class Skill < ActiveRecord::Base
         discipline = user_skills.first.discipline
         return discipline
       else
-        return false
+        return nil
       end
     end
 

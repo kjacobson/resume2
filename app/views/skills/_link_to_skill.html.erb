@@ -1,2 +1,2 @@
-<a href="<%= skill_path(@current_user, @resume, @skill) %>" class="primary-type-title skill-title" rel="internal" title="See other positions where I used <%= skill.title %>">
+<a href="<%= skill_path(current_user, resume, skill) %>" class="primary-type-title skill-title" rel="internal" title="See other positions where I used <%= skill.title %>">
     <%= decode(skill.shortest_name) %></a>

@@ -4,6 +4,7 @@ class SkillsController < ApplicationController
   # GET /skills
   # GET /skills.json
   def index
+    @resume = Resume.find(params[:resume_id]) if !params[:resume_id].nil?
     @order_by = !params[:order_by].nil? ? params[:order_by] : "title"
     @direction = !params[:direction].nil? ? params[:direction] : "ASC"
 
@@ -13,8 +14,13 @@ class SkillsController < ApplicationController
     elsif !params[:year_id].nil?
         @year = Year.find_by_value(params[:year_id])
         @skills = @year.skills.order(@order_by + " " + @direction)
-    else
-        @skills = Skill.find(:all, :order => @order_by + " " + @direction)
+    elsif @resume
+        @skills = @resume.skills
+        if @direction == "DESC"
+          @skills.sort! { |a,b| b[@order_by] <=> a[@order_by] }
+        else
+          @skills.sort! { |a,b| a[@order_by] <=> b[@order_by] }
+        end
     end
 
     respond_to do |format|

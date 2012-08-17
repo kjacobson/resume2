@@ -10,13 +10,13 @@
         </th>
     </tr>
 
-    <% @skills.each do |skill| %>
+    <% skills.each do |skill| %>
         <tr>
             <% if !current_user.nil? %>
                 <td class="numericData"><%= skill.id %></td>
             <% end %>
             <td>
-                <%= render :partial => 'link_to_skill', :locals => {:skill => skill} %>
+                <%= render :partial => 'link_to_skill', :locals => {:skill => skill, :resume => resume || nil } %>
             </td>
         </tr>
     <% end %>

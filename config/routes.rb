@@ -31,8 +31,9 @@ Resume2::Application.routes.draw do
     resources :jobs
     resources :highlights
     resources :resumes
+    resources :skills
 
-    scope "(resumes/:resume)" do
+    scope "(resumes/:resume_id)" do
       resources :disciplines do
         resources :skills, :only => :index
         resources :jobs, :only => :index

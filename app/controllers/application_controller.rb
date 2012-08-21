@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user_session, :current_user
   before_filter :require_user_match, :except => [:signup, :login, :logout, :index, :show]
   before_filter :set_user_match_var
+  before_filter :set_admin_user_var
 
   private
     def current_user_session
@@ -30,6 +31,18 @@ class ApplicationController < ActionController::Base
         flash[:notice] = "You can't access this page, as it belongs to a different user."
         redirect_to :homepage
       end
+    end
+
+    def require_admin_user
+      return false
+    end
+
+    def is_admin_user?
+      return false
+    end
+
+    def set_admin_user_var
+        @is_admin = is_admin_user?
     end
 
     def is_user_match?

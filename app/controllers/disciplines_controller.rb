@@ -22,6 +22,7 @@ class DisciplinesController < ApplicationController
   # GET /disciplines/1.json
   def show
     @discipline = Discipline.find(params[:id])
+    @user = @discipline.user
     @skills = @discipline.skills
 
     respond_to do |format|
@@ -34,6 +35,9 @@ class DisciplinesController < ApplicationController
   # GET /disciplines/new.json
   def new
     @discipline = Discipline.new
+    @user = @discipline.user
+    @skills = @user.skills
+    @selected_skills = []
 
     respond_to do |format|
       format.html # new.html.erb
@@ -44,6 +48,9 @@ class DisciplinesController < ApplicationController
   # GET /disciplines/1/edit
   def edit
     @discipline = Discipline.find(params[:id])
+    @user = @discipline.user
+    @skills = @user.skills
+    @selected_skills = @discipline.skills || []
   end
 
   # POST /disciplines
@@ -69,10 +76,21 @@ class DisciplinesController < ApplicationController
   # PUT /disciplines/1.json
   def update
     @discipline = Discipline.find(params[:id])
+    @user = User.find(@discipline.user_id)
+    @skills = params[:skills]
+    @user_skills = @user.user_skills
+    debugger
+    @skills.each do |sk|
+      skill = Skill.find_by_title(sk)
+      user_skill = @user_skills.keep_if { |us| us.skill_id == skill.id }.first
+      if !user_skill.nil?
+        user_skill.update_attributes(:discipline_id => @discipline.id)
+      end
+    end
 
     respond_to do |format|
       if @discipline.update_attributes(params[:discipline])
-        format.html { redirect_to(@discipline, :notice => 'Discipline was successfully updated.') }
+        format.html { redirect_to(discipline_path(:user_id => @user.id, :id => @discipline.id), :notice => 'Discipline was successfully updated.') }
         format.json  { head :ok }
       else
         format.html { render :action => "edit" }

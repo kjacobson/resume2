@@ -1,5 +1,5 @@
 <% disciplines.each do |discipline| %>
-    <% skills_by_discipline = discipline.skills(@user) %>
+    <% skills_by_discipline = discipline.skills %>
     <% if skills_by_discipline %>
         <div class="sub-list-organizational-module discipline-with-skills">
             <h2>

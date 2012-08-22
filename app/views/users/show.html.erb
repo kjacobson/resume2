@@ -5,7 +5,20 @@
 <% content_for :main do %>
     <section class="primary">
         <h1>Your resumes</h1>
-        <%= render :partial => 'resumes/list', :locals => {:user => @user, :resumes => @resumes} %>
+        <%= render :partial => 'resumes/list', :locals => { :user => @user, :resumes => @resumes } %>
+    </section>
+
+    <section class="secondary">
+        <h1>Your disciplines</h1>
+
+        <% @disciplines.each do |discipline| %>
+            <h2>
+                <%= discipline.title.titlecase %>
+            </h2>
+            <a href="<%= edit_discipline_path(:user_id => @user.id, :id => discipline.id) %>" rel="internal" title="">
+                [Associate skills with this discipline]
+            </a>
+        <% end %>
     </section>
 
     <%= link_to 'Your account', edit_user_path(@user) if @user_match %>

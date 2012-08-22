@@ -1,5 +1,4 @@
 class Resume < ActiveRecord::Base
-    belongs_to :user
     has_many :resume_jobs
     has_many :jobs, :through => :resume_jobs
     has_many :resume_highlights

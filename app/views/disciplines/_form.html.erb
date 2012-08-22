@@ -1,4 +1,4 @@
-<%= form_for(@discipline, :url => user_cv_discipline_path) do |f| %>
+<%= form_for(@discipline, :url => discipline_path(:user => @user, :discipline_id => @discipline.id)) do |f| %>
   <% if @discipline.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@discipline.errors.count, "error") %> prohibited this discipline from being saved:</h2>
@@ -15,6 +15,12 @@
     <%= f.label :title %><br />
     <%= f.text_field :title %>
   </div>
+  <h2>Associated Skills</h2>
+  <select multiple="true" name="skills[]">
+      <% @skills.each do |skill| %>
+          <option value="<%= skill.title %>" <%= 'selected' if @selected_skills.include?(skill) %>><%= skill.title %></option>
+      <% end %>
+  </select>
   <div class="actions">
     <%= f.submit %>
   </div>

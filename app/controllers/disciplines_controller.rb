@@ -82,7 +82,7 @@ class DisciplinesController < ApplicationController
     debugger
     @skills.each do |sk|
       skill = Skill.find_by_title(sk)
-      user_skill = @user_skills.keep_if { |us| us.skill_id == skill.id }.first
+      user_skill = @user_skills.select { |us| us.skill_id == skill.id }.first
       if !user_skill.nil?
         user_skill.update_attributes(:discipline_id => @discipline.id)
       end

@@ -11,14 +11,46 @@
     <section class="secondary">
         <h1>Your disciplines</h1>
 
-        <% @disciplines.each do |discipline| %>
-            <h2>
-                <%= discipline.title.titlecase %>
-            </h2>
-            <a href="<%= edit_discipline_path(:user_id => @user.id, :id => discipline.id) %>" rel="internal" title="">
-                [Associate skills with this discipline]
-            </a>
+        <ul class="disciplines-list">
+            <li>
+                <% @disciplines.each do |discipline| %>
+                    <% skills = discipline.skills %>
+                    <h2>
+                        <%= discipline.title.titlecase %>
+                    </h2>
+                    <% if skills.count > 0 %>
+                        <%= render :partial => 'skills/small_list', :locals => { :user => @user, :resume => nil, :skills => skills } %>
+                    <% end %>
+                    <a href="<%= edit_discipline_path(:user_id => @user.id, :id => discipline.id) %>" rel="internal" title="">
+                        [Associate <%= 'more ' if skills.count > 0 %>skills with this discipline]
+                    </a>
+                <% end %>
+            </li>
+        </ul>
+    </section>
+
+    <section class="secondary">
+        <h1>Your skills</h1>
+
+        <% if @skills %>
+            <%= render :partial => 'skills/small_list', :locals => { :user => @user, :resume => nil, :skills => @skills } %>
         <% end %>
+
+        <a href="<%= new_skill_path(:user_id => @user.id) %>" rel="internal" title="">
+            [Add skills]
+        </a>
+    </section>
+
+    <section class="secondary">
+        <h1>Your software programs</h1>
+
+        <% if @softwares %>
+            <%= render :partial => 'softwares/list', :locals => { :user => @user, :softwares => @softwares } %>
+        <% end %>
+
+        <a href="<%= new_software_path(:user_id => @user.id) %>" rel="internal" title="">
+            [Add softwares]
+        </a>
     </section>
 
     <%= link_to 'Your account', edit_user_path(@user) if @user_match %>

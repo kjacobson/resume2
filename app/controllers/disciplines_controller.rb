@@ -63,6 +63,15 @@ class DisciplinesController < ApplicationController
 
     respond_to do |format|
       if @discipline.save
+        @skills = params[:skills]
+        @user_skills = @user.user_skills
+        @skills.each do |sk|
+          skill = Skill.find_by_title(sk)
+          user_skill = @user_skills.select { |us| us.skill_id == skill.id }.first
+          if !user_skill.nil?
+            user_skill.update_attributes(:discipline_id => @discipline.id)
+          end
+        end
         format.html { redirect_to(@discipline, :notice => 'Discipline was successfully created.') }
         format.json  { render :json => @discipline, :status => :created, :location => @discipline }
       else
@@ -79,7 +88,6 @@ class DisciplinesController < ApplicationController
     @user = User.find(@discipline.user_id)
     @skills = params[:skills]
     @user_skills = @user.user_skills
-    debugger
     @skills.each do |sk|
       skill = Skill.find_by_title(sk)
       user_skill = @user_skills.select { |us| us.skill_id == skill.id }.first

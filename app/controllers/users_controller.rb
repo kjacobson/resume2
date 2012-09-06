@@ -50,8 +50,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @disciplines = @user.disciplines
     @resumes = @user.resumes
+    @disciplines = @user.disciplines
+    @skills = @user.skills
+    @softwares = @user.softwares
     @user_match = is_user_match?
   end
 

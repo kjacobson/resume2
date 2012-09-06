@@ -58,7 +58,7 @@ Resume2::Application.routes.draw do
         resources :years, :only => :index
       end
 
-      resources :years do
+      resources :years, :only => [:index, :show] do
         resources :jobs, :only => :index
         resources :skills, :only => :index
         resources :softwares, :only => :index

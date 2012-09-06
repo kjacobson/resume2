@@ -1,4 +1,4 @@
-<%= form_for(@skill, :url => user_cv_highlight_path) do |f| %>
+<%= form_for(@skill) do |f| %>
     <% if @skill.errors.any? %>
         <div id="error_explanation">
             <h2><%= pluralize(@skill.errors.count, "error") %> prohibited this skill from being saved:</h2>

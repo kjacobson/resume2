@@ -46,7 +46,9 @@ class SkillsController < ApplicationController
   # GET /skills/new
   # GET /skills/new.json
   def new
+    @user = current_user
     @skill = Skill.new
+    @disciplines = @user.disciplines
 
     respond_to do |format|
       format.html # new.html.erb

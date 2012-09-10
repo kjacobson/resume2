@@ -1,5 +1,19 @@
 class SkillsController < ApplicationController
   before_filter :require_known_user, :only => [:new, :create, :edit, :update, :destroy]
+  before_filter :require_user_match, :only => [:new, :create, :edit, :update, :destroy]
+
+  def save_user_skill(skill, user, discipline_id = nil)
+    us = user.user_skills.find_by_skill_id(skill.id)
+    if us.nil?
+      us = UserSkill.new({:user_id => user.id, :skill_id => skill.id, :discipline_id => discipline_id})
+      if us.save
+        logger.debug "Saved a user_skill!"
+        logger.debug us.id
+      else
+        return false
+      end
+    end
+  end
 
   # GET /skills
   # GET /skills.json
@@ -64,12 +78,16 @@ class SkillsController < ApplicationController
   # POST /skills
   # POST /skills.json
   def create
-    @skill = Skill.new(params[:skill])
-    @skill.user_id = current_user.id
+    @skill = Skill.find_by_title(params[:skill][:title])
+    if @skill.nil?
+      @skill = Skill.new(params[:skill])
+      @skill.slug = @skill.slug.gsub(" ","-")
+    end
 
     respond_to do |format|
       if @skill.save
-        format.html { redirect_to(@skill, :notice => 'Skill was successfully created.') }
+        save_user_skill(@skill, current_user, params[:discipline_id])
+        format.html { redirect_to(user_path(current_user), :notice => 'Skill was successfully added.') }
         format.json  { render :json => @skill, :status => :created, :location => @skill }
       else
         format.html { render :action => "new" }

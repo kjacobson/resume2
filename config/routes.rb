@@ -32,6 +32,7 @@ Resume2::Application.routes.draw do
     resources :highlights
     resources :resumes
     resources :skills
+    resources :softwares
 
     scope "(resumes/:resume_id)" do
       resources :disciplines do

@@ -21,10 +21,11 @@ class JobsController < ApplicationController
     end
   end
 
+  # TODO: this exists in SkillsController too. We should import that Class and use that method.
   def save_user_skill(skill, user)
     us = user.user_skills.find_by_skill_id(skill.id)
     if us.nil?
-      us = UserSkill.new({:user_id => user.id, :skill_id => skill.id, :discipline_id => 0})
+      us = UserSkill.new({:user_id => user.id, :skill_id => skill.id, :discipline_id => nil})
       if us.save
         logger.debug "Saved a user_skill!"
         logger.debug us.id
@@ -69,6 +70,7 @@ class JobsController < ApplicationController
     end
   end
 
+  # TODO: this exists in SoftwaresController too. We should import that Class and use that method.
   def save_user_software(software, user)
     us = user.user_softwares.find_by_software_id(software.id)
     if us.nil?

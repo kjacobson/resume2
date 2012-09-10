@@ -1,5 +1,19 @@
 class SoftwaresController < ApplicationController
   before_filter :require_known_user, :only => [:new, :create, :edit, :update, :destroy]
+  before_filter :require_user_match, :only => [:new, :create, :edit, :update, :destroy]
+
+  def save_user_software(software, user)
+    us = user.user_softwares.find_by_software_id(software.id)
+    if us.nil?
+      us = UserSoftware.new({:user_id => user.id, :software_id => software.id})
+      if us.save
+        logger.debug "Saved a user_software!"
+        logger.debug us.id
+      else
+        return false
+      end
+    end
+  end
 
   # GET /softwares
   # GET /softwares.json
@@ -54,13 +68,17 @@ class SoftwaresController < ApplicationController
 
   # POST /softwares
   # POST /softwares.json
-  def create
-    @software = Software.new(params[:software])
-    @software.user_id = current_user.id
+  def create                                      
+    @software = Software.find_by_title(params[:software][:title])
+    if @software.nil?
+      @software = Software.new(params[:software])
+      @software.slug = @software.slug.gsub(" ","-")
+    end
 
     respond_to do |format|
       if @software.save
-        format.html { redirect_to(@software, :notice => 'Software was successfully created.') }
+        save_user_software(@software, current_user)
+        format.html { redirect_to(user_path(current_user), :notice => 'Software was successfully added.') }
         format.json  { render :json => @software, :status => :created, :location => @software }
       else
         format.html { render :action => "new" }

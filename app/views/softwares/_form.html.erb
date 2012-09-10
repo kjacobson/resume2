@@ -1,4 +1,4 @@
-<%= form_for(@software) do |f| %>
+<%= form_for(@software, :url => softwares_path(current_user)) do |f| %>
   <% if @software.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@software.errors.count, "error") %> prohibited this software from being saved:</h2>

@@ -1,3 +1,7 @@
+<%
+   resume ||= nil
+   user ||= nil
+%>
 <% disciplines.each do |discipline| %>
     <% skills_by_discipline = discipline.skills %>
     <% if skills_by_discipline %>
@@ -8,7 +12,7 @@
             <ol class="primary-type-sub-list skill-list">
                 <% skills_by_discipline.each do |skill| %>
                     <li>
-                        <%= render :partial => 'skills/link_to_skill', :locals => {:skill => skill} %>
+                        <%= render :partial => 'skills/link_to_skill', :locals => {:user => user, :resume => resume, :skill => skill} %>
                     </li>
                 <% end %>
             </ol>

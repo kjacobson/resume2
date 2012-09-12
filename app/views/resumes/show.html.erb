@@ -40,9 +40,9 @@
         </h1>
 
         <% if @disciplines and @disciplines.count >= 1 %>
-            <%= render :partial => "skills/small_list_by_discipline", :locals => { :disciplines => @disciplines, :skills => @skills } %>
+            <%= render :partial => "skills/small_list_by_discipline", :locals => { :user => @user, :resume => @resume, :disciplines => @disciplines, :skills => @skills } %>
         <% elsif @skills.count >= 1 %>
-            <%=  render :partial => "skills/small_list", :locals => { :resume => @resume, :skills => @skills } %>
+            <%=  render :partial => "skills/small_list", :locals => { :user => @user, :resume => @resume, :skills => @skills } %>
         <% end %>
     </section>
 <% end %>

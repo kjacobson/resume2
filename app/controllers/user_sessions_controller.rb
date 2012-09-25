@@ -37,7 +37,7 @@ class UserSessionsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_to(:homepage, :notice => 'Goodbye!') }
+      format.html { redirect_to(:homepage, :notice => 'You&rsquolve been signed out. Thanks for stopping by.') }
       format.xml  { head :ok }
     end
   end

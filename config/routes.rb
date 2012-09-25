@@ -91,6 +91,7 @@ Resume2::Application.routes.draw do
   match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout
   match 'signup' => 'users#new', :as => :signup
+  match '/users/:user_id/account' => 'users#edit', :as => :account
     
   # The priority is based upon order of creation:
   # first created -> highest priority.

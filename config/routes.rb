@@ -1,4 +1,6 @@
 Resume2::Application.routes.draw do
+  resources :links
+
   namespace :trends do
     resources :disciplines
     resources :jobs

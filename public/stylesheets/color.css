@@ -104,3 +104,8 @@ a:link:focus {
 
 .job-list.birds-eye > li {
   border-color: #e9e7e0 white white; }
+
+/* FORMS */
+.form-explanation {
+  background-color: #f6f6f6;
+  border-color: #888888; }

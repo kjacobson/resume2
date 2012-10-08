@@ -18,7 +18,7 @@
   <% if params[:action] == "new" %>
       <div class="field">
         <%= f.label :email %><br />
-        <%= f.text_field :email %>
+        <input id="user_email" name="user[email]" size="30" type="email" required>
       </div>
       <div class="field">
         <%= f.label :password %><br />
@@ -36,11 +36,17 @@
   <% end %>
   <fieldset>
       <label for="disciplines">What disciplines do you work in?</label><br />
-      <input type="text" name="disciplines[]" id="disciplines" placeholder="e.g. front-end development"/><br />
-      <input type="text" name="disciplines[]" placeholder="e.g. information architecture"/><br />
-      <input type="text" name="disciplines[]" placeholder="e.g. database architecture"/><br />
-      <input type="text" name="disciplines[]" placeholder="e.g. content strategy"/>
-      <p>Don't worry, you can always enter more later, or just skip this step altogether for now.</p>
+      <p class="form-explanation">
+          <strong>Why do we ask for this?</strong> In the next step, you&rsquo;re going to start listing your skills.
+          We don&rsquo;t assume anyone&rsquo;s one dimensional, so your skills probably fall across multiple disciplines:
+          actor/director; designer/developer; you get the idea. Listing your disciplines first is a good way to start thinking
+          about organizing your resume.
+      </p>
+      <input type="text" name="disciplines[]" id="disciplines" placeholder="e.g. front-end development" size="40" /><br />
+      <input type="text" name="disciplines[]" placeholder="e.g. information architecture" size="40" /><br />
+      <input type="text" name="disciplines[]" placeholder="e.g. database architecture" size="40" /><br />
+      <input type="text" name="disciplines[]" placeholder="e.g. content strategy" size="40" />
+      <p class="form-explanation">Don't worry, you can always enter more later, or just skip this step altogether for now.</p>
   </fieldset>
 
   <div class="actions">

@@ -115,3 +115,9 @@ a:link:focus {
 .job-list.birds-eye > li {
     border-color: $almostGray #fff #fff;
 }
+
+/* FORMS */
+.form-explanation {
+    background-color: $tableStriping;
+    border-color: $deemphasizedText;
+}

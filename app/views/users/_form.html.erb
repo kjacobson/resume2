@@ -4,50 +4,59 @@
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
       <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-      <%= f.label :name %><br />
-      <%= f.text_field :name %>
-  </div>
+  <fieldset>
+      <div class="field">
+          <%= f.label :name %><br />
+          <%= f.text_field :name %>
+          <p class="form-explanation">This is the same name employers will see when viewing your resumes.</p>
+      </div>
   <% if params[:action] == "new" %>
-      <div class="field">
-        <%= f.label :email %><br />
-        <input id="user_email" name="user[email]" size="30" type="email" required>
-      </div>
-      <div class="field">
-        <%= f.label :password %><br />
-        <%= f.password_field :password %>
-      </div>
-      <div class="field">
-          <%= f.label :password_confirmation %><br />
-          <%= f.password_field :password_confirmation %>
-      </div>
-
+          <div class="field">
+            <%= f.label :email %><br />
+            <input id="user_email" name="user[email]" size="30" type="email" required>
+          </div>
+          <div class="field">
+            <%= f.label :password %><br />
+            <%= f.password_field :password %>
+          </div>
+          <div class="field">
+              <%= f.label :password_confirmation %><br />
+              <%= f.password_field :password_confirmation %>
+          </div>
+      </fieldset>
       <fieldset>
           <label for="resume_title">Give your first resume a name</label><br />
           <%= text_field :resume, :title %>
+          <p class="form-explanation">
+              <strong>Why do we ask for this?</strong> So you can keep track of your resumes, mostly. Not every job you
+              apply for will be the same, so you might want multiple resumes. We make this easy: you only have to enter
+              jobs and skills once, and you can choose which to include on each resume.
+          </p>
+      </fieldset>
+      <fieldset>
+          <label for="disciplines">What disciplines do you work in?</label><br />
+          <p class="form-explanation">
+              <strong>Why do we ask for this?</strong> In the next step, you&rsquo;re going to start listing your skills.
+              We don&rsquo;t assume anyone&rsquo;s one dimensional, so your skills probably fall across multiple disciplines:
+              actor/director; designer/developer; you get the idea. Listing your disciplines first is a good way to start thinking
+              about organizing your resume.
+          </p>
+          <input type="text" name="disciplines[]" id="disciplines" placeholder="e.g. front-end development" size="40" /><br />
+          <input type="text" name="disciplines[]" placeholder="e.g. information architecture" size="40" /><br />
+          <input type="text" name="disciplines[]" placeholder="e.g. database architecture" size="40" /><br />
+          <input type="text" name="disciplines[]" placeholder="e.g. content strategy" size="40" />
+          <p class="form-explanation">Don't worry, you can always enter more later, or just skip this step altogether for now.</p>
+      </fieldset>
+  <% else %>
       </fieldset>
   <% end %>
-  <fieldset>
-      <label for="disciplines">What disciplines do you work in?</label><br />
-      <p class="form-explanation">
-          <strong>Why do we ask for this?</strong> In the next step, you&rsquo;re going to start listing your skills.
-          We don&rsquo;t assume anyone&rsquo;s one dimensional, so your skills probably fall across multiple disciplines:
-          actor/director; designer/developer; you get the idea. Listing your disciplines first is a good way to start thinking
-          about organizing your resume.
-      </p>
-      <input type="text" name="disciplines[]" id="disciplines" placeholder="e.g. front-end development" size="40" /><br />
-      <input type="text" name="disciplines[]" placeholder="e.g. information architecture" size="40" /><br />
-      <input type="text" name="disciplines[]" placeholder="e.g. database architecture" size="40" /><br />
-      <input type="text" name="disciplines[]" placeholder="e.g. content strategy" size="40" />
-      <p class="form-explanation">Don't worry, you can always enter more later, or just skip this step altogether for now.</p>
-  </fieldset>
 
   <div class="actions">
     <%= f.submit %>

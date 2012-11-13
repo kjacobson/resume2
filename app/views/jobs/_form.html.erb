@@ -25,8 +25,12 @@
         <%= f.text_field :employer %>
     </div>
     <div class="field">
-        <%= f.label :status %><br />
-        <%= f.text_field :status %>
+        <%= f.label :status, "Employment status" %><br />
+        <select id="job_status" name="job[status]">
+            <% Job.status_options.each do |status| %>
+                <option value="<%= status %>"><%= status %></option>
+            <% end %>
+        </select>
     </div>
     <div class="field">
         <%= f.label :project %><br />
@@ -64,7 +68,7 @@
     <% if @job.skills.count <= 1 %>
         <p class="form-explanation">
             <strong>What skills did you use in this job?</strong>
-            Separated by commas. You&rsquo;ll be able to associate these same skills with other jobs.
+            Separated by commas. You&rsquo;ll be able to associate these same skills with other jobs, too.
         </p>
     <% end %>
     <fieldset class="job-skills">
@@ -75,7 +79,7 @@
     <% if @job.softwares.count <= 1 %>
         <p class="form-explanation">
             <strong>What software programs (apps, APIs, source control) did you use in this job?</strong>
-            Separated by commas. You&rsquo;ll be able to associate these same software with other jobs.
+            Separated by commas. You&rsquo;ll be able to associate these same software with other jobs, too.
         </p>
     <% end %>
     <fieldset class="job-softwares">

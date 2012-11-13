@@ -1,4 +1,8 @@
 class Job < ActiveRecord::Base
+    JOB_STATUSES = ["full-time", "part-time", "contract", "side project", "other"]
+
+    validates_inclusion_of :status, :in => JOB_STATUSES
+
     validates_presence_of :title
     validates_presence_of :employer
     validates_presence_of :short_desc
@@ -20,6 +24,10 @@ class Job < ActiveRecord::Base
           disciplines = []
         end
         return disciplines
+    end
+
+    def self.status_options
+      JOB_STATUSES
     end
 
     def years

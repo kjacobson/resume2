@@ -12,15 +12,16 @@
   <% end %>
 
     <% if !params[:resume_id].nil? %>
+        <h2>Resum&eacute;: <%= @resume.title %></h2>
         <input type="hidden" name="resume_id" value="<%= params[:resume_id] %>" />
     <% end %>
 
     <div class="field">
-        <%= f.label :title %><br />
+        <%= f.label :title, "Title (required)" %><br />
         <%= f.text_field :title %>
     </div>
     <div class="field">
-        <%= f.label :employer %><br />
+        <%= f.label :employer, "Employer/Client" %><br />
         <%= f.text_field :employer %>
     </div>
     <div class="field">
@@ -32,24 +33,20 @@
         <%= f.text_field :project %>
     </div>
     <div class="field">
-        <%= f.label :url %><br />
-        <%= f.text_field :url %>
+        <%= f.label :url, "URL" %><br />
+        <input type="url" id="job_url" name="job[url]" />
     </div>
     <div class="field">
-        <%= f.label :start_month %><br />
-        <%= f.text_field :start_month %>
+        <%= f.label :start_month, "Start date (mm/yyyy)" %><br />
+        <input type="number" min="1" max="12" step="1" id="job_start_month" name="job[start_month]" size="2" pattern="(1[0-2])|([1-9])" />
+        /
+        <input type="number" min="1900" max="2020" step="1" id="job_start_year" name="job[start_year]" size="4" pattern="(19[0-9][0-9])|(20[0-2][0-9])" />
     </div>
     <div class="field">
-        <%= f.label :end_month %><br />
-        <%= f.text_field :end_month %>
-    </div>
-    <div class="field">
-        <%= f.label :start_year %><br />
-        <%= f.text_field :start_year %>
-    </div>
-    <div class="field">
-        <%= f.label :end_year %><br />
-        <%= f.text_field :end_year %>
+        <%= f.label :end_month, "Start date (mm/yyyy)" %><br />
+        <input type="number" min="1" max="12" step="1" id="job_end_month" name="job[end_month]" size="2" pattern="(1[0-2])|([1-9])" />
+        /
+        <input type="number" min="1900" max="2020" step="1" id="job_end_year" name="job[end_year]" size="4" pattern="(19[0-9][0-9])|(20[0-2][0-9])" />
     </div>
     <div class="field">
         <%= f.label :short_desc, "Short description" %><br />
@@ -63,13 +60,27 @@
         <%= f.label :reason, "Reason for leaving" %><br />
         <%= f.text_area :reason %>
     </div>
-    <fieldset name="skills">
+
+    <% if @job.skills.count <= 1 %>
+        <p class="form-explanation">
+            <strong>What skills did you use in this job?</strong>
+            Separated by commas. You&rsquo;ll be able to associate these same skills with other jobs.
+        </p>
+    <% end %>
+    <fieldset class="job-skills">
         <h2>Skills:</h2>
-        <textarea name="skills"><%= @skills.join(", ") %></textarea>
+        <textarea name="skills" placeholder="e.g. running, jumping, skipping, carpentry"><%= @skills.join(", ") %></textarea>
     </fieldset>
-    <fieldset name="softwares">
+
+    <% if @job.softwares.count <= 1 %>
+        <p class="form-explanation">
+            <strong>What software programs (apps, APIs, source control) did you use in this job?</strong>
+            Separated by commas. You&rsquo;ll be able to associate these same software with other jobs.
+        </p>
+    <% end %>
+    <fieldset class="job-softwares">
         <h2>Software programs:</h2>
-        <textarea name="softwares"><%= @softwares.join(", ") %></textarea>
+        <textarea name="softwares" placeholder="e.g. photoshop, excel, illustrator"><%= @softwares.join(", ") %></textarea>
     </fieldset>
     <div class="actions">
         <%= f.submit %>

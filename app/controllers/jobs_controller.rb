@@ -155,6 +155,9 @@ class JobsController < ApplicationController
     @job = Job.new
     @skills = []
     @softwares = []
+    if !params[:resume_id].nil?
+      @resume = Resume.find(params[:resume_id])
+    end
 
     respond_to do |format|
       format.html # new.html.erb
@@ -167,6 +170,14 @@ class JobsController < ApplicationController
     @job = Job.find(params[:id])
     @skills = @job.skills
     @softwares = @job.softwares
+    if !params[:resume_id].nil?
+      @resume = Resume.find(params[:resume_id])
+    end
+
+    respond_to do |format|
+      format.html # edit.html.erb
+      format.json  { render :json => @job }
+    end
   end
 
   # POST /jobs

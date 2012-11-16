@@ -7,7 +7,7 @@
         <h1>Recent Positions/Projects</h1>
 
         <% if @jobs.count >= 1 %>
-            <%= render :partial => "jobs/small_list" %>
+            <%= render :partial => "jobs/small_list", :locals => {:user => @user, :resume => @resume} %>
             [&hellip;] <a href="/jobs" rel="internal" title="">See all jobs</a>
         <% end %>
 
@@ -44,7 +44,7 @@
         <% elsif @skills.count >= 1 %>
             <p>
                 <strong>Your skills are orphans!</strong> Giving them disciplines will add some structure and clarity to your resume.
-                <a href="<%= skills_path(user) %>" rel="internal" title="Organize skills under disciplines.">Right this way.</a>
+                <a href="<%= skills_path(@user) %>" rel="internal" title="Organize skills under disciplines.">Right this way.</a>
             </p>
             <%=  render :partial => "skills/small_list", :locals => { :user => @user, :resume => @resume, :skills => @skills } %>
         <% end %>

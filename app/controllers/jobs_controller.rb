@@ -186,17 +186,17 @@ class JobsController < ApplicationController
     @job = Job.new(params[:job])
     @job.user_id = current_user.id
     @skills = params[:skills]
+    if !params[:resume_id].nil?
+      @resume = Resume.find(params[:resume_id])
+    end
 
 
     respond_to do |format|
       if @job.save
-        if !params[:resume_id].nil?
-          @resume = Resume.find(params[:resume_id])
-          if @resume
-            @r_job = ResumeJob.new({:resume_id => @resume.id, :job_id => @job.id})
-            if @r_job.save
-              logger.debug "Saved a ResumeJob"
-            end
+        if @resume
+          @r_job = ResumeJob.new({:resume_id => @resume.id, :job_id => @job.id})
+          if @r_job.save
+            logger.debug "Saved a ResumeJob"
           end
         end
 
@@ -212,7 +212,8 @@ class JobsController < ApplicationController
           save_softwares(softwares, @job, current_user)
         end
 
-        format.html { redirect_to(job_path(current_user, @resume, @job.id)) }
+        path = if @resume then job_path(:user_id => current_user.id, :resume_id => @resume.id, :id => @job.id) else skill_path(:user_id => current_user.id, :id => @job.id) end
+        format.html { redirect_to(path) }
         format.json  { render :json => @job, :status => :created, :location => @job }
       else
         format.html { render :action => "new" }

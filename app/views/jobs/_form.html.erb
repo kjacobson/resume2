@@ -17,12 +17,12 @@
     <% end %>
 
     <div class="field">
-        <%= f.label :title, "Title (required)" %><br />
-        <%= f.text_field :title %>
+        <label for="job_title">Title (required)</label><br />
+        <input type="text" id="job_title" name="job[title]" placeholder="e.g. Lead Interaction Designer" />
     </div>
     <div class="field">
-        <%= f.label :employer, "Employer/Client" %><br />
-        <%= f.text_field :employer %>
+        <label for="job_employer">Employer/Client</label><br />
+        <input type="text" id="job_employer" name="job[employer]" placeholder="e.g. Groogle, Inc." />
     </div>
     <div class="field">
         <%= f.label :status, "Employment status" %><br />
@@ -33,36 +33,36 @@
         </select>
     </div>
     <div class="field">
-        <%= f.label :project %><br />
-        <%= f.text_field :project %>
+        <label for="job_project">Project</label><br />
+        <input type="text" id="job_project" name="job[project]" placeholder="e.g. Secret Encryption Algorithm" />
     </div>
     <div class="field">
-        <%= f.label :url, "URL" %><br />
+        <label for="job_url">URL</label><br />
         <input type="url" id="job_url" name="job[url]" />
     </div>
     <div class="field">
-        <%= f.label :start_month, "Start date (mm/yyyy)" %><br />
+        <label for="job_start_month">Start date (mm/yyyy)</label><br />
         <input type="number" min="1" max="12" step="1" id="job_start_month" name="job[start_month]" size="2" pattern="(1[0-2])|([1-9])" />
         /
         <input type="number" min="1900" max="2020" step="1" id="job_start_year" name="job[start_year]" size="4" pattern="(19[0-9][0-9])|(20[0-2][0-9])" />
     </div>
     <div class="field">
-        <%= f.label :end_month, "Start date (mm/yyyy)" %><br />
+        <label for="job_end_month">End date (mm/yyyy)</label><br />
         <input type="number" min="1" max="12" step="1" id="job_end_month" name="job[end_month]" size="2" pattern="(1[0-2])|([1-9])" />
         /
         <input type="number" min="1900" max="2020" step="1" id="job_end_year" name="job[end_year]" size="4" pattern="(19[0-9][0-9])|(20[0-2][0-9])" />
     </div>
     <div class="field">
-        <%= f.label :short_desc, "Short description" %><br />
-        <%= f.text_area :short_desc %>
+        <label for="job_short_desc">Short description</label><br />
+        <textarea cols="60" rows="10" id="job_short_desc" name="job[short_desc]"></textarea>
     </div>
     <div class="field">
-        <%= f.label :long_desc, "Long description" %><br />
-        <%= f.text_area :long_desc %>
+        <label for="job_long_desc">Long description</label><br />
+        <textarea cols="60" rows="20" id="job_long_desc" name="job[long_desc]"></textarea>
     </div>
     <div class="field">
-        <%= f.label :reason, "Reason for leaving" %><br />
-        <%= f.text_area :reason %>
+        <label for="job_reason">Reason for leaving</label><br />
+        <textarea cols="60" rows="4" id="job_reason" name="job[reason]"></textarea>
     </div>
 
     <% if @job.skills.count <= 1 %>

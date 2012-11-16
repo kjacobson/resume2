@@ -213,7 +213,12 @@ class JobsController < ApplicationController
           save_softwares(softwares, @job, @user)
         end
 
-        if @resume then job_path(:user_id => @user.id, :resume_id => @resume.id, :id => @job.id) else job_path(:user_id => @user.id, :id => @job.id) end
+        path = if @resume then job_path(:user_id => @user.id, :resume_id => @resume.id, :id => @job.id) else job_path(:user_id => @user.id, :id => @job.id) end
+        if @user.jobs.size == 1
+          flash[:notice] = "This is what a job page looks like. When you take a look at your resume, it'll show this job."
+        else
+          flash[:notice] = "Success. Job added."
+        end
         format.html { redirect_to(path) }
         format.json  { render :json => @job, :status => :created, :location => @job }
       else

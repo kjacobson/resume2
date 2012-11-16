@@ -189,6 +189,7 @@ class JobsController < ApplicationController
     if !params[:resume_id].nil?
       @resume = Resume.find(params[:resume_id])
     end
+    @user = current_user
 
 
     respond_to do |format|
@@ -203,16 +204,16 @@ class JobsController < ApplicationController
         skills = params[:skills]
         if !skills.nil? && skills != ""
           skills = skills.split(',')
-          save_skills(skills, @job, current_user)
+          save_skills(skills, @job, @user)
         end
 
         softwares = params[:softwares]
         if !softwares.nil? && softwares != ""
           softwares = softwares.split(',')
-          save_softwares(softwares, @job, current_user)
+          save_softwares(softwares, @job, @user)
         end
 
-        path = if @resume then job_path(:user_id => current_user.id, :resume_id => @resume.id, :id => @job.id) else skill_path(:user_id => current_user.id, :id => @job.id) end
+        if @resume then job_path(:user_id => @user.id, :resume_id => @resume.id, :id => @job.id) else job_path(:user_id => @user.id, :id => @job.id) end
         format.html { redirect_to(path) }
         format.json  { render :json => @job, :status => :created, :location => @job }
       else

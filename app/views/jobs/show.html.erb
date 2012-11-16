@@ -1,4 +1,9 @@
 <% content_for :head do %>
+    <% if !params[:resume_id].nil? and resume = Resume.find(params[:resume_id]) %>
+        <p class="message suggestion">
+            <a href="<%= resume_path({:user => @user, :id => resume.id}) %>" rel="internal" title="">Back to your resume</a>
+        </p>
+    <% end> %>
     <hgroup>
         <h1 class="primary-type-title job-title">
           <%= decode(@job.title) %>

@@ -24,6 +24,7 @@ class ApplicationController < ActionController::Base
     end
 
     def require_user_match
+      require_known_user
       controller = params[:controller]
       action = params[:action]
       return if ["user_sessions","users"].include?(controller) and ["new","create"].include?(action)
@@ -46,7 +47,6 @@ class ApplicationController < ActionController::Base
     end
 
     def is_user_match?
-      require_known_user
       if !params[:user_id].nil?
         page_user_id = params[:user_id].to_i
       elsif params[:controller] == "users" and !params[:id].nil?

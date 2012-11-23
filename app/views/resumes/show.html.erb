@@ -8,7 +8,7 @@
 
         <% if @jobs.count >= 1 %>
             <%= render :partial => "jobs/small_list", :locals => {:user => @user, :resume => @resume} %>
-            [&hellip;] <a href="/jobs" rel="internal" title="">See all jobs</a>
+            [&hellip;] <a href="<%= jobs_path(@user) %>" rel="internal" title="">See all jobs</a>
         <% end %>
 
 

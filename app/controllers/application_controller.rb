@@ -46,6 +46,7 @@ class ApplicationController < ActionController::Base
     end
 
     def is_user_match?
+      require_known_user
       if !params[:user_id].nil?
         page_user_id = params[:user_id].to_i
       elsif params[:controller] == "users" and !params[:id].nil?

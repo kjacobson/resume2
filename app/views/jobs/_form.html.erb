@@ -73,7 +73,7 @@
     <% end %>
     <fieldset class="job-skills">
         <h2>Skills:</h2>
-        <textarea name="skills" placeholder="e.g. running, jumping, skipping, carpentry"><%= @skills.join(", ") %></textarea>
+        <textarea name="skills" placeholder="e.g. running, jumping, skipping, carpentry"><%= @skill_titles.join(", ") %></textarea>
     </fieldset>
 
     <% if @job.softwares.count <= 1 %>
@@ -84,7 +84,7 @@
     <% end %>
     <fieldset class="job-softwares">
         <h2>Software programs:</h2>
-        <textarea name="softwares" placeholder="e.g. photoshop, excel, illustrator"><%= @softwares.join(", ") %></textarea>
+        <textarea name="softwares" placeholder="e.g. photoshop, excel, illustrator"><%= @software_titles.join(", ") %></textarea>
     </fieldset>
     <div class="actions">
         <%= f.submit %>

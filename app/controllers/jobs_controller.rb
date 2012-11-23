@@ -169,7 +169,9 @@ class JobsController < ApplicationController
   def edit
     @job = Job.find(params[:id])
     @skills = @job.skills
+    @skill_titles = @skills.collect{ |x| x.title }
     @softwares = @job.softwares
+    @software_titles = @softwares.collect{ |x| x.title }
     if !params[:resume_id].nil?
       @resume = Resume.find(params[:resume_id])
     end

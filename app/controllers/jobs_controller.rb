@@ -1,6 +1,41 @@
 class JobsController < ApplicationController
   before_filter :require_known_user, :only => [:new, :create, :edit, :update, :destroy]
 
+  def new_instance_vars
+    @url = jobs_path({:user_id => current_user.id})
+    @resumes = current_user.resumes
+    if !params[:resume_id].nil?
+      @resume = Resume.find(params[:resume_id])
+    end
+  end
+
+  def edit_instance_vars
+    @url = job_path({:user_id => current_user.id})
+    @skills = @job.skills
+    @softwares = @job.softwares
+    @resumes = current_user.resumes
+    @j_resumes = @job.resumes
+    if !params[:resume_id].nil?
+      @resume = Resume.find(params[:resume_id])
+    end
+  end
+
+  def save_resume_jobs(job_id, resume_ids)
+    resume_ids.each do |rez|
+      if !ResumeJob.where({:job_id => job_id, :resume_id => rez})
+        save_resume_job(job_id, rez)
+      end
+    end
+  end
+
+  def save_resume_job(job_id, resume_id)
+    rj = ResumeJob.new({:job_id => job_id, :resume_id => resume_id})
+    if rj.save
+      logger.debug "Saved a resume_job"
+      logger.debug rj.id
+    end
+  end
+
   def save_skills(skills, job, user)
     skills.each do |sk|
       sk = sk.strip()
@@ -153,11 +188,7 @@ class JobsController < ApplicationController
   # GET /jobs/new.json
   def new
     @job = Job.new
-    @skills = []
-    @softwares = []
-    if !params[:resume_id].nil?
-      @resume = Resume.find(params[:resume_id])
-    end
+    new_instance_vars
 
     respond_to do |format|
       format.html # new.html.erb
@@ -168,13 +199,7 @@ class JobsController < ApplicationController
   # GET /jobs/1/edit
   def edit
     @job = Job.find(params[:id])
-    @skills = @job.skills
-    @skill_titles = @skills.collect{ |x| x.title }
-    @softwares = @job.softwares
-    @software_titles = @softwares.collect{ |x| x.title }
-    if !params[:resume_id].nil?
-      @resume = Resume.find(params[:resume_id])
-    end
+    edit_instance_vars
 
     respond_to do |format|
       format.html # edit.html.erb
@@ -187,12 +212,10 @@ class JobsController < ApplicationController
   def create
     @job = Job.new(params[:job])
     @job.user_id = current_user.id
-    @skills = params[:skills]
     if !params[:resume_id].nil?
       @resume = Resume.find(params[:resume_id])
     end
     @user = current_user
-
 
     respond_to do |format|
       if @job.save
@@ -224,6 +247,7 @@ class JobsController < ApplicationController
         format.html { redirect_to(path) }
         format.json  { render :json => @job, :status => :created, :location => @job }
       else
+        new_instance_vars
         format.html { render :action => "new" }
         format.json  { render :json => @job.errors, :status => :unprocessable_entity }
       end
@@ -246,11 +270,17 @@ class JobsController < ApplicationController
       save_softwares(softwares, @job, current_user)
     end
 
+    resume_ids = params[:resume_ids]
+    if !resume_ids.nil?
+      save_resume_jobs(@job.id, resume_ids)
+    end
+
     respond_to do |format|
       if @job.update_attributes(params[:job])
         format.html { redirect_to(job_path(current_user, @job, :notice => 'Job was successfully updated.')) }
         format.json  { head :ok }
       else
+        edit_instance_vars
         format.html { render :action => "edit" }
         format.json  { render :json => @job.errors, :status => :unprocessable_entity }
       end

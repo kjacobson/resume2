@@ -18,8 +18,9 @@ class ApplicationController < ActionController::Base
   
     def require_known_user
       unless current_user
-         redirect_to :homepage, :notice => 'You must be an logged in to access the requested resource.'
-         return false
+        flash[:notice] = "You must be an logged in to access the requested resource."
+        redirect_to :homepage
+        return false
       end
     end
 

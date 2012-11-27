@@ -84,11 +84,9 @@
     <% if @resumes.count > 0 %>
         <fieldset class="job-resumes">
             <h2>What resumes would you like this job to appear on?</h2>
+
             <p class="form-explanation">
                 <strong>This is optional</strong>, but no one will see this job until it&rsquo;s assigned to one or more resumes.
-                If you haven&rsquo;t created any, you can
-                <a href="<%= new_resume_path({:user => @user}) %>" rel="internal" target="_blank" title="Create a new resume">do so now</a>
-                or later.
             </p>
             <select multiple name="resume_ids[]">
                 <% @resumes.each do |rez| %>
@@ -96,6 +94,13 @@
                 <% end %>
             </select>
         </fieldset>
+     <% else %>
+        <h2>You haven&rsquo;t created any resumes yet.</h2>
+        <p class="form-explanation">
+            <strong>This is no big deal</strong>, but no one will see this job until it&rsquo;s assigned to one or more resumes.
+            You can <a href="<%= new_resume_path({:user => @user}) %>" rel="internal" target="_blank" title="Create a new resume">create one now</a>
+            or later.
+        </p>
     <% end %>
 
     <div class="actions">

@@ -54,7 +54,6 @@ class UsersController < ApplicationController
     @disciplines = @user.disciplines
     @skills = @user.skills
     @softwares = @user.softwares
-    @user_match = is_user_match?
   end
 
   def edit

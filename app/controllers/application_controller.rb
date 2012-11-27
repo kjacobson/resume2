@@ -2,7 +2,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :current_user_session, :current_user
   before_filter :require_user_match, :except => [:signup, :login, :logout, :index, :show]
-  before_filter :set_user_match_var
   before_filter :set_admin_user_var
 
   private
@@ -55,10 +54,7 @@ class ApplicationController < ActionController::Base
       else
         page_user_id = nil
       end
-      return !current_user.nil? ? current_user.id === page_user_id : false
-    end
-
-    def set_user_match_var
-        @user_match = is_user_match?
+      @user_match = !current_user.nil? ? current_user.id === page_user_id : false
+      return @user_match
     end
 end

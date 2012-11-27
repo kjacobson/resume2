@@ -72,12 +72,12 @@
 
     <% if @job.softwares.count <= 1 %>
         <p class="form-explanation">
-            <strong>What software programs (apps, APIs, source control) did you use in this job?</strong>
+            <strong>What tools and software programs (apps, APIs, source control) did you use in this job?</strong>
             Separated by commas. You&rsquo;ll be able to associate these same software with other jobs, too.
         </p>
     <% end %>
     <fieldset class="job-softwares">
-        <h2>Software programs:</h2>
+        <h2>Software/tools:</h2>
         <textarea name="softwares" placeholder="e.g. photoshop, excel, illustrator"><%= @softwares.collect{ |x| x.title }.join(", ") %></textarea>
     </fieldset>
 

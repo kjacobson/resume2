@@ -66,7 +66,7 @@
         </p>
     <% end %>
     <fieldset class="job-skills">
-        <h2>Skills:</h2>
+        <h2>Skills</h2>
         <textarea name="skills" placeholder="e.g. running, jumping, skipping, carpentry"><%= @skills.collect{ |x| x.title }.join(", ") %></textarea>
     </fieldset>
 
@@ -77,13 +77,13 @@
         </p>
     <% end %>
     <fieldset class="job-softwares">
-        <h2>Software/tools:</h2>
+        <h2>Software/tools</h2>
         <textarea name="softwares" placeholder="e.g. photoshop, excel, illustrator"><%= @softwares.collect{ |x| x.title }.join(", ") %></textarea>
     </fieldset>
 
     <% if @resumes.count > 0 %>
         <fieldset class="job-resumes">
-            <h2>Resumes:</h2>
+            <h2>What resumes would you like this job to appear on?</h2>
             <select multiple name="resume_ids[]">
                 <% @resumes.each do |rez| %>
                     <option value="<%= rez.id %>" <%= 'selected' if (@j_resumes and @j_resumes.include?(rez)) or rez == @resume %>><%= rez.title %></option>

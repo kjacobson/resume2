@@ -4,6 +4,8 @@ class JobsController < ApplicationController
   def new_instance_vars
     @url = jobs_path({:user_id => current_user.id})
     @resumes = current_user.resumes
+    @skills = []
+    @softwares = []
     if !params[:resume_id].nil?
       @resume = Resume.find(params[:resume_id])
     end

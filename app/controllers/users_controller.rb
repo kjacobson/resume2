@@ -54,6 +54,7 @@ class UsersController < ApplicationController
     @disciplines = @user.disciplines
     @skills = @user.skills
     @softwares = @user.softwares
+    @jobs = @user.jobs
   end
 
   def edit

@@ -1,4 +1,4 @@
-<a href="<%= sorting_href(column_name,@order_by, @direction) %>"
+<a href="<%= sorting_href(column_name, @order_by, @direction) %>"
    class="sort-link<% if @order_by == column_name %> <%= @direction.downcase %><% end %>"
    rel="canonical"
    title="Order by <%= header.downcase %>">

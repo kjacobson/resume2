@@ -1,5 +1,5 @@
 module JobsHelper    
-    def sorting_href(column,order_by,direction)
+    def sorting_href(column, order_by, direction)
         new_direction = direction
         if order_by == column
             if (direction == "DESC")

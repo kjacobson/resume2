@@ -18,6 +18,18 @@
         </a>
     </section>
 
+    <section class="primary">
+        <h1>Your jobs</h1>
+
+        <% if @jobs %>
+            <%= render :partial => 'jobs/small_list', :locals => { :user => @user, :resume => nil, :jobs => @jobs } %>
+        <% end %>
+
+        <a href="<%= new_job_path(:user_id => @user.id) %>" rel="internal" title="Add a new job">
+            [Add a job]
+        </a>
+    </section>
+
     <section class="secondary">
         <h1>Your disciplines</h1>
 

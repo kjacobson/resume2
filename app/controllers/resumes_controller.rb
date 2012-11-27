@@ -13,8 +13,8 @@ class ResumesController < ApplicationController
   # GET /resumes
   # GET /resumes.xml
   def index
-    @resumes = Resume.all
-    @user = User.find(params[:id])
+    @user = User.find(params[:user_id])
+    @resumes = @user.resumes.sort { |a,b| a.title <=> b.title }
 
     respond_to do |format|
       format.html # index.html.erb

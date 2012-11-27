@@ -1,25 +1,15 @@
-<h1>Listing resumes</h1>
+<% content_for :main do %>
+    <h1>Listing resumes</h1>
 
-<table>
-  <tr>
-    <th>User</th>
-    <th>Title</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+    <table>
+        <tr>
+            <th>Title</th>
+        </tr>
 
-<% @resumes.each do |resume| %>
-  <tr>
-    <td><%= resume.user_id %></td>
-    <td><%= resume.title %></td>
-    <td><%= link_to 'Show', resume %></td>
-    <td><%= link_to 'Edit', edit_resume_path(resume) %></td>
-    <td><%= link_to 'Destroy', resume, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+        <% @resumes.each do |resume| %>
+            <tr>
+                <td><%= resume.title %></td>
+            </tr>
+        <% end %>
+    </table>
 <% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Resume', new_resume_path %>

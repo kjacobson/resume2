@@ -14,6 +14,7 @@ class ResumesController < ApplicationController
   # GET /resumes.xml
   def index
     @resumes = Resume.all
+    @user = User.find(params[:id])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -37,6 +38,8 @@ class ResumesController < ApplicationController
   # GET /resumes/new.xml
   def new
     @resume = Resume.new
+    @user = User.find(params[:user_id])
+    @jobs = @user.jobs
 
     respond_to do |format|
       format.html # new.html.erb

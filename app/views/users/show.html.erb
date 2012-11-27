@@ -10,7 +10,12 @@
 <% content_for :main do %>
     <section class="primary">
         <h1>Your resumes</h1>
-        <%= render :partial => 'resumes/list', :locals => { :user => @user, :resumes => @resumes } %>
+        <% if @resumes.count > 0 %>
+            <%= render :partial => 'resumes/list', :locals => { :user => @user, :resumes => @resumes } %>
+        <% end %>
+        <a href="<%= new_resume_path(:user_id => @user.id) %>" rel="internal" title="Create a resume">
+            [Add <%= @resumes.count > 0 ? "another" : "a" %> resume to your account]
+        </a>
     </section>
 
     <section class="secondary">

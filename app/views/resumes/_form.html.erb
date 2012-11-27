@@ -1,25 +1,32 @@
 <%= form_for(@resume) do |f| %>
-  <% if @resume.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@resume.errors.count, "error") %> prohibited this resume from being saved:</h2>
+    <% if @resume.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(@resume.errors.count, "error") %> prohibited this resume from being saved:</h2>
 
-      <ul>
-      <% @resume.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+            <ul>
+                <% @resume.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+        <label for="job_title">Name your new resume &hellip;</label><br />
+        <%= f.text_field :title %>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :user_id %><br />
-    <%= f.text_field :user_id %>
-  </div>
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <% if @jobs.count > 0 %>
+        <div class="field">
+            <label for="">&hellip; and choose the jobs you want to display on this resume</label><br />
+            <select multiple name="resume_jobs" id="resume_jobs">
+                <% @jobs.each do |job| %>
+                    <option value="<%= job.id %>"><%= job.title %></option>
+                <% end %>
+            </select>
+        </div>
+    <% end %>
+    <div class="actions">
+        <%= f.submit %>
+    </div>
 <% end %>

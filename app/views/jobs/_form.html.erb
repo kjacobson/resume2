@@ -59,31 +59,37 @@
         <textarea cols="60" rows="4" id="job_reason" name="job[reason]"><%= @job.reason %></textarea>
     </div>
 
-    <% if @job.skills.count <= 1 %>
-        <p class="form-explanation">
-            <strong>What skills did you use in this job?</strong>
-            Separated by commas. You&rsquo;ll be able to associate these same skills with other jobs, too.
-        </p>
-    <% end %>
     <fieldset class="job-skills">
         <h2>Skills</h2>
+        <% if @job.skills.count <= 1 %>
+            <p class="form-explanation">
+                <strong>What skills did you use in this job?</strong>
+                Separated by commas. You&rsquo;ll be able to associate these same skills with other jobs, too.
+            </p>
+        <% end %>
         <textarea name="skills" placeholder="e.g. running, jumping, skipping, carpentry"><%= @skills.collect{ |x| x.title }.join(", ") %></textarea>
     </fieldset>
 
-    <% if @job.softwares.count <= 1 %>
-        <p class="form-explanation">
-            <strong>What tools and software programs (apps, APIs, source control) did you use in this job?</strong>
-            Separated by commas. You&rsquo;ll be able to associate these same software with other jobs, too.
-        </p>
-    <% end %>
     <fieldset class="job-softwares">
         <h2>Software/tools</h2>
+        <% if @job.softwares.count <= 1 %>
+            <p class="form-explanation">
+                <strong>What tools and software programs (apps, APIs, source control) did you use in this job?</strong>
+                Separated by commas. You&rsquo;ll be able to associate these same software with other jobs, too.
+            </p>
+        <% end %>
         <textarea name="softwares" placeholder="e.g. photoshop, excel, illustrator"><%= @softwares.collect{ |x| x.title }.join(", ") %></textarea>
     </fieldset>
 
     <% if @resumes.count > 0 %>
         <fieldset class="job-resumes">
             <h2>What resumes would you like this job to appear on?</h2>
+            <p class="form-explanation">
+                <strong>This is optional</strong>, but no one will see this job until it&rsquo;s assigned to one or more resumes.
+                If you haven&rsquo;t created any, you can
+                <a href="<%= new_resume_path({:user => @user}) %>" rel="internal" target="_blank" title="Create a new resume">do so now</a>
+                or later.
+            </p>
             <select multiple name="resume_ids[]">
                 <% @resumes.each do |rez| %>
                     <option value="<%= rez.id %>" <%= 'selected' if (@j_resumes and @j_resumes.include?(rez)) or rez == @resume %>><%= rez.title %></option>

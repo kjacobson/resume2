@@ -1,14 +1,18 @@
 <% content_for :head do %>
     <hgroup>
-        <h1>Listing resumes</h1>
+        <h1>Your resumes</h1>
     </hgroup>
 <% end %>
 
 <% content_for :main do %>
     <table>
         <tr>
-            <th>Title</th>
-            <th>Date created</th>
+            <th>
+                <%= render :partial => 'shared/sortable_link', :locals => { :header => 'Title', :column_name => 'title' } %>
+            </th>
+            <th>
+                <%= render :partial => 'shared/sortable_link', :locals => { :header => 'Date created', :column_name => 'created_at' } %>
+            </th>
         </tr>
 
         <% @resumes.each do |resume| %>

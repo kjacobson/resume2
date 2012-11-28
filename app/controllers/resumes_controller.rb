@@ -14,7 +14,14 @@ class ResumesController < ApplicationController
   # GET /resumes.xml
   def index
     @user = User.find(params[:user_id])
-    @resumes = @user.resumes.sort { |a,b| a.title <=> b.title }
+    @order_by = !params[:order_by].nil? ? params[:order_by] : "title"
+    @direction = !params[:direction].nil? ? params[:direction] : "DESC"
+    if @order_by == "created_at"
+      @secondary_sort = ", title " + @direction
+    else
+      @secondary_sort = ""
+    end
+    @resumes = @user.resumes.order(@order_by + " " + @direction + @secondary_sort)
 
     respond_to do |format|
       format.html # index.html.erb

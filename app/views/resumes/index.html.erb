@@ -1,14 +1,24 @@
-<% content_for :main do %>
-    <h1>Listing resumes</h1>
+<% content_for :head do %>
+    <hgroup>
+        <h1>Listing resumes</h1>
+    </hgroup>
+<% end %>
 
+<% content_for :main do %>
     <table>
         <tr>
             <th>Title</th>
+            <th>Date created</th>
         </tr>
 
         <% @resumes.each do |resume| %>
             <tr>
-                <td><%= resume.title %></td>
+                <td>
+                    <%= render :partial => 'resumes/link_to_resume', :locals => {:user => @user, :resume => resume} %>
+                </td>
+                <td>
+                    <%= resume.created_at %>
+                </td>
             </tr>
         <% end %>
     </table>

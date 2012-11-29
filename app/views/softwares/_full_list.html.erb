@@ -1,6 +1,6 @@
 <table>
     <tr>
-        <% if !current_user.nil? %>
+        <% if @is_admin %>
             <th class="d10">
                 <%= render :partial => 'shared/sortable_link', :locals => { :header => 'ID', :column_name => 'id' } %>
             </th>
@@ -12,7 +12,7 @@
 
     <% @softwares.each do |software| %>
         <tr>
-            <% if !current_user.nil? %>
+            <% if @is_admin %>
                 <td><%= software.id %></td>
             <% end %>
             <td>

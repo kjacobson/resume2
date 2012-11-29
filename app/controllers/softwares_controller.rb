@@ -18,6 +18,7 @@ class SoftwaresController < ApplicationController
   # GET /softwares
   # GET /softwares.json
   def index
+    @user = User.find(params[:user_id]) if !params[:user_id].nil?
     @resume = Resume.find(params[:resume_id]) if !params[:resume_id].nil?
     @order_by = !params[:order_by].nil? ? params[:order_by] : "title"
     @direction = !params[:direction].nil? ? params[:direction] : "ASC"

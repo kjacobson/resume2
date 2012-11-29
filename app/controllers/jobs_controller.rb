@@ -141,7 +141,6 @@ class JobsController < ApplicationController
   def index
     if params[:resume_id].nil?
       require_user_match
-      return
     end
     @order_by = !params[:order_by].nil? ? params[:order_by] : "end_year"
     @direction = !params[:direction].nil? ? params[:direction] : "DESC"
@@ -160,11 +159,15 @@ class JobsController < ApplicationController
     elsif !params[:year_id].nil?
       @year = Year.find_by_value(params[:year_id])
       @jobs = @year.jobs.order(@order_by + " " + @direction)
-    elsif !params[:user_id].nil? and !params[:resume_id].nil?
+    elsif !params[:user_id].nil?
       # TODO: make sure @resume belongs to @user
       @user = User.find(params[:user_id])
-      @resume = Resume.find(params[:resume_id])
-      @jobs = @resume.jobs.order(@order_by + " " + @direction)
+      if !params[:resume_id].nil?
+        @resume = Resume.find(params[:resume_id])
+        @jobs = @resume.jobs.order(@order_by + " " + @direction)
+      else
+        @jobs = @user.jobs.order(@order_by + " " + @direction)
+      end
     else
       @jobs = Job.find(:all, :order => @order_by + " " + @direction + @secondary_sort)
     end

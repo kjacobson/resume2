@@ -1,3 +1,7 @@
+<%
+  user ||= nil
+  resume ||= nil
+%>
 <table>
     <tr>
         <% if @is_admin %>
@@ -10,13 +14,13 @@
         </th>
     </tr>
 
-    <% @softwares.each do |software| %>
+    <% softwares.each do |software| %>
         <tr>
             <% if @is_admin %>
                 <td><%= software.id %></td>
             <% end %>
             <td>
-                <%= render :partial => 'softwares/link_to_software', :locals => { :software => software, :abbreviated => false } %>
+                <%= render :partial => 'softwares/link_to_software', :locals => { :software => software, :user => user, :resume => resume, :abbreviated => false } %>
             </td>
         </tr>
     <% end %>

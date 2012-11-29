@@ -26,7 +26,7 @@
 
     <section class="secondary">
         <h1>
-            <a href="/softwares" rel="internal" title="See a list of software applications I've used professionally">Software</a>
+            <a href="/users/<%= @user.id %>/resumes/<%= @resume.id %>/softwares" rel="internal" title="See a list of tools and software applications I've used professionally">Software</a>
         </h1>
 
         <% if @softwares.count >= 1 %>
@@ -36,7 +36,7 @@
 
     <section class="secondary extended">
         <h1>
-            <a href="/skills" rel="internal" title="See a list of my skills">Skills</a>
+            <a href="/users/<%= @user.id %>/resumes/<%= @resume.id %>/skills" rel="internal" title="See a list of my skills">Skills</a>
         </h1>
 
         <% if @disciplines and @disciplines.count >= 1 %>

@@ -18,6 +18,7 @@ class SoftwaresController < ApplicationController
   # GET /softwares
   # GET /softwares.json
   def index
+    @resume = Resume.find(params[:resume_id]) if !params[:resume_id].nil?
     @order_by = !params[:order_by].nil? ? params[:order_by] : "title"
     @direction = !params[:direction].nil? ? params[:direction] : "ASC"
 
@@ -27,6 +28,13 @@ class SoftwaresController < ApplicationController
     elsif !params[:year_id].nil?
         @year = Year.find_by_value(params[:year_id])
         @softwares = @year.softwares.order(@order_by + " " + @direction)
+    elsif @resume
+        @softwares = @resume.softwares
+        if @direction == "DESC"
+          @softwares.sort! { |a,b| b[@order_by] <=> a[@order_by] }
+        else
+          @softwares.sort! { |a,b| a[@order_by] <=> b[@order_by] }
+        end
     else
         @softwares = Software.find(:all, :order => @order_by + " " + @direction)
     end

@@ -152,16 +152,21 @@ class JobsController < ApplicationController
     end
     
     if !params[:skill_id].nil?
-        @skill = Skill.find_by_id(params[:skill_id])
-        @jobs = @skill.jobs.order(@order_by + " " + @direction)
+      @skill = Skill.find_by_id(params[:skill_id])
+      @jobs = @skill.jobs.order(@order_by + " " + @direction)
     elsif !params[:software_id].nil?
-        @software = Software.find_by_id(params[:software_id])
-        @jobs = @software.jobs.order(@order_by + " " + @direction)
+      @software = Software.find_by_id(params[:software_id])
+      @jobs = @software.jobs.order(@order_by + " " + @direction)
     elsif !params[:year_id].nil?
-        @year = Year.find_by_value(params[:year_id])
-        @jobs = @year.jobs.order(@order_by + " " + @direction)
+      @year = Year.find_by_value(params[:year_id])
+      @jobs = @year.jobs.order(@order_by + " " + @direction)
+    elsif !params[:user_id].nil? and !params[:resume_id].nil?
+      # TODO: make sure @resume belongs to @user
+      @user = User.find(params[:user_id])
+      @resume = Resume.find(params[:resume_id])
+      @jobs = @resume.jobs.order(@order_by + " " + @direction)
     else
-        @jobs = Job.find(:all, :order => @order_by + " " + @direction + @secondary_sort)
+      @jobs = Job.find(:all, :order => @order_by + " " + @direction + @secondary_sort)
     end
 
     respond_to do |format|

@@ -1,2 +1,6 @@
-<a href="/softwares/<%= software.slug %>" rel="internal" title="See other positions where I used <%= decode(software.title) %>">
+<%
+  resume ||= nil
+  user ||= nil
+%>
+<a href="<%= if resume then software_path(:user_id => user.id, :resume_id => resume.id, :id => software.slug) else software_path(:user_id => current_user.id, :id => software.slug) end %>" rel="internal" title="See other positions where I used <%= decode(software.title) %>">
     <%= decode(software.title) %></a>

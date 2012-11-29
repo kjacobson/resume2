@@ -40,7 +40,13 @@ class SoftwaresController < ApplicationController
   # GET /softwares/1
   # GET /softwares/1.json
   def show
-    @software = Software.find(params[:id])
+    if !params[:user_id].nil?
+      @user = User.find(params[:user_id])
+      if !params[:resume_id].nil?
+        @resume = Resume.find(params[:resume_id])
+      end
+    end
+    @software = Software.find_by_slug(params[:id])
     @jobs = @software.jobs.order("end_year DESC, end_month DESC")
     @years = @software.years
 

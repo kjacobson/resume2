@@ -24,7 +24,8 @@ class JobsController < ApplicationController
 
   def save_resume_jobs(job_id, resume_ids)
     resume_ids.each do |rez|
-      if !ResumeJob.where({:job_id => job_id, :resume_id => rez})
+      rez = rez.to_i
+      if ResumeJob.where({:job_id => job_id, :resume_id => rez}) == []
         save_resume_job(job_id, rez)
       end
     end
@@ -248,6 +249,11 @@ class JobsController < ApplicationController
           save_softwares(softwares, @job, @user)
         end
 
+        resume_ids = params[:resume_ids]
+        if !resume_ids.nil? and resume_ids.size > 0
+          save_resume_jobs(@job.id, resume_ids)
+        end
+
         path = if @resume then job_path(:user_id => @user.id, :resume_id => @resume.id, :id => @job.id) else job_path(:user_id => @user.id, :id => @job.id) end
         if @user.jobs.size == 1
           flash[:notice] = "This is what a job page looks like. When you take a look at your resume, it'll show this job."
@@ -281,7 +287,7 @@ class JobsController < ApplicationController
     end
 
     resume_ids = params[:resume_ids]
-    if !resume_ids.nil?
+    if !resume_ids.nil? and resume_ids.size > 0
       save_resume_jobs(@job.id, resume_ids)
     end
 

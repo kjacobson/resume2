@@ -11,6 +11,9 @@
                 <%= render :partial => 'shared/sortable_link', :locals => { :header => 'Title', :column_name => 'title' } %>
             </th>
             <th>
+                Jobs
+            </th>
+            <th>
                 <%= render :partial => 'shared/sortable_link', :locals => { :header => 'Date created', :column_name => 'created_at' } %>
             </th>
         </tr>
@@ -19,6 +22,9 @@
             <tr>
                 <td>
                     <%= render :partial => 'resumes/link_to_resume', :locals => {:user => @user, :resume => resume} %>
+                </td>
+                <td>
+                    <%= resume.job_count %>
                 </td>
                 <td>
                     <%= resume.created_at %>

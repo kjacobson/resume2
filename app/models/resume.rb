@@ -30,4 +30,8 @@ class Resume < ActiveRecord::Base
       end
       return softwares
     end
+
+    def job_count
+      self.jobs.count
+    end
 end

@@ -22,7 +22,6 @@ class DisciplinesController < ApplicationController
   # GET /disciplines/1.json
   def show
     @discipline = Discipline.find(params[:id])
-    @user = @discipline.user
     @skills = @discipline.skills
 
     respond_to do |format|
@@ -35,7 +34,6 @@ class DisciplinesController < ApplicationController
   # GET /disciplines/new.json
   def new
     @discipline = Discipline.new
-    @user = @discipline.user
     @skills = @user.skills
     @selected_skills = []
 
@@ -48,7 +46,6 @@ class DisciplinesController < ApplicationController
   # GET /disciplines/1/edit
   def edit
     @discipline = Discipline.find(params[:id])
-    @user = @discipline.user
     @skills = @user.skills
     @selected_skills = @discipline.skills || []
   end
@@ -57,8 +54,6 @@ class DisciplinesController < ApplicationController
   # POST /disciplines.json
   def create
     @discipline = Discipline.new(params[:discipline])
-    # TODO: something needs to happen with this
-    @resume = Resume.find(params[:resume_id])
     @discipline.resume_id = @resume.id
 
     respond_to do |format|
@@ -85,7 +80,6 @@ class DisciplinesController < ApplicationController
   # PUT /disciplines/1.json
   def update
     @discipline = Discipline.find(params[:id])
-    @user = User.find(@discipline.user_id)
     @skills = params[:skills]
     @user_skills = @user.user_skills
     @skills.each do |sk|

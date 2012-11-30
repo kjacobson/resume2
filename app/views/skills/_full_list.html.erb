@@ -1,6 +1,6 @@
 <table>
     <tr>
-        <% if @is_admin %>
+        <% if is_admin_user? %>
             <th class="d10 numericData">
                 <%= render :partial => 'shared/sortable_link', :locals => { :header => 'ID', :column_name => 'id' } %>
             </th>
@@ -12,7 +12,7 @@
 
     <% skills.each do |skill| %>
         <tr>
-            <% if @is_admin %>
+            <% if is_admin_user? %>
                 <td class="numericData"><%= skill.id %></td>
             <% end %>
             <td>

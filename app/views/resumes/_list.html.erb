@@ -4,7 +4,7 @@
             <a href="<%= resume_path(user, resume) %>" title="See this resume" rel="internal">
                 <%= resume.title %>
             </a>
-            <% if @user_match %>
+            <% if is_user_match? %>
                 <a href="<%= edit_resume_path(user, resume) %>" title="Edit this resume" rel="internal">[edit]</a>
             <% end %>
         </li>

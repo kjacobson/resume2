@@ -24,6 +24,6 @@
     </p>
 
 
-    <%= link_to 'Edit', edit_user_path(@user) if @user_match %> |
+    <%= link_to 'Edit', edit_user_path(@user) if is_user_match? %> |
     <%= link_to 'Back', users_path %>
 <% end %>

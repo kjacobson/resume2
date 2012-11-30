@@ -18,8 +18,6 @@ class SoftwaresController < ApplicationController
   # GET /softwares
   # GET /softwares.json
   def index
-    @user = User.find(params[:user_id]) if !params[:user_id].nil?
-    @resume = Resume.find(params[:resume_id]) if !params[:resume_id].nil?
     @order_by = !params[:order_by].nil? ? params[:order_by] : "title"
     @direction = !params[:direction].nil? ? params[:direction] : "ASC"
 
@@ -49,12 +47,6 @@ class SoftwaresController < ApplicationController
   # GET /softwares/1
   # GET /softwares/1.json
   def show
-    if !params[:user_id].nil?
-      @user = User.find(params[:user_id])
-      if !params[:resume_id].nil?
-        @resume = Resume.find(params[:resume_id])
-      end
-    end
     @software = Software.find_by_slug(params[:id])
     @jobs = @software.jobs.order("end_year DESC, end_month DESC")
     @years = @software.years

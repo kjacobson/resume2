@@ -4,7 +4,7 @@
 %>
 <table>
     <tr>
-        <% if @is_admin %>
+        <% if is_admin_user? %>
             <th class="d10">
                 <%= render :partial => 'shared/sortable_link', :locals => { :header => 'ID', :column_name => 'id' } %>
             </th>
@@ -16,7 +16,7 @@
 
     <% softwares.each do |software| %>
         <tr>
-            <% if @is_admin %>
+            <% if is_admin_user? %>
                 <td><%= software.id %></td>
             <% end %>
             <td>

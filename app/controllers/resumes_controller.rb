@@ -2,8 +2,6 @@ class ResumesController < ApplicationController
   before_filter :set_instance_vars, :only => [:show, :edit, :update]
 
   def set_instance_vars
-    @resume = Resume.find(params[:id])
-    @user = @resume.user
     @jobs = @resume.jobs.order("end_year DESC")
     @skills = @resume.skills.sort { |a,b| a.title <=> b.title }
     @softwares = @resume.softwares.sort { |a,b| b.rank <=> a.rank }
@@ -13,7 +11,6 @@ class ResumesController < ApplicationController
   # GET /resumes
   # GET /resumes.xml
   def index
-    @user = User.find(params[:user_id])
     @order_by = !params[:order_by].nil? ? params[:order_by] : "title"
     @direction = !params[:direction].nil? ? params[:direction] : "DESC"
     if @order_by == "created_at"
@@ -45,7 +42,6 @@ class ResumesController < ApplicationController
   # GET /resumes/new.xml
   def new
     @resume = Resume.new
-    @user = User.find(params[:user_id])
     @jobs = @user.jobs
 
     respond_to do |format|
@@ -92,7 +88,6 @@ class ResumesController < ApplicationController
   # DELETE /resumes/1
   # DELETE /resumes/1.xml
   def destroy
-    @resume = Resume.find(params[:id])
     @resume.destroy
 
     respond_to do |format|

@@ -18,7 +18,6 @@ class SkillsController < ApplicationController
   # GET /skills
   # GET /skills.json
   def index
-    @resume = Resume.find(params[:resume_id]) if !params[:resume_id].nil?
     @order_by = !params[:order_by].nil? ? params[:order_by] : "title"
     @direction = !params[:direction].nil? ? params[:direction] : "ASC"
 
@@ -60,7 +59,6 @@ class SkillsController < ApplicationController
   # GET /skills/new
   # GET /skills/new.json
   def new
-    @user = current_user
     @skill = Skill.new
     @disciplines = @user.disciplines
 

@@ -22,15 +22,15 @@ class ApplicationController < ActionController::Base
   end
 
   def set_basic_instance_vars
-    if !params[:user_id].nil?
-      if not @user = User.find(params[:user_id])
+    if user_id = params[:user_id] or (params[:controller] == "users" and user_id = params[:id])
+      if not @user = User.find(user_id)
         flash[:notice] = "The user whose information you&rsquo;re trying to view doesn&rsquo;t seem to exist."
         # TODO: this should be a 404
         redirect_to :homepage
       end
     end
-    if !params[:resume_id].nil?
-      if not @resume = Resume.find(params[:resume_id])
+    if resume_id = params[:resume_id] or (params[:controller] == "resumes" and resume_id = params[:id])
+      if not @resume = Resume.find(resume_id)
         flash[:notice] = "The resume you&rsquo;re trying to view doesn&rsquo;t seem to exist."
         # TODO: this should be a 404
         redirect_to :homepage

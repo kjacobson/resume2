@@ -31,7 +31,10 @@ class ResumesController < ApplicationController
   def show
     @jobs = @jobs[0..6]
     @softwares = @softwares[0..4]
-
+    # TODO: the following should probably be a method on user and resume. And is there a better way? Is it worth it?
+    skill_ids = @skills.collect { |sk| sk.id }
+    user_skills = @user.user_skills.select {|us| skill_ids.include?(us.skill_id) and us.discipline_id.nil? }
+    @uncategorized_skills = user_skills.collect { |us| us.skill }
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @resume }

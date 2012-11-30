@@ -40,7 +40,7 @@
         </h1>
 
         <% if @disciplines and @disciplines.count >= 1 %>
-            <%= render :partial => "skills/small_list_by_discipline", :locals => { :user => @user, :resume => @resume, :disciplines => @disciplines, :skills => @skills } %>
+            <%= render :partial => "skills/small_list_by_discipline", :locals => { :user => @user, :resume => @resume, :disciplines => @disciplines, :skills => @uncategorized_skills } %>
         <% elsif @skills.count >= 1 %>
             <% if is_user_match? %>
                 <p>

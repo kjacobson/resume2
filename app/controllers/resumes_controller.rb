@@ -8,6 +8,38 @@ class ResumesController < ApplicationController
     @disciplines = @resume.disciplines.delete_if { |d| d.nil? }
   end
 
+  def save_resume_jobs(resume_id, job_ids)
+    job_ids.each do |j|
+      j = j.to_i
+      if ResumeJob.where({:resume_id => resume_id, :job_id => j}) == []
+        save_resume_job(resume_id, j)
+      end
+    end
+  end
+
+  def save_resume_job(resume_id, job_id)
+    rj = ResumeJob.new({:resume_id => resume_id, :job_id => job_id})
+    if rj.save
+      logger.debug "Saved a resume job"
+    else
+      logger.debug "Failed to save a resume job"
+    end
+  end
+
+  def delete_resume_jobs(resume_id, job_ids)
+    job_ids.each do |j|
+      j = j.to_i
+      rjs = ResumeJob.where({:resume_id => resume_id, :job_id => j})
+      unless rjs == []
+        rjs.each do |rj|
+          if rj.destroy
+            logger.debug "Destroyed a resume job that's no longer needed.'"
+          end
+        end
+      end
+    end
+  end
+
   # GET /resumes
   # GET /resumes.xml
   def index
@@ -45,7 +77,8 @@ class ResumesController < ApplicationController
   # GET /resumes/new.xml
   def new
     @resume = Resume.new
-    @jobs = @user.jobs
+    @user_jobs = @user.jobs
+    @url = resumes_path({:user_id => @user.id})
 
     respond_to do |format|
       format.html # new.html.erb
@@ -56,6 +89,7 @@ class ResumesController < ApplicationController
   # GET /resumes/1/edit
   def edit
     @user_jobs = @user.jobs
+    @url = resume_path({:user_id => @user.id})
   end
 
   # POST /resumes
@@ -65,7 +99,10 @@ class ResumesController < ApplicationController
 
     respond_to do |format|
       if @resume.save
-        format.html { redirect_to(@resume, :notice => 'Resume was successfully created.') }
+        if !params[:resume_jobs].nil?
+          save_resume_jobs(@resume.id, params[:resume_jobs])
+        end
+        format.html { redirect_to(resume_path({:user_id => @user.id, :id => @resume.id}), :notice => 'Resume was successfully created.') }
         format.xml  { render :xml => @resume, :status => :created, :location => @resume }
       else
         format.html { render :action => "new" }
@@ -79,7 +116,15 @@ class ResumesController < ApplicationController
   def update
     respond_to do |format|
       if @resume.update_attributes(params[:resume])
-        format.html { redirect_to(@resume, :notice => 'Resume was successfully updated.') }
+        if !params[:resume_jobs].nil?
+          rj_ids = @resume.resume_jobs.flat_map { |rj| rj.job_id.to_s }
+          diff = rj_ids - params[:resume_jobs]
+          if diff.count > 0
+            delete_resume_jobs(@resume.id, diff)
+          end
+          save_resume_jobs(@resume.id, params[:resume_jobs])
+        end
+        format.html { redirect_to(resume_path({:user_id => @user.id, :id => @resume.id}), :notice => 'Resume was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

@@ -116,13 +116,14 @@ class ResumesController < ApplicationController
   def update
     respond_to do |format|
       if @resume.update_attributes(params[:resume])
-        if !params[:resume_jobs].nil?
-          rj_ids = @resume.resume_jobs.flat_map { |rj| rj.job_id.to_s }
-          diff = rj_ids - params[:resume_jobs]
-          if diff.count > 0
-            delete_resume_jobs(@resume.id, diff)
-          end
-          save_resume_jobs(@resume.id, params[:resume_jobs])
+        resume_jobs = params[:resume_jobs] || []
+        rj_ids = @resume.resume_jobs.flat_map { |rj| rj.job_id.to_s }
+        diff = rj_ids - resume_jobs
+        if diff.count > 0
+          delete_resume_jobs(@resume.id, diff)
+        end
+        if resume_jobs.size > 0
+          save_resume_jobs(@resume.id, resume_jobs)
         end
         format.html { redirect_to(resume_path({:user_id => @user.id, :id => @resume.id}), :notice => 'Resume was successfully updated.') }
         format.xml  { head :ok }

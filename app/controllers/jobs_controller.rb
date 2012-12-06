@@ -136,6 +136,20 @@ class JobsController < ApplicationController
 
     return true
   end
+
+  def delete_resume_jobs(job_id, resume_ids)
+    resume_ids.each do |r|
+      r = r.to_i
+      rjs = ResumeJob.where({:resume_id => r, :job_id => job_id})
+      unless rjs == []
+        rjs.each do |rj|
+          if rj.destroy
+            logger.debug "Destroyed a resume job that's no longer needed.'"
+          end
+        end
+      end
+    end
+  end
   
   # GET /jobs
   # GET /jobs.json
@@ -280,8 +294,13 @@ class JobsController < ApplicationController
       save_softwares(softwares, @job, current_user)
     end
 
-    resume_ids = params[:resume_ids]
-    if !resume_ids.nil? and resume_ids.size > 0
+    resume_ids = params[:resume_ids] || []
+    rj_ids = @job.resume_jobs.flat_map { |rj| rj.resume_id.to_s }
+    diff = rj_ids - resume_ids
+    if diff.count > 0
+      delete_resume_jobs(@job.id, diff)
+    end
+    if resume_ids.size > 0
       save_resume_jobs(@job.id, resume_ids)
     end
 

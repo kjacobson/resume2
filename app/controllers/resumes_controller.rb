@@ -5,7 +5,7 @@ class ResumesController < ApplicationController
     @jobs = @resume.jobs.order("end_year DESC")
     @skills = @resume.skills.sort { |a,b| a.title <=> b.title }
     @softwares = @resume.softwares.sort { |a,b| b.rank <=> a.rank }
-    @disciplines = @resume.disciplines.delete_if { |d| d.nil? }
+    @disciplines = @resume.disciplines
   end
 
   def save_resume_jobs(resume_id, job_ids)
@@ -63,10 +63,7 @@ class ResumesController < ApplicationController
   def show
     @jobs = @jobs[0..6]
     @softwares = @softwares[0..4]
-    # TODO: the following should probably be a method on user and resume. And is there a better way? Is it worth it?
-    skill_ids = @skills.collect { |sk| sk.id }
-    user_skills = @user.user_skills.select {|us| skill_ids.include?(us.skill_id) and us.discipline_id.nil? }
-    @uncategorized_skills = user_skills.collect { |us| us.skill }
+    @uncategorized_skills = @resume.uncategorized_skills
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @resume }

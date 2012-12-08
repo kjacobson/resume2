@@ -16,7 +16,7 @@ class Resume < ActiveRecord::Base
     def disciplines
       user = User.find(self.user_id)
       if user
-        disciplines = self.skills.flat_map{ |sk| sk.discipline(user) }.uniq
+        disciplines = self.skills.flat_map{ |sk| sk.discipline(user) }.uniq.compact
       else
         disciplines = []
       end
@@ -33,5 +33,11 @@ class Resume < ActiveRecord::Base
 
     def job_count
       self.jobs.count
+    end
+
+    def uncategorized_skills
+      skill_ids = self.skills.collect { |sk| sk.id }
+      user_skills = self.user.user_skills.select {|us| skill_ids.include?(us.skill_id) and us.discipline_id.nil? }
+      return user_skills.collect { |us| us.skill }
     end
 end

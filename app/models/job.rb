@@ -19,7 +19,7 @@ class Job < ActiveRecord::Base
 
     def disciplines
         u = self.user
-        disciplines = self.skills.flat_map{ |sk| sk.discipline(u) }.uniq
+        disciplines = self.skills.flat_map{ |sk| sk.discipline(u) }.uniq.compact
         if disciplines.first.nil? or !disciplines.first
           disciplines = []
         end
@@ -60,5 +60,11 @@ class Job < ActiveRecord::Base
     end
     def long_end_month
         Job.month_converter(self.end_month)
+    end
+
+    def uncategorized_skills
+      skill_ids = self.skills.collect { |sk| sk.id }
+      user_skills = self.user.user_skills.select {|us| skill_ids.include?(us.skill_id) and us.discipline_id.nil? }
+      return user_skills.collect { |us| us.skill }
     end
 end

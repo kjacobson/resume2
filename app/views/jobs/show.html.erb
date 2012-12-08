@@ -83,10 +83,17 @@
     <% if @skills.count >= 1 %>
         <section class="secondary extended associations associatedSkills">
             <h1>Skills used</h1>
-            <% if !@disciplines.nil? and @disciplines.count >= 1 %>
-                <%= render :partial => 'skills/small_list_by_discipline', :locals => {:disciplines => @disciplines, :skills => @skills} %>
-            <% else %>
-                <%= render :partial => 'skills/small_list', :locals => {:skills => @skills} %>
+
+            <% if @disciplines and @disciplines.count >= 1 %>
+                <%= render :partial => "skills/small_list_by_discipline", :locals => { :user => @user, :resume => @resume, :disciplines => @disciplines, :skills => @uncategorized_skills } %>
+            <% elsif @skills.count >= 1 %>
+                <% if is_user_match? %>
+                    <p>
+                        <strong>Your skills are orphans!</strong> Giving them disciplines will add some structure and clarity to your resume.
+                        <a href="<%= skills_path(@user) %>" rel="internal" title="Organize skills under disciplines.">Right this way.</a>
+                    </p>
+                <% end %>
+                <%=  render :partial => "skills/small_list", :locals => { :user => @user, :resume => @resume, :skills => @skills } %>
             <% end %>
         </section>     
     <% end %>

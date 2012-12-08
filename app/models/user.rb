@@ -12,4 +12,8 @@ class User < ActiveRecord::Base
   acts_as_authentic do |c|
     c.validate_email_field = true
   end # block optional
+
+  def uncategorized_skills
+    self.user_skills.select { |us| us.discipline_id.nil? }.map { |us| us.skill }
+  end
 end

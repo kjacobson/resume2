@@ -192,6 +192,7 @@ class JobsController < ApplicationController
   def show
     @job = Job.find(params[:id])
     @skills = @job.skills.order("rank DESC")
+    @uncategorized_skills = @job.uncategorized_skills
     @softwares = @job.softwares.order("title ASC")
     @years = @job.years.sort! { |a,b| a <=> b }
     @highlights = @job.highlights.order("skill_id")

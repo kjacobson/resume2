@@ -14,7 +14,9 @@ class YearsController < ApplicationController
     elsif !params[:software_id].nil?
         @software = Software.find_by_id(params[:software_id])
         @years = @software.years.sort! { |a,b| b.value <=> a.value }
-        @years = Year.find(:all, :order => @order_by + " " + @direction)
+    elsif @resume
+        @jobs = @resume.jobs
+        @years = @resume.years
     end
 
     respond_to do |format|

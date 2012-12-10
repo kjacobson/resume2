@@ -8,7 +8,7 @@
     <% @years.each do |year| %>
         <tr>
             <td>
-                <%= render :partial => 'link_to_year', :locals => { :year => year.value } %>
+                <%= render :partial => 'link_to_year', :locals => { :year => year.value, :user => @user, :resume => @resume } %>
             </td>
         </tr>
     <% end %>

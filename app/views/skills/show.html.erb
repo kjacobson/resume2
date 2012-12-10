@@ -26,6 +26,6 @@
 
     <section class="secondary">
         <h1>Years this skill was used</h1>
-        <%= render :partial => 'years/list', :locals => { :years => @years } %>
+        <%= render :partial => 'years/list', :locals => { :years => @years, :user => @user, :resume => @resume } %>
     </section>
 <% end %>

@@ -88,6 +88,7 @@ class ApplicationController < ActionController::Base
     query = User.find_by_id(vars[1])
     vars[2..-1].each_with_index do |var, i|
       break if query.nil?
+      break if var == "years"
       break if ACTIONS.include?(var)
       if i % 2 == 0
         query = MODELS.include?(var) ? query.send(var) : nil

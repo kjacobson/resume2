@@ -40,6 +40,8 @@ class JobsController < ApplicationController
   end
 
   def save_skills(skills, job, user)
+    sk_ids = job.job_skills.flat_map { |js| js.skill_id }
+    new_skill_ids = []
     skills.each do |sk|
       sk = sk.strip()
       do_job_skill = false
@@ -50,6 +52,7 @@ class JobsController < ApplicationController
           do_job_skill = true
         end
       else
+        new_skill_ids.push(skill.id)
         do_job_skill = true
       end
       if do_job_skill
@@ -57,6 +60,8 @@ class JobsController < ApplicationController
         save_job_skill(skill, job, user)
       end
     end
+    diff = sk_ids - new_skill_ids
+    delete_job_skills(job.id, diff)
   end
 
   # TODO: this exists in SkillsController too. We should import that Class and use that method.
@@ -89,6 +94,8 @@ class JobsController < ApplicationController
   end
 
   def save_softwares(softwares, job, user)
+    so_ids = job.job_softwares.flat_map { |js| js.software_id }
+    new_software_ids = []
     softwares.each do |so|
       so = so.strip()
       do_job_software = false
@@ -99,6 +106,7 @@ class JobsController < ApplicationController
           do_job_software = true
         end
       else
+        new_software_ids.push(software.id)
         do_job_software = true
       end
       if do_job_software
@@ -106,6 +114,8 @@ class JobsController < ApplicationController
           save_job_software(software, job, user)
       end
     end
+    diff = so_ids - new_software_ids
+    delete_job_softwares(job.id, diff)
   end
 
   # TODO: this exists in SoftwaresController too. We should import that Class and use that method.
@@ -144,7 +154,33 @@ class JobsController < ApplicationController
       unless rjs == []
         rjs.each do |rj|
           if rj.destroy
-            logger.debug "Destroyed a resume job that's no longer needed.'"
+            logger.debug "Destroyed a resume job that's no longer needed."
+          end
+        end
+      end
+    end
+  end
+
+  def delete_job_skills(job_id, skill_ids)
+    skill_ids.each do |sk|
+      jsks = JobSkill.where({:skill_id => sk, :job_id => job_id})
+      unless jsks == []
+        jsks.each do |js|
+          if js.destroy
+            logger.debug "Destroyed a job skill that's no longer needed."
+          end
+        end
+      end
+    end
+  end
+
+  def delete_job_softwares(job_id, software_ids)
+    software_ids.each do |so|
+      jsos = JobSoftware.where({:software_id => so, :job_id => job_id})
+      unless jsos == []
+        jsos.each do |js|
+          if js.destroy
+            logger.debug "Destroyed a job software that's no longer needed."
           end
         end
       end
@@ -194,7 +230,7 @@ class JobsController < ApplicationController
     @skills = @job.skills.order("rank DESC")
     @uncategorized_skills = @job.uncategorized_skills
     @softwares = @job.softwares.order("title ASC")
-    @years = @job.years.sort! { |a,b| a <=> b }
+    @years = @job.years.sort { |a,b| a.value <=> b.value }
     @highlights = @job.highlights.order("skill_id")
     @disciplines = @job.disciplines
 
@@ -283,17 +319,17 @@ class JobsController < ApplicationController
   # PUT /jobs/1.json
   def update
     @job = Job.find(params[:id])
-    skills = params[:skills]
-    if !skills.nil? && skills != ""
+    skills = params[:skills] || []
+    if skills != []
       skills = skills.split(',')
-      save_skills(skills, @job, current_user)
     end
+    save_skills(skills, @job, current_user)
     
-    softwares = params[:softwares]
-    if !softwares.nil? && softwares != ""
+    softwares = params[:softwares] || []
+    if softwares != []
       softwares = softwares.split(',')
-      save_softwares(softwares, @job, current_user)
     end
+    save_softwares(softwares, @job, current_user)
 
     resume_ids = params[:resume_ids] || []
     rj_ids = @job.resume_jobs.flat_map { |rj| rj.resume_id.to_s }

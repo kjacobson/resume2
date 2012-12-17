@@ -16,10 +16,13 @@
     <%= f.text_field :title %>
   </div>
 
-  <div class="field">
-    <%= f.label :slug %><br />
-    <%= f.text_field :slug %>
-  </div>
+
+  <% if is_admin_user? %>
+      <div class="field">
+        <%= f.label :slug %><br />
+        <%= f.text_field :slug %>
+      </div>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

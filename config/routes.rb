@@ -30,6 +30,10 @@ Resume2::Application.routes.draw do
   # if a user is viewing any page belonging to a user other than the one he is logged in as,
   # routes will require user AND resume
   scope "users/:user_id" do
+    resources :disciplines do
+      resources :skills, :only => :index
+      resources :jobs, :only => :index
+    end
     resources :jobs
     resources :highlights
     resources :resumes
@@ -37,7 +41,7 @@ Resume2::Application.routes.draw do
     resources :softwares
 
     scope "(resumes/:resume_id)" do
-      resources :disciplines do
+      resources :disciplines, :only => [:index, :show] do
         resources :skills, :only => :index
         resources :jobs, :only => :index
       end

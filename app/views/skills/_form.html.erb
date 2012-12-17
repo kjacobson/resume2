@@ -15,14 +15,16 @@
         <%= f.label :title %><br />
         <%= f.text_field :title %>
     </div>
-    <div class="field">
-        <%= f.label :abbreviation %><br />
-        <%= f.text_field :abbreviation %>
-    </div>
-    <div class="field">
-        <%= f.label :slug %><br />
-        <%= f.text_field :slug %>
-    </div>
+    <% if is_admin_user? %>
+        <div class="field">
+            <%= f.label :abbreviation %><br />
+            <%= f.text_field :abbreviation %>
+        </div>
+        <div class="field">
+            <%= f.label :slug %><br />
+            <%= f.text_field :slug %>
+        </div>
+    <% end %>
     <div class="field">
         <%= f.label :discipline_id %><br />
         <select id="discipline_id" name="discipline_id">

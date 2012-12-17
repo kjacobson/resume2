@@ -57,14 +57,14 @@
   <% else %>
       </fieldset>
       <fieldset>
-          <p class="form_explanation">
-              <strong>Why do we ask for this?</strong> First things first: we have ZERO interest in calling you, and while
-              getting mail is actually kind of fun, we won&rsquo;t be using your address, either. However, we think you might
-              want to include your contact information on your resume(s). You&rsquo;ll be able to choose whether to show your
-              contact information separately for each resume.
-          </p>
           <div class="field">
             <%= f.label :address %><br />
+            <p class="form-explanation">
+                <strong>Why do we ask for this?</strong> First things first: we have ZERO interest in calling you, and while
+                getting mail is actually kind of fun, we won&rsquo;t be using your address, either. However, we think you might
+                want to include your contact information on your resume(s). You&rsquo;ll be able to choose whether to show your
+                contact information separately for each resume.
+            </p>
             <%= f.text_field :address %>
           </div>
           <div class="field">

@@ -10,11 +10,6 @@
     <section class="primary">
         <h1>Positions involving <%= decode(@skill.title) %></h1>
         <%= render :partial => 'jobs/small_list' %>
-
-        <% if current_user %>
-            <%= link_to 'Edit', edit_skill_path(@skill) %> |
-            <%= link_to 'Back', skills_path %>
-        <% end %>
     </section>
 
     <% if !@highlights.nil? and @highlights.count >= 1 %>

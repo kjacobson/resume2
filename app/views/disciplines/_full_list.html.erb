@@ -1,10 +1,5 @@
 <table>
     <tr>
-        <% if !current_user.nil? %>
-            <th class="d10">
-                <%= render :partial => 'shared/sortable_link', :locals => { :header => 'ID', :column_name => 'id' } %>
-            </th>
-        <% end %>
         <th class="d40">
             <%= render :partial => 'shared/sortable_link', :locals => { :header => 'Title', :column_name => 'title' } %>
         </th>
@@ -12,9 +7,6 @@
 
     <% @disciplines.each do |discipline| %>
         <tr>
-            <% if !current_user.nil? %>
-                <td><%= discipline.id %></td>
-            <% end %>
             <td>
                 <%= render :partial => 'disciplines/link_to_discipline', :locals => { :discipline => discipline } %>
             </td>

@@ -8,8 +8,16 @@ class DisciplinesController < ApplicationController
     @direction = !params[:direction].nil? ? params[:direction] : "ASC"
     if !params[:job_id].nil?
         @disciplines = Job.find(params[:job_id]).disciplines.order(@order_by + " " + @direction)
-    else
-        @disciplines = Discipline.find(:all, :order => @order_by + " " + @direction)
+    elsif @resume
+        @disciplines = @resume.disciplines
+        # if we're going to send() @order_by, then we need to check it against a whitelist
+        if @direction == "ASC"
+          @disciplines.sort { |a, b| a.send(@order_by) <=> b.send(@order_by) }
+        else
+          @disciplines.sort { |a, b| b.send(@order_by) <=> a.send(@order_by) }
+        end
+    elsif @user
+        @disciplines = @user.disciplines.order(@order_by + " " + @direction)
     end
 
     respond_to do |format|

@@ -44,6 +44,7 @@ class DisciplinesController < ApplicationController
     @discipline = Discipline.new
     @skills = @user.skills
     @selected_skills = []
+    @url = disciplines_path(@user)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -56,6 +57,12 @@ class DisciplinesController < ApplicationController
     @discipline = Discipline.find(params[:id])
     @skills = @user.skills
     @selected_skills = @discipline.skills || []
+    @url = discipline_path(:user => @user, :discipline_id => @discipline.id)
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json  { render :json => @discipline }
+    end
   end
 
   # POST /disciplines

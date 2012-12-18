@@ -11,6 +11,6 @@
         <hgroup>
             <h1>Skills</h1>
         </hgroup>
-        <%= render :partial => 'skills/small_list', :locals => { :skills => @skills } %>
+        <%= render :partial => 'skills/small_list', :locals => { :skills => @skills, :user => @user, :resume => @resume } %>
     </section>
 <% end %>

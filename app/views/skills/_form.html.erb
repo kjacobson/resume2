@@ -26,12 +26,14 @@
         </div>
     <% end %>
     <div class="field">
-        <%= f.label :discipline_id %><br />
-        <select id="discipline_id" name="discipline_id">
-            <% @disciplines.each do |discipline| %>
-                <option value="<%= discipline.id %>"><%= discipline.title %></option>
-            <% end %>
-        </select>
+        <% if @disciplines %>
+            <%= f.label :discipline_id %><br />
+            <select id="discipline_id" name="discipline_id">
+                <% @disciplines.each do |discipline| %>
+                    <option value="<%= discipline.id %>"><%= discipline.title %></option>
+                <% end %>
+            </select>
+        <% end %>
     </div>
     <div class="actions">
         <%= f.submit %>

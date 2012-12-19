@@ -30,10 +30,12 @@ class SkillsController < ApplicationController
     elsif @resume
         @skills = @resume.skills
         if @direction == "DESC"
-          @skills.sort! { |a,b| b[@order_by] <=> a[@order_by] }
+          @skills.sort! { |a,b| b.send(@order_by) <=> a.send(@order_by) }
         else
-          @skills.sort! { |a,b| a[@order_by] <=> b[@order_by] }
+          @skills.sort! { |a,b| a.send(@order_by) <=> b.send(@order_by) }
         end
+    elsif @user
+      @skills = @user.skills.order(@order_by + " " + @direction)
     end
 
     respond_to do |format|
@@ -71,6 +73,7 @@ class SkillsController < ApplicationController
   # GET /skills/1/edit
   def edit
     @skill = Skill.find(params[:id])
+    @disciplines = @user.disciplines
   end
 
   # POST /skills

@@ -31,14 +31,25 @@ Resume2::Application.routes.draw do
   # routes will require user AND resume
   scope "users/:user_id" do
     resources :disciplines do
+      get :confirm_delete, :on => :member
       resources :skills, :only => :index
       resources :jobs, :only => :index
     end
-    resources :jobs
-    resources :highlights
-    resources :resumes
-    resources :skills
-    resources :softwares
+    resources :jobs do
+      get :confirm_delete, :on => :member
+    end
+    resources :highlights do
+      get :confirm_delete, :on => :member
+    end
+    resources :resumes do
+      get :confirm_delete, :on => :member
+    end
+    resources :skills do
+      get :confirm_delete, :on => :member
+    end
+    resources :softwares do
+      get :confirm_delete, :on => :member
+    end
 
     scope "(resumes/:resume_id)" do
       resources :disciplines, :only => [:index, :show] do
@@ -76,16 +87,22 @@ Resume2::Application.routes.draw do
 
     resources :job_softwares, :as => :j_softwares
 
-    resources :resume_highlights, :as => :r_highlights
+    resources :resume_highlights, :as => :r_highlights do
+      get :confirm_delete, :on => :member
+    end
 
-    resources :resume_jobs, :as => :r_jobs
+    resources :resume_jobs, :as => :r_jobs do
+      get :confirm_delete, :on => :member
+    end
 
     resources :user_softwares, :as => :u_skills, :only => [:create, :update, :destroy]
 
     resources :user_skills, :as => :u_softwares, :only => [:create, :update, :destroy]
   end
 
-  resources :users
+  resources :users do
+    get :confirm_delete, :on => :member
+  end
   resource :user_session
   resource :account, :controller => 'users'
 

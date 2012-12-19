@@ -2,12 +2,12 @@ class User < ActiveRecord::Base
   has_many :resumes
 
   has_many :jobs
-  has_many :user_skills
+  has_many :user_skills, :dependent => :destroy
   has_many :skills, :through => :user_skills
-  has_many :user_softwares
+  has_many :user_softwares, :dependent => :destroy
   has_many :softwares, :through => :user_softwares
-  has_many :highlights
-  has_many :disciplines
+  has_many :highlights, :dependent => :destroy
+  has_many :disciplines, :dependent => :destroy
 
   acts_as_authentic do |c|
     c.validate_email_field = true

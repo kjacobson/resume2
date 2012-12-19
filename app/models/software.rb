@@ -4,7 +4,7 @@ class Software < ActiveRecord::Base
 
     has_many :job_softwares, :dependent => :destroy
     has_many :jobs, :through => :job_softwares
-    has_many :user_softwares
+    has_many :user_softwares, :dependent => :destroy
     has_many :users, :through => :user_softwares
 
     def years

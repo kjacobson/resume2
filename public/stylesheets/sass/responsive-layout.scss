@@ -54,6 +54,7 @@ body {
         padding: 0 $smallestColumnWidth 4em;
     }
         section {
+            overflow: hidden;
             padding-bottom: 1em;
         }
     footer {

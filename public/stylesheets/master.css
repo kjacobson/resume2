@@ -234,6 +234,7 @@ header nav {
   padding: 0 4.167% 4em; }
 
 section {
+  overflow: hidden;
   padding-bottom: 1em; }
 
 footer {

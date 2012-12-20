@@ -47,7 +47,7 @@ class SkillsController < ApplicationController
   # GET /skills/1
   # GET /skills/1.json
   def show
-    @skill = Skill.find(params[:id])
+    @skill = Skill.find_by_slug(params[:id])
     @jobs = @skill.jobs.order("end_year DESC, end_month DESC")
     @years = @skill.years
     @highlights = Highlight.find_all_by_skill_id(params[:id])
@@ -63,6 +63,7 @@ class SkillsController < ApplicationController
   def new
     @skill = Skill.new
     @disciplines = @user.disciplines
+    @url = skills_path({:user_id => current_user.id})
 
     respond_to do |format|
       format.html # new.html.erb
@@ -72,8 +73,9 @@ class SkillsController < ApplicationController
 
   # GET /skills/1/edit
   def edit
-    @skill = Skill.find(params[:id])
+    @skill = Skill.find_by_slug(params[:id])
     @disciplines = @user.disciplines
+    @url = skill_path({:user_id => current_user.id, :id => @skill.id})
   end
 
   # POST /skills
@@ -126,7 +128,7 @@ class SkillsController < ApplicationController
   end
 
   def confirm_delete
-    @skill = Skill.find(params[:id])
+    @skill = Skill.find_by_slug(params[:id])
 
     respond_to do |format|
       format.html { render :action => "confirm_delete" }

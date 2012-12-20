@@ -61,6 +61,7 @@ class SoftwaresController < ApplicationController
   # GET /softwares/new.json
   def new
     @software = Software.new
+    @url = softwares_path({:user_id => current_user.id})
 
     respond_to do |format|
       format.html # new.html.erb
@@ -70,7 +71,8 @@ class SoftwaresController < ApplicationController
 
   # GET /softwares/1/edit
   def edit
-    @software = Software.find(params[:id])
+    @software = Software.find_by_slug(params[:id])
+    @url = software_path({:user_id => current_user.id, :id => @software.id})
   end
 
   # POST /softwares

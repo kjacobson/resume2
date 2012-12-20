@@ -121,4 +121,12 @@ class SoftwaresController < ApplicationController
       format.json  { head :ok }
     end
   end
+
+  def confirm_delete
+    @software = Software.find_by_slug(params[:id])
+
+    respond_to do |format|
+      format.html { render :action => "confirm_delete" }
+    end
+  end
 end

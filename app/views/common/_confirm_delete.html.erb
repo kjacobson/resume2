@@ -1,0 +1,23 @@
+<%
+  resource_name ||= nil
+%>
+<% content_for :head do %>
+    <hgroup>
+        <h1>
+          Are you ready to delete this <%= resource_type %>?
+        </h1>
+        <% if !resource_name.nil? %>
+            <h2><%= decode(resource_name) %></h2>
+        <% end %>
+    </hgroup>
+<% end %>
+
+<% content_for :main do %>
+    <section class="primary">
+        <h1>You can&rsquo;t get it back.</h1>
+        <h2>(We don&rsquo;t yet have the capability to undo changes like this.)</h2>
+        <form action="<%= action_url %>" method="DELETE">
+            <input type="submit" value="Delete it" />
+        </form>
+    </section>
+<% end %>

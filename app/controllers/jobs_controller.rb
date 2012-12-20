@@ -190,8 +190,6 @@ class JobsController < ApplicationController
   # GET /jobs
   # GET /jobs.json
   def index
-    verify_rights
-
     @order_by = !params[:order_by].nil? ? params[:order_by] : "end_year"
     @direction = !params[:direction].nil? ? params[:direction] : "DESC"
     if @order_by == "end_year"
@@ -362,6 +360,14 @@ class JobsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(jobs_url) }
       format.json  { head :ok }
+    end
+  end
+
+  def confirm_delete
+    @job = Job.find(params[:id])
+
+    respond_to do |format|
+      format.html { render :action => "confirm_delete" }
     end
   end
 end

@@ -16,7 +16,7 @@
                 <%= yield :main %>
             </div>
             <header>
-                <% if current_user %>
+                <% if is_user_match? %>
                     <%=  render :partial => 'users/user_header' %>
                 <% end %>
                 <nav>

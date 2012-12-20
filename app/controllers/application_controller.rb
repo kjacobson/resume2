@@ -79,7 +79,7 @@ class ApplicationController < ActionController::Base
   end
 
   MODELS = ["users","resumes","jobs","skills","softwares","highlights","disciplines","links","years","job_skills","job_software","resume_highlight","resume_job","user_skill","user_software"]
-  ACTIONS = ["index","show","new","edit","create","update","destroy"]
+  ACTIONS = ["index","show","new","edit","create","update","destroy", "confirm_delete"]
   # TODO: this REALLY needs a test
   def require_resource_match
     path = request.path[1..-1]

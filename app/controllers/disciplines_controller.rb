@@ -127,4 +127,12 @@ class DisciplinesController < ApplicationController
       format.json  { head :ok }
     end
   end
+
+  def confirm_delete
+    @discipline = Discipline.find(params[:id])
+
+    respond_to do |format|
+      format.html { render :action => "confirm_delete" }
+    end
+  end
 end

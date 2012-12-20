@@ -34,8 +34,8 @@ class SoftwaresController < ApplicationController
         else
           @softwares.sort! { |a,b| a[@order_by] <=> b[@order_by] }
         end
-    else
-        @softwares = Software.find(:all, :order => @order_by + " " + @direction)
+    elsif @user
+        @softwares = @user.softwares.order(@order_by + " " + @direction)
     end
 
     respond_to do |format|

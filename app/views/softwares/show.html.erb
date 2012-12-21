@@ -9,6 +9,6 @@
 <% content_for :main do %>
     <section class="primary">
         <h1>Positions involving <%= decode(@software.title) %></h1>
-        <%= render :partial => 'jobs/small_list' %>
+        <%= render :partial => 'jobs/small_list', :locals => { :jobs => @jobs, :user => @user, :resume => @resume } %>
     </section>
 <% end %>

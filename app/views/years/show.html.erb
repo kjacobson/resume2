@@ -9,7 +9,7 @@
 <% content_for :main do %>
     <section class="primary">
         <h1>Positions held in <%= @year.value %></h1>
-        <%= render :partial => 'jobs/small_list' %>
+        <%= render :partial => 'jobs/small_list', :locals => { :jobs => @jobs, :user => @user, :resume => @resume } %>
     </section>
 
     <section class="secondary extended">

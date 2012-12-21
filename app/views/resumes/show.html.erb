@@ -7,7 +7,7 @@
         <h1>Recent Positions/Projects</h1>
 
         <% if @jobs.count >= 1 %>
-            <%= render :partial => "jobs/small_list", :locals => {:user => @user, :resume => @resume} %>
+            <%= render :partial => "jobs/small_list", :locals => {:jobs => @jobs, :user => @user, :resume => @resume} %>
             [&hellip;] <a href="/users/<%= @user.id %>/resumes/<%= @resume.id %>/jobs" rel="internal" title="">See all jobs</a>
         <% end %>
 

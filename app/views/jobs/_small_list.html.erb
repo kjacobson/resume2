@@ -1,9 +1,10 @@
 <%
   user ||= nil
   resume ||= nil
+  jobs ||= nil
 %>
 <ol class="job-list">
-    <% @jobs.each do |job| %>
+    <% jobs.each do |job| %>
         <li>
             <%= render :partial => 'jobs/link_to_job', :locals => { :job => job, :resume => resume, :user => user } %>,
             <span class="deemphasized job-status"><%= decode(job.status) %></span>

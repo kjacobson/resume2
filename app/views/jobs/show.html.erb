@@ -1,7 +1,7 @@
 <% content_for :head do %>
-    <% if !params[:resume_id].nil? and resume = Resume.find(params[:resume_id]) %>
+    <% if @resume %>
         <p class="message suggestion">
-            <a href="<%= resume_path({:user => @user, :id => resume.id}) %>" rel="internal" title="">Back to your resume</a>
+            <a href="<%= resume_path({:user => @user, :id => @resume.id}) %>" rel="internal" title="">Back to your resume</a>
         </p>
     <% end %>
     <hgroup>
@@ -44,10 +44,9 @@
             <dt>Dates</dt>
             <dd>
                 <%= @job.short_start_month %><% if !@job.start_month.nil? and !@job.start_year.nil? %>, <% end %>
-                <%= render :partial => 'years/link_to_year', :locals => {:year => @job.start_year} %>
+                <%= render :partial => 'years/link_to_year', :locals => { :year => @job.start_year, :user => @user, :resume => @resume } %>
                 &ndash;
-                <%= @job.short_end_month %><% if !@job.end_month.nil? and !@job.end_year.nil? %>, <% end %>
-                <%= render :partial => 'years/link_to_year', :locals => {:year => @job.end_year} %>
+                <%= render :partial => 'years/link_to_year', :locals => { :year => @job.end_year, :user => @user, :resume => @resume } %>
             </dd>
 
             <dt>Summary</dt>

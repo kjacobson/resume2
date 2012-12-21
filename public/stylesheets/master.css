@@ -274,13 +274,25 @@ th.d10,
 td.d10 {
   width: 7.5%; }
 
+th.d15,
+td.d15 {
+  width: 12.5%; }
+
 th.d20,
 td.d20 {
   width: 17.5%; }
 
+th.d25,
+td.d25 {
+  width: 22.5%; }
+
 th.d30,
 td.d30 {
   width: 27.5%; }
+
+th.d35,
+td.d35 {
+  width: 32.5%; }
 
 th.d40,
 td.d40 {

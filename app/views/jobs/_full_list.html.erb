@@ -1,23 +1,29 @@
 <table>
     <thead>
         <tr>
-            <th class="d30">
+            <th class="d20">
                 <%= render :partial => 'shared/sortable_link', :locals => { :header => 'Title', :column_name => 'title' } %>
             </th>
             <th class="d20">
                 <%= render :partial => 'shared/sortable_link', :locals => { :header => 'Employer/Client', :column_name => 'employer' } %>
             </th>
-            <th class="d20">
+            <th class="d15">
                 <%= render :partial => 'shared/sortable_link', :locals => { :header => 'Years', :column_name => 'start_year' } %>
             </th>
-            <th class="d30">
+            <th class="d35">
                 <%= render :partial => 'shared/sortable_link', :locals => { :header => 'Brief Description', :column_name => 'short_desc' } %>
             </th>
+            <% if is_user_match? %>
+                <th class="d10"></th>
+            <% end %>
         </tr>
     </thead>
     <tbody>
         <% @jobs.each_with_index do |job, index| %>
             <% isAlt = (index == 1 || (index % 2) == 1) %>
+            <%
+                user = job.user
+            %>
             <tr <% if isAlt then %>class="alt"<% end %>>
                 <td>
                     <%= render :partial => 'jobs/link_to_job', :locals => {:job => job} %>
@@ -31,6 +37,12 @@
                 <td>
                     <%= decode(job.short_desc) %>
                 </td>
+                <% if is_user_match? %>
+                    <td>
+                        <a href="<%= edit_job_path(user, job) %>" title="Edit this resume" rel="internal">[edit]</a>
+                        <a href="<%= confirm_delete_job_path(user, job) %>" title="Edit this resume" rel="internal">[delete]</a>
+                    </td>
+                <% end %>
             </tr>
         <% end %>
     </tbody>

@@ -49,7 +49,7 @@ class SkillsController < ApplicationController
   def show
     @skill = Skill.find_by_slug(params[:id])
     @jobs = @skill.jobs.order("end_year DESC, end_month DESC")
-    @years = @skill.years
+    @years = @skill.years.sort_by { |y| -y.value }
     @highlights = Highlight.find_all_by_skill_id(params[:id])
 
     respond_to do |format|

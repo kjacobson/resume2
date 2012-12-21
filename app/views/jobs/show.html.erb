@@ -71,7 +71,7 @@
     <section class="secondary associations associatedHighlights">
         <h1>Highlights</h1>
         <% if @highlights.count >= 1 %>
-            <%= render :partial => 'highlights/list', :locals => { :highlights => @highlights, :user => @user, :resume => @resume } %>
+            <%= render :partial => 'highlights/list', :locals => { :highlights => @highlights, :user => @user, :resume => @resume, :job_id => @job.id } %>
         <% else %>
             <% if is_user_match? %>
                 <p>

@@ -18,6 +18,8 @@ class HighlightsController < ApplicationController
   # GET /highlights/1.json
   def show
     @highlight = Highlight.find(params[:id])
+    @job = @highlight.job
+    @skill = @highlight.skill
 
     respond_to do |format|
       format.html # show.html.erb
@@ -29,6 +31,15 @@ class HighlightsController < ApplicationController
   # GET /highlights/new.json
   def new
     @highlight = Highlight.new
+    @url = highlights_path(@user)
+    if !params[:job_id].nil?
+      @job = Job.find(params[:job_id])
+    end
+    if !params[:skill_id].nil?
+      @skill = Skill.find(params[:skill_id])
+    end
+    @jobs = @user.jobs.order("title ASC")
+    @skills = @user.skills.order("title ASC")
 
     respond_to do |format|
       format.html # new.html.erb
@@ -39,19 +50,27 @@ class HighlightsController < ApplicationController
   # GET /highlights/1/edit
   def edit
     @highlight = Highlight.find(params[:id])
+    @url = highlight_path(@user, @highlight)
+    @job = @highlight.job
+    @skill = @highlight.skill
+
+    @jobs = @user.jobs.order("title ASC")
+    @skills = @user.skills.order("title ASC")
+
+    respond_to do |format|
+      format.html # edit.html.erb
+      format.json  { render :json => @highlight }
+    end
   end
 
   # POST /highlights
   # POST /highlights.json
   def create
     @highlight = Highlight.new(params[:highlight])
-    # TODO: something needs to happen with this
-    @resume = Resume.find(params[:resume_id])
-    @highlight.resume_id = @resume.id
 
     respond_to do |format|
       if @highlight.save
-        format.html { redirect_to(@highlight, :notice => 'Highlight was successfully created.') }
+        format.html { redirect_to(highlight_path(@user, @highlight), :notice => 'Highlight was successfully created.') }
         format.json  { render :json => @highlight, :status => :created, :location => @highlight }
       else
         format.html { render :action => "new" }
@@ -67,7 +86,7 @@ class HighlightsController < ApplicationController
 
     respond_to do |format|
       if @highlight.update_attributes(params[:highlight])
-        format.html { redirect_to(@highlight, :notice => 'Highlight was successfully updated.') }
+        format.html { redirect_to(highlight_path(@user, @highlight), :notice => 'Highlight was successfully updated.') }
         format.json  { head :ok }
       else
         format.html { render :action => "edit" }

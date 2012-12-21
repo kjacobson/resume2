@@ -4,21 +4,17 @@
 
 <% content_for :main do %>
     <p>
-      <b>Job ID:</b>
-      <%= @highlight.job_id %>
+      <b>Job:</b>
+      <%= render :partial => "jobs/link_to_job", :locals => { :user => @user, :job => @job }%>
     </p>
 
     <p>
-      <b>Skill ID:</b>
-      <%= @highlight.skill_id %>
+      <b>Skill:</b>
+      <%= render :partial => "skills/link_to_skill", :locals => { :user => @user, :skill => @skill } %>
     </p>
 
     <p>
       <b>Description:</b>
       <%= @highlight.description %>
     </p>
-
-
-    <%= link_to 'Edit', edit_highlight_path(@highlight) %> |
-    <%= link_to 'Back', highlights_path %>
 <% end %>

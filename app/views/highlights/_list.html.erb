@@ -2,12 +2,20 @@
    highlights ||= nil
    user ||= nil
    resume ||= nil
+   skill_id ||= nil
+   job_id ||= nil
 %>
 <ul class="highlight-list">
     <% highlights.each do |highlight| %>
         <li>
             <em><%= render :partial => 'skills/link_to_skill', :locals => {:skill => highlight.skill, :user => user, :resume => resume} %></em>:
             <%= decode(highlight.description) %>
+            <% if is_user_match? %>
+                <%= render :partial => "highlights/edit_highlight_link", :locals => { :user => user, :highlight => highlight } %>
+            <% end %>
         </li>
     <% end %>
 </ul>
+<% if is_user_match? %>
+    <a href="<%= new_highlight_path(user, {:job_id => job_id || nil, :skill_id => skill_id || nil}) %>" rel="internal" title="Add another highlight">Add another highlight</a>
+<% end %>

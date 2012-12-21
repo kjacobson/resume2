@@ -68,7 +68,7 @@
         </dl>
     </section>
 
-    <section class="secondary associations associatedHighlights">
+    <section class="secondary associations associated-highlights">
         <h1>Highlights</h1>
         <% if @highlights.count >= 1 %>
             <%= render :partial => 'highlights/list', :locals => { :highlights => @highlights, :user => @user, :resume => @resume, :job_id => @job.id } %>
@@ -77,7 +77,7 @@
                 <p>
                     <strong>Highlights put your skills in context</strong> A highlight is an example of how you used a particular
                     skill at a particular job.
-                    <a href="<%= new_highlight_path(@user, :job_id => @job.id) %>" rel="internal" title="List highlights for this job">Here&rsquo;s your chance</a>.
+                    <a href="<%= new_highlight_path(@user, :job_id => @job.id) %>" rel="internal" title="Add a highlight for this job">Here&rsquo;s your chance</a>.
                 </p>
             <% else %>
                 <p>This user hasn&rsquo;t listed highlights from this job.</p>
@@ -86,7 +86,7 @@
     </section>
 
     <% if @skills.count >= 1 %>
-        <section class="secondary extended associations associatedSkills">
+        <section class="secondary extended associations associated-skills">
             <h1>Skills used</h1>
 
             <% if @disciplines and @disciplines.count >= 1 %>
@@ -104,7 +104,7 @@
     <% end %>
 
     <% if @highlights.count >= 1 && @softwares.count >= 1 %>
-        <section class="secondary associations associatedSoftware">
+        <section class="secondary associations associated-software">
                 <h1>Software used:</h1>
                 <%= render :partial => 'softwares/list', :locals => { :softwares => @softwares, :abbreviated => false } %>
         </section>

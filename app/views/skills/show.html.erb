@@ -12,12 +12,22 @@
         <%= render :partial => 'jobs/small_list' %>
     </section>
 
-    <% if !@highlights.nil? and @highlights.count >= 1 %>
-        <section class="secondary associations associatedHighlights">
-            <h1>Highlights:</h1>
-            <%= render :partial => 'highlights/list' %>
-        </section>
-    <% end %>
+    <section class="secondary associations associated-highlights">
+        <h1>Highlights:</h1>
+        <% if !@highlights.nil? and @highlights.count >= 1 %>
+            <%= render :partial => 'highlights/list', :locals => { :highlights => @highlights, :user => @user, :resume => @resume, :skill_id => @skill.id } %>
+        <% else %>
+            <% if is_user_match? %>
+                <p>
+                    <strong>Highlights put your skills in context</strong> A highlight is an example of how you used a particular
+                    skill at a particular job.
+                    <a href="<%= new_highlight_path(@user, :skill_id => @skill.id) %>" rel="internal" title="Add a highlight for this skill">Here&rsquo;s your chance</a>.
+                </p>
+            <% else %>
+                <p>This user hasn&rsquo;t listed highlights from this skill.</p>
+            <% end %>
+        <% end %>
+    </section>
 
     <section class="secondary">
         <h1>Years this skill was used</h1>

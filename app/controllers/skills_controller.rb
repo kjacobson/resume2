@@ -129,6 +129,7 @@ class SkillsController < ApplicationController
 
   def confirm_delete
     @skill = Skill.find_by_slug(params[:id])
+    @user_skill = @user.user_skills.find_by_skill_id(@skill.id)
 
     respond_to do |format|
       format.html { render :action => "confirm_delete" }

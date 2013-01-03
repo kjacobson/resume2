@@ -18,7 +18,7 @@
         <section class="secondary">
             <% jobs_count = Job.count %>
             <h1><a href="/users/<%= @user.id %>/resumes/<%= @resume.id %>/disciplines">Disciplines</a></h1>
-            <%= render :partial => "disciplines/list", :locals => { :disciplines => @disciplines } unless @disciplines.count == 0 %>
+            <%= render :partial => "disciplines/list", :locals => { :disciplines => @disciplines, :user => @user } %>
         </section>
     <% end %>
 

@@ -49,6 +49,10 @@
                 <% end %>
             </li>
         </ul>
+
+        <% if is_user_match? %>
+            <a href="<%= new_discipline_path(@user) %>" rel="internal" title="Add a new discipline">[Add discipline]</a>
+        <% end %>
     </section>
 
     <section class="secondary extended">

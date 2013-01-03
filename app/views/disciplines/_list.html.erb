@@ -1,3 +1,6 @@
+<%
+  user ||= nil
+%>
 <ul class="organizational-type-list discipline-list">
     <% if !disciplines.nil? and disciplines.length > 0 %>
         <% disciplines.each do |discipline| %>
@@ -7,5 +10,8 @@
         <% end %>
     <% else %>
         No disciplines
+    <% end %>
+    <% if is_user_match? %>
+        <a href="<%= new_discipline_path(user) %>" rel="internal" title="Add a new discipline">[Add discipline]</a>
     <% end %>
 </ul>

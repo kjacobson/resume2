@@ -3,5 +3,5 @@
   resume ||= nil
   path = if !user.nil? and !resume.nil? then year_path({:user_id => user.id, :resume_id => resume.id, :id => year}) elsif !user.nil? then "/users/#{user.id}/years/#{year}" else "/years/#{year}" end
 %>
-<a href="<%= path %>" class="primary-type-title year-title" rel="internal" title="See summary of <%= year %>">
+<a href="<%= path %>" rel="internal" title="See summary of <%= year %>">
     <%= year %></a>

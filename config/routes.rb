@@ -95,9 +95,9 @@ Resume2::Application.routes.draw do
       get :confirm_delete, :on => :member
     end
 
-    resources :user_softwares, :as => :u_skills, :only => [:create, :update, :destroy]
+    resources :user_skills, :as => :u_skills, :only => [:create, :update, :destroy]
 
-    resources :user_skills, :as => :u_softwares, :only => [:create, :update, :destroy]
+    resources :user_softwares, :as => :u_softwares, :only => [:create, :update, :destroy]
   end
 
   resources :users do

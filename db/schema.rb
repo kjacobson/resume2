@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121112054644) do
+ActiveRecord::Schema.define(:version => 20130109054909) do
 
   create_table "disciplines", :force => true do |t|
     t.string   "title"
@@ -84,12 +84,11 @@ ActiveRecord::Schema.define(:version => 20121112054644) do
   add_index "jobs", ["user_id"], :name => "index_jobs_on_user_id"
 
   create_table "links", :force => true do |t|
-    t.string   "url"
     t.date     "expiration"
-    t.integer  "user_id"
     t.integer  "resume_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "hash"
   end
 
   create_table "resume_highlights", :force => true do |t|

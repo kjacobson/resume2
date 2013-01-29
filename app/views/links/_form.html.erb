@@ -12,21 +12,10 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :url %><br />
-    <%= f.text_field :url %>
-  </div>
-  <div class="field">
     <%= f.label :expiration %><br />
     <%= f.date_select :expiration %>
   </div>
-  <div class="field">
-    <%= f.label :user_id %><br />
-    <%= f.number_field :user_id %>
-  </div>
-  <div class="field">
-    <%= f.label :resume_id %><br />
-    <%= f.number_field :resume_id %>
-  </div>
+  <input type="hidden" name="link[resume_id]" id="link_resume_id" value="<%= @resume_id %>">
   <div class="actions">
     <%= f.submit %>
   </div>

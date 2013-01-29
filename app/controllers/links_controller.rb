@@ -1,8 +1,17 @@
 class LinksController < ApplicationController
+  before_filter :require_known_user
+  before_filter :require_user_match
+
   # GET /links
   # GET /links.json
   def index
-    @links = Link.all
+    @order_by = !params[:order_by].nil? ? params[:order_by] : "expiration"
+    @direction = !params[:direction].nil? ? params[:direction] : "DESC"
+    if @resume
+      @links = @resume.links.order(@order_by + " " + @direction)
+    else
+      @links = @user.links.sort { |a,b| b.send(@order_by) <=> a.send(@order_by) }
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -25,6 +34,8 @@ class LinksController < ApplicationController
   # GET /links/new.json
   def new
     @link = Link.new
+    @user_id = @user ? @user.id : nil
+    @resume_id = @resume ? @resume.id : nil
 
     respond_to do |format|
       format.html # new.html.erb
@@ -44,7 +55,7 @@ class LinksController < ApplicationController
 
     respond_to do |format|
       if @link.save
-        format.html { redirect_to @link, notice: 'Link was successfully created.' }
+        format.html { redirect_to link_path({:resume_id => @link.resume.id}), notice: 'Link was successfully created.' }
         format.json { render json: @link, status: :created, location: @link }
       else
         format.html { render action: "new" }
@@ -60,7 +71,7 @@ class LinksController < ApplicationController
 
     respond_to do |format|
       if @link.update_attributes(params[:link])
-        format.html { redirect_to @link, notice: 'Link was successfully updated.' }
+        format.html { redirect_to link_path({resume_id => @link.resume.id}), notice: 'Link was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }

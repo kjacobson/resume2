@@ -3,6 +3,7 @@ class Resume < ActiveRecord::Base
     has_many :jobs, :through => :resume_jobs
     has_many :resume_highlights
     has_many :highlights, :through => :resume_highlights
+    has_many :links
     belongs_to :user
 
     def skills

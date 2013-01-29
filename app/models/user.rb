@@ -16,4 +16,8 @@ class User < ActiveRecord::Base
   def uncategorized_skills
     self.user_skills.select { |us| us.discipline_id.nil? }.map { |us| us.skill }
   end
+
+  def links
+    self.resumes.flat_map { |r| r.links }
+  end
 end

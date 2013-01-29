@@ -1,9 +1,8 @@
 Resume2::Application.routes.draw do
-  resources :links
-
   namespace :trends do
     resources :disciplines
     resources :jobs
+    resources :links
     resources :skills
     resources :softwares
     resources :resumes
@@ -16,6 +15,7 @@ Resume2::Application.routes.draw do
     resources :jobs
     resources :job_skills, :as => :j_skills
     resources :job_softwares, :as => :j_softwares
+    resources :links
     resources :skills
     resources :softwares
     resources :resumes
@@ -58,6 +58,7 @@ Resume2::Application.routes.draw do
       end
 
       resources :highlights
+      resources :links, :except => [:show]
 
       resources :jobs do
         resources :skills, :only => [:index, :new, :edit]

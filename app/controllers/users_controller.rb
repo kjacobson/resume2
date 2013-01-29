@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :require_user_match, :only => [:show, :edit, :update]
+  skip_before_filter :require_user_match, [:new, :create]
 
   def save_disciplines(disciplines, user)
     disciplines.each do |di|

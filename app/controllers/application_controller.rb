@@ -4,22 +4,7 @@ class ApplicationController < ActionController::Base
   before_filter :require_resource_match
   before_filter :set_basic_instance_vars
   before_filter :require_user_match, :except => [:signup, :login, :logout, :index, :show]
-
-  def verify_rights
-    ok = true
-    if not is_admin?
-      if params[:user_id].nil?
-        ok = false
-      elsif params[:resume_id].nil?
-        require_user_match
-      end
-    end
-    if not ok
-      flash[:notice] = "You are not authorized to access this page"
-      redirect_to :homepage
-    end
-    ok
-  end
+  before_filter :require_access_key, :only => [:index, :show]
 
   def set_basic_instance_vars
     if user_id = params[:user_id] or (params[:controller] == "users" and user_id = params[:id])
@@ -38,6 +23,22 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def has_access_key?
+    set_basic_instance_vars unless @user
+    if @resume and @resume.links.size > 0
+      if key = params[:access_key]
+        @link = Link.find_by_hash(key)
+        session[:access_key] = key
+      else
+        key = session[:access_key]
+      end
+      if key and @link = Link.find_by_hash(key)
+        return true if @resume.links.include?(@link)
+      end
+    end
+    return false
+  end
+
   def require_known_user
     unless current_user
       flash[:notice] = "You must be an logged in to access the requested resource."
@@ -46,11 +47,17 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def require_access_key
+    unless has_access_key?
+      flash[:notice] = "To access the requested page, you must have been given a link by the resume&rsquo;s author."
+      redirect_to "/"
+    end
+  end
+
   def require_user_match
     require_known_user
     controller = params[:controller]
     action = params[:action]
-    return if ["user_sessions","users"].include?(controller) and ["new","create"].include?(action)
     unless is_user_match?
       flash[:notice] = "You can't access this page, as it belongs to a different user."
       redirect_to :homepage

@@ -1,29 +1,12 @@
-<h1>Listing links</h1>
-
-<table>
-  <tr>
-    <th>Url</th>
-    <th>Expiration</th>
-    <th>User</th>
-    <th>Resume</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @links.each do |link| %>
-  <tr>
-    <td><%= link.url %></td>
-    <td><%= link.expiration %></td>
-    <td><%= link.user_id %></td>
-    <td><%= link.resume_id %></td>
-    <td><%= link_to 'Show', link %></td>
-    <td><%= link_to 'Edit', edit_link_path(link) %></td>
-    <td><%= link_to 'Destroy', link, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
+<% content_for :head do %>
+    <hgroup>
+        <h1>Links <%= "for this resume" if @resume %></h1>
+        <% if @resume %><h2><%= @resume.title %></h2><% end %>
+    </hgroup>
 <% end %>
-</table>
 
-<br />
-
-<%= link_to 'New Link', new_link_path %>
+<% content_for :main do %>
+    <section class="primary">
+        <%= render :partial => 'links/list', :locals => { :user => @user, :resume => @resume, :links => @links } %>
+    </section>
+<% end %>

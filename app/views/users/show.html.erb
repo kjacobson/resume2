@@ -13,9 +13,11 @@
         <% if @resumes.count > 0 %>
             <%= render :partial => 'resumes/list', :locals => { :user => @user, :resumes => @resumes } %>
         <% end %>
-        <a href="<%= new_resume_path(:user_id => @user.id) %>" rel="internal" title="Create a resume">
-            [Add <%= @resumes.count > 0 ? "another" : "a" %> resume to your account]
-        </a>
+        <% if is_user_match? %>
+            <a href="<%= new_resume_path(:user_id => @user.id) %>" rel="internal" title="Create a resume">
+                [Add <%= @resumes.count > 0 ? "another" : "a" %> resume to your account]
+            </a>
+        <% end %>
     </section>
 
     <section class="primary">
@@ -25,9 +27,11 @@
             <%= render :partial => 'jobs/small_list', :locals => { :user => @user, :resume => nil, :jobs => @jobs } %>
         <% end %>
 
-        <a href="<%= new_job_path(:user_id => @user.id) %>" rel="internal" title="Add a new job">
-            [Add a job]
-        </a>
+        <% if is_user_match? %>
+            <a href="<%= new_job_path(:user_id => @user.id) %>" rel="internal" title="Add a new job">
+                [Add a job]
+            </a>
+        <% end %>
     </section>
 
     <section class="secondary">
@@ -62,9 +66,11 @@
             <%= render :partial => 'skills/small_list', :locals => { :user => @user, :resume => nil, :skills => @skills } %>
         <% end %>
 
-        <a href="<%= new_skill_path(:user_id => @user.id) %>" rel="internal" title="">
-            [Add skills]
-        </a>
+        <% if is_user_match? %>
+            <a href="<%= new_skill_path(:user_id => @user.id) %>" rel="internal" title="">
+                [Add skills]
+            </a>
+        <% end %>
     </section>
 
     <section class="secondary extended">
@@ -74,8 +80,10 @@
             <%= render :partial => 'softwares/list', :locals => { :user => @user, :softwares => @softwares } %>
         <% end %>
 
-        <a href="<%= new_software_path(:user_id => @user.id) %>" rel="internal" title="">
-            [Add softwares]
-        </a>
+        <% if is_user_match? %>
+            <a href="<%= new_software_path(:user_id => @user.id) %>" rel="internal" title="">
+                [Add softwares]
+            </a>
+        <% end %>
     </section>
 <% end %>

@@ -28,4 +28,8 @@ class Link < ActiveRecord::Base
     md5.to_s
     return md5
   end
+
+  def expired?
+    self.expiration.past?
+  end
 end

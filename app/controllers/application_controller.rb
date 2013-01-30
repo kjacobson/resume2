@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
         key = session[:access_key]
       end
       if key and @link = Link.find_by_hash(key)
-        return true if @resume.links.include?(@link)
+        return true if @resume.links.include?(@link) and !@link.expired?
       end
     end
     return false

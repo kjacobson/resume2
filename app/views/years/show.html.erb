@@ -13,11 +13,16 @@
     </section>
 
     <section class="secondary extended">
-        <h1>Skills</h1>
+        <h1>Skills used in <%= @year.value %></h1>
         <% if !@disciplines.nil? and @disciplines.count >= 1 %>
-            <%= render :partial => 'skills/small_list_by_discipline', :locals => {:disciplines => @disciplines, :skills => @skills} %>
+            <%= render :partial => 'skills/small_list_by_discipline', :locals => {:user => @user, :resume => @resume, :disciplines => @disciplines, :skills => @skills} %>
         <% else %>
-            <%= render :partial => 'skills/small_list', :locals => {:skills => @skills} %>
+            <%= render :partial => 'skills/small_list', :locals => {:user => @user, :resume => @resume, :skills => @skills} %>
         <% end %>
+    </section>
+
+    <section class="secondary extended">
+        <h1>Tools/Software used in <%= @year.value %></h1>
+        <%= render :partial => "softwares/list", :locals => { :user => @user, :resume => @resume,  :softwares => @softwares } %>
     </section>
 <% end %>

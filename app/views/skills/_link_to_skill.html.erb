@@ -1,6 +1,11 @@
 <%
-   resume ||= nil
-   user ||= nil
+  resume ||= nil
+  user ||= nil
+  if resume
+    path = skill_path(:user_id => user.id, :resume_id => resume.id, :id => skill.slug)
+  else
+    path = skill_path(:user_id => user.id, :id => skill.slug)
+  end
 %>
-<a href="<%= if user and resume then skill_path(:user_id => user.id, :resume_id => resume.id, :id => skill.slug) else skill_path(:user_id => current_user.id, :id => skill.slug) end %>" rel="internal" title="See positions where I used <%= skill.title %>">
+<a href="<%= path %>" rel="internal" title="See positions where I used <%= skill.title %>">
     <%= decode(skill.shortest_name) %></a>

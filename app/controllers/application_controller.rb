@@ -48,7 +48,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_access_key
-    unless has_access_key?
+    unless has_access_key? or is_user_match?
       flash[:notice] = "To access the requested page, you must have been given a link by the resume&rsquo;s author."
       redirect_to "/"
     end

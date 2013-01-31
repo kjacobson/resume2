@@ -1,4 +1,10 @@
 <% content_for :head do %>
+    <hgroup>
+        <h1><%= @user.name %>, <%=  @resume.title %></h1>
+        <% if is_user_match? %>
+            <a href="<%= links_path(@user, @resume) %>" rel="internal" title="Share this resume by giving out links">Share this resume</a>
+        <% end %>
+    </hgroup>
     <p id="notice"><%= notice %></p>
 <% end %>
 

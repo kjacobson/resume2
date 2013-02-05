@@ -214,16 +214,22 @@ header {
   overflow: hidden; }
 
 .user-header {
+  border-radius: 0 0 0 8px;
   clear: both;
+  position: absolute;
+  right: 0;
+  top: 0;
   width: 100%; }
 
 .user-account-navigation {
+  border-radius: 0 0 0 8px;
   float: right;
   list-style-type: inline;
   overflow: hidden; }
   .user-account-navigation li {
     float: left;
-    list-style-type: inline; }
+    list-style-type: inline;
+    padding: 1em; }
 
 header nav {
   clear: both;
@@ -231,7 +237,7 @@ header nav {
 
 #main {
   overflow: hidden;
-  padding: 0 4.167% 4em; }
+  padding: 0 4.16667% 4em; }
 
 section {
   overflow: hidden;
@@ -241,16 +247,16 @@ footer {
   clear: both;
   display: block;
   height: 2em;
-  padding: 0 4.167%; }
+  padding: 0 4.16667%; }
 
 /* DEFAULT */
 .breadcrumbs {
   background-color: #222; }
 
 .breadcrumbs li {
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid white;
   display: block;
-  padding: 0 4.167%; }
+  padding: 0 4.16667%; }
 
 .breadcrumbs .breadcrumb-separator {
   display: none; }
@@ -320,7 +326,7 @@ section.primary .primary-type-details dd {
 
 @media screen and (min-width: 720px) {
   .breadcrumbs {
-    padding: 0.75em 4.167%; }
+    padding: 0.75em 4.16667%; }
 
   .breadcrumbs li {
     border: 0;

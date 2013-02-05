@@ -32,10 +32,15 @@ body {
         overflow: hidden;
     }
         .user-header {
+            border-radius: 0 0 0 8px;
             clear: both;
+            position: absolute;
+            right: 0;
+            top: 0;
             width: 100%;
         }
             .user-account-navigation {
+                border-radius: 0 0 0 8px;
                 float: right;
                 list-style-type: inline;
                 overflow: hidden;
@@ -43,6 +48,7 @@ body {
                 li {
                     float: left;
                     list-style-type: inline;
+                    padding: 1em;
                 }
             }
         header nav {

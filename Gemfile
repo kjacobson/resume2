@@ -39,5 +39,5 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.6'
   gem 'test-unit'
   gem 'webrat'
-  gem 'ZenTest'
+  #gem 'ZenTest'
 end

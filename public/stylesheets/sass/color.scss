@@ -31,7 +31,6 @@ body {
     }
     footer {
         background: $defaultText;
-        background: #000;
         color: #fff;
     }
 
@@ -50,6 +49,9 @@ header nav {
     header nav a {
         color: #fff;
     }
+.user-account-navigation {
+    background: $defaultText;
+}
 
 /* BREADCRUMBS */
 .breadcrumb-separator {

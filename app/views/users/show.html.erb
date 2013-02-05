@@ -1,5 +1,4 @@
 <% content_for :head do %>
-    <p id="notice"><%= notice %></p>
     <% if @user.phone.nil? or @user.phone.empty? %>
         <p class="message suggestion">
             You might want to add your contact information. You can do so <a href="<%= edit_user_path(@user) %>" rel="internal" title="Edit your user profile">here</a>.

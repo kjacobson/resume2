@@ -17,7 +17,9 @@
         <% end %>
 
         <br />
-        <%= link_to '[Add jobs]', edit_resume_path({:user_id => @user.id, :id => @resume.id}) if is_user_match? %>
+        <% if is_user_match? %>
+            <a href="<%= edit_resume_path({:user_id => @user.id, :id => @resume.id}) %>" class="link-to-editable" rel="internal" title="Add a new job">[Add jobs]</a>
+        <% end %>
     </section>
     <% if @disciplines.count >= 1 or is_user_match? %>
         <section class="secondary">

@@ -81,6 +81,9 @@ a:active,
 a:visited {
   text-decoration: none; }
 
+a.link-to-editable {
+  font-style: italic; }
+
 /* BREADCRUMBS */
 .breadcrumb-separator {
   font-weight: bold; }

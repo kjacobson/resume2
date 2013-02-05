@@ -3,5 +3,5 @@
    user ||= nil
 %>
 <% if !highlight.nil? and !user.nil? %>
-    <a href="<%= edit_highlight_path(user, highlight) %>" rel="internal" title="Edit this highlight">[Edit]</a>
+    <a href="<%= edit_highlight_path(user, highlight) %>" class="link-to-editable" rel="internal" title="Edit this highlight">[Edit]</a>
 <% end %>

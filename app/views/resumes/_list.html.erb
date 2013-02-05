@@ -5,7 +5,7 @@
                 <%= resume.title %>
             </a>
             <% if is_user_match? %>
-                <a href="<%= edit_resume_path(user, resume) %>" title="Edit this resume" rel="internal">[edit]</a>
+                <a href="<%= edit_resume_path(user, resume) %>" class="link-to-editable edit-link" title="Edit this resume" rel="internal">[edit]</a>
             <% end %>
         </li>
     <% end %>

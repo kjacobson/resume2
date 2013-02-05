@@ -53,8 +53,9 @@ header nav a {
   color: #888888; }
 
 /* NOTICES */
-header p.notice {
-  background-color: #e08529; }
+header p.notice,
+.message.suggestion {
+  background-color: #ffc; }
 
 /* HEADINGS */
 h1 a:link,

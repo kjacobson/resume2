@@ -59,8 +59,9 @@ header nav {
 }
 
 /* NOTICES */
-header p.notice {
-    background-color: $middle;
+header p.notice,
+.message.suggestion {
+    background-color: #ffc;
 }
 
 /* HEADINGS */

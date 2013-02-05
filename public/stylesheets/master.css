@@ -216,7 +216,7 @@ header {
 .user-header {
   border-radius: 0 0 0 8px;
   clear: both;
-  position: absolute;
+  position: fixed;
   right: 0;
   top: 0;
   width: 100%; }
@@ -238,6 +238,10 @@ header nav {
 #main {
   overflow: hidden;
   padding: 0 4.16667% 4em; }
+
+header .message,
+header .notice {
+  padding: 0 1em; }
 
 section {
   overflow: hidden;

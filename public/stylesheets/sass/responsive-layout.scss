@@ -34,7 +34,7 @@ body {
         .user-header {
             border-radius: 0 0 0 8px;
             clear: both;
-            position: absolute;
+            position: fixed;
             right: 0;
             top: 0;
             width: 100%;
@@ -59,6 +59,10 @@ body {
         overflow: hidden;
         padding: 0 $smallestColumnWidth 4em;
     }
+          header .message,
+          header .notice {
+              padding: 0 1em;
+          }
         section {
             overflow: hidden;
             padding-bottom: 1em;

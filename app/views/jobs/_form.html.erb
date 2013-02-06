@@ -35,16 +35,22 @@
         <input type="url" id="job_url" name="job[url]" value="<%= @job.url %>" />
     </div>
     <div class="field">
-        <label for="job_start_month">Start date (mm/yyyy)</label><br />
-        <input type="number" min="1" max="12" step="1" id="job_start_month" name="job[start_month]" size="2" pattern="(1[0-2])|([1-9])" value="<%= @job.start_month %>" />
-        /
-        <input type="number" min="1900" max="2020" step="1" id="job_start_year" name="job[start_year]" size="4" pattern="(19[0-9][0-9])|(20[0-2][0-9])" value="<%= @job.start_year %>" />
+        <label for="job_start_month">Start date</label><br />
+        <select id="job_start_month" name="job[start_month]">
+            <% Job.months_as_text[1..12].each_with_index do |val, i| %>
+                <option <%= 'selected="selected"' if @job.start_month == i+1 %> value="<%= i+1 %>"><%= val %></option>
+            <% end %>
+        </select>
+        <%= select_year((!@job.start_year.nil? ? @job.start_year : Time.now.year - 1), {:start_year => (!@job.start_year.nil? ? @job.start_year - 5 : Time.now.year - 20), :end_year => Time.now.year}, {:name => 'job[start_year]', :id => 'job_start_year'}) %>
     </div>
     <div class="field">
-        <label for="job_end_month">End date (mm/yyyy)</label><br />
-        <input type="number" min="1" max="12" step="1" id="job_end_month" name="job[end_month]" size="2" pattern="(1[0-2])|([1-9])" value="<%= @job.end_month %>" />
-        /
-        <input type="number" min="1900" max="2020" step="1" id="job_end_year" name="job[end_year]" size="4" pattern="(19[0-9][0-9])|(20[0-2][0-9])" value="<%= @job.end_year %>" />
+        <label for="job_end_month">End date</label><br />
+        <select id="job_end_month" name="job[end_month]">
+            <% Job.months_as_text[0..12].each_with_index do |val, i| %>
+                <option <%= 'selected="selected"' if @job.end_month == i %> value="<%= i %>"><%= val %></option>
+            <% end %>
+        </select>
+        <%= select_year((!@job.end_year.nil? ? @job.end_year : Time.now.year), {:start_year => (!@job.end_year.nil? ? @job.end_year - 5 : Time.now.year - 20), :end_year => Time.now.year}, {:name => 'job[end_year]', :id => 'job_end_year'}) %>
     </div>
     <div class="field">
         <label for="job_short_desc">Short description</label><br />

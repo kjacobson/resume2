@@ -49,7 +49,9 @@
                 <%= @job.short_start_month %><% if !@job.start_month.nil? and !@job.start_year.nil? %>, <% end %>
                 <%= render :partial => 'years/link_to_year', :locals => { :year => @job.start_year, :user => @user, :resume => @resume } %>
                 &ndash;
+                <% if @job.end_month != 0 %><%= @job.short_end_month %><%= ", " if !@job.end_month.nil? and !@job.end_year.nil? %><% end %>
                 <%= render :partial => 'years/link_to_year', :locals => { :year => @job.end_year, :user => @user, :resume => @resume } %>
+                <%= "("+@job.long_end_month+")" if @job.end_month == 0 %>
             </dd>
 
             <dt>Summary</dt>

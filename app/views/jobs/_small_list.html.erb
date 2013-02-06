@@ -9,10 +9,11 @@
             <%= render :partial => 'jobs/link_to_job', :locals => { :job => job, :resume => resume, :user => user } %>,
             <span class="deemphasized job-status"><%= decode(job.status) %></span>
             <p>
-                <%= decode(job.employer) %>,
+                <%= decode(job.employer) %><% if !job.start_year.nil? && !job.end_year.nil? %>,
                 <%= render :partial => 'years/link_to_year', :locals => {:year => job.start_year, :resume => resume, :user => user} %>
                 &ndash;
                 <%= render :partial => 'years/link_to_year', :locals => {:year => job.end_year, :resume => resume, :user => user} %>
+                <%= "("+job.long_end_month+")" if job.end_month == 0 %><% end %>
             </p>
         </li>
     <% end %>

@@ -1,5 +1,6 @@
 class Job < ActiveRecord::Base
     JOB_STATUSES = ["full-time", "part-time", "contract", "side project", "other"]
+    MONTHS_AS_TEXT = ["Present","January","February","March","April","May","June","July","August","September","October","November", "December"]
 
     validates_inclusion_of :status, :in => JOB_STATUSES
 
@@ -29,6 +30,9 @@ class Job < ActiveRecord::Base
     def self.status_options
       JOB_STATUSES
     end
+    def self.months_as_text
+      MONTHS_AS_TEXT
+    end
 
     def years
       years = []
@@ -43,8 +47,7 @@ class Job < ActiveRecord::Base
         if month.nil?
           month = 0
         end
-        months = ["Present","January","February","March","April","May","June","July","August","September","October","November", "December"]
-        return months[month]
+        return MONTHS_AS_TEXT[month]
     end
 
     def self.short_month month

@@ -31,6 +31,7 @@ body {
     }
     footer {
         background: $defaultText;
+        background: rgba(0,0,0,0.7);
         color: #fff;
     }
 
@@ -51,6 +52,7 @@ header nav {
     }
 .user-account-navigation {
     background: $defaultText;
+    background: rgba(0,0,0,0.7);
 }
 
 /* BREADCRUMBS */

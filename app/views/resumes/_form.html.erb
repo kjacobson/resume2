@@ -31,7 +31,7 @@
             <br />
             <select multiple name="resume_jobs[]" id="resume_jobs">
                 <% @user_jobs.each do |job| %>
-                    <option value="<%= job.id %>" <%= 'selected' if @jobs.include?(job) %>><%= job.title %></option>
+                    <option value="<%= job.id %>" <%= 'selected' if @resume.jobs.include?(job) %>><%= job.title %></option>
                 <% end %>
             </select>
         </div>

@@ -106,7 +106,7 @@
     <% end %>
 
     <% if @highlights.count >= 1 && @softwares.count >= 1 %>
-        <section class="secondary associations associated-software">
+        <section class="secondary extended associations associated-software">
                 <h1>Software used</h1>
                 <%= render :partial => 'softwares/list', :locals => { :user => @user, :resume => @resume, :softwares => @softwares, :abbreviated => false } %>
         </section>

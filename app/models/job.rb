@@ -32,8 +32,11 @@ class Job < ActiveRecord::Base
 
     def years
       years = []
-      self.start_year.upto(self.end_year) { |y| years.push(y) }
-      return years.map { |yr| Year.new(yr) }
+      if self.start_year && self.end_year
+        self.start_year.upto(self.end_year) { |y| years.push(y) }
+        years = years.map { |yr| Year.new(yr) }
+      end
+      return years
     end
 
     def self.month_converter month

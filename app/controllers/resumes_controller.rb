@@ -2,8 +2,9 @@ class ResumesController < ApplicationController
   before_filter :set_instance_vars, :only => [:show, :edit, :update]
 
   def set_instance_vars
+    # TODO: still need a secondary sort on end_month, but with 0 as special case
     @jobs = @resume.jobs.order("end_year DESC")
-    @skills = @resume.skills.sort { |a,b| a.title <=> b.title }
+    @skills = @resume.skills.sort { |a,b| a.rank <=> b.rank }
     @softwares = @resume.softwares.sort { |a,b| b.rank <=> a.rank }
     @disciplines = @resume.disciplines
   end

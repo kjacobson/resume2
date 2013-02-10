@@ -29,11 +29,6 @@ body {
         background: #fff;
         border-top: 1px solid $tableStriping;
     }
-    footer {
-        background: $defaultText;
-        background: rgba(0,0,0,0.7);
-        color: #fff;
-    }
 
 /* JOB (etc) details */
 .primary-type-short-desc {
@@ -111,6 +106,10 @@ a:visited {
 a:link:hover,
 a:link:focus {
     color: $darkest;    
+}
+a.link-to-editable:link,
+a.link-to-editable:visited {
+    color: $accent;
 }
 
 /* LISTS */

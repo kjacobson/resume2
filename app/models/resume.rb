@@ -36,6 +36,10 @@ class Resume < ActiveRecord::Base
       self.jobs.count
     end
 
+    def link_count
+      self.links.count
+    end
+
     def uncategorized_skills
       skill_ids = self.skills.collect { |sk| sk.id }
       user_skills = self.user.user_skills.select {|us| skill_ids.include?(us.skill_id) and us.discipline_id.nil? }

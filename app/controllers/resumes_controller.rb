@@ -44,6 +44,8 @@ class ResumesController < ApplicationController
   # GET /resumes
   # GET /resumes.xml
   def index
+    require_user_match
+
     @order_by = !params[:order_by].nil? ? params[:order_by] : "title"
     @direction = !params[:direction].nil? ? params[:direction] : "DESC"
     if @order_by == "created_at"

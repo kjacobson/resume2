@@ -50,11 +50,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @resumes = @user.resumes
+    @resumes = @user.resumes.order("created_at DESC")
     @disciplines = @user.disciplines
-    @skills = @user.skills
-    @softwares = @user.softwares
-    @jobs = @user.jobs
+    @skills = @user.skills.order("rank DESC")
+    @softwares = @user.softwares.order("rank DESC")
+    # TODO: still need to sort by end_month, but with 0 as a special case
+    @jobs = @user.jobs.order("end_year DESC")
   end
 
   def edit

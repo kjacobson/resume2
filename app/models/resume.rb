@@ -37,7 +37,7 @@ class Resume < ActiveRecord::Base
     end
 
     def link_count
-      self.links.count
+      self.links.select { |link| !link.expired? }.count
     end
 
     def uncategorized_skills

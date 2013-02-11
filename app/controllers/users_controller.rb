@@ -49,7 +49,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = current_user
     @resumes = @user.resumes.order("created_at DESC")
     @disciplines = @user.disciplines
     @skills = @user.skills.order("rank DESC")
@@ -59,11 +59,11 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = @current_user
+    @user = current_user
   end
 
   def update
-    @user = @current_user # makes our views "cleaner" and more consistent
+    @user = current_user # makes our views "cleaner" and more consistent
     if @user.update_attributes(params[:user])
       flash[:notice] = "Account updated!"
       redirect_to user_path(@user)

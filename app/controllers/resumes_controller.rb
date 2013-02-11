@@ -144,4 +144,12 @@ class ResumesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def confirm_delete
+    @resume = Resume.find(params[:id])
+
+    respond_to do |format|
+      format.html { render :action => "confirm_delete" }
+    end
+  end
 end

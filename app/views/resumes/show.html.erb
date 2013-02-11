@@ -1,8 +1,14 @@
 <% content_for :head do %>
     <hgroup>
-        <h1><%= @user.name %>, <%=  @resume.title %></h1>
+        <h1>
+            <%= @user.name %>, <%=  @resume.title %>
+            <% if is_user_match? %>
+                <a href="<%= edit_resume_path(@user, @resume) %>" class="link-to-editable edit-link" rel="internal" title="Edit this resume">[edit]</a>
+                <a href="<%= confirm_delete_resume_path(@user, @resume) %>" class="link-to-editable delete-link" rel="internal" title="Delete this resume">[delete]</a>
+            <% end %>
+        </h1>
         <% if is_user_match? %>
-            <a href="<%= links_path(@user, @resume) %>" rel="internal" title="Share this resume by giving out links">Share this resume</a>
+            <a href="<%= links_path(@user, @resume) %>" class="link-to-editable" rel="internal" title="Share this resume by giving out links">Share this resume</a>
         <% end %>
     </hgroup>
 <% end %>

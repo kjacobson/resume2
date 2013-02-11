@@ -9,7 +9,11 @@
 <% content_for :head do %>
     <hgroup>
         <h1 class="primary-type-title job-title">
-          <%= decode(@job.title) %> <% if is_user_match? %><a href="<%= edit_job_path(@user, @job) %>" class="link-to-editable" rel="internal" title="Edit this job">[edit]</a><% end %>
+            <%= decode(@job.title) %>
+            <% if is_user_match? %>
+                <a href="<%= edit_job_path(@user, @job) %>" class="link-to-editable edit-link" rel="internal" title="Edit this job">[edit]</a>
+                <a href="<%= confirm_delete_job_path(@user, @job) %>" class="link-to-editable delete-link" rel="internal" title="Delete this job">[delete]</a>
+            <% end %>
         </h1>
     </hgroup>
     <p class="primary-type-short-desc job-short-desc">

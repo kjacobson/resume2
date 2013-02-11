@@ -91,4 +91,12 @@ class LinksController < ApplicationController
       format.json { head :ok }
     end
   end
+
+  def confirm_delete
+    @link = Link.find(params[:id])
+
+    respond_to do |format|
+      format.html { render :action => "confirm_delete" }
+    end
+  end
 end

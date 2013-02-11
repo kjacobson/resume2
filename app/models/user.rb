@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :softwares, :through => :user_softwares
   has_many :highlights, :dependent => :destroy
   has_many :disciplines, :dependent => :destroy
+  has_many :links, :through => :resumes
 
   acts_as_authentic do |c|
     c.validate_email_field = true
@@ -15,9 +16,5 @@ class User < ActiveRecord::Base
 
   def uncategorized_skills
     self.user_skills.select { |us| us.discipline_id.nil? }.map { |us| us.skill }
-  end
-
-  def links
-    self.resumes.flat_map { |r| r.links }
   end
 end

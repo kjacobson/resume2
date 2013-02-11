@@ -44,6 +44,8 @@ header nav a {
 .user-account-navigation {
   background: #444444;
   background: rgba(0, 0, 0, 0.7); }
+  .user-account-navigation :link, .user-account-navigation :visited {
+    color: #0099cc; }
 
 /* BREADCRUMBS */
 .breadcrumb-separator {

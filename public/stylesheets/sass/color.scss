@@ -48,6 +48,10 @@ header nav {
 .user-account-navigation {
     background: $defaultText;
     background: rgba(0,0,0,0.7);
+
+    :link, :visited {
+        color: $accent;
+    }
 }
 
 /* BREADCRUMBS */

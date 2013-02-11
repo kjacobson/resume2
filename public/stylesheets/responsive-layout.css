@@ -26,15 +26,15 @@ header {
   overflow: hidden; }
 
 .user-header {
-  border-radius: 0 0 0 8px;
+  border-radius: 8px 0 0 0;
   clear: both;
+  display: inline-block;
   position: fixed;
   right: 0;
-  top: 0;
-  width: 100%; }
+  bottom: 0; }
 
 .user-account-navigation {
-  border-radius: 0 0 0 8px;
+  border-radius: 8px 0 0 0;
   float: right;
   list-style-type: inline;
   overflow: hidden; }

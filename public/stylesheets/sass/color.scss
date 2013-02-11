@@ -125,3 +125,10 @@ a.link-to-editable:visited {
     background-color: #ffc;
     border-color: $deemphasizedText;
 }
+
+
+
+// TODO:this needs its own stylesheet?
+.expired-link {
+    color: $deemphasizedText;
+}

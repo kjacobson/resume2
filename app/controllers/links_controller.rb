@@ -55,7 +55,7 @@ class LinksController < ApplicationController
 
     respond_to do |format|
       if @link.save
-        format.html { redirect_to link_path({:resume_id => @link.resume.id}), notice: 'Link was successfully created.' }
+        format.html { redirect_to links_path({:resume_id => @link.resume.id}), notice: 'Link was successfully created.' }
         format.json { render json: @link, status: :created, location: @link }
       else
         format.html { render action: "new" }

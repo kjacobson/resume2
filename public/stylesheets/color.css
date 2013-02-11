@@ -113,3 +113,6 @@ a.link-to-editable:visited {
 .form-explanation {
   background-color: #ffc;
   border-color: #888888; }
+
+.expired-link {
+  color: #888888; }

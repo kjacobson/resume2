@@ -10,7 +10,7 @@
     </tr>
 
     <% links.each do |link| %>
-        <tr>
+        <tr class="<%= 'expired-link' if link.expired? %>">
             <td>
                 <%= link.url %>
             </td>

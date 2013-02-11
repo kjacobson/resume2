@@ -32,15 +32,15 @@ body {
         overflow: hidden;
     }
         .user-header {
-            border-radius: 0 0 0 8px;
+            border-radius: 8px 0 0 0;
             clear: both;
             position: fixed;
             right: 0;
-            top: 0;
+            bottom: 0;
             width: 100%;
         }
             .user-account-navigation {
-                border-radius: 0 0 0 8px;
+                border-radius: 8px 0 0 0;
                 float: right;
                 list-style-type: inline;
                 overflow: hidden;

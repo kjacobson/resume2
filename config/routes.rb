@@ -44,6 +44,12 @@ Resume2::Application.routes.draw do
     resources :resumes do
       get :confirm_delete, :on => :member
     end
+    resources :skills do
+      get :confirm_delete, :on => :member
+    end
+    resources :softwares do
+      get :confirm_delete, :on => :member
+    end
 
     scope "(resumes/:resume_id)" do
       resources :disciplines, :only => [:index, :show] do

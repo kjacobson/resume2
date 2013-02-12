@@ -3,7 +3,6 @@
         <h1 class="primary-type-title skill-title">
             <%= decode(@skill.title) %>
             <% if is_user_match? %>
-                <a href="<%= edit_skill_path({:user_id => @user.id, :id => @skill.slug}) %>" class="link-to-editable edit-link" rel="internal" title="Edit this skill">[edit]</a>
                 <a href="<%= confirm_delete_skill_path({:user_id => @user.id, :id => @skill.slug}) %>" class="link-to-editable delete-link" rel="internal" title="Delete this skill">[delete]</a>
             <% end %>
         </h1>

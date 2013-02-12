@@ -1,28 +1,40 @@
+<%
+  user ||= nil
+  resume ||= nil
+  highlights ||= []
+%>
+
 <table>
     <tr>
-        <% if !current_user.nil? %>
+        <% if params[:skill_id].nil? %>
             <th class="d10">
-                <%= render :partial => 'shared/sortable_link', :locals => { :header => 'ID', :column_name => 'id' } %>
+                Skill<%#= render :partial => 'shared/sortable_link', :locals => { :header => 'Skill', :column_name => 'skill' } %>
             </th>
         <% end %>
-        <th class="d10">
-            Skill<%#= render :partial => 'shared/sortable_link', :locals => { :header => 'Skill', :column_name => 'skill' } %>
-        </th>
-        <th class="d40">
-            Job<%#= render :partial => 'shared/sortable_link', :locals => { :header => 'Job', :column_name => 'job' } %>
+        <% if params[:job_id].nil? %>
+            <th class="d40">
+                Job<%#= render :partial => 'shared/sortable_link', :locals => { :header => 'Job', :column_name => 'job' } %>
+            </th>
+        <% end %>
+        <th>
+            Description
         </th>
     </tr>
 
-    <% @highlights.each do |highlight| %>
+    <% highlights.each do |highlight| %>
         <tr>
-            <% if !current_user.nil? %>
-                <td><%= highlight.id %></td>
+            <% if params[:skill_id].nil? %>
+                <td>
+                    <%= render :partial => 'skills/link_to_skill', :locals => { :user => user, :resume => resume, :skill => highlight.skill } %>
+                </td>
+            <% end %>
+            <% if params[:job_id].nil? %>
+                <td>
+                    <%= render :partial => 'jobs/link_to_job', :locals => { :user => user, :resume => resume, :job => highlight.job } %>
+                </td>
             <% end %>
             <td>
-                <%= render :partial => 'skills/link_to_skill', :locals => { :skill => highlight.skill } %>
-            </td>
-            <td>
-                <%= render :partial => 'jobs/link_to_job', :locals => { :job => highlight.job } %>
+                <%= highlight.description %>
             </td>
         </tr>
     <% end %>

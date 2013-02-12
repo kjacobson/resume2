@@ -6,8 +6,19 @@ class HighlightsController < ApplicationController
   def index
     @order_by = !params[:order_by].nil? ? params[:order_by] : "id"
     @direction = !params[:direction].nil? ? params[:direction] : "ASC"
-    @highlights = Highlight.find(:all, :order => @order_by + " " + @direction)
-
+    if !params[:job_id].nil?
+      @job = Job.find(params[:job_id])
+    end
+    if !params[:skill_id].nil?
+      @skill = Skill.find_by_slug(params[:skill_id])
+    end
+    if !@job.nil?
+      @highlights = @job.highlights.order(@order_by + " " + @direction)
+    elsif !@skill.nil?
+      @highlights = @skill.highlights.order(@order_by + " " + @direction)
+    else
+      @highlights = @user.highlights.order(@order_by + " " + @direction)
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.json  { render :json => @highlights }

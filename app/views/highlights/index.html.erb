@@ -6,6 +6,6 @@
 
 <% content_for :main do %>
     <section class="primary">
-        <%= render :partial => 'highlights/full_list' %>
+        <%= render :partial => 'highlights/full_list', :locals => {:user => @user, :resume => @resume, :highlights => @highlights } %>
     </section>
 <% end %>

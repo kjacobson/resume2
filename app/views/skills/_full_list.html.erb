@@ -1,3 +1,8 @@
+<%
+  user ||= nil
+  resume ||= nil
+  skills ||= nil
+%>
 <table>
     <tr>
         <% if is_admin_user? %>
@@ -16,7 +21,7 @@
                 <td class="numericData"><%= skill.id %></td>
             <% end %>
             <td>
-                <%= render :partial => 'link_to_skill', :locals => {:skill => skill, :resume => resume || nil } %>
+                <%= render :partial => 'link_to_skill', :locals => {:user => user, :resume => resume, :skill => skill } %>
             </td>
         </tr>
     <% end %>

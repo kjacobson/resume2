@@ -31,6 +31,6 @@ class Link < ActiveRecord::Base
   end
 
   def expired?
-    self.expiration.past?
+    !self.expiration.nil? and self.expiration.past?
   end
 end

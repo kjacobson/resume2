@@ -7,6 +7,13 @@
 
 <% content_for :main do %>
     <section class="primary">
+        <% if @links.count == 0 %>
+            <p>
+                To share your resume, just provide a link. Each link has a unique key associated with it,
+                and can be made to expire, so that you can manage access to your resume separately
+                for separate recipients.
+            </p>
+        <% end %>
         <%= render :partial => 'links/list', :locals => { :user => @user, :resume => @resume, :links => @links } %>
         <% if is_user_match? %>
             <a href="<%= new_link_path({:resume_id => (@resume.nil? ? nil : @resume.id)}) %>" class="link-to-editable owner-edit-link" rel="internal" title="Generate a new link to share this resume">

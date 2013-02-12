@@ -41,9 +41,6 @@ Resume2::Application.routes.draw do
     resources :highlights do
       get :confirm_delete, :on => :member
     end
-    resources :links do
-      get :confirm_delete, :on => :member
-    end
     resources :resumes do
       get :confirm_delete, :on => :member
     end
@@ -61,7 +58,9 @@ Resume2::Application.routes.draw do
       end
 
       resources :highlights
-      resources :links, :except => [:show]
+      resources :links, :except => [:show] do
+        get :confirm_delete, :on => :member
+      end
 
       resources :jobs do
         resources :skills, :only => [:index, :new, :edit]

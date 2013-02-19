@@ -10,6 +10,6 @@ class DisciplineTest < ActiveSupport::TestCase
     end
     test "should be able to count its jobs" do
         @discipline = disciplines(:two)
-        assert_equal(@discipline.jobs_count, 2)
+        assert_equal(@discipline.job_count, 2)
     end
 end

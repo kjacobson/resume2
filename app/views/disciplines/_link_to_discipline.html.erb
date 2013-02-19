@@ -4,5 +4,5 @@
   discipline ||= discipline
 %>
 
-<a href="<%= discipline_path({:user => user, :resume => resume, :id => discipline.id }) %>" class="organizational-type-title discipline-title" rel="internal" title="See jobs and skills involving this discipline">
+<a href="<%= discipline_path({:user_id => user.id, :resume_id => resume.id, :id => discipline.id }) %>" class="organizational-type-title discipline-title" rel="internal" title="See jobs and skills involving this discipline">
     <%= decode(discipline.title.capitalize) %></a>

@@ -20,8 +20,12 @@ class Discipline < ActiveRecord::Base
         self.skills.flat_map{ |sk| sk.jobs }.uniq        
     end
 
-    def jobs_count
+    def job_count
         jobs = self.jobs.reject {|job| job.nil?}
         return jobs.count
+    end
+
+    def skill_count
+      self.skills.count
     end
 end

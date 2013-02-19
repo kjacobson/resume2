@@ -8,12 +8,18 @@
         <th class="d40">
             <%= render :partial => 'shared/sortable_link', :locals => { :header => 'Title', :column_name => 'title' } %>
         </th>
+        <th class="d40">
+            Skills
+        </th>
     </tr>
 
     <% disciplines.each do |discipline| %>
         <tr>
             <td>
                 <%= render :partial => 'disciplines/link_to_discipline', :locals => { :user => user, :resume => resume, :discipline => discipline } %>
+            </td>
+            <td>
+                <%= discipline.skill_count %>
             </td>
         </tr>
     <% end %>

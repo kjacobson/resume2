@@ -100,9 +100,9 @@ class ApplicationController < ActionController::Base
       if i % 2 == 0
         query = MODELS.include?(var) ? query.send(var) : nil
       elsif /\A[0-9]+\Z/.match(var)
-        query = query.find_by_id(var)
+        query = query.find_by_id(var) rescue query = query.select { |item| item.id == var.to_i }[0]
       elsif ["skills","softwares"].include?(vars[i-1])
-        query = query.find_by_slug(var)
+        query = query.find_by_slug(var) rescue query = query.select { |item| item.slug == var }[0]
       end
     end
     unless !query.nil?

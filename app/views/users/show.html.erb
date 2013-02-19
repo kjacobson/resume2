@@ -17,7 +17,7 @@
         <% end %>
         <% if is_user_match? %>
             <a href="<%= new_resume_path(:user_id => @user.id) %>" class="link-to-editable" rel="internal" title="Create a resume">
-                [Add <%= @resumes.count > 0 ? "another" : "a" %> resume to your account]
+                Add <%= @resumes.count > 0 ? "another" : "a" %> resume to your account
             </a>
         <% end %>
     </section>
@@ -53,7 +53,7 @@
 
         <% if is_user_match? %>
             <a href="<%= new_job_path(:user_id => @user.id) %>" class="link-to-editable" rel="internal" title="Add a new job">
-                [Add a job]
+                Add a job
             </a>
         <% end %>
     </section>
@@ -73,16 +73,16 @@
                     <% end %>
                     <% if is_user_match? %>
                         <a href="<%= edit_discipline_path(:user_id => @user.id, :id => discipline.id) %>" class="link-to-editable" rel="internal" title="">
-                            [Associate <%= 'more ' if skills.count > 0 %>skills with this discipline]
+                            Associate <%= 'more ' if skills.count > 0 %>skills with this discipline
                         </a>
                     <% end %>
-                    <br /><br />
+                    <%# TODO %><br /><br />
                 <% end %>
             </li>
         </ul>
 
         <% if is_user_match? %>
-            <a href="<%= new_discipline_path(@user) %>" class="link-to-editable" rel="internal" title="Add a new discipline">[Add disciplines]</a>
+            <a href="<%= new_discipline_path(@user) %>" class="link-to-editable" rel="internal" title="Add a new discipline">Add disciplines</a>
         <% end %>
     </section>
 
@@ -95,7 +95,7 @@
 
         <% if is_user_match? %>
             <a href="<%= new_skill_path(:user_id => @user.id) %>" class="link-to-editable" rel="internal" title="">
-                [Add skills]
+                Add skills
             </a>
         <% end %>
     </section>
@@ -109,7 +109,7 @@
 
         <% if is_user_match? %>
             <a href="<%= new_software_path(:user_id => @user.id) %>" class="link-to-editable" rel="internal" title="">
-                [Add softwares]
+                Add softwares
             </a>
         <% end %>
     </section>

@@ -6,6 +6,7 @@
             </a>
             <% if is_user_match? %>
                 <a href="<%= edit_resume_path(user, resume) %>" class="link-to-editable edit-link" title="Edit this resume" rel="internal">[edit]</a>
+                <a href="<%= links_path(@user, @resume) %>" class="link-to-editable" rel="internal" title="Share this resume by giving out links">[share]</a>
             <% end %>
         </li>
     <% end %>

@@ -4,23 +4,23 @@
 %>
 <table>
     <tr>
-        <% if is_admin_user? %>
-            <th class="d10">
-                <%= render :partial => 'shared/sortable_link', :locals => { :header => 'ID', :column_name => 'id' } %>
-            </th>
-        <% end %>
         <th class="d40">
             <%= render :partial => 'shared/sortable_link', :locals => { :header => 'Title', :column_name => 'title' } %>
+        </th>
+        <th class="d40">
+            Jobs
         </th>
     </tr>
 
     <% softwares.each do |software| %>
         <tr>
-            <% if is_admin_user? %>
-                <td><%= software.id %></td>
-            <% end %>
             <td>
                 <%= render :partial => 'softwares/link_to_software', :locals => { :software => software, :user => user, :resume => resume, :abbreviated => false } %>
+            </td>          
+            <td>
+                <a href="<%= software_jobs_path({:user_id => user.id, :resume_id => resume.id, :software_id => software.id}) %>" rel="internal" title="See all the jobs using this software">
+                    <%= software.job_count %>
+                </a>
             </td>
         </tr>
     <% end %>

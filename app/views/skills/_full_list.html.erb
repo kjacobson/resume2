@@ -5,23 +5,23 @@
 %>
 <table>
     <tr>
-        <% if is_admin_user? %>
-            <th class="d10 numericData">
-                <%= render :partial => 'shared/sortable_link', :locals => { :header => 'ID', :column_name => 'id' } %>
-            </th>
-        <% end %>
         <th class="d40">
             <%= render :partial => 'shared/sortable_link', :locals => { :header => 'Title', :column_name => 'title' } %>
+        </th>
+        <th class="d40">
+            Jobs
         </th>
     </tr>
 
     <% skills.each do |skill| %>
         <tr>
-            <% if is_admin_user? %>
-                <td class="numericData"><%= skill.id %></td>
-            <% end %>
             <td>
                 <%= render :partial => 'link_to_skill', :locals => {:user => user, :resume => resume, :skill => skill } %>
+            </td>
+            <td>
+                <a href="<%= skill_jobs_path({:user_id => user.id, :resume_id => resume.id, :skill_id => skill.id}) %>" rel="internal" title="See all the jobs using this skill">
+                    <%= skill.job_count %>
+                </a>
             </td>
         </tr>
     <% end %>

@@ -27,4 +27,8 @@ class Software < ActiveRecord::Base
              return true
         end
     end
+
+    def job_count
+      self.jobs.count
+    end
 end

@@ -186,6 +186,9 @@ section.primary .job-list.birds-eye .job-title {
   line-height: 1.875em;
   margin-bottom: 0.375em; }
 
+.contact-information dt {
+  font-weight: bold; }
+
 * {
   box-sizing: border-box; }
 

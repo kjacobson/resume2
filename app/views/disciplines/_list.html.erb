@@ -1,11 +1,13 @@
 <%
   user ||= nil
+  resume ||= nil
+  disciplines ||= nil
 %>
 <ul class="organizational-type-list discipline-list">
     <% if !disciplines.nil? and disciplines.length > 0 %>
         <% disciplines.each do |discipline| %>
             <li>
-                <%= render :partial => 'disciplines/link_to_discipline', :locals => { :discipline => discipline } %>
+                <%= render :partial => 'disciplines/link_to_discipline', :locals => { :user => user, :resume => resume, :discipline => discipline } %>
             </li>
         <% end %>
     <% else %>

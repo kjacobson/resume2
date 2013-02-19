@@ -9,7 +9,7 @@
     <% if skills_by_discipline %>
         <div class="sub-list-organizational-module discipline-with-skills">
             <h2>
-                <%= render :partial => 'disciplines/link_to_discipline', :locals => {:discipline => discipline} %>
+                <%= render :partial => 'disciplines/link_to_discipline', :locals => {:user => user, :resume => resume, :discipline => discipline} %>
             </h2>
             <ol class="primary-type-sub-list skill-list">
                 <% skills_by_discipline.each do |skill| %>

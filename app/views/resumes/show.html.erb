@@ -1,16 +1,30 @@
 <% content_for :head do %>
     <hgroup>
         <h1>
-            <%= @user.name %>, <%=  @resume.title %>
+            <span class="fn"><%= @user.name %></span>, <%=  @resume.title %>
             <% if is_user_match? %>
                 <a href="<%= edit_resume_path(@user, @resume) %>" class="link-to-editable edit-link" rel="internal" title="Edit this resume">[edit]</a>
                 <a href="<%= confirm_delete_resume_path(@user, @resume) %>" class="link-to-editable delete-link" rel="internal" title="Delete this resume">[delete]</a>
             <% end %>
         </h1>
-        <% if is_user_match? %>
-            <a href="<%= links_path(@user, @resume) %>" class="link-to-editable" rel="internal" title="Share this resume by giving out links">Share this resume</a>
-        <% end %>
     </hgroup>
+    <p class="adr">
+        <% if @user.address.nil? or @user.address.empty? %>
+            <% if is_user_match? %><a href="<%= edit_user_path(@user) %>" rel="internal" title="Edit your user profile">Add your address</a><% end %>
+        <% else %>
+            <%= @user.address %>
+        <% end %>
+    </p>
+    <p class="tel">
+        <% if @user.phone.nil? or @user.phone.empty? %>
+            <% if is_user_match? %><a href="<%= edit_user_path(@user) %>" rel="internal" title="Edit your user profile">Add your phone</a><% end %>
+        <% else %>
+            <%= @user.phone %>
+        <% end %>
+    </p>
+    <% if is_user_match? %>
+        <a href="<%= links_path(@user, @resume) %>" class="link-to-editable" rel="internal" title="Share this resume by giving out links">Share this resume</a>
+    <% end %>
 <% end %>
 
 <% content_for :main do %>
@@ -30,7 +44,7 @@
     <% if @disciplines.count >= 1 or is_user_match? %>
         <section class="secondary">
             <h1><a href="/users/<%= @user.id %>/resumes/<%= @resume.id %>/disciplines">Disciplines</a></h1>
-            <%= render :partial => "disciplines/list", :locals => { :disciplines => @disciplines, :user => @user } %>
+            <%= render :partial => "disciplines/list", :locals => { :disciplines => @disciplines, :user => @user, :resume => @resume } %>
         </section>
     <% end %>
 

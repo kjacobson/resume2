@@ -138,3 +138,6 @@ section.primary .job-list.birds-eye .job-title {
 .primary-type-details dd {
   line-height: 1.875em;
   margin-bottom: 0.375em; }
+
+.contact-information dt {
+  font-weight: bold; }

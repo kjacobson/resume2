@@ -7,24 +7,11 @@
                 <a href="<%= confirm_delete_resume_path(@user, @resume) %>" class="link-to-editable delete-link" rel="internal" title="Delete this resume">[delete]</a>
             <% end %>
         </h1>
+        <%=  render :partial => "users/contact_info", :locals => {:user => @user, :show_name => false } %>
+        <% if is_user_match? %>
+            <a href="<%= links_path(@user, @resume) %>" class="link-to-editable" rel="internal" title="Share this resume by giving out links">Share this resume</a>
+        <% end %>
     </hgroup>
-    <p class="adr">
-        <% if @user.address.nil? or @user.address.empty? %>
-            <% if is_user_match? %><a href="<%= edit_user_path(@user) %>" rel="internal" title="Edit your user profile">Add your address</a><% end %>
-        <% else %>
-            <%= @user.address %>
-        <% end %>
-    </p>
-    <p class="tel">
-        <% if @user.phone.nil? or @user.phone.empty? %>
-            <% if is_user_match? %><a href="<%= edit_user_path(@user) %>" rel="internal" title="Edit your user profile">Add your phone</a><% end %>
-        <% else %>
-            <%= @user.phone %>
-        <% end %>
-    </p>
-    <% if is_user_match? %>
-        <a href="<%= links_path(@user, @resume) %>" class="link-to-editable" rel="internal" title="Share this resume by giving out links">Share this resume</a>
-    <% end %>
 <% end %>
 
 <% content_for :main do %>

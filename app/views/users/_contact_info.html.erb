@@ -1,0 +1,25 @@
+<%
+  user ||= nil
+  show_edit_link = !show_edit_link.nil? ? show_edit_link : false
+  show_name = !show_name.nil? ? show_name : true
+%>
+<ul class="contact-information">
+    <% if show_name %><li class="fn"><strong><%= user.name %></strong></li><% end %>
+    <li class="adr">
+        <% if user.address.nil? or user.address.empty? %>
+            <% if is_user_match? %><a href="<%= edit_user_path(user) %>" rel="internal" title="Edit your user profile">Add your address</a><% end %>
+        <% else %>
+            <%= user.address %>
+        <% end %>
+    </li>
+    <li class="tel">
+        <% if user.phone.nil? or user.phone.empty? %>
+            <% if is_user_match? %><a href="<%= edit_user_path(user) %>" rel="internal" title="Edit your user profile">Add your phone</a><% end %>
+        <% else %>
+            <%= user.phone %>
+        <% end %>
+    </li>
+</ul>
+<% if is_user_match? and show_edit_link %>
+    <a href="<%= edit_user_path(@user) %>" rel="internal" class="link-to-editable" title="Edit your user profile">Edit</a>
+<% end %>

@@ -2,4 +2,4 @@
    resume ||= nil
    user ||= nil
 %>
-<a href="<%= if resume then job_path(:user_id => user.id, :resume_id => resume.id, :id => job.id) else job_path(:user_id => current_user.id, :id => job.id) end %>" class="job-title" rel="internal" title="See details"><%= decode(job.title) %></a>
+<a href="<%= if resume then job_path(:user_id => user.id, :resume_id => (resume && resume.id), :id => job.id) else job_path(:user_id => current_user.id, :id => job.id) end %>" class="job-title" rel="internal" title="See details"><%= decode(job.title) %></a>

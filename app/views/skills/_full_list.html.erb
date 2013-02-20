@@ -26,3 +26,9 @@
         </tr>
     <% end %>
 </table>
+
+<% if is_user_match? %>
+    <a href="<%= new_skill_path(:user_id => user.id) %>" class="link-to-editable" rel="internal" title="">
+        Add skills
+    </a>
+<% end %>

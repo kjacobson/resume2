@@ -1,3 +1,8 @@
+<%
+  user ||= nil
+  jobs ||= nil
+%>
+
 <table>
     <thead>
         <tr>
@@ -19,7 +24,7 @@
         </tr>
     </thead>
     <tbody>
-        <% @jobs.each_with_index do |job, index| %>
+        <% jobs.each_with_index do |job, index| %>
             <% isAlt = (index == 1 || (index % 2) == 1) %>
             <%
                 user = job.user
@@ -47,3 +52,9 @@
         <% end %>
     </tbody>
 </table>
+
+<% if is_user_match? %>
+    <a href="<%= new_job_path(:user_id => user.id) %>" class="link-to-editable" rel="internal" title="Add a new job">
+        Add a job
+    </a>
+<% end %>

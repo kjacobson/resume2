@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_many :resumes
 
-  has_many :jobs
+  has_many :jobs, :dependent => :destroy
   has_many :user_skills, :dependent => :destroy
   has_many :skills, :through => :user_skills
   has_many :user_softwares, :dependent => :destroy

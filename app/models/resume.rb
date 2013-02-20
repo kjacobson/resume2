@@ -1,9 +1,9 @@
 class Resume < ActiveRecord::Base
-    has_many :resume_jobs
+    has_many :resume_jobs, :dependent => :destroy
     has_many :jobs, :through => :resume_jobs
-    has_many :resume_highlights
+    has_many :resume_highlights, :dependent => :destroy
     has_many :highlights, :through => :resume_highlights
-    has_many :links
+    has_many :links, :dependent => :destroy
     belongs_to :user
 
     def skills

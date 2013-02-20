@@ -19,6 +19,7 @@
             <th>
                 Unexpired links
             </th>
+            <th></th>
         </tr>
 
         <% @resumes.each do |resume| %>
@@ -38,6 +39,13 @@
                     <a href="<%= links_path({:resume_id => resume.id}) %>" rel="internal" title="See all jobs for this resume">
                         <%= resume.link_count %>
                     </a>
+                </td>
+                <td>
+                    <% if is_user_match? %>
+                        <a href="<%= edit_resume_path(@user, resume) %>" class="link-to-editable edit-link" rel="internal" title="Edit this resume">edit</a>
+                        |
+                        <a href="<%= links_path(@user, resume) %>" class="link-to-editable" rel="internal" title="Share this resume by giving out links">share</a>
+                    <% end %>
                 </td>
             </tr>
         <% end %>

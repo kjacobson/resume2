@@ -37,4 +37,11 @@ class JobTest < ActiveSupport::TestCase
         assert_equal(@job.skills.first.id, @skill.id)
         assert_equal(@job.skills.first.discipline.title, @job.disciplines.first.title)
     end
+
+    test "job should report uncategorized skills" do
+        @job_one = jobs(:one)
+        assert_equal(@job.uncategorized_skills, [])
+        @job_two = jobs(:two)
+        assert_equal(@job.uncategorized_skills, [skills(:two)])
+    end
 end

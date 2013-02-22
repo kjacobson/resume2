@@ -5,17 +5,23 @@ class Year
         self.value = value
     end
 
-    def jobs
-        Job.where("start_year <= ? AND end_year >= ?", self.value, self.value)
+    def jobs(resume=nil)
+      return @job if !@job.nil?
+      if resume.nil?
+        @job = Job.where("start_year <= ? AND end_year >= ?", self.value, self.value)
+      else
+        @job = resume.jobs.where("start_year <= ? AND end_year >= ?", self.value, self.value)
+      end
+      return @job
     end
-    def skills
-        self.jobs.flat_map{ |j| j.skills }.uniq
+    def skills(resume=nil)
+        self.jobs(resume).flat_map{ |j| j.skills }.uniq
     end
-    def softwares
-        self.jobs.flat_map{ |j| j.softwares }.uniq
+    def softwares(resume=nil)
+        self.jobs(resume).flat_map{ |j| j.softwares }.uniq
     end
-    def highlights
+    def highlights(resume=nil)
         # need to make sure this is only for the current resume somewhere
-        self.jobs.flat_map{ |j| j.highlights }.uniq
+        self.jobs(resume).flat_map{ |j| j.highlights }.uniq
     end
 end

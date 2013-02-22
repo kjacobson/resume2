@@ -29,9 +29,9 @@ class YearsController < ApplicationController
   # GET /years/1.xml
   def show
     @year = Year.new(params[:id])
-    @jobs = @year.jobs.order("end_year DESC")
-    @skills = @year.skills.sort! { |a,b| a.title <=> b.title }
-    @softwares = @year.softwares.sort! { |a,b| a.title <=> b.title }
+    @jobs = @year.jobs(@resume).order("end_year DESC")
+    @skills = @year.skills(@resume).sort! { |a,b| a.title <=> b.title }
+    @softwares = @year.softwares(@resume).sort! { |a,b| a.title <=> b.title }
 
     respond_to do |format|
       format.html # show.html.erb

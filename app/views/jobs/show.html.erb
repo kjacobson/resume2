@@ -1,9 +1,4 @@
 <% content_for :header do %>
-    <% if @resume %>
-        <p class="message suggestion">
-            <a href="<%= resume_path({:id => @resume.id}) %>" rel="internal" title="">Back to your resume</a>
-        </p>
-    <% end %>
 <% end %>
 
 <% content_for :head do %>

@@ -111,6 +111,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def breadcrumbs(k, v)
+    @breadcrumbs = Hash.new() if @breadcrumbs.nil?
+    @breadcrumbs[k] = v
+    return @breadcrumbs
+  end
+
   private
     def current_user_session
       return @current_user_session if defined?(@current_user_session)

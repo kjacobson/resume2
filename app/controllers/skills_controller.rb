@@ -22,18 +22,25 @@ class SkillsController < ApplicationController
     @direction = !params[:direction].nil? ? params[:direction] : "ASC"
 
     if !params[:job_id].nil?
-        @job = Job.find_by_id(params[:job_id])
-        @skills = @job.skills.order(@order_by + " " + @direction)
+      @job = Job.find_by_id(params[:job_id])
+      @skills = @job.skills.order(@order_by + " " + @direction)
+      breadcrumbs("first_collection", "jobs")
+      breadcrumbs("first_resource", @job)
+      breadcrumbs("second_collection", "skills")
     elsif !params[:year_id].nil?
-        @year = Year.find_by_value(params[:year_id])
-        @skills = @year.skills.order(@order_by + " " + @direction)
+      @year = Year.find_by_value(params[:year_id])
+      @skills = @year.skills.order(@order_by + " " + @direction)
+      breadcrumbs("first_collection", "years")
+      breadcrumbs("first_resource", @year)
+      breadcrumbs("second_collection", "skills")
     elsif @resume
-        @skills = @resume.skills
-        if @direction == "DESC"
-          @skills.sort! { |a,b| b.send(@order_by) <=> a.send(@order_by) }
-        else
-          @skills.sort! { |a,b| a.send(@order_by) <=> b.send(@order_by) }
-        end
+      @skills = @resume.skills
+      if @direction == "DESC"
+        @skills.sort! { |a,b| b.send(@order_by) <=> a.send(@order_by) }
+      else
+        @skills.sort! { |a,b| a.send(@order_by) <=> b.send(@order_by) }
+      end
+      breadcrumbs("first_collection", "skills")
     elsif @user
       @skills = @user.skills.order(@order_by + " " + @direction)
     end
@@ -51,6 +58,8 @@ class SkillsController < ApplicationController
     @jobs = @skill.jobs.order("end_year DESC, end_month DESC")
     @years = @skill.years.sort_by { |y| -y.value }
     @highlights = @skill.highlights
+    breadcrumbs("first_collection", "skills")
+    breadcrumbs("first_resource", @skill)
 
     respond_to do |format|
       format.html # show.html.erb

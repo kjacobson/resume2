@@ -7,17 +7,22 @@ class DisciplinesController < ApplicationController
     @order_by = !params[:order_by].nil? ? params[:order_by] : "title"
     @direction = !params[:direction].nil? ? params[:direction] : "ASC"
     if !params[:job_id].nil?
-        @disciplines = Job.find(params[:job_id]).disciplines.order(@order_by + " " + @direction)
+      @job = Job.find(params[:job_id])
+      @disciplines = @job.disciplines.order(@order_by + " " + @direction)
+      breadcrumbs("first_collection", "jobs")
+      breadcrumbs("first_resource", @job)
+      breadcrumbs("second_collection", "disciplines")
     elsif @resume
-        @disciplines = @resume.disciplines
-        # if we're going to send() @order_by, then we need to check it against a whitelist
-        if @direction == "ASC"
-          @disciplines.sort { |a, b| a.send(@order_by) <=> b.send(@order_by) }
-        else
-          @disciplines.sort { |a, b| b.send(@order_by) <=> a.send(@order_by) }
-        end
+      @disciplines = @resume.disciplines
+      # if we're going to send() @order_by, then we need to check it against a whitelist
+      if @direction == "ASC"
+        @disciplines.sort { |a, b| a.send(@order_by) <=> b.send(@order_by) }
+      else
+        @disciplines.sort { |a, b| b.send(@order_by) <=> a.send(@order_by) }
+      end
+      breadcrumbs("first_collection", "disciplines")
     elsif @user
-        @disciplines = @user.disciplines.order(@order_by + " " + @direction)
+      @disciplines = @user.disciplines.order(@order_by + " " + @direction)
     end
 
     respond_to do |format|
@@ -31,6 +36,8 @@ class DisciplinesController < ApplicationController
   def show
     @discipline = Discipline.find(params[:id])
     @skills = @discipline.skills
+    breadcrumbs("first_collection", "disciplines")
+    breadcrumbs("first_resource", @discipline)
 
     respond_to do |format|
       format.html # show.html.erb

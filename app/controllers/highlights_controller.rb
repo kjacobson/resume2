@@ -14,8 +14,14 @@ class HighlightsController < ApplicationController
     end
     if !@job.nil?
       @highlights = @job.highlights.order(@order_by + " " + @direction)
+      breadcrumbs("first_collection", "jobs")
+      breadcrumbs("first_resource", @job)
+      breadcrumbs("second_collection", "highlights")
     elsif !@skill.nil?
       @highlights = @skill.highlights.order(@order_by + " " + @direction)
+      breadcrumbs("first_collection", "skills")
+      breadcrumbs("first_resource", @skill)
+      breadcrumbs("second_collection", "highlights")
     else
       @highlights = @user.highlights.order(@order_by + " " + @direction)
     end
@@ -31,6 +37,8 @@ class HighlightsController < ApplicationController
     @highlight = Highlight.find(params[:id])
     @job = @highlight.job
     @skill = @highlight.skill
+    breadcrumbs("first_collection", "highlights")
+    breadcrumbs("first_resource", @highlight)
 
     respond_to do |format|
       format.html # show.html.erb

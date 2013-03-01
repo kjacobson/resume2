@@ -21,7 +21,6 @@ class Year
         self.jobs(resume).flat_map{ |j| j.softwares }.uniq
     end
     def highlights(resume=nil)
-        # need to make sure this is only for the current resume somewhere
         self.jobs(resume).flat_map{ |j| j.highlights }.uniq
     end
 end

@@ -22,20 +22,27 @@ class SoftwaresController < ApplicationController
     @direction = !params[:direction].nil? ? params[:direction] : "ASC"
 
     if !params[:job_id].nil?
-        @job = Job.find_by_id(params[:job_id])
-        @softwares = @job.softwares.order(@order_by + " " + @direction)
+      @job = Job.find_by_id(params[:job_id])
+      @softwares = @job.softwares.order(@order_by + " " + @direction)
+      breadcrumbs("first_collection", "jobs")
+      breadcrumbs("first_resource", @job)
+      breadcrumbs("second_collection", "softwares")
     elsif !params[:year_id].nil?
-        @year = Year.find_by_value(params[:year_id])
-        @softwares = @year.softwares.order(@order_by + " " + @direction)
+      @year = Year.find_by_value(params[:year_id])
+      @softwares = @year.softwares.order(@order_by + " " + @direction)
+      breadcrumbs("first_collection", "years")
+      breadcrumbs("first_resource", @year)
+      breadcrumbs("second_collection", "softwares")
     elsif @resume
-        @softwares = @resume.softwares
-        if @direction == "DESC"
-          @softwares.sort! { |a,b| b[@order_by] <=> a[@order_by] }
-        else
-          @softwares.sort! { |a,b| a[@order_by] <=> b[@order_by] }
-        end
+      @softwares = @resume.softwares
+      if @direction == "DESC"
+        @softwares.sort! { |a,b| b[@order_by] <=> a[@order_by] }
+      else
+        @softwares.sort! { |a,b| a[@order_by] <=> b[@order_by] }
+      end
+      breadcrumbs("first_collection", "softwares")
     elsif @user
-        @softwares = @user.softwares.order(@order_by + " " + @direction)
+      @softwares = @user.softwares.order(@order_by + " " + @direction)
     end
 
     respond_to do |format|
@@ -50,6 +57,8 @@ class SoftwaresController < ApplicationController
     @software = Software.find_by_slug(params[:id])
     @jobs = @software.jobs.order("end_year DESC, end_month DESC")
     @years = @software.years
+    breadcrumbs("first_collection", "softwares")
+    breadcrumbs("first_resource", @software)
 
     respond_to do |format|
       format.html # show.html.erb

@@ -14,6 +14,7 @@
                 <% if !flash[:notice].nil? %>
                     <p class="notice"><%= flash[:notice] %></p>
                 <% end %>
+                <%=  render :partial => 'common/breadcrumbs' %>
                 <% if is_user_match? %>
                     <%=  render :partial => 'users/user_header' %>
                 <% end %>

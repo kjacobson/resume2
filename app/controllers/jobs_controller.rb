@@ -201,15 +201,25 @@ class JobsController < ApplicationController
     if !params[:skill_id].nil?
       @skill = Skill.find_by_id(params[:skill_id])
       @jobs = @skill.jobs.order(@order_by + " " + @direction)
+      breadcrumbs("first_collection", "skills")
+      breadcrumbs("first_resource", @skill)
+      breadcrumbs("second_collection", "jobs")
     elsif !params[:software_id].nil?
       @software = Software.find_by_id(params[:software_id])
       @jobs = @software.jobs.order(@order_by + " " + @direction)
+      breadcrumbs("first_collection", "softwares")
+      breadcrumbs("first_resource", @software)
+      breadcrumbs("second_collection", "jobs")
     elsif !params[:year_id].nil?
       @year = Year.find_by_value(params[:year_id])
       @jobs = @year.jobs.order(@order_by + " " + @direction)
+      breadcrumbs("first_collection", "years")
+      breadcrumbs("first_resource", @year)
+      breadcrumbs("second_collection", "jobs")
     elsif @user
       if @resume
         @jobs = @resume.jobs.order(@order_by + " " + @direction)
+        breadcrumbs("first_collection", "jobs")
       else
         @jobs = @user.jobs.order(@order_by + " " + @direction)
       end
@@ -231,6 +241,8 @@ class JobsController < ApplicationController
     @years = @job.years.sort { |a,b| a.value <=> b.value }
     @highlights = @job.highlights.order("skill_id")
     @disciplines = @job.disciplines
+    breadcrumbs("first_collection", "jobs")
+    breadcrumbs("first_resource", @job)
 
     respond_to do |format|
       format.html # show.html.erb

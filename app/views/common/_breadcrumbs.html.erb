@@ -1,0 +1,53 @@
+<%
+    # TODO:
+    # ID or slug for 'first_resource' link
+    # title or ? for 'first_resource' text
+    # if we're looking at 'first_resource', should it be linked? or even displayed?
+    # should collections be linked to when we're looking at them?
+    # need to use the friendly name of "softwares"
+%>
+
+<% if @resume %>
+    <nav class="breadcrumbs">
+        <ul>
+            <li>
+                Resume:
+                <%=  render :partial => "resumes/link_to_resume", :locals => { :user => @user, :resume => @resume } %>
+            </li>
+            <% if first_collection = @breadcrumbs.try(:[], 'first_collection') and first_collection != "highlights" %>
+                <li>
+                    <a href="/users/<%= @user.id %>/resumes/<%= @resume.id %>/<%= first_collection %>" rel="internal" title="See the <%= first_collection %> for this resume">
+                        <%= first_collection.capitalize %>
+                    </a>
+                </li>
+                <% if resource = @breadcrumbs.try(:[], 'first_resource') %>
+                    <%
+                      case @breadcrumbs['first_collection']
+                      when "years"
+                        id = resource.value
+                        title = resource.value
+                      when "skills" || "software"
+                        id = resource.slug
+                        title = resource.title
+                      else
+                        id = resource.id
+                        title = resource.title
+                      end
+                    %>
+                    <li>
+                        <a href="/users/<%= @user.id %>/resumes/<%= @resume.id %>/<%= first_collection %>/<%= id %>" rel="internal">
+                            <%= title %>
+                        </a>
+                    </li>
+                    <% if second_collection = @breadcrumbs.try(:[], 'second_collection') %>
+                        <li>
+                            <a href="/users/<%= @user.id %>/resumes/<%= @resume.id %>/<%= first_collection %>/<%= id %>/<%= second_collection %>" rel="internal" title="See the <%= second_collection %> for this <%= first_collection.singularize %>">
+                                <%=  second_collection.capitalize %>
+                            </a>
+                        </li>
+                    <% end %>
+                <% end %>
+            <% end %>
+        </ul>
+    </nav>
+<% end %>

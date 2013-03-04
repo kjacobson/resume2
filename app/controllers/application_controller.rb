@@ -101,11 +101,11 @@ class ApplicationController < ActionController::Base
         query = MODELS.include?(var) ? query.send(var) : nil
       elsif /\A[0-9]+\Z/.match(var)
         query = query.find_by_id(var) rescue query = query.select { |item| item.id == var.to_i }[0]
-      elsif ["skills","softwares"].include?(vars[i-1])
+      elsif ["skills","softwares"].include?(vars[i+1]) # we started at vars[2], with i = 0
         query = query.find_by_slug(var) rescue query = query.select { |item| item.slug == var }[0]
       end
     end
-    unless !query.nil?
+    if query.nil?
       flash[:notice] = "404"
       redirect_to :homepage
     end

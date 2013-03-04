@@ -205,7 +205,7 @@ class JobsController < ApplicationController
       breadcrumbs("first_resource", @skill)
       breadcrumbs("second_collection", "jobs")
     elsif !params[:software_id].nil?
-      @software = Software.find_by_id(params[:software_id])
+      @software = Software.find_by_slug(params[:software_id]) rescue Software.find_by_id(params[:software_id])
       @jobs = @software.jobs.order(@order_by + " " + @direction)
       breadcrumbs("first_collection", "softwares")
       breadcrumbs("first_resource", @software)

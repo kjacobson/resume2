@@ -5,22 +5,24 @@ class Year
         self.value = value
     end
 
-    def jobs(resume=nil)
+    def jobs(user=nil, resume=nil)
       return @job if !@job.nil?
-      if resume.nil?
-        @job = Job.where("start_year <= ? AND end_year >= ?", self.value, self.value)
-      else
+      if !user.nil? and !resume.nil?
         @job = resume.jobs.where("start_year <= ? AND end_year >= ?", self.value, self.value)
+      elsif !user.nil?
+        @job = user.jobs.where("start_year <= ? AND end_year >= ?", self.value, self.value)
+      else
+        @job = Job.where("start_year <= ? AND end_year >= ?", self.value, self.value)
       end
       return @job
     end
-    def skills(resume=nil)
-        self.jobs(resume).flat_map{ |j| j.skills }.uniq
+    def skills(user=nil, resume=nil)
+        self.jobs(user, resume).flat_map{ |j| j.skills }.uniq
     end
-    def softwares(resume=nil)
-        self.jobs(resume).flat_map{ |j| j.softwares }.uniq
+    def softwares(user=nil, resume=nil)
+        self.jobs(user, resume).flat_map{ |j| j.softwares }.uniq
     end
-    def highlights(resume=nil)
-        self.jobs(resume).flat_map{ |j| j.highlights }.uniq
+    def highlights(user=nil, resume=nil)
+        self.jobs(user, resume).flat_map{ |j| j.highlights }.uniq
     end
 end

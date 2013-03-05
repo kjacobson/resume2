@@ -211,8 +211,13 @@ class JobsController < ApplicationController
       breadcrumbs("first_resource", @software)
       breadcrumbs("second_collection", "jobs")
     elsif !params[:year_id].nil?
-      @year = Year.find_by_value(params[:year_id])
-      @jobs = @year.jobs.order(@order_by + " " + @direction)
+      @year = Year.new(params[:year_id])
+      @jobs = @year.jobs
+      if @direction == "DESC"
+        @jobs.sort! { |a,b| b.send(@order_by) <=> a.send(@order_by) }
+      else
+        @jobs.sort! { |a,b| a.send(@order_by) <=> b.send(@order_by) }
+      end
       breadcrumbs("first_collection", "years")
       breadcrumbs("first_resource", @year)
       breadcrumbs("second_collection", "jobs")

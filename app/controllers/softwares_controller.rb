@@ -28,8 +28,13 @@ class SoftwaresController < ApplicationController
       breadcrumbs("first_resource", @job)
       breadcrumbs("second_collection", "softwares")
     elsif !params[:year_id].nil?
-      @year = Year.find_by_value(params[:year_id])
-      @softwares = @year.softwares.order(@order_by + " " + @direction)
+      @year = Year.new(params[:year_id])
+      @softwares = @year.softwares
+      if @direction == "DESC"
+        @softwares.sort! { |a,b| b.send(@order_by) <=> a.send(@order_by) }
+      else
+        @softwares.sort! { |a,b| a.send(@order_by) <=> b.send(@order_by) }
+      end
       breadcrumbs("first_collection", "years")
       breadcrumbs("first_resource", @year)
       breadcrumbs("second_collection", "softwares")

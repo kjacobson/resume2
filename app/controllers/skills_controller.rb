@@ -28,8 +28,13 @@ class SkillsController < ApplicationController
       breadcrumbs("first_resource", @job)
       breadcrumbs("second_collection", "skills")
     elsif !params[:year_id].nil?
-      @year = Year.find_by_value(params[:year_id])
-      @skills = @year.skills.order(@order_by + " " + @direction)
+      @year = Year.new(params[:year_id])
+      @skills = @year.skills
+      if @direction == "DESC"
+        @skills.sort! { |a,b| b.send(@order_by) <=> a.send(@order_by) }
+      else
+        @skills.sort! { |a,b| a.send(@order_by) <=> b.send(@order_by) }
+      end
       breadcrumbs("first_collection", "years")
       breadcrumbs("first_resource", @year)
       breadcrumbs("second_collection", "skills")

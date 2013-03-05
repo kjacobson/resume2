@@ -8,12 +8,24 @@
 
 <% content_for :main do %>
     <section class="primary">
-        <h1>Positions held in <%= @year.value %></h1>
+        <h1>
+            <% if !@resume.nil?  %>
+                <a href="<%= year_jobs_path({:user_id => @user.id, :resume_id => @resume.id, :year_id => @year.value}) %>" rel="internal" title="See jobs held in this year">
+            <% end %>
+                Positions held in <%= @year.value %>
+            <% if !@resume.nil?  %></a><% end %>
+        </h1>
         <%= render :partial => 'jobs/small_list', :locals => { :jobs => @jobs, :user => @user, :resume => @resume } %>
     </section>
 
     <section class="secondary extended">
-        <h1>Skills used in <%= @year.value %></h1>
+        <h1>
+            <% if !@resume.nil?  %>
+                <a href="<%= year_skills_path({:user_id => @user.id, :resume_id => @resume.id, :year_id => @year.value}) %>" rel="internal" title="See skills used in this year">
+            <% end %>
+                Skills used in <%= @year.value %>
+            <% if !@resume.nil?  %></a><% end %>
+        </h1>
         <% if !@disciplines.nil? and @disciplines.count >= 1 %>
             <%= render :partial => 'skills/small_list_by_discipline', :locals => {:user => @user, :resume => @resume, :disciplines => @disciplines, :skills => @skills} %>
         <% else %>
@@ -22,7 +34,13 @@
     </section>
 
     <section class="secondary extended">
-        <h1>Tools/Software used in <%= @year.value %></h1>
+        <h1>
+            <% if !@resume.nil?  %>
+                <a href="<%= year_softwares_path({:user_id => @user.id, :resume_id => @resume.id, :year_id => @year.value}) %>" rel="internal" title="See tools/software used in this year">
+            <% end %>
+                Tools/Software used in <%= @year.value %>
+            <% if !@resume.nil?  %></a><% end %>
+        </h1>
         <%= render :partial => "softwares/list", :locals => { :user => @user, :resume => @resume,  :softwares => @softwares } %>
     </section>
 <% end %>

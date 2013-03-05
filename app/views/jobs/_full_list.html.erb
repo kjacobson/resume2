@@ -1,5 +1,6 @@
 <%
   user ||= nil
+  resume ||= nil
   jobs ||= nil
 %>
 
@@ -31,7 +32,7 @@
             %>
             <tr <% if isAlt then %>class="alt"<% end %>>
                 <td>
-                    <%= render :partial => 'jobs/link_to_job', :locals => {:job => job} %>
+                    <%= render :partial => 'jobs/link_to_job', :locals => {:user => user, :resume => resume, :job => job} %>
                 </td>
                 <td><%= decode(job.employer) %></td>
                 <td>

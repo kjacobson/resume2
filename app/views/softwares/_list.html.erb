@@ -8,7 +8,7 @@
     path = softwares_path(:user_id => user.id)
   end
 %>
-<% if !@softwares.nil? %>
+<% if !@softwares.nil? and @softwares.count > 0 %>
     <ol class="software-list">
         <% softwares.each do |software| %>
             <li><%= render :partial => 'softwares/link_to_software', :locals => {:user => user, :resume => resume, :software => software} %></li>

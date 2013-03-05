@@ -19,9 +19,11 @@
                 <%= render :partial => 'link_to_skill', :locals => {:user => user, :resume => resume, :skill => skill } %>
             </td>
             <td>
-                <a href="<%= skill_jobs_path({:user_id => user.id, :resume_id => resume.id, :skill_id => skill.id}) %>" rel="internal" title="See all the jobs using this skill">
+                <% if !resume.nil? %>
+                    <a href="<%= resume_skill_jobs_path({:user_id => user.id, :resume_id => resume.id, :skill_id => skill.id}) %>" rel="internal" title="See all the jobs using this skill">
+                <% end %>
                     <%= skill.job_count %>
-                </a>
+                <% if !resume.nil? %></a><% end %>
             </td>
         </tr>
     <% end %>

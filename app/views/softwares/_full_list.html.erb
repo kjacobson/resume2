@@ -18,9 +18,11 @@
                 <%= render :partial => 'softwares/link_to_software', :locals => { :software => software, :user => user, :resume => resume, :abbreviated => false } %>
             </td>          
             <td>
-                <a href="<%= software_jobs_path({:user_id => user.id, :resume_id => resume.id, :software_id => software.id}) %>" rel="internal" title="See all the jobs using this software">
+                <% if !resume.nil? %>
+                    <a href="<%= resume_software_jobs_path({:user_id => user.id, :resume_id => resume.id, :software_id => software.id}) %>" rel="internal" title="See all the jobs using this software">
+                <% end %>
                     <%= software.job_count %>
-                </a>
+                <% if !resume.nil? %></a><% end %>
             </td>
         </tr>
     <% end %>

@@ -7,7 +7,7 @@
     # need to use the friendly name of "softwares"
 %>
 
-<% if @resume %>
+<% if @resume and !@resume.new_record? %>
     <nav class="breadcrumbs">
         <ul>
             <li>

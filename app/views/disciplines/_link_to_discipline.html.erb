@@ -2,7 +2,12 @@
   user ||= user
   resume ||= resume
   discipline ||= discipline
+  if !resume.nil?
+    path = resume_discipline_path({:user_id => user.id, :resume_id => (resume && resume.id), :id => discipline.id })
+  else
+    path = discipline_path({:user_id => user.id, :id => discipline.id })
+  end
 %>
 
-<a href="<%= discipline_path({:user_id => user.id, :resume_id => (resume && resume.id), :id => discipline.id }) %>" class="organizational-type-title discipline-title" rel="internal" title="See jobs and skills involving this discipline">
+<a href="<%= path %>" class="organizational-type-title discipline-title" rel="internal" title="See jobs and skills involving this discipline">
     <%= decode(discipline.title.capitalize) %></a>

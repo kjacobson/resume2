@@ -2,7 +2,7 @@
   resume ||= nil
   user ||= nil
   if resume
-    path = software_path(:user_id => user.id, :resume_id => resume.id, :id => software.slug)
+    path = resume_software_path(:user_id => user.id, :resume_id => resume.id, :id => software.slug)
   else
     path = software_path(:user_id => user.id, :id => software.slug)
   end

@@ -1,5 +1,5 @@
 <%
-   resume ||= nil
    user ||= nil
+   resume ||= nil
 %>
 <a href="<%= resume_path({:user_id => user.id, :id => resume.id})%>" class="resume-title" rel="internal" title="See this resume"><%= decode(resume.title) %></a>

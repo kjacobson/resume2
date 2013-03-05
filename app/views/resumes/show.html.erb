@@ -9,7 +9,7 @@
         </h1>
         <%=  render :partial => "users/contact_info", :locals => {:user => @user, :show_name => false } %>
         <% if is_user_match? %>
-            <a href="<%= links_path(@user, @resume) %>" class="link-to-editable" rel="internal" title="Share this resume by giving out links">Share this resume</a>
+            <a href="<%= resume_links_path(@user, @resume) %>" class="link-to-editable" rel="internal" title="Share this resume by giving out links">Share this resume</a>
         <% end %>
     </hgroup>
 <% end %>

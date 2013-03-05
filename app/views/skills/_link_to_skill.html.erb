@@ -2,7 +2,7 @@
   resume ||= nil
   user ||= nil
   if resume
-    path = skill_path(:user_id => user.id, :resume_id => resume.id, :id => skill.slug)
+    path = resume_skill_path(:user_id => user.id, :resume_id => resume.id, :id => skill.slug)
   else
     path = skill_path(:user_id => user.id, :id => skill.slug)
   end

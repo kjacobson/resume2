@@ -10,7 +10,7 @@
     <section class="primary">
         <h1>
             <% if !@resume.nil?  %>
-                <a href="<%= year_jobs_path({:user_id => @user.id, :resume_id => @resume.id, :year_id => @year.value}) %>" rel="internal" title="See jobs held in this year">
+                <a href="<%= resume_year_jobs_path({:user_id => @user.id, :resume_id => @resume.id, :year_id => @year.value}) %>" rel="internal" title="See jobs held in this year">
             <% end %>
                 Positions held in <%= @year.value %>
             <% if !@resume.nil?  %></a><% end %>
@@ -21,7 +21,7 @@
     <section class="secondary extended">
         <h1>
             <% if !@resume.nil?  %>
-                <a href="<%= year_skills_path({:user_id => @user.id, :resume_id => @resume.id, :year_id => @year.value}) %>" rel="internal" title="See skills used in this year">
+                <a href="<%= resume_year_skills_path({:user_id => @user.id, :resume_id => @resume.id, :year_id => @year.value}) %>" rel="internal" title="See skills used in this year">
             <% end %>
                 Skills used in <%= @year.value %>
             <% if !@resume.nil?  %></a><% end %>
@@ -36,7 +36,7 @@
     <section class="secondary extended">
         <h1>
             <% if !@resume.nil?  %>
-                <a href="<%= year_softwares_path({:user_id => @user.id, :resume_id => @resume.id, :year_id => @year.value}) %>" rel="internal" title="See tools/software used in this year">
+                <a href="<%= resume_year_softwares_path({:user_id => @user.id, :resume_id => @resume.id, :year_id => @year.value}) %>" rel="internal" title="See tools/software used in this year">
             <% end %>
                 Tools/Software used in <%= @year.value %>
             <% if !@resume.nil?  %></a><% end %>

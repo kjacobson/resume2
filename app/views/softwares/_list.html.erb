@@ -2,6 +2,11 @@
   abbreviated ||= false
   user ||= nil
   resume ||= nil
+  if resume
+    path = resume_softwares_path(:user_id => user.id, :resume_id => resume.id)
+  else
+    path = softwares_path(:user_id => user.id)
+  end
 %>
 <% if !@softwares.nil? %>
     <ol class="software-list">
@@ -10,7 +15,7 @@
         <% end %>
     </ol>
     <% if abbreviated %>
-        [&hellip;] <a href="<%= if user and resume then softwares_path(:user_id => user.id, :resume_id => resume.id) elsif user then softwares_path(:user_id => user.id) end %>" rel="internal" title="See all software/tools I&rsquo;ve used professionally">see the whole list</a>
+        [&hellip;] <a href="<%= path %>" rel="internal" title="See all software/tools I&rsquo;ve used professionally">see the whole list</a>
     <% end %>
 <% else %>
     No software/tools specified

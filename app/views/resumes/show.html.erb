@@ -1,12 +1,19 @@
 <% content_for :head do %>
     <hgroup>
-        <h1>
-            <span class="fn"><%= @user.name %></span>, <%=  @resume.title %>
+        <h1><span class="fn"><%= @user.name %></span></h1>
+        <h2>
+            <%=  @resume.title %>
             <% if is_user_match? %>
                 <a href="<%= edit_resume_path(@user, @resume) %>" class="link-to-editable edit-link" rel="internal" title="Edit this resume">[edit]</a>
                 <a href="<%= confirm_delete_resume_path(@user, @resume) %>" class="link-to-editable delete-link" rel="internal" title="Delete this resume">[delete]</a>
             <% end %>
-        </h1>
+        </h2>
+        <% if @user.novice? %>
+            <p class="form-explanation">
+                The line above is the title of this resume. Usually, you&rsquo;ll want to use the title of the job you hope to hold.
+                It&rsquo;s not as big as your name because, well, employers probably need to know your name.
+            </p>
+        <% end %>
         <%=  render :partial => "users/contact_info", :locals => {:user => @user, :show_name => false } %>
         <% if is_user_match? %>
             <a href="<%= resume_links_path(@user, @resume) %>" class="link-to-editable" rel="internal" title="Share this resume by giving out links">Share this resume</a>

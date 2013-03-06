@@ -17,4 +17,9 @@ class User < ActiveRecord::Base
   def uncategorized_skills
     self.user_skills.select { |us| us.discipline_id.nil? }.map { |us| us.skill }
   end
+
+  def novice?
+    res = self.resumes
+    return res.size == 0 || DateTime.now.weeks_ago(2) < res.first.created_at
+  end
 end

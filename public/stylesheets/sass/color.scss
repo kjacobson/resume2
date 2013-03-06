@@ -22,12 +22,8 @@ body {
 .deemphasized {
     color: $deemphasizedText;
 }
-    section.primary {
-        border-top: 1px solid $tableStriping;
-    }
     section.secondary {
         background: #fff;
-        border-top: 1px solid $tableStriping;
     }
 
 /* JOB (etc) details */

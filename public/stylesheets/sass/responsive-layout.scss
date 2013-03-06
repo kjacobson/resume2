@@ -172,6 +172,10 @@ section.primary .primary-type-details dd {
 }
 
 @media screen and (min-width: 940px) and (max-width: 1500px) {
+        #main header {
+            margin: 0 0 1.25%;
+            padding: 0 0 2em;
+        }
         section.primary {
             clear: left;
             float: left;

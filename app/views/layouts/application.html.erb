@@ -20,10 +20,12 @@
                 <% end %>
                 <%=  yield :header %>
             </header>
-            <div id="main">
-                <%= yield :head %>
+            <article id="main">
+                <header>
+                    <%= yield :head %>
+                </header>
                 <%= yield :main %>
-            </div>
+            </article>
             <footer>
                 <p>Copyright Kyle Jacobson, 2013</p>
             </footer>

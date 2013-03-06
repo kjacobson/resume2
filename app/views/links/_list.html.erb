@@ -27,7 +27,7 @@
                 <%= friendly_date(link.created_at) %>
             </td>
             <td>
-                <a href="<%= confirm_delete_link_path({:user_id => user.id, :resume_id => resume.id, :id => link.id}) %>" class="link-to-editable delete-link" rel="internal" title="Delete this link (anyone you sent it to will lose access to this resume)">
+                <a href="<%= confirm_delete_resume_link_path({:user_id => user.id, :resume_id => resume.id, :id => link.id}) %>" class="link-to-editable delete-link" rel="internal" title="Delete this link (anyone you sent it to will lose access to this resume)">
                     delete
                 </a>
             </td>

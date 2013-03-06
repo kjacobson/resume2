@@ -16,8 +16,8 @@
         <% end %>
         <%= render :partial => 'links/list', :locals => { :user => @user, :resume => @resume, :links => @links } %>
         <% if is_user_match? %>
-            <a href="<%= new_link_path({:resume_id => (@resume.nil? ? nil : @resume.id)}) %>" class="link-to-editable owner-edit-link" rel="internal" title="Generate a new link to share this resume">
-                [Generate a new link]
+            <a href="<%= new_resume_link_path({:resume_id => (@resume.nil? ? nil : @resume.id)}) %>" class="link-to-editable owner-edit-link" rel="internal" title="Generate a new link to share this resume">
+                Generate a new link
             </a>
         <% end %>
     </section>

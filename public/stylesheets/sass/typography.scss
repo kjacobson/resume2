@@ -148,11 +148,12 @@ section.primary .job-list.birds-eye .job-title {
     }
 
 /* DETAILS (<dl>s) */
-.primary-type-details dt,
-.primary-type-details dd {
-    line-height: 1.875em;
-    margin-bottom: 0.375em;
-}
 .contact-information dt {
     font-weight: bold;
+}
+.primary-type-details dt {
+    font-family: Verdana, "Lucida Grande", Arial, Helvetica, sans-serif;
+}
+.primary-type-details dd {
+    margin-bottom: 0.75em;
 }

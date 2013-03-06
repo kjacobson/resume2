@@ -138,17 +138,6 @@ tr {
             background-image: url("/images/icons/sort-asc.gif");
         }
 
-section.primary .primary-type-details dt {
-    clear: left;
-    float: left;
-    width: 25%;
-}
-section.primary .primary-type-details dd {
-    float: left;
-    /* gives an extra 24px margin (in the hypothetical 960px layout) */
-    width: 75%;
-}
-
 @media screen and (min-width: 720px) {
             .breadcrumbs {
                 padding: 0.75em $smallestColumnWidth;
@@ -192,16 +181,6 @@ section.primary .primary-type-details dd {
             overflow: auto;
             width: 100%;
         }
-            section.primary .primary-type-details dt {
-                clear: left;
-                float: left;
-                width: 16.6667%;
-            }
-            section.primary .primary-type-details dd {
-                float: left;
-                /* gives an extra 24px margin (in the hypothetical 960px layout) */
-                width: 78.9855%;
-            }
         section.secondary {
             clear: right;
             float: right;

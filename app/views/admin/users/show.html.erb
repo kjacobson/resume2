@@ -21,8 +21,4 @@
       <b>Persistence token:</b>
       <%= @user.persistence_token %>
     </p>
-
-
-    <%= link_to 'Edit', edit_user_path(@user) if is_user_match? %> |
-    <%= link_to 'Back', users_path %>
 <% end %>

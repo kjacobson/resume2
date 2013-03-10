@@ -1,6 +1,11 @@
-<h1>Editing link</h1>
+<% content_for :head do %>
+    <hgroup>
+        <h1>Editing link</h1>
+    </hgroup>
+<% end %>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @link %> |
-<%= link_to 'Back', links_path %>
+<% content_for :main do %>
+    <section class="primary">
+        <%= render 'form' %>
+    </section>
+<% end %>

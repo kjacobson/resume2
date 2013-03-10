@@ -1,4 +1,4 @@
-<%= form_for @resume, :url => preview_resume_path do |f| %>
+<%= form_for @resume, :url => preview_resume_path(:user_id => @user.id, :id => @resume.id) do |f| %>
     <input type="hidden" name="preview" value="<%= !preview_mode? %>" />
     <% if preview_mode? %>
         <label>You&rsquo;re in preview mode.</label>

@@ -5,4 +5,4 @@ Resume2::Application.config.session_store :cookie_store, :key => '_resume2_sessi
 # Use the database for sessions instead of the cookie-based default,
 # which shouldn't be used to store highly confidential information
 # (create the session table with "rails generate session_migration")
-# Resume2::Application.config.session_store :active_record_store
+Resume2::Application.config.session_store :active_record_store

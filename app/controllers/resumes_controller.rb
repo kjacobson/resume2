@@ -164,7 +164,7 @@ class ResumesController < ApplicationController
   end
 
   def enter_preview_mode(resume)
-    session[:preview_resume] == resume.id.to_s
+    session[:preview_resume] = resume.id.to_s
     return true
   end
 

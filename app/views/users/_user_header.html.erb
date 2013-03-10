@@ -1,13 +1,20 @@
 <div class="user-header">
     <ul class="user-account-navigation">
-        <li>
-            <%= link_to "Your account", account_path(current_user) %>
-        </li>
-        <li>
-            <%= link_to "Your resumes", resumes_path(current_user) %>
-        </li>
-        <li>
-            <%= link_to "Log out", logout_path %>
-        </li>
+        <% if !@resume.nil? %>
+            <li>
+                <%= render :partial => 'resumes/preview_form' %>
+            </li>
+        <% end %>
+        <% if !preview_mode? %>
+            <li>
+                <%= link_to "Your account", account_path(current_user) %>
+            </li>
+            <li>
+                <%= link_to "Your resumes", resumes_path(current_user) %>
+            </li>
+            <li>
+                <%= link_to "Log out", logout_path %>
+            </li>
+        <% end %>
     </ul>
 </div>

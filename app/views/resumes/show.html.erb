@@ -8,7 +8,7 @@
                 <a href="<%= confirm_delete_resume_path(@user, @resume) %>" class="link-to-editable delete-link" rel="internal" title="Delete this resume">[delete]</a>
             <% end %>
         </h2>
-        <% if @user.novice? %>
+        <% if is_user_match? && @user.novice? %>
             <p class="form-explanation">
                 The line above is the title of this resume. Usually, you&rsquo;ll want to use the title of the job you hope to hold.
                 It&rsquo;s not as big as your name because, well, employers probably need to know your name.

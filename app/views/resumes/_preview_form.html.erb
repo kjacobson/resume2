@@ -1,0 +1,7 @@
+<%= form_for @resume, :url => preview_resume_path do |f| %>
+    <input type="hidden" name="preview" value="<%= !preview_mode? %>" />
+    <% if preview_mode? %>
+        <label>You&rsquo;re in preview mode.</label>
+    <% end %>
+    <input type="submit" value="<%= preview_mode? ? 'Stop previewing this resume' : 'Preview this resume' %>" />
+<% end %>

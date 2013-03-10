@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_basic_instance_vars
   before_filter :require_user_match, :except => [:signup, :login, :logout, :index, :show]
   before_filter :require_access_key, :only => [:index, :show]
+  require 'digest/md5'
 
   def set_basic_instance_vars
     if user_id = params[:user_id] or (params[:controller] == "users" and user_id = params[:id])
@@ -48,7 +49,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_access_key
-    unless has_access_key? or is_user_match?
+    unless has_access_key? or is_user_match? or preview_mode?
       flash[:notice] = "To access the requested page, you must have been given a link by the resume&rsquo;s author."
       redirect_to "/"
     end
@@ -58,7 +59,7 @@ class ApplicationController < ActionController::Base
     require_known_user
     controller = params[:controller]
     action = params[:action]
-    unless is_user_match?
+    unless is_user_match? or preview_mode?
       flash[:notice] = "You can't access this page, as it belongs to a different user."
       redirect_to :homepage
     end
@@ -75,6 +76,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :is_user_match?
   def is_user_match?
+    return @user_match unless @user_match.nil?
     if !params[:user_id].nil?
       page_user_id = params[:user_id].to_i
     elsif params[:controller] == "users" and !params[:id].nil?
@@ -82,11 +84,16 @@ class ApplicationController < ActionController::Base
     else
       page_user_id = nil
     end
-    !current_user.nil? ? current_user.id === page_user_id : false
+    @user_match = current_user.try(:id) == page_user_id && !preview_mode?
+  end
+
+  helper_method :preview_mode?
+  def preview_mode?
+    !@resume.nil? && (session[:preview_resume] == @resume.id.to_s)
   end
 
   MODELS = ["users","resumes","jobs","skills","softwares","highlights","disciplines","links","years","job_skills","job_software","resume_highlight","resume_job","user_skill","user_software"]
-  ACTIONS = ["index","show","new","edit","create","update","destroy", "confirm_delete"]
+  ACTIONS = ["index","show","new","edit","create","update","destroy", "confirm_delete", "preview"]
   # TODO: this REALLY needs a test
   def require_resource_match
     path = request.path[1..-1]

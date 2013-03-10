@@ -43,6 +43,7 @@ Resume2::Application.routes.draw do
     end
     resources :resumes do
       get :confirm_delete, :on => :member
+      put :preview, :on => :member
     end
     resources :skills do
       get :confirm_delete, :on => :member

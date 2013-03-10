@@ -152,4 +152,24 @@ class ResumesController < ApplicationController
       format.html { render :action => "confirm_delete" }
     end
   end
+
+  def preview
+    @resume = Resume.find(params[:id])
+    if params[:preview] == "true"
+      enter_preview_mode(resume)
+    else
+      exit_preview_mode
+    end
+    redirect_to request.referer
+  end
+
+  def enter_preview_mode(resume)
+    session[:preview_resume] == resume.id.to_s
+    return true
+  end
+
+  def exit_preview_mode
+    session.delete(:preview_resume)
+    return true
+  end
 end

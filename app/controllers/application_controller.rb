@@ -57,8 +57,6 @@ class ApplicationController < ActionController::Base
 
   def require_user_match
     require_known_user
-    controller = params[:controller]
-    action = params[:action]
     unless is_user_match? or preview_mode?
       flash[:notice] = "You can't access this page, as it belongs to a different user."
       redirect_to :homepage
@@ -89,7 +87,8 @@ class ApplicationController < ActionController::Base
 
   helper_method :preview_mode?
   def preview_mode?
-    !@resume.nil? && (session[:preview_resume] == @resume.id.to_s)
+    return @preview_mode unless @preview_mode.nil?
+    @preview_mode = !@resume.nil? && (session[:preview_resume] == @resume.id.to_s)
   end
 
   MODELS = ["users","resumes","jobs","skills","softwares","highlights","disciplines","links","years","job_skills","job_software","resume_highlight","resume_job","user_skill","user_software"]

@@ -47,8 +47,11 @@ body {
 
                 li {
                     float: left;
+                    line-height: 2.25em;
                     list-style-type: inline;
-                    padding: 1em;
+                    margin: 1em 0;
+                    padding: 0 1em;
+                    vertical-align: middle;
                 }
             }
         header nav {

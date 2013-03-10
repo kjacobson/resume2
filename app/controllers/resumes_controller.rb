@@ -156,7 +156,7 @@ class ResumesController < ApplicationController
   def preview
     @resume = Resume.find(params[:id])
     if params[:preview] == "true"
-      enter_preview_mode(resume)
+      enter_preview_mode(@resume)
     else
       exit_preview_mode
     end

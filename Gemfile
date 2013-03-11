@@ -42,3 +42,7 @@ group :development, :test do
   gem 'webrat'
   #gem 'ZenTest'
 end
+group :assets do
+  gem 'sass-rails' # if running rails 3.1 or greater
+  gem 'compass-rails'
+end

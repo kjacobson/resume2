@@ -22,11 +22,13 @@
  */
 
 body {
-    /* also "Lucida Grande","Lucida Sans Unicode" */
-    font-family: Georgia, "Times New Roman", Times, serif;
+    font-family: "Merriweather", Georgia, "Times New Roman", Times, serif;
     font-size: 100%;
     line-height: 1.5em;
 }
+    h1, h2 {
+        font-weight: bold;
+    }
     #main hgroup h1 {
         font-size: 3em;
         font-weight: normal;

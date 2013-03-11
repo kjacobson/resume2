@@ -1,3 +1,5 @@
+@import 'color-vars';
+
 $bodyWidth: 100%;
 $numberOfColumns: 24;
 $smallestColumnWidth: $bodyWidth / $numberOfColumns;
@@ -13,7 +15,11 @@ html {
 }
 
 body {
+    color: $defaultText;
+    font-family: "Merriweather", Georgia, "Times New Roman", Times, serif;
+    font-size: 100%;
     height: 100%;
+    line-height: 1.5em;
     margin: 0;
     padding: 0;
     position: absolute;
@@ -33,14 +39,17 @@ body {
     }
         .user-header {
             border-radius: 8px 0 0 0;
+            bottom: 0;
             clear: both;
             display: inline-block;
             position: fixed;
             right: 0;
-            bottom: 0;
         }
             .user-account-navigation {
+                background: $defaultText;
+                background: rgba(0,0,0,0.7);
                 border-radius: 8px 0 0 0;
+                color: #fff;
                 float: right;
                 list-style-type: inline;
                 overflow: hidden;
@@ -53,7 +62,11 @@ body {
                     padding: 0 1em;
                     vertical-align: middle;
                 }
+                    :link, :visited {
+                        color: $accent;
+                    }
             }
+
         header nav {
             clear: both;
             display: block;
@@ -61,6 +74,25 @@ body {
     #main {
         overflow: hidden;
         padding: 0 $smallestColumnWidth 4em;
+
+        hgroup h1 {
+            font-size: 3em;
+            font-weight: normal;
+            line-height: 1.5em;
+            margin: 1em 0 0;
+
+            .link-to-editable {
+                font-size: 0.5em;
+                line-height: 3em;
+                vertical-align: middle;
+            }
+        }
+        hgroup h2 {
+            font-size: 1.5em;
+            font-weight: normal;
+            line-height: 1.5em;
+            margin: 0 0 0.5em;
+        }
     }
           header .message,
           header .notice {
@@ -69,34 +101,77 @@ body {
         section {
             overflow: hidden;
             padding-bottom: 1em;
+
+            h1 {
+                font-size: 1.5em;
+                font-weight: normal;
+                line-height: 1.5em;
+                margin: 0.375em 0 0;
+            }
+            h2 {
+                font-weight: normal;
+            }
         }
+        section.primary p {
+            font-size: 1em;
+            line-height: 1.5em;
+            margin: 0 0 1.5em;
+        }
+            section.primary .job-list .job-title {
+                font-size: 1.125em;
+            }
+        section.secondary h2 {
+            font-size: 1.125em;
+            line-height: 1.333em;
+            margin: 0;
+        }
+
     footer {
-        //bottom: 0;
         clear: both;
         display: block;
         height: 2em;
-        //left: 0;
         padding: 0 $smallestColumnWidth;
-        //position: absolute;
-        //right: 0;
+
+        p {
+            font-size: 0.875em;
+            line-height: 2.28571em;
+        }
     }
 
 /* DEFAULT */
-.breadcrumbs li {
-    display: block;
-    padding: 0 $smallestColumnWidth;
+.breadcrumbs {
+  background: $defaultText;
+  background: rgba(0,0,0,0.7);
+  color: #fff;
+
+  li {
+      color: $lightest;
+      display: block;
+      padding: 0 $smallestColumnWidth;
+  }
 }
 
+
 tr {
+    border-bottom: 1px solid $tableStriping;
     display: block;
 }
     th {
         display: none;
         padding: 0.1875em 1em 0.1875em 0;
+        text-align: left;
+
+        a:link {
+            color: $nearNeutral;
+        }
+    }
+    section.primary th {
+        font-size: 1.3125em;
     }
     td {
         display: block;
         padding: 0.1875em 1em 0.1875em 0;
+        text-align: left;
     }
     th.numericData,
     td.numericData {
@@ -133,6 +208,11 @@ tr {
         th .sort-link {
             background: transparent url("/images/icons/sortable.gif") no-repeat right center;
             padding-right: 35px;
+            text-decoration: none;
+
+            &:visited {
+                color: $defaultText;
+            }
         }
         th .sort-link.desc {
             background-image: url("/images/icons/sort-desc.gif");
@@ -219,7 +299,126 @@ tr {
                 }
 }
 
+/* BASIC FORMATTING */
+strong {
+    font-weight: bold;
+}
+em {
+    font-style: italic;
+}
+.deemphasized {
+    color: $deemphasizedText;
+}
 
+/* LINKS */
+a:link,
+a:active,
+a:visited {
+    text-decoration: none;
+}
+a:link {
+    color: $middle;
+}
+a:active {
+    color: $light;
+}
+a:visited {
+    color: $darkest;
+}
+a:link:hover,
+a:link:focus {
+    color: $darkest;
+}
+a.link-to-editable:link,
+a.link-to-editable:visited {
+    color: $accent;
+}
+
+/* HEADINGS */
+h1 a:link,
+h1 a:active,
+h1 a:visited {
+    color: $defaultText;
+}
+h2 a:link,
+h2 a:active,
+h2 a:visited {
+    color: $nearNeutral;
+}
+h2 a:hover,
+h2 a:focus {
+    color: $middle;
+}
+#main hgroup h2 {
+    color: $deemphasizedText;
+}
+.primary-type-short-desc {
+    color: $deemphasizedText;
+    font-style: italic;
+    padding-bottom: 1em;
+    max-width: 52em;
+}
+
+/* FORMS */
 .form-explanation {
-    border: 1px solid;
+    background-color: #ffc;
+    border: 1px solid $deemphasizedText;
+}
+
+/* LISTS */
+.highlight-list li {
+    margin-bottom: 0.75em;
+}
+.primary-type-sub-list {
+    color: #d3d3d3;
+    list-style: square inside none;
+    padding: 0;
+}
+.sub-list-organizational-module {
+    margin-bottom: 1em;
+}
+    section.secondary .primary-type-title {
+        font-size: 0.875em;
+        line-height: 1.28571em;
+    }
+
+    section.secondary .year-title {
+        font-size: 1.125em;
+        line-height: 1.333em;
+        margin-right: 0.6667em;
+    }
+section.primary .job-list.birds-eye .job-title {
+    font-size: 1.3125em;
+    line-height: 1.5em;
+}
+    .job-list.birds-eye .skill-list li:not(:last-child) a:after,
+    .job-list.birds-eye .software-list li:not(:last-child) a:after {
+        color: #444;
+        content: ",";
+    }
+
+/* DETAILS (<dl>s) */
+.contact-information dt {
+    font-weight: bold;
+}
+.primary-type-details dt {
+    color: $subtleAccent;
+    font-family: Verdana, "Lucida Grande", Arial, Helvetica, sans-serif;
+    font-size: 0.75em;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.primary-type-details dd {
+    margin-bottom: 0.75em;
+}
+
+/* NOTICES */
+header p.notice,
+.message.suggestion {
+    background-color: #ffc;
+}
+
+// TODO:this needs its own stylesheet?
+.expired-link {
+    color: $deemphasizedText;
 }

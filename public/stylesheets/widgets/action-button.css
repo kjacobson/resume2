@@ -1,0 +1,28 @@
+.action-button {
+  background: #0099cc;
+  border: 0;
+  border-radius: 2px;
+  color: #fff;
+  cursor: pointer;
+  font-family: "Merriweather", Georgia, "Times New Roman", Times, serif;
+  font-size: 0.875em;
+  font-weight: normal;
+  line-height: 36px;
+  padding: 0 10px; }
+
+.action-button:hover,
+.action-button:focus {
+  background: -moz-linear-gradient(top, #0099cc 0%, #077cb2 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #0099cc), color-stop(100%, #077cb2));
+  background: -webkit-linear-gradient(top, #0099cc 0%, #077cb2 100%);
+  background: -o-linear-gradient(top, #0099cc 0%, #077cb2 100%);
+  background: -ms-linear-gradient(top, #0099cc 0%, #077cb2 100%);
+  background: linear-gradient(to bottom, #0099cc 0%, #077cb2 100%); }
+
+.action-button:active {
+  background: -moz-linear-gradient(top, #077cb2 0%, #0099cc 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #077cb2), color-stop(100%, #0099cc));
+  background: -webkit-linear-gradient(top, #077cb2 0%, #0099cc 100%);
+  background: -o-linear-gradient(top, #077cb2 0%, #0099cc 100%);
+  background: -ms-linear-gradient(top, #077cb2 0%, #0099cc 100%);
+  background: linear-gradient(to bottom, #077cb2 0%, #0099cc 100%); }

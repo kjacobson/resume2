@@ -36,9 +36,9 @@
                 </td>
                 <td><%= decode(job.employer) %></td>
                 <td>
-                    <%= render :partial => 'years/link_to_year', :locals => {:user => user, :year => job.start_year} unless job.start_year.nil? %>
+                    <%= render :partial => 'years/link_to_year', :locals => {:user => user, :resume => resume, :year => job.start_year} unless job.start_year.nil? %>
                     &ndash;
-                    <%= render :partial => 'years/link_to_year', :locals => {:user => user, :year => job.end_year} unless job.end_year.nil? %>
+                    <%= render :partial => 'years/link_to_year', :locals => {:user => user, :resume => resume, :year => job.end_year} unless job.end_year.nil? %>
                 </td>
                 <td>
                     <%= decode(job.short_desc) %>

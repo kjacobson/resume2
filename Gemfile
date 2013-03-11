@@ -11,6 +11,7 @@ gem 'authlogic', :git => "git://github.com/odorcicd/authlogic.git", :branch => "
 gem 'htmlentities'
 gem 'haml'
 gem 'sass'
+gem 'compass'
 
 # Use unicorn as the web server
 # gem 'unicorn'

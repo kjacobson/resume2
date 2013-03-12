@@ -75,6 +75,7 @@ class ApplicationController < ActionController::Base
   helper_method :is_user_match?
   def is_user_match?
     return @user_match unless @user_match.nil?
+    return @user_match = false if current_user.nil?
     if !params[:user_id].nil?
       page_user_id = params[:user_id].to_i
     elsif params[:controller] == "users" and !params[:id].nil?

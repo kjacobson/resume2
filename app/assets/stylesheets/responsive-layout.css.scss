@@ -308,6 +308,14 @@ em {
 .deemphasized {
     color: $deemphasizedText;
 }
+blockquote {
+    border-left: 2px solid $almostGray;
+    font-size: 1em;
+    line-height: 1.5em;
+    margin: 0 0 1.5em;
+    max-width: 52em;
+    padding-left: 0.5em;
+}
 
 /* LINKS */
 a:link,

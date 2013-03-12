@@ -1,7 +1,0 @@
-.action-button {
-  border-radius: 2px;
-  background-color: #0099cc; }
-
-.action-button:hover,
-.action-button:focus {
-  background-image: linear-gradient(top, #0099cc, #077cb2); }

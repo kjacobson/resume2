@@ -206,7 +206,7 @@ tr {
         width: 37.5%;
     }
         th .sort-link {
-            background: transparent url("/images/icons/sortable.gif") no-repeat right center;
+            background: transparent image-url("icons/sortable.gif") no-repeat right center;
             padding-right: 35px;
             text-decoration: none;
 
@@ -215,10 +215,10 @@ tr {
             }
         }
         th .sort-link.desc {
-            background-image: url("/images/icons/sort-desc.gif");
+            background-image: image-url("icons/sort-desc.gif");
         }
         th .sort-link.asc {
-            background-image: url("/images/icons/sort-asc.gif");
+            background-image: image-url("icons/sort-asc.gif");
         }
 
 @media screen and (min-width: 720px) {

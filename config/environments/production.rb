@@ -46,4 +46,14 @@ Resume2::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+
+  # Compress JavaScripts and CSS
+  config.assets.compress = true
+  # Don't fallback to assets pipeline if a precompiled asset is missed
+  config.assets.compile = false
+  # Generate digests for assets URLs.
+  config.assets.digest = true
+  # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
+  #  Precompile should include all CSS files under app/assets path that begin with a non-underscore character
+  config.assets.precompile << Proc.new{ |path| /^(?!_)[^\/]*\.css$/.match(File.basename(path)) }
 end

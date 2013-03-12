@@ -9,7 +9,7 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'mysql2'
 gem 'authlogic', :git => "git://github.com/odorcicd/authlogic.git", :branch => "rails3"
 gem 'htmlentities'
-gem 'haml'
+gem 'haml', '= 3.1.6'
 gem 'sass'
 gem 'compass'
 
@@ -43,6 +43,8 @@ group :development, :test do
   #gem 'ZenTest'
 end
 group :assets do
-  gem 'sass-rails' # if running rails 3.1 or greater
+  gem 'sass-rails'
   gem 'compass-rails'
+  gem 'uglifier'
+  gem 'yui-compressor'
 end

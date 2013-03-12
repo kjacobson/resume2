@@ -1,4 +1,5 @@
 @import 'color-vars';
+@import 'compass/css3';
 
 $bodyWidth: 100%;
 $numberOfColumns: 24;
@@ -38,7 +39,7 @@ body {
         overflow: hidden;
     }
         .user-header {
-            border-radius: 8px 0 0 0;
+            @include border-radius(8px 0 0 0);
             bottom: 0;
             clear: both;
             display: inline-block;
@@ -48,7 +49,7 @@ body {
             .user-account-navigation {
                 background: $defaultText;
                 background: rgba(0,0,0,0.7);
-                border-radius: 8px 0 0 0;
+                @include border-radius(8px 0 0 0);
                 color: #fff;
                 float: right;
                 list-style-type: inline;

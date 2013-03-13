@@ -54,7 +54,7 @@
     </div>
     <div class="field">
         <label for="job_short_desc">Short description</label><br />
-        <textarea cols="60" rows="10" id="job_short_desc" name="job[short_desc]"><%= @job.short_desc %></textarea>
+        <textarea cols="60" rows="5" id="job_short_desc" name="job[short_desc]"><%= @job.short_desc %></textarea>
     </div>
     <div class="field">
         <label for="job_long_desc">Long description</label><br />
@@ -91,9 +91,11 @@
         <fieldset class="job-resumes">
             <h2>What resumes would you like this job to appear on?</h2>
 
-            <p class="form-explanation">
-                <strong>This is optional for now</strong>, but no one will see this job until it&rsquo;s assigned to one or more resumes.
-            </p>
+            <% if @job.resumes.count == 0 %>
+                <p class="form-explanation">
+                    <strong>This is optional for now</strong>, but no one will see this job until it&rsquo;s assigned to one or more resumes.
+                </p>
+            <% end %>
             <select multiple name="resume_ids[]">
                 <% @resumes.each do |rez| %>
                     <option value="<%= rez.id %>" <%= 'selected' if (@j_resumes and @j_resumes.include?(rez)) or rez == @resume %>><%= rez.title %></option>

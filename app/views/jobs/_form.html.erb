@@ -73,7 +73,8 @@
                 Separated by commas. You&rsquo;ll be able to associate these same skills with other jobs, too.
             </p>
         <% end %>
-        <textarea name="skills" placeholder="e.g. running, jumping, skipping, carpentry"><%= @skills.collect{ |x| x.title }.join(", ") %></textarea>
+        <!--<label>Allowed characters: A-Z, 0-9, ., -, _, +</label>-->
+        <textarea cols="50" rows="4" name="skills" placeholder="e.g. running, jumping, skipping, carpentry"><%= @skills.collect{ |x| x.title }.join(", ") %></textarea>
     </fieldset>
 
     <fieldset class="job-softwares">
@@ -84,7 +85,8 @@
                 Separated by commas. You&rsquo;ll be able to associate these same software with other jobs, too.
             </p>
         <% end %>
-        <textarea name="softwares" placeholder="e.g. photoshop, excel, illustrator"><%= @softwares.collect{ |x| x.title }.join(", ") %></textarea>
+        <!--<label>Allowed characters: A-Z, 0-9, ., -, _, +</label>-->
+        <textarea cols="50" rows="4" name="softwares" placeholder="e.g. photoshop, excel, illustrator"><%= @softwares.collect{ |x| x.title }.join(", ") %></textarea>
     </fieldset>
 
     <% if @resumes.count > 0 %>

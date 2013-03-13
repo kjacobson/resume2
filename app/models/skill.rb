@@ -1,5 +1,7 @@
 class Skill < ActiveRecord::Base
+    validates_presence_of :title
     validates_uniqueness_of :title
+    validates_format_of :title, :with => /\A([a-zA-Z0-9\-\_\+]*)\Z/i
 
     has_many :job_skills, :dependent => :destroy
     has_many :jobs, :through => :job_skills, :uniq => true
@@ -12,11 +14,11 @@ class Skill < ActiveRecord::Base
     end
 
     def shortest_name
-        if !abbreviation.nil? and abbreviation != ""
-            return abbreviation
-        else
-            return title
-        end
+      if !abbreviation.nil? and abbreviation != ""
+        return abbreviation
+      else
+        return title
+      end
     end
 
     def discipline(user)
@@ -30,23 +32,23 @@ class Skill < ActiveRecord::Base
     end
 
     def self.rank_skills
-        skills = self.all
-        skills = skills.sort! { |a,b| b.job_skills.count <=> a.job_skills.count }
-        rank = skills.size
-        skills.each do |skill|
-            skill.update_rank(rank)
-            rank -= 1
-        end
+      skills = self.all
+      skills = skills.sort! { |a,b| b.job_skills.count <=> a.job_skills.count }
+      rank = skills.size
+      skills.each do |skill|
+        skill.update_rank(rank)
+        rank -= 1
+      end
     end
 
     def update_rank(rank)
-        self.rank = rank
-        if self.save
-             return true
-        end
+      self.rank = rank
+      if self.save
+        return true
+      end
     end
 
     def job_count
-        self.jobs.count
+      self.jobs.count
     end
 end

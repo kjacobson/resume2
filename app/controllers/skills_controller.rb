@@ -98,6 +98,7 @@ class SkillsController < ApplicationController
     @skill = Skill.find_by_title(params[:skill][:title])
     if @skill.nil?
       @skill = Skill.new(params[:skill])
+      # TODO: this should probably go in the model
       @skill.slug = @skill.slug.gsub(" ","-")
     end
 

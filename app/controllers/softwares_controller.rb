@@ -95,6 +95,7 @@ class SoftwaresController < ApplicationController
     @software = Software.find_by_title(params[:software][:title])
     if @software.nil?
       @software = Software.new(params[:software])
+      # TODO: this should probably go in the model
       @software.slug = @software.slug.gsub(" ","-")
     end
 

@@ -1,1 +1,1 @@
-<%=  render :partial => "common/confirm_delete", :locals => { :resource_type => "software", :resource_name => @software.title, :action_url => u_software_path(@user, @software) } %>
+<%=  render :partial => "common/confirm_delete", :locals => { :resource_type => "software", :resource => @software, :resource_name => @software.title, :action_url => u_software_path(@user, @software) } %>

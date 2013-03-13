@@ -1,1 +1,1 @@
-<%=  render :partial => "common/confirm_delete", :locals => { :resource_type => "discipline", :resource_name => @discipline.title, :action_url => skill_path(@user, @discipline) } %>
+<%=  render :partial => "common/confirm_delete", :locals => { :resource_type => "discipline", :resource => @discipline, :resource_name => @discipline.title, :action_url => skill_path(@user, @discipline) } %>

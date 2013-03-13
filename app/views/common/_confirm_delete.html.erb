@@ -16,9 +16,9 @@
     <section class="primary">
         <h1>You won&rsquo;t be able to get it back.</h1>
         <h2>(We don&rsquo;t yet have the capability to undo changes like this.)</h2>
-        <form action="<%= action_url %>" method="post">
+        <%= form_for resource, :method => "post", :url => action_url do |f| %>
             <input type="hidden" value="delete" name="_method" />
             <input class="action-button" type="submit" value="Delete it anyway" />
-        </form>
+        <% end %>
     </section>
 <% end %>

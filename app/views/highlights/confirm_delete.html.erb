@@ -1,1 +1,1 @@
-<%=  render :partial => "common/confirm_delete", :locals => { :resource_type => "highlight", :resource_name => "", :action_url => highlight_path(@user, @highlight) } %>
+<%=  render :partial => "common/confirm_delete", :locals => { :resource_type => "highlight", :resource => @highlight, :resource_name => "", :action_url => highlight_path(@user, @highlight) } %>

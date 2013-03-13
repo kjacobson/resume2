@@ -13,13 +13,15 @@
             <th>
                 <%= render :partial => 'shared/sortable_link', :locals => { :header => 'Date created', :column_name => 'created_at' } %>
             </th>
-            <th>
-                Jobs
-            </th>
-            <th>
-                Unexpired links
-            </th>
-            <th></th>
+            <% if is_user_match? %>
+                <th>
+                    Jobs
+                </th>
+                <th>
+                    Unexpired links
+                </th>
+                <th></th>
+            <% end %>
         </tr>
 
         <% @resumes.each do |resume| %>
@@ -31,22 +33,22 @@
                     <%= friendly_date(resume.created_at) %>
                 </td>
                 <td>
-                    <a href="<%= jobs_path({:resume_id => resume.id}) %>" rel="internal" title="Manage links for this resume">
+                    <a href="<%= jobs_path({:resume_id => resume.id}) %>" rel="internal" title="See all jobs for this resume">
                         <%= resume.job_count %>
                     </a>
                 </td>
-                <td>
-                    <a href="<%= links_path({:resume_id => resume.id}) %>" rel="internal" title="See all jobs for this resume">
-                        <%= resume.link_count %>
-                    </a>
-                </td>
-                <td>
-                    <% if is_user_match? %>
+                <% if is_user_match? %>
+                    <td>
+                        <a href="<%= resume_links_path({:resume_id => resume.id}) %>" rel="internal" title="Manage links for this resume">
+                            <%= resume.link_count %>
+                        </a>
+                    </td>
+                    <td>
                         <a href="<%= edit_resume_path(@user, resume) %>" class="link-to-editable edit-link" rel="internal" title="Edit this resume">edit</a>
                         |
-                        <a href="<%= links_path(@user, resume) %>" class="link-to-editable" rel="internal" title="Share this resume by giving out links">share</a>
-                    <% end %>
-                </td>
+                        <a href="<%= resume_links_path(@user, resume) %>" class="link-to-editable" rel="internal" title="Share this resume by giving out links">share</a>
+                    </td>
+                <% end %>
             </tr>
         <% end %>
     </table>

@@ -54,55 +54,57 @@
     </div>
     <div class="field">
         <label for="job_short_desc">Short description</label><br />
-        <textarea cols="60" rows="5" id=    "job_short_desc" name="job[short_desc]"><%= @job.short_desc %></textarea>
+        <textarea class="wide" rows="5" id=    "job_short_desc" name="job[short_desc]"><%= @job.short_desc %></textarea>
     </div>
     <div class="field">
         <label for="job_long_desc">Long description</label><br />
-        <textarea cols="60" rows="20" id="job_long_desc" name="job[long_desc]"><%= @job.long_desc %></textarea>
+        <textarea class="wide" rows="20" id="job_long_desc" name="job[long_desc]"><%= @job.long_desc %></textarea>
     </div>
     <div class="field">
         <label for="job_reason">Reason for leaving</label><br />
-        <textarea cols="60" rows="4" id="job_reason" name="job[reason]"><%= @job.reason %></textarea>
+        <textarea class="wide" rows="4" id="job_reason" name="job[reason]"><%= @job.reason %></textarea>
     </div>
 
     <fieldset class="job-skills">
         <h2>Skills</h2>
+        <!--<label>Allowed characters: A-Z, 0-9, ., -, _, +</label>-->
+        <textarea class="wide" rows="4" name="skills" placeholder="e.g. running, jumping, skipping, carpentry"><%= @skills.collect{ |x| x.title }.join(", ") %></textarea>
+
         <% if @job.skills.count <= 1 %>
             <p class="form-explanation">
                 <strong>What skills did you use in this job?</strong>
                 Separated by commas. You&rsquo;ll be able to associate these same skills with other jobs, too.
             </p>
         <% end %>
-        <!--<label>Allowed characters: A-Z, 0-9, ., -, _, +</label>-->
-        <textarea cols="50" rows="4" name="skills" placeholder="e.g. running, jumping, skipping, carpentry"><%= @skills.collect{ |x| x.title }.join(", ") %></textarea>
     </fieldset>
 
     <fieldset class="job-softwares">
         <h2>Software/tools</h2>
+        <!--<label>Allowed characters: A-Z, 0-9, ., -, _, +</label>-->
+        <textarea class="wide" rows="4" name="softwares" placeholder="e.g. photoshop, excel, illustrator"><%= @softwares.collect{ |x| x.title }.join(", ") %></textarea>
+
         <% if @job.softwares.count <= 1 %>
             <p class="form-explanation">
                 <strong>What tools and software programs (apps, APIs, source control) did you use in this job?</strong>
                 Separated by commas. You&rsquo;ll be able to associate these same software with other jobs, too.
             </p>
         <% end %>
-        <!--<label>Allowed characters: A-Z, 0-9, ., -, _, +</label>-->
-        <textarea cols="50" rows="4" name="softwares" placeholder="e.g. photoshop, excel, illustrator"><%= @softwares.collect{ |x| x.title }.join(", ") %></textarea>
     </fieldset>
 
     <% if @resumes.count > 0 %>
         <fieldset class="job-resumes">
             <h2>What resumes would you like this job to appear on?</h2>
+            <select multiple class="medium" name="resume_ids[]" class="medium">
+                <% @resumes.each do |rez| %>
+                    <option value="<%= rez.id %>" <%= 'selected' if (@j_resumes and @j_resumes.include?(rez)) or rez == @resume %>><%= rez.title %></option>
+                <% end %>
+            </select>
 
             <% if @job.resumes.count == 0 %>
                 <p class="form-explanation">
                     <strong>This is optional for now</strong>, but no one will see this job until it&rsquo;s assigned to one or more resumes.
                 </p>
             <% end %>
-            <select multiple name="resume_ids[]" class="medium">
-                <% @resumes.each do |rez| %>
-                    <option value="<%= rez.id %>" <%= 'selected' if (@j_resumes and @j_resumes.include?(rez)) or rez == @resume %>><%= rez.title %></option>
-                <% end %>
-            </select>
         </fieldset>
      <% else %>
         <h2>You haven&rsquo;t created any resumes yet.</h2>

@@ -19,9 +19,10 @@ input[type="color"],
 select {
     border: 2px solid $inputBorder;
     @include border-radius(2px);
+    display: block;
     font-size: 0.875em;
     line-height: 1.5em;
-    margin-bottom: 1em;
+    margin: 0 2px 1em;
     overflow: auto;
     padding: 1px 4px;
 }
@@ -30,16 +31,29 @@ select[multiple] {
 }
 input.narrow,
 select[multiple].narrow,
-textarea.narrow {
+textarea.narrow,
+.form-explanation {
     width: 12em;
 }
 input.medium,
 select[multiple].medium,
-textarea.medium {
+textarea.medium,
+.form-explanation {
     width: 24em;
 }
 input.wide,
 select[multiple].wide,
-textarea.wide {
+textarea.wide,
+.form-explanation {
     width: 36em;
+}
+
+
+section p.form-explanation,
+.form-explanation {
+    background-color: #ffc;
+    @include border-radius(4px);
+    font-size: 0.875em;
+    margin-top: -0.5em;
+    padding: 6px;
 }

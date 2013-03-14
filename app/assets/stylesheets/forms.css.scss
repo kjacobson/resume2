@@ -1,0 +1,45 @@
+@import 'color-vars';
+@import 'compass/css3';
+
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+select {
+    border: 2px solid $inputBorder;
+    @include border-radius(2px);
+    font-size: 0.875em;
+    line-height: 1.5em;
+    margin-bottom: 1em;
+    overflow: auto;
+    padding: 1px 4px;
+}
+select[multiple] {
+    height: auto;
+}
+input.narrow,
+select[multiple].narrow,
+textarea.narrow {
+    width: 12em;
+}
+input.medium,
+select[multiple].medium,
+textarea.medium {
+    width: 24em;
+}
+input.wide,
+select[multiple].wide,
+textarea.wide {
+    width: 36em;
+}

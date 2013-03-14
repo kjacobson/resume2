@@ -4,8 +4,8 @@
         <h2>
             <%=  @resume.title %>
             <% if is_user_match? %>
-                <a href="<%= edit_resume_path(@user, @resume) %>" class="link-to-editable edit-link" rel="internal" title="Edit this resume">[edit]</a>
-                <a href="<%= confirm_delete_resume_path(@user, @resume) %>" class="link-to-editable delete-link" rel="internal" title="Delete this resume">[delete]</a>
+                <a href="<%= edit_resume_path(@user, @resume) %>" class="link-to-editable edit-link" title="Edit this resume">[edit]</a>
+                <a href="<%= confirm_delete_resume_path(@user, @resume) %>" class="link-to-editable delete-link" title="Delete this resume">[delete]</a>
             <% end %>
         </h2>
         <% if is_user_match? && @user.novice? %>
@@ -16,23 +16,23 @@
         <% end %>
         <%=  render :partial => "users/contact_info", :locals => {:user => @user, :show_name => false } %>
         <% if is_user_match? %>
-            <a href="<%= resume_links_path(@user, @resume) %>" class="link-to-editable" rel="internal" title="Share this resume by giving out links">Share this resume</a>
+            <a href="<%= resume_links_path(@user, @resume) %>" class="link-to-editable" title="Share this resume by giving out links">Share this resume</a>
         <% end %>
     </hgroup>
 <% end %>
 
 <% content_for :main do %>
     <section class="primary">
-        <h1><a href="/users/<%= @user.id %>/resumes/<%= @resume.id %>/jobs" rel="internal" title="See all jobs on this resume">Recent Positions/Projects</a></h1>
+        <h1><a href="/users/<%= @user.id %>/resumes/<%= @resume.id %>/jobs" title="See all jobs on this resume">Recent Positions/Projects</a></h1>
 
         <% if @jobs.count >= 1 %>
             <%= render :partial => "jobs/small_list", :locals => {:jobs => @jobs, :user => @user, :resume => @resume} %>
-            [&hellip;] <a href="/users/<%= @user.id %>/resumes/<%= @resume.id %>/jobs" rel="internal" title="">See all jobs</a>
+            [&hellip;] <a href="/users/<%= @user.id %>/resumes/<%= @resume.id %>/jobs" title="">See all jobs</a>
         <% end %>
 
         <br />
         <% if is_user_match? %>
-            <a href="<%= edit_resume_path({:user_id => @user.id, :id => @resume.id}) %>" class="link-to-editable" rel="internal" title="Add a new job">Add jobs</a>
+            <a href="<%= edit_resume_path({:user_id => @user.id, :id => @resume.id}) %>" class="link-to-editable" title="Add a new job">Add jobs</a>
         <% end %>
     </section>
     <% if @disciplines.count >= 1 or is_user_match? %>
@@ -44,7 +44,7 @@
 
     <section class="secondary">
         <h1>
-            <a href="/users/<%= @user.id %>/resumes/<%= @resume.id %>/softwares" rel="internal" title="See a list of tools and software applications I've used professionally">Tools/Software</a>
+            <a href="/users/<%= @user.id %>/resumes/<%= @resume.id %>/softwares" title="See a list of tools and software applications I've used professionally">Tools/Software</a>
         </h1>
 
         <% if @softwares.count >= 1 %>
@@ -54,7 +54,7 @@
 
     <section class="secondary extended">
         <h1>
-            <a href="/users/<%= @user.id %>/resumes/<%= @resume.id %>/skills" rel="internal" title="See a list of my skills">Skills</a>
+            <a href="/users/<%= @user.id %>/resumes/<%= @resume.id %>/skills" title="See a list of my skills">Skills</a>
         </h1>
 
         <% if @disciplines and @disciplines.count >= 1 %>
@@ -63,7 +63,7 @@
             <% if is_user_match? %>
                 <p>
                     <strong>Your skills are orphans!</strong> Giving them disciplines will add some structure and clarity to your resume.
-                    <a href="<%= skills_path(@user) %>" rel="internal" title="Organize skills under disciplines.">Right this way.</a>
+                    <a href="<%= skills_path(@user) %>" title="Organize skills under disciplines.">Right this way.</a>
                 </p>
             <% end %>
             <%=  render :partial => "skills/small_list", :locals => { :user => @user, :resume => @resume, :skills => @skills } %>

@@ -3,7 +3,7 @@
         <h1>
             <%= decode(@software.title) %>
             <% if is_user_match? %>
-                <a href="<%= confirm_delete_software_path({:user_id => @user.id, :id => @software.slug}) %>" class="link-to-editable delete-link" rel="internal" title="Delete this software">[delete]</a>
+                <a href="<%= confirm_delete_software_path({:user_id => @user.id, :id => @software.slug}) %>" class="link-to-editable delete-link" title="Delete this software">[delete]</a>
             <% end %>
         </h1>
     </hgroup>

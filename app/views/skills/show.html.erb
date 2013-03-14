@@ -3,7 +3,7 @@
         <h1 class="primary-type-title skill-title">
             <%= decode(@skill.title) %>
             <% if is_user_match? %>
-                <a href="<%= confirm_delete_skill_path({:user_id => @user.id, :id => @skill.slug}) %>" class="link-to-editable delete-link" rel="internal" title="Delete this skill">[delete]</a>
+                <a href="<%= confirm_delete_skill_path({:user_id => @user.id, :id => @skill.slug}) %>" class="link-to-editable delete-link" title="Delete this skill">[delete]</a>
             <% end %>
         </h1>
     </hgroup>
@@ -24,7 +24,7 @@
                 <p>
                     <strong>Highlights put your skills in context</strong> A highlight is an example of how you used a particular
                     skill at a particular job.
-                    <a href="<%= new_highlight_path(@user, :skill_id => @skill.id) %>" rel="internal" title="Add a highlight for this skill">Here&rsquo;s your chance</a>.
+                    <a href="<%= new_highlight_path(@user, :skill_id => @skill.id) %>" title="Add a highlight for this skill">Here&rsquo;s your chance</a>.
                 </p>
             <% else %>
                 <p>This user hasn&rsquo;t listed highlights from this skill.</p>

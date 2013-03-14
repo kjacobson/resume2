@@ -7,5 +7,5 @@
     path = software_path(:user_id => user.id, :id => software.slug)
   end
 %>
-<a href="<%= path %>" rel="internal" title="See other positions where I used <%= decode(software.title) %>">
+<a href="<%= path %>" title="See other positions where I used <%= decode(software.title) %>">
     <%= decode(software.title) %></a>

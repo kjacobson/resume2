@@ -9,11 +9,11 @@
 
 <% content_for :main do %>
     <section class="primary extended">
-        <a href="/signup" class="action-button" rel="internal" title="">Sign up</a>
+        <a href="/signup" class="action-button" title="">Sign up</a>
         <% if current_user %>
-            <a href="/logout" rel="internal" title="">Log out</a>
+            <a href="/logout" title="">Log out</a>
         <% else %>
-            <a href="/login" rel="internal" title="">Log in</a>
+            <a href="/login" title="">Log in</a>
         <% end %>
 
         <h1>

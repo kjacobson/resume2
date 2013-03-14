@@ -6,8 +6,8 @@
         <h1 class="primary-type-title job-title">
             <%= decode(@job.title) %>
             <% if is_user_match? %>
-                <a href="<%= edit_job_path(@user, @job) %>" class="link-to-editable edit-link" rel="internal" title="Edit this job">[edit]</a>
-                <a href="<%= confirm_delete_job_path(@user, @job) %>" class="link-to-editable delete-link" rel="internal" title="Delete this job">[delete]</a>
+                <a href="<%= edit_job_path(@user, @job) %>" class="link-to-editable edit-link" title="Edit this job">[edit]</a>
+                <a href="<%= confirm_delete_job_path(@user, @job) %>" class="link-to-editable delete-link" title="Delete this job">[delete]</a>
             <% end %>
         </h1>
     </hgroup>
@@ -80,7 +80,7 @@
                 <p>
                     <strong>Highlights put your skills in context</strong> A highlight is an example of how you used a particular
                     skill at a particular job.
-                    <a href="<%= new_highlight_path(@user, :job_id => @job.id) %>" rel="internal" title="Add a highlight for this job">Here&rsquo;s your chance</a>.
+                    <a href="<%= new_highlight_path(@user, :job_id => @job.id) %>" title="Add a highlight for this job">Here&rsquo;s your chance</a>.
                 </p>
             <% else %>
                 <p>This user hasn&rsquo;t listed highlights from this job.</p>
@@ -98,7 +98,7 @@
                 <% if is_user_match? %>
                     <p>
                         <strong>Your skills are orphans!</strong> Giving them disciplines will add some structure and clarity to your resume.
-                        <a href="<%= skills_path(@user) %>" rel="internal" title="Organize skills under disciplines.">Right this way</a>.
+                        <a href="<%= skills_path(@user) %>" title="Organize skills under disciplines.">Right this way</a>.
                     </p>
                 <% end %>
                 <%=  render :partial => "skills/small_list", :locals => { :user => @user, :resume => @resume, :skills => @skills } %>

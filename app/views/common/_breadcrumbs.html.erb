@@ -16,7 +16,7 @@
             </li>
             <% if first_collection = @breadcrumbs.try(:[], 'first_collection') and first_collection != "highlights" %>
                 <li>
-                    <a href="/users/<%= @user.id %>/resumes/<%= @resume.id %>/<%= first_collection %>" rel="internal" title="See the <%= first_collection %> for this resume">
+                    <a href="/users/<%= @user.id %>/resumes/<%= @resume.id %>/<%= first_collection %>" title="See the <%= first_collection %> for this resume">
                         <%= first_collection.capitalize %>
                     </a>
                 </li>
@@ -35,13 +35,13 @@
                       end
                     %>
                     <li>
-                        <a href="/users/<%= @user.id %>/resumes/<%= @resume.id %>/<%= first_collection %>/<%= id %>" rel="internal">
+                        <a href="/users/<%= @user.id %>/resumes/<%= @resume.id %>/<%= first_collection %>/<%= id %>">
                             <%= title %>
                         </a>
                     </li>
                     <% if second_collection = @breadcrumbs.try(:[], 'second_collection') %>
                         <li>
-                            <a href="/users/<%= @user.id %>/resumes/<%= @resume.id %>/<%= first_collection %>/<%= id %>/<%= second_collection %>" rel="internal" title="See the <%= second_collection %> for this <%= first_collection.singularize %>">
+                            <a href="/users/<%= @user.id %>/resumes/<%= @resume.id %>/<%= first_collection %>/<%= id %>/<%= second_collection %>" title="See the <%= second_collection %> for this <%= first_collection.singularize %>">
                                 <%=  second_collection.capitalize %>
                             </a>
                         </li>

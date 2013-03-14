@@ -1,12 +1,12 @@
 <ul class="resume-list">
     <% resumes.each do |resume| %>
         <li>
-            <a href="<%= resume_path(user, resume) %>" title="See this resume" rel="internal">
+            <a href="<%= resume_path(user, resume) %>" title="See this resume">
                 <%= resume.title %>
             </a>
             <% if is_user_match? %>
-                <a href="<%= edit_resume_path(user, resume) %>" class="link-to-editable edit-link" title="Edit this resume" rel="internal">[edit]</a>
-                <a href="<%= resume_links_path(@user, @resume) %>" class="link-to-editable" rel="internal" title="Share this resume by giving out links">[share]</a>
+                <a href="<%= edit_resume_path(user, resume) %>" class="link-to-editable edit-link" title="Edit this resume">[edit]</a>
+                <a href="<%= resume_links_path(@user, @resume) %>" class="link-to-editable" title="Share this resume by giving out links">[share]</a>
             <% end %>
         </li>
     <% end %>

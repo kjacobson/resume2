@@ -33,20 +33,20 @@
                     <%= friendly_date(resume.created_at) %>
                 </td>
                 <td>
-                    <a href="<%= jobs_path({:resume_id => resume.id}) %>" rel="internal" title="See all jobs for this resume">
+                    <a href="<%= jobs_path({:resume_id => resume.id}) %>" title="See all jobs for this resume">
                         <%= resume.job_count %>
                     </a>
                 </td>
                 <% if is_user_match? %>
                     <td>
-                        <a href="<%= resume_links_path({:resume_id => resume.id}) %>" rel="internal" title="Manage links for this resume">
+                        <a href="<%= resume_links_path({:resume_id => resume.id}) %>" title="Manage links for this resume">
                             <%= resume.link_count %>
                         </a>
                     </td>
                     <td>
-                        <a href="<%= edit_resume_path(@user, resume) %>" class="link-to-editable edit-link" rel="internal" title="Edit this resume">edit</a>
+                        <a href="<%= edit_resume_path(@user, resume) %>" class="link-to-editable edit-link" title="Edit this resume">edit</a>
                         |
-                        <a href="<%= resume_links_path(@user, resume) %>" class="link-to-editable" rel="internal" title="Share this resume by giving out links">share</a>
+                        <a href="<%= resume_links_path(@user, resume) %>" class="link-to-editable" title="Share this resume by giving out links">share</a>
                     </td>
                 <% end %>
             </tr>

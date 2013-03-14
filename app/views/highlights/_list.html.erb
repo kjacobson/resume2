@@ -17,5 +17,5 @@
     <% end %>
 </ul>
 <% if is_user_match? %>
-    <a href="<%= new_highlight_path(user, {:job_id => job_id || nil, :skill_id => skill_id || nil}) %>" class="link-to-editable" rel="internal" title="Add another highlight">Add another highlight</a>
+    <a href="<%= new_highlight_path(user, {:job_id => job_id || nil, :skill_id => skill_id || nil}) %>" class="link-to-editable" title="Add another highlight">Add another highlight</a>
 <% end %>

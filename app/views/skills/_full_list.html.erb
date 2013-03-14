@@ -20,7 +20,7 @@
             </td>
             <td>
                 <% if !resume.nil? %>
-                    <a href="<%= resume_skill_jobs_path({:user_id => user.id, :resume_id => resume.id, :skill_id => skill.id}) %>" rel="internal" title="See all the jobs using this skill">
+                    <a href="<%= resume_skill_jobs_path({:user_id => user.id, :resume_id => resume.id, :skill_id => skill.id}) %>" title="See all the jobs using this skill">
                 <% end %>
                     <%= skill.job_count %>
                 <% if !resume.nil? %></a><% end %>
@@ -30,7 +30,7 @@
 </table>
 
 <% if is_user_match? %>
-    <a href="<%= new_skill_path(:user_id => user.id) %>" class="link-to-editable" rel="internal" title="">
+    <a href="<%= new_skill_path(:user_id => user.id) %>" class="link-to-editable" title="">
         Add skills
     </a>
 <% end %>

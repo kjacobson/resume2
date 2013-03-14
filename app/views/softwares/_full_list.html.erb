@@ -19,7 +19,7 @@
             </td>          
             <td>
                 <% if !resume.nil? %>
-                    <a href="<%= resume_software_jobs_path({:user_id => user.id, :resume_id => resume.id, :software_id => software.id}) %>" rel="internal" title="See all the jobs using this software">
+                    <a href="<%= resume_software_jobs_path({:user_id => user.id, :resume_id => resume.id, :software_id => software.id}) %>" title="See all the jobs using this software">
                 <% end %>
                     <%= software.job_count %>
                 <% if !resume.nil? %></a><% end %>
@@ -29,7 +29,7 @@
 </table>
 
 <% if is_user_match? %>
-    <a href="<%= new_software_path(:user_id => user.id) %>" class="link-to-editable" rel="internal" title="">
+    <a href="<%= new_software_path(:user_id => user.id) %>" class="link-to-editable" title="">
         Add softwares
     </a>
 <% end %>

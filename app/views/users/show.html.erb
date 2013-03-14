@@ -1,7 +1,7 @@
 <% content_for :header do %>
     <% if @user.phone.nil? or @user.phone.empty? %>
         <p class="message suggestion">
-            You might want to add your contact information. You can do so <a href="<%= edit_user_path(@user) %>" class="link-to-editable" rel="internal" title="Edit your user profile">here</a>.
+            You might want to add your contact information. You can do so <a href="<%= edit_user_path(@user) %>" class="link-to-editable" title="Edit your user profile">here</a>.
         </p>
     <% end %>
 <% end %>
@@ -14,12 +14,12 @@
 
 <% content_for :main do %>
     <section class="primary">
-        <h1><a href="<%= resumes_path(@user) %>" rel="internal" title="See all your resumes">Your resumes</a></h1>
+        <h1><a href="<%= resumes_path(@user) %>" title="See all your resumes">Your resumes</a></h1>
         <% if @resumes.count > 0 %>
             <%= render :partial => 'resumes/list', :locals => { :user => @user, :resumes => @resumes } %>
         <% end %>
         <% if is_user_match? %>
-            <a href="<%= new_resume_path(:user_id => @user.id) %>" class="link-to-editable" rel="internal" title="Create a resume">
+            <a href="<%= new_resume_path(:user_id => @user.id) %>" class="link-to-editable" title="Create a resume">
                 Add <%= @resumes.count > 0 ? "another" : "a" %> resume to your account
             </a>
         <% end %>
@@ -31,21 +31,21 @@
     </section>
 
     <section class="primary">
-        <h1><a href="<%= jobs_path(@user) %>" rel="internal" title="See all your jobs">Your jobs</a></h1>
+        <h1><a href="<%= jobs_path(@user) %>" title="See all your jobs">Your jobs</a></h1>
 
         <% if @jobs %>
             <%= render :partial => 'jobs/small_list', :locals => { :user => @user, :resume => nil, :jobs => @jobs } %>
         <% end %>
 
         <% if is_user_match? %>
-            <a href="<%= new_job_path(:user_id => @user.id) %>" class="link-to-editable" rel="internal" title="Add a new job">
+            <a href="<%= new_job_path(:user_id => @user.id) %>" class="link-to-editable" title="Add a new job">
                 Add a job
             </a>
         <% end %>
     </section>
 
     <section class="secondary">
-        <h1><a href="<%= disciplines_path(@user) %>" rel="internal" title="See all your disciplines">Your disciplines</a></h1>
+        <h1><a href="<%= disciplines_path(@user) %>" title="See all your disciplines">Your disciplines</a></h1>
 
         <ul class="disciplines-list">
             <li>
@@ -58,7 +58,7 @@
                         <%= render :partial => 'skills/small_list', :locals => { :user => @user, :resume => nil, :skills => skills } %>
                     <% end %>
                     <% if is_user_match? %>
-                        <a href="<%= edit_discipline_path(:user_id => @user.id, :id => discipline.id) %>" class="link-to-editable" rel="internal" title="">
+                        <a href="<%= edit_discipline_path(:user_id => @user.id, :id => discipline.id) %>" class="link-to-editable" title="">
                             Associate <%= 'more ' if skills.count > 0 %>skills with this discipline
                         </a>
                     <% end %>
@@ -68,33 +68,33 @@
         </ul>
 
         <% if is_user_match? %>
-            <a href="<%= new_discipline_path(@user) %>" class="link-to-editable" rel="internal" title="Add a new discipline">Add disciplines</a>
+            <a href="<%= new_discipline_path(@user) %>" class="link-to-editable" title="Add a new discipline">Add disciplines</a>
         <% end %>
     </section>
 
     <section class="secondary extended">
-        <h1><a href="<%= skills_path(@user) %>" rel="internal" title="See all your skills">Your skills</a></h1>
+        <h1><a href="<%= skills_path(@user) %>" title="See all your skills">Your skills</a></h1>
 
         <% if @skills %>
             <%= render :partial => 'skills/small_list', :locals => { :user => @user, :resume => nil, :skills => @skills } %>
         <% end %>
 
         <% if is_user_match? %>
-            <a href="<%= new_skill_path(:user_id => @user.id) %>" class="link-to-editable" rel="internal" title="">
+            <a href="<%= new_skill_path(:user_id => @user.id) %>" class="link-to-editable" title="">
                 Add skills
             </a>
         <% end %>
     </section>
 
     <section class="secondary extended">
-        <h1><a href="<%= softwares_path(@user) %>" rel="internal" title="See all your softwares">Your software/tools</a></h1>
+        <h1><a href="<%= softwares_path(@user) %>" title="See all your softwares">Your software/tools</a></h1>
 
         <% if @softwares %>
             <%= render :partial => 'softwares/list', :locals => { :user => @user, :softwares => @softwares } %>
         <% end %>
 
         <% if is_user_match? %>
-            <a href="<%= new_software_path(:user_id => @user.id) %>" class="link-to-editable" rel="internal" title="">
+            <a href="<%= new_software_path(:user_id => @user.id) %>" class="link-to-editable" title="">
                 Add softwares
             </a>
         <% end %>

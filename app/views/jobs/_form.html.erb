@@ -1,9 +1,11 @@
-<%= form_for @job, :url => @url do |f| %>
+<% content_for :head do %>
     <% if @job.errors.any? %>
         <p class="error-explanation">
             <%= pluralize(@job.errors.count, "error") %> prohibited this job from being saved.
         </p>
     <% end %>
+<% end %>
+<%= form_for @job, :url => @url do |f| %>
     <div class="field">
         <label for="job_title">Title (required)</label><br />
         <input type="text" class="medium" id="job_title" name="job[title]" placeholder="e.g. Lead Interaction Designer" value="<%= @job.title %>" />

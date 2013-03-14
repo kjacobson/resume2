@@ -26,6 +26,9 @@ select {
     overflow: auto;
     padding: 1px 4px;
 }
+select {
+    display: inline-block;
+}
 select[multiple] {
     height: auto;
 }
@@ -48,6 +51,18 @@ textarea.wide,
     width: 36em;
 }
 
+
+section p.error-explanation,
+.error-explanation,
+section p.form-error,
+.form-error {
+    background-color: $errorBg;
+    border: 1px solid $errorBorder;
+    @include border-radius(4px);
+    display: inline-block;
+    font-size: 0.875em;
+    padding: 6px;
+}
 
 section p.form-explanation,
 .form-explanation {

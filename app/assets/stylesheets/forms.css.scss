@@ -32,19 +32,19 @@ select[multiple] {
 input.narrow,
 select[multiple].narrow,
 textarea.narrow,
-.form-explanation {
+.form-explanation.narrow {
     width: 12em;
 }
 input.medium,
 select[multiple].medium,
 textarea.medium,
-.form-explanation {
+.form-explanation.medium {
     width: 24em;
 }
 input.wide,
 select[multiple].wide,
 textarea.wide,
-.form-explanation {
+.form-explanation.wide {
     width: 36em;
 }
 

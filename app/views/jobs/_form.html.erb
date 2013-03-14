@@ -71,7 +71,7 @@
         <textarea class="wide" rows="4" name="skills" placeholder="e.g. running, jumping, skipping, carpentry"><%= @skills.collect{ |x| x.title }.join(", ") %></textarea>
 
         <% if @job.skills.count <= 1 %>
-            <p class="form-explanation">
+            <p class="form-explanation wide">
                 <strong>What skills did you use in this job?</strong>
                 Separated by commas. You&rsquo;ll be able to associate these same skills with other jobs, too.
             </p>
@@ -84,7 +84,7 @@
         <textarea class="wide" rows="4" name="softwares" placeholder="e.g. photoshop, excel, illustrator"><%= @softwares.collect{ |x| x.title }.join(", ") %></textarea>
 
         <% if @job.softwares.count <= 1 %>
-            <p class="form-explanation">
+            <p class="form-explanation wide">
                 <strong>What tools and software programs (apps, APIs, source control) did you use in this job?</strong>
                 Separated by commas. You&rsquo;ll be able to associate these same software with other jobs, too.
             </p>
@@ -101,14 +101,14 @@
             </select>
 
             <% if @job.resumes.count == 0 %>
-                <p class="form-explanation">
+                <p class="form-explanation medium">
                     <strong>This is optional for now</strong>, but no one will see this job until it&rsquo;s assigned to one or more resumes.
                 </p>
             <% end %>
         </fieldset>
      <% else %>
         <h2>You haven&rsquo;t created any resumes yet.</h2>
-        <p class="form-explanation">
+        <p class="form-explanation medium">
             <strong>This is no big deal</strong>, but no one will see this job until it&rsquo;s assigned to one or more resumes.
             You can <a href="<%= new_resume_path({:user => @user}) %>" target="_blank" title="Create a new resume">create one now</a>
             or later.

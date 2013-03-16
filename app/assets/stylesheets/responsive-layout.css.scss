@@ -1,5 +1,6 @@
 @import 'color-vars';
 @import 'compass/css3';
+@import "widgets/action-button";
 
 $bodyWidth: 100%;
 $numberOfColumns: 24;
@@ -356,6 +357,13 @@ a:link:focus {
 a.link-to-editable:link,
 a.link-to-editable:visited {
     color: $accent;
+}
+
+/* BUTTONS */
+a.action-button,
+button.action-button,
+input.action-button {
+    @include action-button;
 }
 
 /* HEADINGS */

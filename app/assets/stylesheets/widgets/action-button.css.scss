@@ -1,7 +1,7 @@
 @import '../color-vars';
 @import 'compass/css3';
 
-.action-button {
+@mixin action-button {
     background: $accent;
     border: 0;
     @include border-radius(2px);
@@ -13,18 +13,19 @@
     font-weight: normal;
     line-height: 36px;
     padding: 0 10px;
-}
-.action-button:link,
-.action-button:active,
-.action-button:visited,
-.action-button:hover,
-.action-button:focus {
-    color: #fff;
-}
-.action-button:hover,
-.action-button:focus {
-    @include background(linear-gradient($accent, $subtleAccent));
-}                   
-.action-button:active {
-    @include background(linear-gradient($subtleAccent, $accent));
+
+    &:link,
+    &:active,
+    &:visited,
+    &:hover,
+    &:focus {
+        color: #fff;
+    }
+    &:hover,
+    &:focus {
+        @include background(linear-gradient($accent, $subtleAccent));
+    }
+    &:active {
+        @include background(linear-gradient($subtleAccent, $accent));
+    }
 }

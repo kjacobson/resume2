@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   has_many :disciplines, :dependent => :destroy
   has_many :links, :through => :resumes
 
+  validates_uniqueness_of :email
+
   acts_as_authentic do |c|
     c.validate_email_field = true
   end # block optional

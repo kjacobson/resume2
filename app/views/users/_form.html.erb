@@ -14,7 +14,7 @@
 
         <% if params[:action] == "new" %>
                 <%= f.label :email %>
-                <input id="user_email" name="user[email]" size="30" type="email">
+                <input id="user_email" name="user[email]" size="30" type="email" required>
                 <%= render :partial => "common/form_error", :locals => { :model => @user, :field => "email" } if @user.errors[:email].count > 0 %>
 
                 <%= f.label :password %>

@@ -1,6 +1,6 @@
 <%= form_for(@user_software) do |f| %>
   <% if @user_software.errors.any? %>
-    <div id="error_explanation">
+    <div class="error-explanation">
       <h2><%= pluralize(@user_software.errors.count, "error") %> prohibited this user_software from being saved:</h2>
 
       <ul>

@@ -1,6 +1,6 @@
 <%= form_for(@resume_job) do |f| %>
   <% if @resume_job.errors.any? %>
-    <div id="error_explanation">
+    <div class="error-explanation">
       <h2><%= pluralize(@resume_job.errors.count, "error") %> prohibited this resume_job from being saved:</h2>
 
       <ul>

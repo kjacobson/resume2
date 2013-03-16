@@ -107,13 +107,14 @@ body {
                 font-size: 1.5em;
                 font-weight: normal;
                 line-height: 1.5em;
-                margin: 0.375em 0 0;
+                margin: 0.375em 0;
             }
             h2 {
+                font-size: 1.125em;
                 font-weight: normal;
             }
         }
-        section.primary p {
+        section p {
             font-size: 1em;
             line-height: 1.5em;
             margin: 0 0 1.5em;
@@ -327,10 +328,10 @@ em {
     color: $deemphasizedText;
 }
 blockquote {
-    border-left: 2px solid $almostGray;
-    font-size: 1em;
+    border-left: 2px solid $light;
+    font-size: 0.875em;
     line-height: 1.5em;
-    margin: 0 0 1.5em;
+    margin: 1.5em 0;
     max-width: 52em;
     padding-left: 0.5em;
 }
@@ -364,6 +365,9 @@ a.action-button,
 button.action-button,
 input.action-button {
     @include action-button;
+}
+.action-button.huge {
+    @include huge-action-button;
 }
 
 /* HEADINGS */

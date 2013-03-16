@@ -3,19 +3,18 @@
         <h1>
             Welcome to Re&#45;CV.com
         </h1>
-        <h2>Your skills and experience, in context</h2>
+        <h2>Re&#45;CV puts your skills and experience in context</h2>
     </hgroup>
+    <a href="/signup" class="action-button" title="">Sign up</a>
+    <% if current_user %>
+        <a href="/logout" title="">Log out</a>
+    <% else %>
+        <a href="/login" title="">Log in</a>
+    <% end %>
 <% end %>
 
 <% content_for :main do %>
     <section class="primary extended">
-        <a href="/signup" class="action-button" title="">Sign up</a>
-        <% if current_user %>
-            <a href="/logout" title="">Log out</a>
-        <% else %>
-            <a href="/login" title="">Log in</a>
-        <% end %>
-
         <h1>
             Goodbye alphabet soup; hello clarity!
         </h1>
@@ -26,6 +25,39 @@
             SASS/SCSS, TCP/IP, IA, UX, UI, IxD, i18n, a11y, RDF,
             SVG, WebGL, XPath, ARIA, WOFF
         </blockquote>
-        <h2>A Re&#45;CV resume speaks volumes.</h2>
+        <h2>But a Re&#45;CV resume speaks volumes.</h2>
+        <a href="/demo" class="action-button huge">View the demo resume</a>
+    </section>
+    <section class="secondary extended">
+        <h1>Link your skills to jobs</h1>
+        <img />
+        <p>
+            Say an employer wants to know if you have experience with <em>Ruby on Rails</em>, but
+            you&rsquo;ve used <em>Django</em> at your last two jobs. On a traditional resume, the employer
+            might have to go to page 2. <strong>With Re&#45;CV, he can just click &ldquo;Ruby on Rails&rdquo;.</strong>
+        </p>
+        <p>He&rsquo;ll see when you last Rails, where you used it, and what you did with it. In one click!</p>
+    </section>
+
+    <section class="secondary extended">
+        <h1>Paint a picture of a year in your career</h1>
+        <img />
+        <p>
+            Say an employer wants to know what you&rsquo;ve been up to recently.
+            <strong>With Re&#45;CV, he can just click 2013.</strong>
+        </p>
+        <p>
+            He&rsquo;ll see where you&rsquo;ve worked and what you&rsquo;ve worked on (including side projects),
+            what skills and software you&rsquo;ve used, and any highlights you list.
+        </p>
+    </section>
+
+    <section class="secondary extended">
+        <h1>Show what you did with your skills</h1>
+        <img />
+        <p>
+            <strong>Highlights</strong> let you provide examples of the best work you&rsquo;ve done.
+            So when you say you know <em>CSS3</em>, you can back it up!
+        </p>
     </section>
 <% end %>

@@ -29,3 +29,10 @@
         @include background(linear-gradient($subtleAccent, $accent));
     }
 }
+@mixin huge-action-button {
+    @include background(linear-gradient($accent, $subtleAccent));
+    @include border-radius(8px);
+    font-size: 2.25em;
+    margin: 0.5em 0;
+    padding: 0.5em;
+}

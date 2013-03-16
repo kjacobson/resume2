@@ -18,11 +18,11 @@
                 <%= render :partial => "common/form_error", :locals => { :model => @user, :field => "email" } if @user.errors[:email].count > 0 %>
 
                 <%= f.label :password %>
-                <%= f.password_field :password %>
+                <input id="user_password" name="user[password]" size="30" type="password" required>
                 <%= render :partial => "common/form_error", :locals => { :model => @user, :field => "password" } if @user.errors[:password].count > 0 %>
 
                 <%= f.label :password_confirmation %><br />
-                <%= f.password_field :password_confirmation %>
+                <input id="user_password_confirmation" name="user[password_confirmation]" size="30" type="password" required>
                 <%= render :partial => "common/form_error", :locals => { :model => @user, :field => "password_confirmation" } if @user.errors[:password_confirmation].count > 0 %>
             </fieldset>
 

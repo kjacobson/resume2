@@ -1,80 +1,80 @@
+<% content_for :head do %>
+    <% if @user.errors.any? %>
+        <p class="error-explanation">
+            <%= pluralize(@user.errors.count, "error") %> prohibited this job from being saved.
+        </p>
+    <% end %>
+<% end %>
 <%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+            <fieldset>
+                <h2>Basic info (required)</h2>
+                <%= f.label :name, "Your name" %>
+                <%= f.text_field :name %>
+                <p class="form-explanation">This is the same name employers will see when viewing your resumes.</p>
 
-      <ul>
-        <% @user.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
+        <% if params[:action] == "new" %>
+                <%= f.label :email %>
+                <input id="user_email" name="user[email]" size="30" type="email">
+                <%= render :partial => "common/form_error", :locals => { :model => @user, :field => "email" } if @user.errors[:email].count > 0 %>
+
+                <%= f.label :password %>
+                <%= f.password_field :password %>
+                <%= render :partial => "common/form_error", :locals => { :model => @user, :field => "password" } if @user.errors[:password].count > 0 %>
+
+                <%= f.label :password_confirmation %><br />
+                <%= f.password_field :password_confirmation %>
+                <%= render :partial => "common/form_error", :locals => { :model => @user, :field => "password_confirmation" } if @user.errors[:password_confirmation].count > 0 %>
+            </fieldset>
+
+            <fieldset>
+                <h2>Resume</h2>
+                <label for="resume_title">Give your first resume a name</label><br />
+                <%= text_field :resume, :title %>
+                <p class="form-explanation">
+                    <strong>Why do we ask for this?</strong> So you can keep track of your resumes, mostly. Not every job you
+                    apply for will be the same, so you might want multiple resumes. We make this easy: you only have to enter
+                    jobs and skills once, and you can choose which to include on each resume.
+                </p>
+            </fieldset>
+
+            <fieldset>
+                <h2>Disciplines</h2>
+                <label for="disciplines">What disciplines do you work in?</label>
+                <br /><br />
+                <p class="form-explanation">
+                    <strong>Why do we ask for this?</strong> In the next step, you&rsquo;re going to start listing your skills.
+                    We don&rsquo;t assume anyone&rsquo;s one dimensional, so your skills probably fall across multiple disciplines:
+                    actor/director; designer/developer; you get the idea. Listing your disciplines first is a good way to start thinking
+                    about organizing your resume.
+                </p>
+                <input type="text" name="disciplines[]" id="disciplines" placeholder="e.g. front-end development" size="40" /><br />
+                <input type="text" name="disciplines[]" placeholder="e.g. information architecture" size="40" /><br />
+                <input type="text" name="disciplines[]" placeholder="e.g. database architecture" size="40" /><br />
+                <input type="text" name="disciplines[]" placeholder="e.g. content strategy" size="40" />
+                <p class="form-explanation">Don't worry, you can always enter more later, or just skip this step altogether for now.</p>
+            </fieldset>
+        <% else %>
+            </fieldset>
+
+            <fieldset>
+                <h2>Contact info</h2>
+                <%= f.label :address %><br />
+                <p class="form-explanation">
+                    <strong>Why do we ask for this?</strong> First things first: we have ZERO interest in calling you, and while
+                    getting mail is actually kind of fun, we won&rsquo;t be using your address, either. However, we think you might
+                    want to include your contact information on your resume(s). You&rsquo;ll be able to choose whether to show your
+                    contact information separately for each resume.
+                </p>
+                <%= f.text_area :address %>
+                <%= render :partial => "common/form_error", :locals => { :model => @user, :field => "address" } if @user.errors[:address].count > 0 %>
+
+                <%= f.label :phone %>
+                <%= f.text_field :phone %>
+                <%= render :partial => "common/form_error", :locals => { :model => @user, :field => "phone" } if @user.errors[:phone].count > 0 %>
+            </fieldset>
         <% end %>
-      </ul>
+
+    <div class="actions">
+        <%= f.submit "Save", :class => "action-button" %>
     </div>
-  <% end %>
-
-  <fieldset>
-      <div class="field">
-          <%= f.label :name %><br />
-          <%= f.text_field :name %>
-          <p class="form-explanation">This is the same name employers will see when viewing your resumes.</p>
-      </div>
-  <% if params[:action] == "new" %>
-          <div class="field">
-            <%= f.label :email %><br />
-            <input id="user_email" name="user[email]" size="30" type="email" required>
-          </div>
-          <div class="field">
-            <%= f.label :password %><br />
-            <%= f.password_field :password %>
-          </div>
-          <div class="field">
-              <%= f.label :password_confirmation %><br />
-              <%= f.password_field :password_confirmation %>
-          </div>
-      </fieldset>
-      <fieldset>
-          <label for="resume_title">Give your first resume a name</label><br />
-          <%= text_field :resume, :title %>
-          <p class="form-explanation">
-              <strong>Why do we ask for this?</strong> So you can keep track of your resumes, mostly. Not every job you
-              apply for will be the same, so you might want multiple resumes. We make this easy: you only have to enter
-              jobs and skills once, and you can choose which to include on each resume.
-          </p>
-      </fieldset>
-      <fieldset>
-          <label for="disciplines">What disciplines do you work in?</label><br />
-          <p class="form-explanation">
-              <strong>Why do we ask for this?</strong> In the next step, you&rsquo;re going to start listing your skills.
-              We don&rsquo;t assume anyone&rsquo;s one dimensional, so your skills probably fall across multiple disciplines:
-              actor/director; designer/developer; you get the idea. Listing your disciplines first is a good way to start thinking
-              about organizing your resume.
-          </p>
-          <input type="text" name="disciplines[]" id="disciplines" placeholder="e.g. front-end development" size="40" /><br />
-          <input type="text" name="disciplines[]" placeholder="e.g. information architecture" size="40" /><br />
-          <input type="text" name="disciplines[]" placeholder="e.g. database architecture" size="40" /><br />
-          <input type="text" name="disciplines[]" placeholder="e.g. content strategy" size="40" />
-          <p class="form-explanation">Don't worry, you can always enter more later, or just skip this step altogether for now.</p>
-      </fieldset>
-  <% else %>
-      </fieldset>
-      <fieldset>
-          <div class="field">
-            <%= f.label :address %><br />
-            <p class="form-explanation">
-                <strong>Why do we ask for this?</strong> First things first: we have ZERO interest in calling you, and while
-                getting mail is actually kind of fun, we won&rsquo;t be using your address, either. However, we think you might
-                want to include your contact information on your resume(s). You&rsquo;ll be able to choose whether to show your
-                contact information separately for each resume.
-            </p>
-            <%= f.text_area :address %>
-          </div>
-          <div class="field">
-              <%= f.label :phone %><br />
-              <%= f.text_field :phone %>
-          </div>
-      </fieldset>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Save", :class => "action-button" %>
-  </div>
 <% end %>

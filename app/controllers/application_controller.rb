@@ -94,23 +94,25 @@ class ApplicationController < ActionController::Base
   end
 
   MODELS = ["users","resumes","jobs","skills","softwares","highlights","disciplines","links","years","job_skills","job_software","resume_highlight","resume_job","user_skill","user_software"]
-  ACTIONS = ["index","show","new","edit","create","update","destroy", "confirm_delete", "preview"]
+  ACTIONS = ["index","show","new","edit","create","update","destroy","confirm_delete","preview"]
   # TODO: this REALLY needs a test
   def require_resource_match
     path = request.path[1..-1]
     vars = path.split("/")
     return unless vars[0] == "users"
-    query = User.find_by_id(vars[1])
-    vars[2..-1].each_with_index do |var, i|
-      break if query.nil?
-      break if var == "years"
-      break if ACTIONS.include?(var)
-      if i % 2 == 0
-        query = MODELS.include?(var) ? query.send(var) : nil
-      elsif /\A[0-9]+\Z/.match(var)
-        query = query.find_by_id(var) rescue query = query.select { |item| item.id == var.to_i }[0]
-      elsif ["skills","softwares"].include?(vars[i+1]) # we started at vars[2], with i = 0
-        query = query.find_by_slug(var) rescue query = query.select { |item| item.slug == var }[0]
+    query = vars.count > 1 ? User.find_by_id(vars[1]) : vars[0]
+    if vars.count > 2
+      vars[2..-1].each_with_index do |var, i|
+        break if query.nil?
+        break if var == "years"
+        break if ACTIONS.include?(var)
+        if i % 2 == 0
+          query = MODELS.include?(var) ? query.send(var) : nil
+        elsif /\A[0-9]+\Z/.match(var)
+          query = query.find_by_id(var) rescue query = query.select { |item| item.id == var.to_i }[0]
+        elsif ["skills","softwares"].include?(vars[i+1]) # we started at vars[2], with i = 0
+          query = query.find_by_slug(var) rescue query = query.select { |item| item.slug == var }[0]
+        end
       end
     end
     if query.nil?

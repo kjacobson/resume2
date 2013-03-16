@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
+    @user = flash[:user] || User.new
     @resume = Resume.new
   end
 
@@ -44,7 +44,8 @@ class UsersController < ApplicationController
         redirect_to user_path(@user)
       end
     else
-      render :action => :new
+      flash[:user] = @user
+      redirect_to "/signup"
     end
   end
 

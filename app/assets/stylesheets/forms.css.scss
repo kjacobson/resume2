@@ -1,6 +1,17 @@
 @import 'color-vars';
 @import 'compass/css3';
 
+fieldset {
+    margin-bottom: 2.5em;
+
+    h2 {
+        font-size: 1.5em;
+        font-weight: normal;
+        line-height: 1.5em;
+        margin: 0.375em 0 0;
+    }
+}
+
 textarea,
 input[type="text"],
 input[type="password"],

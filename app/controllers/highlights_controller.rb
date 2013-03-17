@@ -49,7 +49,7 @@ class HighlightsController < ApplicationController
   # GET /highlights/new
   # GET /highlights/new.json
   def new
-    @highlight = Highlight.new
+    @highlight = flash[:highlight] || Highlight.new
     @url = highlights_path(@user)
     if !params[:job_id].nil?
       @job = Job.find(params[:job_id])
@@ -68,7 +68,7 @@ class HighlightsController < ApplicationController
 
   # GET /highlights/1/edit
   def edit
-    @highlight = Highlight.find(params[:id])
+    @highlight = flash[:highlight] || Highlight.find(params[:id])
     @url = highlight_path(@user, @highlight)
     @job = @highlight.job
     @skill = @highlight.skill
@@ -92,7 +92,8 @@ class HighlightsController < ApplicationController
         format.html { redirect_to(highlight_path(@user, @highlight), :notice => 'Highlight was successfully created.') }
         format.json  { render :json => @highlight, :status => :created, :location => @highlight }
       else
-        format.html { render :action => "new" }
+        flash[:highlight] = @highlight
+        format.html { redirect_to request.referrer }
         format.json  { render :json => @highlight.errors, :status => :unprocessable_entity }
       end
     end
@@ -108,7 +109,8 @@ class HighlightsController < ApplicationController
         format.html { redirect_to(highlight_path(@user, @highlight), :notice => 'Highlight was successfully updated.') }
         format.json  { head :ok }
       else
-        format.html { render :action => "edit" }
+        flash[:highlight] = @highlight
+        format.html { redirect_to request.referrer }
         format.json  { render :json => @highlight.errors, :status => :unprocessable_entity }
       end
     end

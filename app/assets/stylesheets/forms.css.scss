@@ -12,6 +12,9 @@ fieldset {
     }
 }
 
+label {
+    display: block;
+}
 textarea,
 input[type="text"],
 input[type="password"],
@@ -36,9 +39,6 @@ select {
     margin: 0 2px 1em;
     overflow: auto;
     padding: 1px 4px;
-}
-select {
-    display: inline-block;
 }
 select[multiple] {
     height: auto;

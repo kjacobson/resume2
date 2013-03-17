@@ -1,38 +1,33 @@
 <%= form_for(@highlight, :url => @url) do |f| %>
-  <% if @highlight.errors.any? %>
-    <div class="error-explanation">
-      <h2><%= pluralize(@highlight.errors.count, "error") %> prohibited this highlight from being saved:</h2>
+    <% if @highlight.errors.any? %>
+        <p class="error-explanation">
+            <%= pluralize(@highlight.errors.count, "error") %> prohibited this highlight from being saved:
+        </p>
+    <% end %>
 
-      <ul>
-      <% @highlight.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <input type="hidden" name="highlight[user_id]" id="highlight_user_id" value="<%= @user.id %>">
 
-  <input type="hidden" name="highlight[user_id]" id="highlight_user_id" value="<%= @user.id %>">
-  <div class="field">
-    <%= f.label :job_id %><br />
+    <%= f.label :job_id %>
     <select multiple name="highlight[job_id]" id="highlight_job_id">
         <% @jobs.each do |job| %>
             <option value="<%= job.id %>" <%= 'selected' if job == @job %>><%= job.title %></option>
         <% end %>
     </select>
-  </div>
-  <div class="field">
-      <%= f.label :skill_id %><br />
-      <select multiple name="highlight[skill_id]" id="highlight_skill_id">
-          <% @skills.each do |skill| %>
-              <option value="<%= skill.id %>" <%= 'selected' if skill == @skill %>><%= skill.title %></option>
-          <% end %>
-      </select>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <textarea cols="40" id="highlight_description" name="highlight[description]" rows="20" placeholder="How did you use this skill?"><%= @highlight.description %></textarea>
-  </div>
-  <div class="actions">
-    <%= f.submit "Save", :class => "action-button" %>
-  </div>
+    <%= render :partial => "common/form_error", :locals => { :model => @highlight, :field => "job_id" } if @highlight.errors[:job_id].count > 0 %>
+
+    <%= f.label :skill_id %>
+    <select multiple name="highlight[skill_id]" id="highlight_skill_id">
+        <% @skills.each do |skill| %>
+            <option value="<%= skill.id %>" <%= 'selected' if skill == @skill %>><%= skill.title %></option>
+        <% end %>
+    </select>
+    <%= render :partial => "common/form_error", :locals => { :model => @highlight, :field => "skill_id" } if @highlight.errors[:skill_id].count > 0 %>
+
+    <%= f.label :description %>
+    <textarea class="wide" id="highlight_description" name="highlight[description]" rows="10" placeholder="How did you use this skill?"><%= @highlight.description %></textarea>
+    <%= render :partial => "common/form_error", :locals => { :model => @highlight, :field => "description" } if @highlight.errors[:description].count > 0 %>
+
+    <div class="actions">
+        <%= f.submit "Save", :class => "action-button" %>
+    </div>
 <% end %>

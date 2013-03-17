@@ -68,7 +68,7 @@ class HighlightsController < ApplicationController
 
   # GET /highlights/1/edit
   def edit
-    @highlight = flash[:highlight] || Highlight.find(params[:id])
+    @highlight = Highlight.find(params[:id])
     @url = highlight_path(@user, @highlight)
     @job = @highlight.job
     @skill = @highlight.skill
@@ -109,7 +109,6 @@ class HighlightsController < ApplicationController
         format.html { redirect_to(highlight_path(@user, @highlight), :notice => 'Highlight was successfully updated.') }
         format.json  { head :ok }
       else
-        flash[:highlight] = @highlight
         format.html { redirect_to request.referrer }
         format.json  { render :json => @highlight.errors, :status => :unprocessable_entity }
       end

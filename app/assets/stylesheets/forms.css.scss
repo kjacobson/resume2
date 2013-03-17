@@ -40,6 +40,9 @@ select {
     overflow: auto;
     padding: 1px 4px;
 }
+select {
+    display: inline-block;
+}
 select[multiple] {
     height: auto;
 }

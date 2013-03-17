@@ -6,37 +6,31 @@
     <% end %>
 <% end %>
 <%= form_for @job, :url => @url do |f| %>
-    <div class="field">
-        <label for="job_title">Title (required)</label><br />
+        <label for="job_title">Title (required)</label>
         <input type="text" class="medium" id="job_title" name="job[title]" placeholder="e.g. Lead Interaction Designer" value="<%= @job.title %>" />
         <%= render :partial => "common/form_error", :locals => { :model => @job, :field => "title" } if @job.errors[:title].count > 0 %>
-    </div>
-    <div class="field">
-        <label for="job_employer">Employer/Client (required)</label><br />
+        
+        <label for="job_employer">Employer/Client (required)</label>
         <input type="text" class="medium" id="job_employer" name="job[employer]" placeholder="e.g. Groogle, Inc." value="<%= @job.employer %>" />
         <%= render :partial => "common/form_error", :locals => { :model => @job, :field => "employer" } if @job.errors[:employer].count > 0 %>
-    </div>
-    <div class="field">
-        <%= f.label :status, "Employment status" %><br />
+    
+        <%= f.label :status, "Employment status" %>
         <select id="job_status" name="job[status]">
             <% Job.status_options.each do |status| %>
                 <option value="<%= status %>" <%= 'selected' if status == @job.status %>><%= status %></option>
             <% end %>
         </select>     
         <%= render :partial => "common/form_error", :locals => { :model => @job, :field => "status" } if @job.errors[:status].count > 0 %>
-    </div>
-    <div class="field">
-        <label for="job_project">Project</label><br />
+    
+        <label for="job_project">Project</label>
         <input type="text" class="medium" id="job_project" name="job[project]" placeholder="e.g. Secret Encryption Algorithm" value="<%= @job.project %>" />
         <%= render :partial => "common/form_error", :locals => { :model => @job, :field => "project" } if @job.errors[:project].count > 0 %>
-    </div>
-    <div class="field">
-        <label for="job_url">URL</label><br />
+    
+        <label for="job_url">URL</label>
         <input type="url" class="medium" id="job_url" name="job[url]" value="<%= @job.url %>" />
         <%= render :partial => "common/form_error", :locals => { :model => @job, :field => "url" } if @job.errors[:url].count > 0 %>
-    </div>
-    <div class="field">
-        <label for="job_start_month">Start date</label><br />
+    
+        <label for="job_start_month">Start date</label>
         <select id="job_start_month" name="job[start_month]">
             <% Job.months_as_text[1..12].each_with_index do |val, i| %>
                 <option <%= 'selected="selected"' if @job.start_month == i+1 %> value="<%= i+1 %>"><%= val %></option>
@@ -46,9 +40,8 @@
 
         <%= render :partial => "common/form_error", :locals => { :model => @job, :field => "start_month" } if @job.errors[:start_month].count > 0 %>
         <%= render :partial => "common/form_error", :locals => { :model => @job, :field => "start_year" } if @job.errors[:start_year].count > 0 %>
-    </div>
-    <div class="field">
-        <label for="job_end_month">End date</label><br />
+    
+        <label for="job_end_month">End date</label>
         <select id="job_end_month" name="job[end_month]">
             <% Job.months_as_text[0..12].each_with_index do |val, i| %>
                 <option <%= 'selected="selected"' if @job.end_month == i %> value="<%= i %>"><%= val %></option>
@@ -58,22 +51,19 @@
 
         <%= render :partial => "common/form_error", :locals => { :model => @job, :field => "end_month" } if @job.errors[:end_month].count > 0 %>
         <%= render :partial => "common/form_error", :locals => { :model => @job, :field => "end_year" } if @job.errors[:end_year].count > 0 %>
-    </div>
-    <div class="field">
-        <label for="job_short_desc">Short description (required)</label><br />
+    
+        <label for="job_short_desc">Short description (required)</label>
         <textarea class="wide" rows="5" id="job_short_desc" name="job[short_desc]"><%= @job.short_desc %></textarea>
         <%= render :partial => "common/form_error", :locals => { :model => @job, :field => "short_desc" } if @job.errors[:short_desc].count > 0 %>
-    </div>
-    <div class="field">
-        <label for="job_long_desc">Long description</label><br />
+    
+        <label for="job_long_desc">Long description</label>
         <textarea class="wide" rows="20" id="job_long_desc" name="job[long_desc]"><%= @job.long_desc %></textarea>
         <%= render :partial => "common/form_error", :locals => { :model => @job, :field => "long_desc" } if @job.errors[:long_desc].count > 0 %>
-    </div>
-    <div class="field">
-        <label for="job_reason">Reason for leaving</label><br />
+    
+        <label for="job_reason">Reason for leaving</label>
         <textarea class="wide" rows="4" id="job_reason" name="job[reason]"><%= @job.reason %></textarea>
         <%= render :partial => "common/form_error", :locals => { :model => @job, :field => "reason" } if @job.errors[:reason].count > 0 %>
-    </div>
+    
 
     <fieldset class="job-skills">
         <h2>Skills</h2>

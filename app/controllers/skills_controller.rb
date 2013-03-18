@@ -75,7 +75,7 @@ class SkillsController < ApplicationController
   # GET /skills/new
   # GET /skills/new.json
   def new
-    @skill = Skill.new
+    @skill = flash[:skill] || Skill.new
     @disciplines = @user.disciplines
     @url = skills_path({:user_id => current_user.id})
 
@@ -87,9 +87,9 @@ class SkillsController < ApplicationController
 
   # GET /skills/1/edit
   def edit
-    @skill = Skill.find_by_slug(params[:id])
+    @skill = flash[:skill] || Skill.find_by_slug(params[:id])
     @disciplines = @user.disciplines
-    @url = skill_path({:user_id => current_user.id, :id => @skill.id})
+    @url = skill_path({:user_id => @user.id, :id => @skill.id})
   end
 
   # POST /skills
@@ -99,7 +99,7 @@ class SkillsController < ApplicationController
     if @skill.nil?
       @skill = Skill.new(params[:skill])
       # TODO: this should probably go in the model
-      @skill.slug = @skill.slug.gsub(" ","-")
+      @skill.slug = @skill.title.gsub(" ","-")
     end
 
     respond_to do |format|
@@ -108,7 +108,8 @@ class SkillsController < ApplicationController
         format.html { redirect_to(user_path(current_user), :notice => 'Skill was successfully added.') }
         format.json  { render :json => @skill, :status => :created, :location => @skill }
       else
-        format.html { render :action => "new" }
+        flash[:skill] = @skill
+        format.html { redirect_to new_skill_path }
         format.json  { render :json => @skill.errors, :status => :unprocessable_entity }
       end
     end
@@ -124,7 +125,8 @@ class SkillsController < ApplicationController
         format.html { redirect_to(@skill, :notice => 'Skill was successfully updated.') }
         format.json  { head :ok }
       else
-        format.html { render :action => "edit" }
+        flash[:skill] = @skill
+        format.html { redirect_to edit_skill_path({:user_id => @user.id, :id => @skill.slug}) }
         format.json  { render :json => @skill.errors, :status => :unprocessable_entity }
       end
     end

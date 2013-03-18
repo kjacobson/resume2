@@ -1,40 +1,33 @@
-<%= form_for(@skill, :url => @url) do |f| %>
+<% content_for :head do %>
     <% if @skill.errors.any? %>
-        <div class="error-explanation">
-            <h2><%= pluralize(@skill.errors.count, "error") %> prohibited this skill from being saved:</h2>
-
-            <ul>
-                <% @skill.errors.full_messages.each do |msg| %>
-                    <li><%= msg %></li>
-                <% end %>
-            </ul>
-        </div>
+        <p class="error-explanation">
+            <%= pluralize(@skill.errors.count, "error") %> prohibited this skill from being saved.
+        </p>
     <% end %>
+<% end %>
 
-    <div class="field">
-        <%= f.label :title %><br />
-        <%= f.text_field :title %>
-    </div>
+<%= form_for(@skill, :url => @url) do |f| %>
+    <%= f.label :title %>
+    <input id="skill_title" name="skill[title]" class="medium" type="text" value="<%= decode(@skill.title) %>" required>
+    <%= render :partial => "common/form_error", :locals => { :model => @skill, :field => "title" } if @skill.errors[:title].count > 0 %>
+
     <% if is_admin_user? %>
-        <div class="field">
-            <%= f.label :abbreviation %><br />
-            <%= f.text_field :abbreviation %>
-        </div>
-        <div class="field">
-            <%= f.label :slug %><br />
-            <%= f.text_field :slug %>
-        </div>
+        <%= f.label :abbreviation %>
+        <%= f.text_field :abbreviation %>
+
+        <%= f.label :slug %>
+        <%= f.text_field :slug %>
     <% end %>
-    <div class="field">
-        <% if @disciplines %>
-            <%= f.label :discipline_id %><br />
-            <select id="discipline_id" name="discipline_id">
-                <% @disciplines.each do |discipline| %>
-                    <option value="<%= discipline.id %>"><%= discipline.title %></option>
-                <% end %>
-            </select>
-        <% end %>
-    </div>
+
+    <% if @disciplines %>
+        <%= f.label :discipline_id %>
+        <select id="discipline_id" name="discipline_id">
+            <% @disciplines.each do |discipline| %>
+                <option value="<%= discipline.id %>"><%= discipline.title %></option>
+            <% end %>
+        </select>
+    <% end %>
+
     <div class="actions">
         <%= f.submit "Save", :class => "action-button" %>
     </div>

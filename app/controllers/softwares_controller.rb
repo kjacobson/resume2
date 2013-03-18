@@ -74,7 +74,7 @@ class SoftwaresController < ApplicationController
   # GET /softwares/new
   # GET /softwares/new.json
   def new
-    @software = Software.new
+    @software = flash[:software] || Software.new
     @url = softwares_path({:user_id => current_user.id})
 
     respond_to do |format|
@@ -85,7 +85,7 @@ class SoftwaresController < ApplicationController
 
   # GET /softwares/1/edit
   def edit
-    @software = Software.find_by_slug(params[:id])
+    @software = flash[:software] || Software.find_by_slug(params[:id])
     @url = software_path({:user_id => current_user.id, :id => @software.id})
   end
 
@@ -96,7 +96,7 @@ class SoftwaresController < ApplicationController
     if @software.nil?
       @software = Software.new(params[:software])
       # TODO: this should probably go in the model
-      @software.slug = @software.slug.gsub(" ","-")
+      @software.slug = @software.title.gsub(" ","-")
     end
 
     respond_to do |format|
@@ -105,7 +105,8 @@ class SoftwaresController < ApplicationController
         format.html { redirect_to(user_path(current_user), :notice => 'Software was successfully added.') }
         format.json  { render :json => @software, :status => :created, :location => @software }
       else
-        format.html { render :action => "new" }
+        flash[:software] = @software
+        format.html { redirect_to new_software_path }
         format.json  { render :json => @software.errors, :status => :unprocessable_entity }
       end
     end
@@ -121,6 +122,7 @@ class SoftwaresController < ApplicationController
         format.html { redirect_to(@software, :notice => 'Software was successfully updated.') }
         format.json  { head :ok }
       else
+        flash[:software] = @software
         format.html { render :action => "edit" }
         format.json  { render :json => @software.errors, :status => :unprocessable_entity }
       end

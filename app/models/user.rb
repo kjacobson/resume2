@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :links, :through => :resumes
 
   validates_uniqueness_of :email
+  #validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
 
   acts_as_authentic do |c|
     c.validate_email_field = true

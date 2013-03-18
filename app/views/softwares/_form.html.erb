@@ -1,29 +1,22 @@
+<% content_for :head do %>
+    <% if @software.errors.any? %>
+        <p class="error-explanation">
+            <%= pluralize(@software.errors.count, "error") %> prohibited this software from being saved.
+        </p>
+    <% end %>
+<% end %>
+
 <%= form_for(@software, :url => @url) do |f| %>
-  <% if @software.errors.any? %>
-    <div class="error-explanation">
-      <h2><%= pluralize(@software.errors.count, "error") %> prohibited this software from being saved:</h2>
+    <%= f.label :title %>
+    <input id="software_title" name="software[title]" class="medium" type="text" value="<%= decode(@software.title) %>" required>
+    <%= render :partial => "common/form_error", :locals => { :model => @software, :field => "title" } if @software.errors[:title].count > 0 %>
 
-      <ul>
-      <% @software.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </div>
-
-
-  <% if is_admin_user? %>
-      <div class="field">
-        <%= f.label :slug %><br />
+    <% if is_admin_user? %>
+        <%= f.label :slug %>
         <%= f.text_field :slug %>
-      </div>
-  <% end %>
-  <div class="actions">
-    <%= f.submit "Save", :class => "action-button" %>
-  </div>
+    <% end %>
+
+    <div class="actions">
+        <%= f.submit "Save", :class => "action-button" %>
+    </div>
 <% end %>

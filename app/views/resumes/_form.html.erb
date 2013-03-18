@@ -1,41 +1,33 @@
-<%= form_for @resume, :url => @url do |f| %>
+<% content_for :head do %>
     <% if @resume.errors.any? %>
-        <div class="error-explanation">
-            <h2><%= pluralize(@resume.errors.count, "error") %> prohibited this resume from being saved:</h2>
-
-            <ul>
-                <% @resume.errors.full_messages.each do |msg| %>
-                    <li><%= msg %></li>
-                <% end %>
-            </ul>
-        </div>
+        <p class="error-explanation">
+            <%= pluralize(@resume.errors.count, "error") %> prohibited this resume from being saved.
+        </p>
     <% end %>
+<% end %>
 
-    <div class="field">
-        <label for="job_title">
-            <% if params[:action] == "new" %>
-                Name your new resume &hellip;</label>
-            <% else %>
-                Resume name
-            <% end %>
-        </label>
-        <br />
-        <%= f.text_field :title %>
-    </div>
+<%= form_for @resume, :url => @url do |f| %>
+    <label for="job_title">
+        <% if params[:action] == "new" %>
+            Name your new resume &hellip;</label>
+        <% else %>
+            Resume name
+        <% end %>
+    </label>
+    <input id="resume_title" name="resume[title]" class="medium" type="text" value="<%= decode(@resume.title) %>" required>
+    <%= render :partial => "common/form_error", :locals => { :model => @resume, :field => "title" } if @resume.errors[:title].count > 0 %>
 
     <% if @user_jobs.count > 0 %>
-        <div class="field">
-            <label for="resume_jobs">
-                <% if params[:action] == "new" %>&hellip; and choose<% else %>Choose<% end %> the jobs you want to display on this resume
-            </label>
-            <br />
-            <select multiple name="resume_jobs[]" id="resume_jobs">
-                <% @user_jobs.each do |job| %>
-                    <option value="<%= job.id %>" <%= 'selected' if @resume.jobs.include?(job) %>><%= job.title %></option>
-                <% end %>
-            </select>
-        </div>
+        <label for="resume_jobs">
+            <% if params[:action] == "new" %>&hellip; and choose<% else %>Choose<% end %> the jobs you want to display on this resume
+        </label>
+        <select multiple name="resume_jobs[]" id="resume_jobs">
+            <% @user_jobs.each do |job| %>
+                <option value="<%= job.id %>" <%= 'selected' if @resume.jobs.include?(job) %>><%= job.title %></option>
+            <% end %>
+        </select>
     <% end %>
+
     <div class="actions">
         <%= f.submit "Save", :class => "action-button" %>
     </div>

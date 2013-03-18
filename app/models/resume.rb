@@ -6,6 +6,8 @@ class Resume < ActiveRecord::Base
     has_many :links, :dependent => :destroy
     belongs_to :user
 
+    validates_presence_of :title
+
     def skills
       skills = self.jobs.flat_map { |j| j.skills }.uniq
       if skills.first.nil?

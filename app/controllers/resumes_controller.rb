@@ -76,7 +76,7 @@ class ResumesController < ApplicationController
   # GET /resumes/new
   # GET /resumes/new.xml
   def new
-    @resume = Resume.new
+    @resume = flash[:resume] || Resume.new
     @user_jobs = @user.jobs
     @url = resumes_path({:user_id => @user.id})
 
@@ -88,6 +88,7 @@ class ResumesController < ApplicationController
 
   # GET /resumes/1/edit
   def edit
+    @resume = flash[:resume] || @resume
     @user_jobs = @user.jobs
     @url = resume_path({:user_id => @user.id})
   end
@@ -105,7 +106,8 @@ class ResumesController < ApplicationController
         format.html { redirect_to(resume_path({:user_id => @user.id, :id => @resume.id}), :notice => 'Resume was successfully created.') }
         format.xml  { render :xml => @resume, :status => :created, :location => @resume }
       else
-        format.html { render :action => "new" }
+        flash[:resume] = @resume
+        format.html { redirect_to new_resume_path }
         format.xml  { render :xml => @resume.errors, :status => :unprocessable_entity }
       end
     end
@@ -128,7 +130,8 @@ class ResumesController < ApplicationController
         format.html { redirect_to(resume_path({:user_id => @user.id, :id => @resume.id}), :notice => 'Resume was successfully updated.') }
         format.xml  { head :ok }
       else
-        format.html { render :action => "edit" }
+        flash[:resume] = @resume
+        format.html { redirect_to edit_resume_path }
         format.xml  { render :xml => @resume.errors, :status => :unprocessable_entity }
       end
     end

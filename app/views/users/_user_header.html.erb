@@ -1,6 +1,6 @@
 <div class="user-header">
     <ul class="user-account-navigation">
-        <% if !@resume.nil? %>
+        <% if !@resume.nil? and !@resume.id.nil? %>
             <li>
                 <%= render :partial => 'resumes/preview_form' %>
             </li>

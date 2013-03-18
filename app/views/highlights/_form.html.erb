@@ -1,10 +1,12 @@
-<%= form_for(@highlight, :url => @url) do |f| %>
+<% content_for :head do %>
     <% if @highlight.errors.any? %>
         <p class="error-explanation">
             <%= pluralize(@highlight.errors.count, "error") %> prohibited this highlight from being saved:
         </p>
     <% end %>
+<% end %>
 
+<%= form_for(@highlight, :url => @url) do |f| %>
     <input type="hidden" name="highlight[user_id]" id="highlight_user_id" value="<%= @user.id %>">
 
     <%= f.label :job_id %>

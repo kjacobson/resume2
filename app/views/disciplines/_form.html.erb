@@ -1,27 +1,24 @@
+<% content_for :head do %>
+    <% if @discipline.errors.any? %>
+        <p class="error-explanation">
+            <%= pluralize(@discipline.errors.count, "error") %> prohibited this discipline from being saved:
+        </p>
+    <% end %>
+<% end %>
+
 <%= form_for(@discipline, :url => @url) do |f| %>
-  <% if @discipline.errors.any? %>
-    <div class="error-explanation">
-      <h2><%= pluralize(@discipline.errors.count, "error") %> prohibited this discipline from being saved:</h2>
+    <%= f.label :title %>
+    <input id="discipline_title" name="discipline[title]" class="medium" type="text" placeholder="e.g. front-end development" required>
+    <%= render :partial => "common/form_error", :locals => { :model => @discipline, :field => "title" } if @discipline.errors[:title].count > 0 %>
 
-      <ul>
-      <% @discipline.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+    <h2>Associated Skills</h2>
+    <select multiple="true" name="skills[]">
+        <% @skills.each do |skill| %>
+            <option value="<%= skill.title %>" <%= 'selected' if @selected_skills.include?(skill) %>><%= skill.title %></option>
+        <% end %>
+    </select>
+
+    <div class="actions">
+        <%= f.submit "Save", :class => "action-button" %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </div>
-  <h2>Associated Skills</h2>
-  <select multiple="true" name="skills[]">
-      <% @skills.each do |skill| %>
-          <option value="<%= skill.title %>" <%= 'selected' if @selected_skills.include?(skill) %>><%= skill.title %></option>
-      <% end %>
-  </select>
-  <div class="actions">
-    <%= f.submit "Save", :class => "action-button" %>
-  </div>
 <% end %>

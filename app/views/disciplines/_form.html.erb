@@ -8,7 +8,7 @@
 
 <%= form_for(@discipline, :url => @url) do |f| %>
     <%= f.label :title %>
-    <input id="discipline_title" name="discipline[title]" class="medium" type="text" placeholder="e.g. front-end development" required>
+    <input id="discipline_title" name="discipline[title]" class="medium" type="text" placeholder="e.g. front-end development" value="<%= decode(@discipline.title) %>" required>
     <%= render :partial => "common/form_error", :locals => { :model => @discipline, :field => "title" } if @discipline.errors[:title].count > 0 %>
 
     <h2>Associated Skills</h2>

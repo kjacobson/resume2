@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   skip_before_filter :require_user_match, [:new, :create]
+  require 'digest/md5'
 
   def save_disciplines(disciplines, user)
     disciplines.each do |di|
@@ -30,6 +31,7 @@ class UsersController < ApplicationController
       @user_session.destroy
     end
     @user = User.new(params[:user])
+    @user.password = User.generate_hash
     @resume = @user.resumes.build(params[:resume])
     @disciplines = params[:disciplines]
     @disciplines.keep_if {|d| d.strip() != ""}

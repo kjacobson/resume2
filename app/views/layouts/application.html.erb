@@ -11,7 +11,7 @@
         <div id="wrapper">
             <header>
                 <% if !flash[:notice].nil? %>
-                    <p class="notice"><%= flash[:notice] %></p>
+                    <p class="notice"><%= decode(flash[:notice]) %></p>
                 <% end %>
                 <%=  render :partial => 'common/breadcrumbs' %>
                 <% if is_user_match? or preview_mode? %>

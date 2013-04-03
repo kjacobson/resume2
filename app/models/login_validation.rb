@@ -1,0 +1,35 @@
+class LoginValidation < ActiveRecord::Base
+  belongs_to :user
+  before_validation :assign_hash
+  validates :hash, :uniqueness => true, :presence => true
+  validates :user_id, :presence => true
+  require 'digest/md5'
+
+  def url
+    user = self.user
+    if !user.nil?
+      host = AppConfig.config[:host]
+      return "http://" + host + "/login?email=#{user.email}&validation_key=" + self.hash
+    else
+      return ""
+    end
+  end
+
+  def assign_hash
+    self.hash = LoginValidation.generate_hash
+    return true
+  end
+
+  def self.generate_hash
+    o =  [('a'..'z'),('A'..'Z')].map{|i| i.to_a}.flatten;
+    string  =  (0..16).map{ o[rand(o.length)]  }.join;
+
+    md5 = Digest::MD5.hexdigest(string)
+    md5.to_s
+    return md5
+  end
+
+  def expired?
+    !self.expiration.nil? and self.expiration.past?
+  end
+end

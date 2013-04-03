@@ -3,5 +3,5 @@
   field ||= ""
 %>
 <% messages.each do |msg| %>
-    <p class="form-error"><%= model.class.human_attribute_name(field) + " " + msg %></p>
+    <p class="form-error"><%= model.class.human_attribute_name(field) + " " unless hide_attr_name %><%= msg %></p>
 <% end %>

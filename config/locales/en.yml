@@ -9,3 +9,7 @@ en:
       job:
         short_desc: "Short description"
         long_desc: "Long description"
+      user_session:
+        errors:
+          email: "We didn't recognize the email you provided."
+          validation_key: "The validation link you used is either expired or out of date."

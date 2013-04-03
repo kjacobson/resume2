@@ -112,6 +112,7 @@ body {
             h2 {
                 font-size: 1.125em;
                 font-weight: normal;
+                margin-bottom: 0.6667em;
             }
         }
         section p {
@@ -239,6 +240,10 @@ tr {
         .user-account-navigation {
             @include border-radius(8px 0 0 0);
             float: right;
+
+            form {
+                margin: 0;
+            }
         }
             .breadcrumbs {
                 padding: 0.75em $smallestColumnWidth;
@@ -397,6 +402,18 @@ h2 a:focus {
 }
 
 /* LISTS */
+ul.rhetorical,
+ol.rhetorical {
+    margin-bottom: 1em;
+}
+ul.rhetorical,
+ul.rhetorical > li {
+    list-style: square inside none;
+}
+ol.rhetorical,
+ol.rhetorical > li {
+    list-style: decimal inside none;
+}
 .highlight-list li {
     margin-bottom: 0.75em;
 }

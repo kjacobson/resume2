@@ -1,25 +1,44 @@
-<%= form_for(@user_session) do |f| %>
-  <% if @user_session.errors.any? %>
-    <div class="error-explanation">
-      <h2><%= pluralize(@user_session.errors.count, "error") %> prohibited this user_session from being saved:</h2>
-
-      <ul>
-      <% @user_session.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
-  </div>
-  <div class="actions">
-    <%= f.submit "Save", :class => "action-button" %>
-  </div>
+<% content_for :head do %>
+    <% if @user_session.errors.any? %>
+        <p class="error-explanation">
+            <%= pluralize(@user_session.errors.count, "error") %> prohibited this skill from being saved.
+        </p>
+    <% end %>
 <% end %>
+
+<%= form_for(@user_session) do |f| %>
+    <% if params[:validation_key] && params[:email] %>
+        <input type="hidden" name="user_session[email]" value="<%= params[:email] %>" />
+    <% else %>
+        <%= f.label :email %>
+        <%= f.text_field :email %>
+        <%= render :partial => "common/form_error", :locals => { :model => @user_session, :field => "email", :hide_attr_name => true } if @user_session.errors[:email].count > 0 %>
+    <% end %>
+
+    <% if params[:validation_key] %>
+        <input type="hidden" name="user_session[validation_key]" value="<%= params[:validation_key] %>" />
+    <% end %>
+    <%= render :partial => "common/form_error", :locals => { :model => @user_session, :field => "validation_key", :hide_attr_name => true  } if @user_session.errors[:validation_key].count > 0 %>
+
+    <div class="actions">
+        <%= f.submit "#{params[:validation_key] && params[:email] ? 'Finish login' : 'Send email'}", :class => "action-button" %>
+    </div>
+<% end %>
+
+
+<h2>Login works a little differently here.</h2>
+<ol class="rhetorical">
+    <li>
+        You fill in your email.
+    </li>
+    <li>
+        We email you a link.
+    </li>
+    <li>
+        Click the link and you're logged in.
+    </li>
+</ol>
+<p>
+    <strong>That&rsquo;s it!</strong> We&rsquo;ll remember you until you
+    clear your cookies, so you&rsquo;ll only have to login once in a while.
+</p>

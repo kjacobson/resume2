@@ -1,20 +1,16 @@
-<%= form_for(@link) do |f| %>
+<% content_for :head do %>
     <% if @link.errors.any? %>
-        <div class="error-explanation">
-            <h2><%= pluralize(@link.errors.count, "error") %> prohibited this link from being saved:</h2>
-
-            <ul>
-                <% @link.errors.full_messages.each do |msg| %>
-                    <li><%= msg %></li>
-                <% end %>
-            </ul>
-        </div>
+        <p class="error-explanation">
+            <%= pluralize(@link.errors.count, "error") %> prohibited this skill from being saved.
+        </p>
     <% end %>
+<% end %>
 
-    <div class="field">
-        <%= f.label :expiration %><br />
-        <%= f.date_select :expiration, :order => [:month, :day, :year] %>
-    </div>
+<%= form_for(@link, :url => @url) do |f| %>
+    <%= f.label :expiration %>
+    <%= f.date_select :expiration, :order => [:month, :day, :year] %>
+    <%= render :partial => "common/form_error", :locals => { :model => @link, :field => "expiration" } if @link.errors[:expiration].count > 0 %>
+
     <input type="hidden" name="link[resume_id]" id="link_resume_id" value="<%= @resume_id %>">
     <div class="actions">
         <%= f.submit "Save", :class => "action-button" %>

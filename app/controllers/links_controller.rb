@@ -36,6 +36,7 @@ class LinksController < ApplicationController
     @link = Link.new
     @user_id = @user ? @user.id : nil
     @resume_id = @resume ? @resume.id : nil
+    @url = resume_links_path(@user, @resume)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -55,7 +56,7 @@ class LinksController < ApplicationController
 
     respond_to do |format|
       if @link.save
-        format.html { redirect_to links_path({:resume_id => @link.resume.id}), notice: 'Link was successfully created.' }
+        format.html { redirect_to resume_links_path(@user, @link.resume), notice: 'Link was successfully created.' }
         format.json { render json: @link, status: :created, location: @link }
       else
         format.html { render action: "new" }
@@ -71,7 +72,7 @@ class LinksController < ApplicationController
 
     respond_to do |format|
       if @link.update_attributes(params[:link])
-        format.html { redirect_to links_path({:resume_id => @link.resume.id}), notice: 'Link was successfully updated.' }
+        format.html { redirect_to resume_links_path(@user, @link.resume), notice: 'Link was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }

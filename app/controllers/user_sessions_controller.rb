@@ -23,8 +23,8 @@ class UserSessionsController < ApplicationController
     validation_key = params[:user_session][:validation_key]
     @user = User.find_by_email(email)
     @user_session = UserSession.create(params[:user_session])
-    if @user && validation = LoginValidation.find_by_hash(validation_key)
-      if !validation.expired? && validation.user_id == @user.id
+    if @user && @validation = LoginValidation.find_by_hash(validation_key)
+      if !@validation.expired? && @validation.user_id == @user.id
         pass = true
         @hash = User.generate_hash
         @user.password = @hash
@@ -46,6 +46,7 @@ class UserSessionsController < ApplicationController
 
     respond_to do |format|
       if pass && @user_session.save
+        @validation.destroy
         # TODO: smarter post-login logic
         format.html { redirect_to(user_path(@user_session.user), :notice => 'Login Successful') }
         format.xml  { render :xml => @user_session, :status => :created, :location => @user_session }

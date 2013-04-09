@@ -8,7 +8,7 @@ class LoginValidation < ActiveRecord::Base
   def url
     user = self.user
     if !user.nil?
-      host = AppConfig.config[:host]
+      host = AppConfig.config[:host] || APP_CONFIG['host']
       return "http://" + host + "/login?email=#{user.email}&validation_key=" + self.unique_key
     else
       return ""

@@ -15,8 +15,8 @@ ActiveRecord::Schema.define(:version => 20130401035106) do
 
   create_table "disciplines", :force => true do |t|
     t.string   "title"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "user_id"
   end
 
@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(:version => 20130401035106) do
     t.integer  "job_id"
     t.integer  "skill_id"
     t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.integer  "user_id"
   end
 
@@ -38,8 +38,8 @@ ActiveRecord::Schema.define(:version => 20130401035106) do
   create_table "job_skills", :force => true do |t|
     t.integer  "job_id"
     t.integer  "skill_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "user_id"
   end
 
@@ -50,8 +50,8 @@ ActiveRecord::Schema.define(:version => 20130401035106) do
   create_table "job_softwares", :force => true do |t|
     t.integer  "job_id"
     t.integer  "software_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.integer  "user_id"
   end
 
@@ -73,8 +73,8 @@ ActiveRecord::Schema.define(:version => 20130401035106) do
     t.text     "short_desc"
     t.text     "long_desc"
     t.string   "reason"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   add_index "jobs", ["end_month"], :name => "index_jobs_on_end_month"
@@ -86,8 +86,8 @@ ActiveRecord::Schema.define(:version => 20130401035106) do
   create_table "links", :force => true do |t|
     t.date     "expiration"
     t.integer  "resume_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.string   "hash"
   end
 
@@ -95,29 +95,29 @@ ActiveRecord::Schema.define(:version => 20130401035106) do
     t.string   "hash"
     t.integer  "user_id"
     t.date     "expiration"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "resume_highlights", :force => true do |t|
     t.integer  "resume_id"
     t.integer  "highlight_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "resume_jobs", :force => true do |t|
     t.integer  "resume_id"
     t.integer  "job_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "resumes", :force => true do |t|
     t.integer  "user_id"
     t.string   "title"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "resumes", ["user_id"], :name => "index_resumes_on_user_id"
@@ -125,8 +125,8 @@ ActiveRecord::Schema.define(:version => 20130401035106) do
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
     t.text     "data"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
@@ -137,41 +137,41 @@ ActiveRecord::Schema.define(:version => 20130401035106) do
     t.string   "abbreviation"
     t.string   "slug"
     t.integer  "rank"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "softwares", :force => true do |t|
     t.string   "title"
     t.string   "slug"
     t.integer  "rank"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "user_sessions", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "user_skills", :force => true do |t|
     t.integer  "user_id"
     t.integer  "skill_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.integer  "discipline_id"
   end
 
   create_table "user_softwares", :force => true do |t|
     t.integer  "user_id"
     t.integer  "software_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "users", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
     t.string   "email"
     t.string   "crypted_password"
     t.string   "password_salt"

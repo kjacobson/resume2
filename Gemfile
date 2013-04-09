@@ -1,13 +1,12 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.3'
+gem 'rails', '3.2.13'
 
 # Bundle edge Rails instead:
 #gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3-ruby', :require => 'sqlite3'
-gem 'mysql2'
-gem 'authlogic', :git => "git://github.com/odorcicd/authlogic.git", :branch => "rails3"
+#gem 'mysql2'
+gem "authlogic", :git => "git://github.com/binarylogic/authlogic.git"
 gem 'htmlentities'
 gem 'haml', '= 3.1.6'
 gem 'sass'
@@ -21,7 +20,7 @@ gem 'compass'
 
 # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
 # gem 'ruby-debug'
-# gem 'ruby-debug19', :require => 'ruby-debug'
+#gem 'ruby-debug19', :require => 'ruby-debug'
 gem 'debugger'
 #gem 'ruby-debug-base19'
 #gem 'linecache19'
@@ -35,11 +34,16 @@ gem 'debugger'
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
-group :development, :test do
+#group :production, :test do
+#  gem 'pg'
+#end
+gem 'pg'
+group :development do
   gem 'capybara'
   gem 'rspec-rails', '~> 2.6'
+  #gem 'sqlite3'
   gem 'test-unit'
-  gem 'webrat'
+  #gem 'webrat'
   #gem 'ZenTest'
 end
 group :assets do

@@ -17,7 +17,7 @@ class Link < ActiveRecord::Base
   end
 
   def assign_hash
-    self.hash = Link.generate_hash
+    self.unique_key = Link.generate_hash
     return true
   end
 

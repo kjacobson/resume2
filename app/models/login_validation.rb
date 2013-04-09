@@ -1,7 +1,7 @@
 class LoginValidation < ActiveRecord::Base
   belongs_to :user
   before_validation :assign_hash
-  validates :hash, :uniqueness => true, :presence => true
+  validates :unique_key, :uniqueness => true, :presence => true
   validates :user_id, :presence => true
   require 'digest/md5'
 
@@ -9,14 +9,14 @@ class LoginValidation < ActiveRecord::Base
     user = self.user
     if !user.nil?
       host = AppConfig.config[:host]
-      return "http://" + host + "/login?email=#{user.email}&validation_key=" + self.hash
+      return "http://" + host + "/login?email=#{user.email}&validation_key=" + self.unique_key
     else
       return ""
     end
   end
 
   def assign_hash
-    self.hash = LoginValidation.generate_hash
+    self.unique_key = LoginValidation.generate_hash
     return true
   end
 

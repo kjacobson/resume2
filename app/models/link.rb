@@ -9,7 +9,7 @@ class Link < ActiveRecord::Base
     resume = self.resume
     if !resume.nil?
       user_id = resume.user.id
-      host = !AppConfig.nil? ? AppConfig.config[:host] : ENV['host']
+      host = !AppConfig.nil? ? AppConfig.config[:host] : ENV['HOST']
       return "http://" + host + "/users/#{user_id}/resumes/#{resume.id}?access_key=" + self.hash
     else
       return ""

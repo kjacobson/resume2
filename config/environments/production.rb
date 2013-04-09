@@ -36,6 +36,16 @@ Resume2::Application.configure do
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.smtp_settings = {
+    :address => "mail.re-cv.com",
+    :domain => "re-cv.com",
+    :user_name => APP_CONFIG['action_mailer']['smtp_settings']['user_name'],
+    :password => APP_CONFIG['action_mailer']['smtp_settings']['password'],
+    :port => 587,
+    :authentication => :login,
+    :enable_starttls_auto => false
+  }
 
   # Enable threaded mode
   # config.threadsafe!

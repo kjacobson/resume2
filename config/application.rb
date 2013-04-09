@@ -2,7 +2,18 @@ require File.expand_path('../boot', __FILE__)
 
 # load app_config.yml
 require 'yaml'
-APP_CONFIG = YAML.load(File.read(File.expand_path('../app_config.yml', __FILE__))) if File.exist?(File.expand_path('../app_config.yml', __FILE__))
+if File.exist?(File.expand_path('../app_config.yml', __FILE__))
+  APP_CONFIG = YAML.load(File.read(File.expand_path('../app_config.yml', __FILE__)))
+else
+  APP_CONFIG = {
+    'action_mailer' => {
+      'smtp_settings' => {
+        'user_name' => ENV['APP_CONFIG'][action_mailer][smtp_settings][user_name],
+        'password' => ENV['APP_CONFIG'][action_mailer][smtp_settings][password]
+      }
+    }
+  }
+end
 
 require 'rails/all'
 

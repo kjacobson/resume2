@@ -80,7 +80,7 @@ class UserSessionsController < ApplicationController
     existing.each do |ex|
       ex.destroy
     end
-    @validation = LoginValidation.new(:user_id => @user.id, :expiration => Date.tomorrow())
+    @validation = LoginValidation.new(:user_id => @user.id, :expiration_date => Date.tomorrow())
     if @validation.save
       UserMailer.login_email(@user, @validation).deliver
     end

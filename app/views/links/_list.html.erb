@@ -7,7 +7,7 @@
     <tr>
         <th class="d40">URL</th>
         <th class="d20">
-            <%= render :partial => 'shared/sortable_link', :locals => { :header => 'Expires', :column_name => 'expiration' } %>
+            <%= render :partial => 'shared/sortable_link', :locals => { :header => 'Expires', :column_name => 'expiration_date' } %>
         </th>
         <th class="d20">
             <%= render :partial => 'shared/sortable_link', :locals => { :header => 'Created', :column_name => 'created_at' } %>
@@ -21,7 +21,7 @@
                 <%= link.url %>
             </td>
             <td>
-                <%= friendly_date(link.expiration) %>
+                <%= friendly_date(link.expiration_date) %>
             </td>
             <td>
                 <%= friendly_date(link.created_at) %>

@@ -84,19 +84,19 @@ ActiveRecord::Schema.define(:version => 20130409161219) do
   add_index "jobs", ["user_id"], :name => "index_jobs_on_user_id"
 
   create_table "links", :force => true do |t|
-    t.date     "expiration_date"
+    t.date     "expiration"
     t.integer  "resume_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.string   "unique_key"
   end
 
   create_table "login_validations", :force => true do |t|
     t.string   "unique_key"
     t.integer  "user_id"
-    t.date     "expiration_date"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.date     "expiration"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "resume_highlights", :force => true do |t|

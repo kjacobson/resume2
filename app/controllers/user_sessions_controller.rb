@@ -23,7 +23,7 @@ class UserSessionsController < ApplicationController
     validation_key = params[:user_session][:validation_key]
     @user = User.find_by_email(email)
     @user_session = UserSession.create(params[:user_session])
-    if @user && @validation = LoginValidation.find_by_hash(validation_key)
+    if @user && @validation = LoginValidation.find_by_unique_key(validation_key)
       if !@validation.expired? && @validation.user_id == @user.id
         pass = true
         @hash = User.generate_hash

@@ -29,12 +29,12 @@ class ApplicationController < ActionController::Base
     set_basic_instance_vars unless @user
     if @resume and @resume.links.size > 0
       if key = params[:access_key]
-        @link = Link.find_by_hash(key)
+        @link = Link.find_by_unique_key(key)
         session[:access_key] = key
       else
         key = session[:access_key]
       end
-      if key and @link = Link.find_by_hash(key)
+      if key and @link = Link.find_by_unique_key(key)
         return true if @resume.links.include?(@link) and !@link.expired?
       end
     end

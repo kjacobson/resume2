@@ -5,7 +5,7 @@ class LinksController < ApplicationController
   # GET /links
   # GET /links.json
   def index
-    @order_by = !params[:order_by].nil? ? params[:order_by] : "expiration"
+    @order_by = !params[:order_by].nil? ? params[:order_by] : "expiration_date"
     @direction = !params[:direction].nil? ? params[:direction] : "DESC"
     if @resume
       @links = @resume.links.order(@order_by + " " + @direction)

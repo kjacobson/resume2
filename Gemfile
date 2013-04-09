@@ -12,6 +12,8 @@ gem 'haml', '= 3.1.6'
 gem 'sass'
 gem 'compass'
 
+gem 'safe_attributes'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 

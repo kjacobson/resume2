@@ -40,8 +40,8 @@ Resume2::Application.configure do
   config.action_mailer.smtp_settings = {
     :address => "mail.re-cv.com",
     :domain => "re-cv.com",
-    :user_name => APP_CONFIG['action_mailer']['smtp_settings']['user_name'],
-    :password => APP_CONFIG['action_mailer']['smtp_settings']['password'],
+    :user_name => ENV['SMTP_USER_NAME'],
+    :password => ENV['SMTP_PASSWORD'],
     :port => 587,
     :authentication => :login,
     :enable_starttls_auto => false

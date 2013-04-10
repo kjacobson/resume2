@@ -1,7 +1,7 @@
 class Link < ActiveRecord::Base
   belongs_to :resume
   before_validation :assign_hash
-  validates :hash, :uniqueness => true, :presence => true
+  validates :unique_key, :uniqueness => true, :presence => true
   validates :resume_id, :presence => true
   require 'digest/md5'
 

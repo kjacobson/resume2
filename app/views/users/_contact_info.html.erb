@@ -9,14 +9,14 @@
         <% if user.address.nil? or user.address.empty? %>
             <% if is_user_match? %><a href="<%= edit_user_path(user) %>" title="Edit your user profile">Add your address</a><% end %>
         <% else %>
-            <%= user.address %>
+            <%= decode(user.address).gsub(/\n/, '<br />').html_safe %>
         <% end %>
     </li>
     <li class="tel">
         <% if user.phone.nil? or user.phone.empty? %>
             <% if is_user_match? %><a href="<%= edit_user_path(user) %>" title="Edit your user profile">Add your phone</a><% end %>
         <% else %>
-            <%= user.phone %>
+            <%= decode(user.phone).gsub(/\n/, '<br />').html_safe %>
         <% end %>
     </li>
 </ul>

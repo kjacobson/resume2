@@ -35,6 +35,6 @@ class User < ActiveRecord::Base
 
   def novice?
     res = self.resumes
-    return res.size == 0 || DateTime.now.weeks_ago(2) < res.first.created_at
+    return res.size == 0 || DateTime.now.weeks_ago(1) < res.first.created_at
   end
 end

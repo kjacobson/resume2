@@ -10,7 +10,7 @@ class Link < ActiveRecord::Base
     if !resume.nil?
       user_id = resume.user.id
       host = AppConfig.config[:host]
-      return "http://" + host + "/users/#{user_id}/resumes/#{resume.id}?access_key=" + self.hash
+      return "http://" + host + "/users/#{user_id}/resumes/#{resume.id}?access_key=" + self.unique_key
     else
       return ""
     end

@@ -56,7 +56,7 @@
             <dt>Summary</dt>
             <dd>
                 <p>
-                    <%= nil_friendly_decode(@job.long_desc) %>
+                    <%= nil_friendly_decode(@job.long_desc).gsub(/\n/, '<br/>').html_safe %>
                 </p>
             </dd>
 

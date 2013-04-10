@@ -1,6 +1,7 @@
 class Software < ActiveRecord::Base
     validates_presence_of :title
     validates_uniqueness_of :title
+    validates_format_of :title, :with => /\A([a-zA-Z0-9\-\_\+\ ]*)\Z/i
 
     has_many :job_softwares, :dependent => :destroy
     has_many :jobs, :through => :job_softwares

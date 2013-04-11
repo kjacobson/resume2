@@ -50,7 +50,7 @@
             <% end %>
         </ul>
     </nav>
-    <% if @user.novice? %>
+    <% if is_user_match? && @user.novice? %>
         <p class="message suggestion">
             When you see the gray bar above, you&rsquo;re viewing your resume almost as others will see it.
             The only things you see that others won&rsquo;t are the blue links allowing you to make changes,

@@ -66,9 +66,13 @@ body {
                     padding: 0 1em;
                     vertical-align: middle;
                 }
-                    :link,
-                    :visited {
+                    a:link,
+                    a:visited {
                         color: $accent;
+                    }
+                    a:hover,
+                    a:focus {
+                        color: $darkest;
                     }
                     .home-link {
                         background: transparent url($homeIconBlue) no-repeat 0 0;

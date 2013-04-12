@@ -7,7 +7,7 @@
         <% end %>
         <% if !preview_mode? %>
             <li>
-                <%= link_to "Your account", account_path(current_user) %>
+                <%= link_to "Home", account_path(current_user), :class => "home-link" %>
             </li>
             <li>
                 <%= link_to "Your resumes", resumes_path(current_user) %>

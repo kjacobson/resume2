@@ -1,3 +1,7 @@
+<%
+  user ||= nil
+%>
+
 <ul class="resume-list">
     <% resumes.each do |resume| %>
         <li>
@@ -6,7 +10,7 @@
             </a>
             <% if is_user_match? %>
                 <a href="<%= edit_resume_path(user, resume) %>" class="link-to-editable edit-link" title="Edit this resume">[edit]</a>
-                <a href="<%= resume_links_path(@user, @resume) %>" class="link-to-editable" title="Share this resume by giving out links">[share]</a>
+                <a href="<%= resume_links_path(user, resume) %>" class="link-to-editable" title="Share this resume by giving out links">[share]</a>
             <% end %>
         </li>
     <% end %>

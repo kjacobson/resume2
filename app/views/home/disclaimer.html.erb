@@ -1,0 +1,96 @@
+<% content_for :head do %>
+    <hgroup>
+        <h1>
+            Disclaimer, Colophon, etc.
+        </h1>
+    </hgroup>
+<% end %>
+
+<% content_for :main do %>
+    <section class="primary extended">
+        <h1>
+            Monetization
+        </h1>
+        <p>
+            I have no immediate plans to monetize Re-CV.com.
+        </p>
+
+        <p>
+            I don&rsquo;t yet know if there&rsquo;s a market for this application. I haven&rsquo;t yet decided if monetization of
+            this application is even a goal of mine. I don&rsquo;t know how I would approach monetization if I chose to do so.
+            I also kind of hate the word &ldquo;monetization&rdquo;.
+        </p>
+
+        <p>
+            I wanted a better format and presentation for <em>my own</em> resume. I built a Rails application to allow me to
+            create such a resume. Initially, the data&#45;entry interface was crude and meant only for my own use.
+            Furthermore, it was a one&#45;user, one&#45;resume system.
+        </p>
+
+        <p>
+            This began to seem silly. I put a lot of work into creating this new resume, and the app used to create and
+            display it. I found it useful, and I realized that I&rsquo;d be disappointed in myself if I didn&rsquo;t find
+            a way to present the application&mdash;not just my resume&mdash;to others. So here we are.
+        </p>
+
+        <p>
+            So &hellip; it&rsquo;s not a exactly a product, at least at this point in time. I consider myself under no
+            obligation to work on it further, respond to feature requests, etc. But I will probably do both.
+        </p>
+
+        <p>
+            And I may decide at any time to charge for it.
+        </p>
+    </section>
+
+    <section class="primary extended">
+        <h1>
+            Patents (or whatever)
+        </h1>
+
+        <p>
+            It would come as a great surprise to me if some company&mdash;like, I don&rsquo;t know, LinkedIn?&mdash;couldn&rsquo;t
+            make some claim that this application violates some patent(s) it holds. This does seem to be the new world order.
+        </p>
+
+        <p>
+            However, the idea is rather simple, and came about as I struggled to create a resume for myself that I could
+            be satisfied with (I&rsquo;m still not completely satisfied, by the way), and as the resumes that crossed
+            my desk in my day job continually struck me as inadequate. Naturally, I looked around the web to see if
+            anyone was providing a service that would suit my needs. As of the writing of this, I still see no such
+            service. I am making no attempt to rip off the ideas of any company; I just want a better resume.
+        </p>
+
+        <p>
+            Moreover, the technology behind Re-CV is even simpler than the idea: it&rsquo;s a relational database.
+            That&rsquo;s really it; no fancy algorithms, no data&#45;crunching, no interaction design wizardry. Relational
+            databases aren&rsquo;t even cool anymore, right?
+        </p>
+
+        <p>
+            So, if you&rsquo;re a company that feels that this application, an application created for my own purposes
+            first and foremost, having no specific commercial intent, violates a patent or patents that you hold:
+            <em>mea culpa</em>, I guess.
+        </p>
+
+        <p>
+            I&rsquo;m not a lawyer, I have no lawyer, and the sad reality is that I would probably have no recourse but
+            to respond appeasingly to any cease&rsquo;and&rsquo;desist requests. I would be saddened and discouraged but
+            not surprised. I&rsquo;d probably be angry too, but companies have to cover their own asses, I guess.
+        </p>
+
+        <p>
+            Let me say it out loud though: I&rsquo;m just one guy, and I&rsquo;m just trying to make something I can be
+            proud of and can use myself.
+        </p>
+    </section>
+
+    <section class="secondary extended">
+        <a href="/signup" class="action-button" title="">Sign up</a>
+        <% if current_user %>
+            <a href="/logout" title="">Log out</a>
+        <% else %>
+            <a href="/login" title="">Log in</a>
+        <% end %>
+    </section>
+<% end %>

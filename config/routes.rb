@@ -110,7 +110,8 @@ Resume2::Application.routes.draw do
   resource :user_session
   resource :account, :controller => 'users'
 
-  resources :home, :only => :index
+  resources :home, :only => [:index, :disclaimer]
+  match 'disclaimer' => 'home#disclaimer', :as => :disclaimer
 
   root :to => 'home#index', :as => :homepage
 

@@ -12,4 +12,7 @@ class HomeController < ApplicationController
       format.json  { render :json => @jobs }
     end
   end
+
+  def disclaimer
+  end
 end

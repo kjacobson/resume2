@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user_session, :current_user
   before_filter :require_resource_match
   before_filter :set_basic_instance_vars
-  before_filter :require_user_match, :except => [:signup, :login, :logout, :index, :show]
+  before_filter :require_user_match, :except => [:signup, :login, :logout, :index, :show, :disclaimer]
   before_filter :require_access_key, :only => [:index, :show]
   require 'digest/md5'
 

@@ -12,5 +12,11 @@
             <h1>Skills</h1>
         </hgroup>
         <%= render :partial => 'skills/small_list', :locals => { :skills => @skills, :user => @user, :resume => @resume } %>
+
+        <% if is_user_match? %>
+            <a href="<%= edit_discipline_path(:user_id => @user.id, :id => @discipline.id) %>" class="link-to-editable" title="">
+                Associate <%= 'more ' if @skills.count > 0 %>skills with this discipline
+            </a>
+        <% end %>
     </section>
 <% end %>

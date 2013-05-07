@@ -52,7 +52,7 @@
                 <% @disciplines.each do |discipline| %>
                     <% skills = discipline.skills %>
                     <h2>
-                        <%= discipline.title.titlecase %>
+                        <%= render :partial => 'disciplines/link_to_discipline', :locals => {:user => @user, :discipline => discipline} %>
                     </h2>
                     <% if skills.count > 0 %>
                         <%= render :partial => 'skills/small_list', :locals => { :user => @user, :resume => nil, :skills => skills } %>

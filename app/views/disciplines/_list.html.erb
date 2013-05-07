@@ -11,7 +11,7 @@
             </li>
         <% end %>
     <% else %>
-        No disciplines
+        <p>No disciplines</p>
     <% end %>
     <% if is_user_match? %>
         <a href="<%= new_discipline_path(user) %>" class="link-to-editable" title="Add a new discipline">Add discipline</a>

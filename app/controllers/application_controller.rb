@@ -116,7 +116,7 @@ class ApplicationController < ActionController::Base
       end
     end
     if query.nil?
-      flash[:notice] = "404"
+      flash[:notice] = "401"
       redirect_to :homepage
     end
   end

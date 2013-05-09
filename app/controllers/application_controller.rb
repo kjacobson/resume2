@@ -13,14 +13,14 @@ class ApplicationController < ActionController::Base
       if not @user = User.find(user_id)
         flash[:notice] = "The user whose information you&rsquo;re trying to view doesn&rsquo;t seem to exist."
         # TODO: this should be a 404
-        redirect_to :homepage
+        redirect_to :homepage and return
       end
     end
     if resume_id = params[:resume_id] or (params[:controller] == "resumes" and resume_id = params[:id])
       if not @resume = Resume.find(resume_id)
         flash[:notice] = "The resume you&rsquo;re trying to view doesn&rsquo;t seem to exist."
         # TODO: this should be a 404
-        redirect_to :homepage
+        redirect_to :homepage and return
       end
     end
   end
@@ -50,17 +50,17 @@ class ApplicationController < ActionController::Base
   end
 
   def require_access_key
-    unless has_access_key? or is_user_match? or preview_mode?
+    unless has_access_key? or is_user_match? or preview_mode? or demo_resume?
       flash[:notice] = "To access the requested page, you must have been given a link by the resume&rsquo;s author."
-      redirect_to "/"
+      redirect_to "/" and return
     end
   end
 
   def require_user_match
-    require_known_user
+    return unless require_known_user
     unless is_user_match? or preview_mode?
       flash[:notice] = "You can't access this page, as it belongs to a different user."
-      redirect_to :homepage
+      redirect_to :homepage and return
     end
   end
 
@@ -93,6 +93,17 @@ class ApplicationController < ActionController::Base
     @preview_mode = !@resume.nil? && (session[:preview_resume] == @resume.id.to_s)
   end
 
+  helper_method :demo_resume?
+  def demo_resume?
+    return @demo_resume unless @demo_resume.nil?
+    if demo = Demo.find_by_user_id(params[:user_id])
+      @demo_resume = (@resume.id == demo.resume_id)
+    else
+      @demo_resume = false
+    end
+    return @demo_resume
+  end
+
   MODELS = ["users","resumes","jobs","skills","softwares","highlights","disciplines","links","years","job_skills","job_software","resume_highlight","resume_job","user_skill","user_software"]
   ACTIONS = ["index","show","new","edit","create","update","destroy","confirm_delete","preview"]
   # TODO: this REALLY needs a test
@@ -117,7 +128,7 @@ class ApplicationController < ActionController::Base
     end
     if query.nil?
       flash[:notice] = "401"
-      redirect_to :homepage
+      redirect_to :homepage and return
     end
   end
 

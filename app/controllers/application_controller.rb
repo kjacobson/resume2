@@ -97,7 +97,7 @@ class ApplicationController < ActionController::Base
   def demo_resume?
     return @demo_resume unless @demo_resume.nil?
     if demo = Demo.find_by_user_id(params[:user_id])
-      @demo_resume = (@resume.id == demo.resume_id)
+      @demo_resume = !@resume.nil? && @resume.id == demo.resume_id
     else
       @demo_resume = false
     end

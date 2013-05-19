@@ -48,7 +48,7 @@ body {
             clear: both;
             display: block;
             left: 0;
-            position: fixed;
+            position: absolute;
             right: 0;
         }
             .user-account-navigation {
@@ -62,10 +62,17 @@ body {
                     float: left;
                     line-height: 2.25em;
                     list-style-type: inline;
-                    margin: 1em 0;
-                    padding: 0 1em;
+                    margin: 0.25em 0;
+                    padding: 0 0.5em;
                     vertical-align: middle;
                 }
+                li:first-child {
+                    float: none;
+                }
+
+                    form {
+                        margin: 0;
+                    }
                     a:link,
                     a:visited {
                         color: $accent;
@@ -154,7 +161,7 @@ body {
         clear: both;
         display: block;
         height: 2em;
-        padding: 0 $smallestColumnWidth;
+        padding: 0 $smallestColumnWidth 8em;
 
         p {
             font-size: 0.875em;
@@ -262,8 +269,12 @@ tr {
             @include border-radius(8px 0 0 0);
             float: right;
 
-            form {
-                margin: 0;
+            li {
+                margin: 1em 0;
+                padding: 0 1em;
+            }
+            li:first-child {
+                float: left;
             }
         }
             .breadcrumbs {

@@ -54,6 +54,7 @@ class ResumesController < ApplicationController
       @secondary_sort = ""
     end
     @resumes = @user.resumes.order(@order_by + " " + @direction + @secondary_sort)
+    breadcrumbs("first_collection", "resumes")
 
     respond_to do |format|
       format.html # index.html.erb

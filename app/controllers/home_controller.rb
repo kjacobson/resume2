@@ -6,6 +6,7 @@ class HomeController < ApplicationController
     if current_user
       redirect_to user_path(current_user) and return
     end
+    @demo = Demo.first
 
     respond_to do |format|
       format.html # index.html.erb

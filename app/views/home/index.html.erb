@@ -3,7 +3,7 @@
         <h1>
             Welcome to Re&#45;CV.com
         </h1>
-        <h2>Re&#45;CV puts your skills and experience in context</h2>
+        <h2>Make your resume make sense.</h2>
     </hgroup>
     <a href="/signup" class="action-button" title="">Sign up</a>
     <% if current_user %>
@@ -26,7 +26,7 @@
             SVG, WebGL, XPath, ARIA, WOFF
         </blockquote>
         <h2>But a Re&#45;CV resume speaks volumes.</h2>
-        <a href="/demo" class="action-button huge">View the demo resume</a>
+        <a href="<%= resume_path(@demo.user_id, @demo.resume_id) %>" class="action-button huge">View the demo resume</a>
     </section>
     <section class="secondary extended">
         <h1>Link your skills to jobs</h1>

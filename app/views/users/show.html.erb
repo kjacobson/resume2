@@ -1,7 +1,11 @@
 <% content_for :header do %>
     <% if @user.phone.nil? or @user.phone.empty? %>
         <p class="message suggestion">
-            You might want to add your contact information. You can do so <a href="<%= edit_user_path(@user) %>" class="link-to-editable" title="Edit your user profile">here</a>.
+            You might want to add your <%= if @user.address.nil? or @user.address.empty? then "contact information" else "phone number" end %>. You can do so <a href="<%= edit_user_path(@user) %>" class="link-to-editable" title="Edit your user profile">here</a>.
+        </p>
+    <% elsif @user.address.nil? or @user.address.empty? %>
+        <p class="message suggestion">
+            You might want to add your address. You can do so <a href="<%= edit_user_path(@user) %>" class="link-to-editable" title="Edit your user profile">here</a>.
         </p>
     <% end %>
 <% end %>

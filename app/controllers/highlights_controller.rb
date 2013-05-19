@@ -25,6 +25,8 @@ class HighlightsController < ApplicationController
     else
       @highlights = @user.highlights.order(@order_by + " " + @direction)
     end
+    breadcrumbs("first_collection", "highlights")
+
     respond_to do |format|
       format.html # index.html.erb
       format.json  { render :json => @highlights }
@@ -38,7 +40,6 @@ class HighlightsController < ApplicationController
     @job = @highlight.job
     @skill = @highlight.skill
     breadcrumbs("first_collection", "highlights")
-    breadcrumbs("first_resource", @highlight)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -59,6 +60,7 @@ class HighlightsController < ApplicationController
     end
     @jobs = @user.jobs.order("title ASC")
     @skills = @user.skills.order("title ASC")
+    breadcrumbs("first_collection", "highlights")
 
     respond_to do |format|
       format.html # new.html.erb
@@ -75,6 +77,7 @@ class HighlightsController < ApplicationController
 
     @jobs = @user.jobs.order("title ASC")
     @skills = @user.skills.order("title ASC")
+    breadcrumbs("first_collection", "highlights")
 
     respond_to do |format|
       format.html # edit.html.erb

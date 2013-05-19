@@ -170,10 +170,10 @@ body {
     padding: 0 $smallestColumnWidth;
 
     li {
-        color: $lightest;
         display: inline-block;
     }
     li:not(:first-child):before {
+        color: $lightest;
         content: "\bb";
     }
 }

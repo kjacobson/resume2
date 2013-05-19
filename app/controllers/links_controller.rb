@@ -12,6 +12,7 @@ class LinksController < ApplicationController
     else
       @links = @user.links.sort { |a,b| b.send(@order_by) <=> a.send(@order_by) }
     end
+    breadcrumbs("first_collection", "links")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -23,6 +24,7 @@ class LinksController < ApplicationController
   # GET /links/1.json
   def show
     @link = Link.find(params[:id])
+    breadcrumbs("first_collection", "links")
 
     respond_to do |format|
       format.html # show.html.erb
@@ -37,6 +39,7 @@ class LinksController < ApplicationController
     @user_id = @user ? @user.id : nil
     @resume_id = @resume ? @resume.id : nil
     @url = resume_links_path(@user, @resume)
+    breadcrumbs("first_collection", "links")
 
     respond_to do |format|
       format.html # new.html.erb
@@ -47,6 +50,7 @@ class LinksController < ApplicationController
   # GET /links/1/edit
   def edit
     @link = Link.find(params[:id])
+    breadcrumbs("first_collection", "links")
   end
 
   # POST /links

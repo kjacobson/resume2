@@ -76,6 +76,7 @@ class SoftwaresController < ApplicationController
   def new
     @software = flash[:software] || Software.new
     @url = softwares_path({:user_id => current_user.id})
+    breadcrumbs("first_collection", "softwares")
 
     respond_to do |format|
       format.html # new.html.erb
@@ -87,6 +88,8 @@ class SoftwaresController < ApplicationController
   def edit
     @software = flash[:software] || Software.find_by_slug(params[:id])
     @url = software_path({:user_id => current_user.id, :id => @software.id})
+    breadcrumbs("first_collection", "softwares")
+    breadcrumbs("first_resource", @software)
   end
 
   # POST /softwares

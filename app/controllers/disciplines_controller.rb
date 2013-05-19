@@ -52,6 +52,7 @@ class DisciplinesController < ApplicationController
     @skills = @user.skills
     @selected_skills = []
     @url = disciplines_path(@user)
+    breadcrumbs("first_collection", "disciplines")
 
     respond_to do |format|
       format.html # new.html.erb
@@ -65,6 +66,8 @@ class DisciplinesController < ApplicationController
     @skills = @user.skills
     @selected_skills = @discipline.skills || []
     @url = discipline_path(:user => @user, :discipline_id => @discipline.id)
+    breadcrumbs("first_collection", "disciplines")
+    breadcrumbs("first_resource", @discipline)
 
     respond_to do |format|
       format.html # new.html.erb

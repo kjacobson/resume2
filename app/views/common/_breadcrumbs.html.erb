@@ -7,20 +7,26 @@
     # need to use the friendly name of "softwares"
 %>
 
-<% if @resume and !@resume.new_record? %>
-    <nav class="breadcrumbs">
-        <ul>
+<nav class="breadcrumbs">
+    <ul>
+        <% if @resume and !@resume.new_record? %>
             <li>
                 Resume:
                 <%=  render :partial => "resumes/link_to_resume", :locals => { :user => @user, :resume => @resume } %>
             </li>
-            <% if first_collection = @breadcrumbs.try(:[], 'first_collection') and first_collection != "highlights" %>
+        <% end %>
+        <% if first_collection = @breadcrumbs.try(:[], 'first_collection') %>
+            <li>
+                <a href="/users/<%= @user.id %><%= '/resumes/' + @resume.id.to_s if @resume %>/<%= first_collection %>" title="See the <%= first_collection %> for this resume">
+                    <%= first_collection.capitalize %>
+                </a>
+            </li>
+            <% if params[:action] == "new" %>
                 <li>
-                    <a href="/users/<%= @user.id %>/resumes/<%= @resume.id %>/<%= first_collection %>" title="See the <%= first_collection %> for this resume">
-                        <%= first_collection.capitalize %>
-                    </a>
+                    New <%= @breadcrumbs['first_collection'].singularize %>
                 </li>
-                <% if resource = @breadcrumbs.try(:[], 'first_resource') %>
+            <% elsif resource = @breadcrumbs.try(:[], 'first_resource')%>
+                <li>
                     <%
                       case @breadcrumbs['first_collection']
                       when "years"
@@ -34,27 +40,18 @@
                         title = resource.title
                       end
                     %>
+                    <a href="/users/<%= @user.id %><%= '/resumes/' + @resume.id.to_s if @resume %>/<%= first_collection %>/<%= id %>">
+                        <%= title %>
+                    </a>
+                </li>
+                <% if second_collection = @breadcrumbs.try(:[], 'second_collection') %>
                     <li>
-                        <a href="/users/<%= @user.id %>/resumes/<%= @resume.id %>/<%= first_collection %>/<%= id %>">
-                            <%= title %>
+                        <a href="/users/<%= @user.id %><%= '/resumes/' + @resume.id.to_s if @resume %>/<%= first_collection %>/<%= id %>/<%= second_collection %>" title="See the <%= second_collection %> for this <%= first_collection.singularize %>">
+                            <%=  second_collection.capitalize %>
                         </a>
                     </li>
-                    <% if second_collection = @breadcrumbs.try(:[], 'second_collection') %>
-                        <li>
-                            <a href="/users/<%= @user.id %>/resumes/<%= @resume.id %>/<%= first_collection %>/<%= id %>/<%= second_collection %>" title="See the <%= second_collection %> for this <%= first_collection.singularize %>">
-                                <%=  second_collection.capitalize %>
-                            </a>
-                        </li>
-                    <% end %>
                 <% end %>
             <% end %>
-        </ul>
-    </nav>
-    <% if is_user_match? && @user.novice? %>
-        <p class="message suggestion">
-            When you see the gray bar above, you&rsquo;re viewing your resume almost as others will see it.
-            The only things you see that others won&rsquo;t are the blue links allowing you to make changes,
-            and this message, which will disappear within 2 weeks.
-        </p>
-    <% end %>
-<% end %>
+        <% end %>
+    </ul>
+</nav>

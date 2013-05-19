@@ -260,6 +260,7 @@ class JobsController < ApplicationController
   def new
     @job = Job.new
     new_instance_vars
+    breadcrumbs("first_collection", "jobs")
 
     respond_to do |format|
       format.html # new.html.erb
@@ -271,6 +272,8 @@ class JobsController < ApplicationController
   def edit
     @job = Job.find(params[:id])
     edit_instance_vars
+    breadcrumbs("first_collection", "jobs")
+    breadcrumbs("first_resource", @job)
 
     respond_to do |format|
       format.html # edit.html.erb

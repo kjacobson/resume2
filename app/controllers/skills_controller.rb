@@ -78,6 +78,7 @@ class SkillsController < ApplicationController
     @skill = flash[:skill] || Skill.new
     @disciplines = @user.disciplines
     @url = skills_path({:user_id => current_user.id})
+    breadcrumbs("first_collection", "skills")
 
     respond_to do |format|
       format.html # new.html.erb
@@ -90,6 +91,8 @@ class SkillsController < ApplicationController
     @skill = flash[:skill] || Skill.find_by_slug(params[:id])
     @disciplines = @user.disciplines
     @url = skill_path({:user_id => @user.id, :id => @skill.id})
+    breadcrumbs("first_collection", "skills")
+    breadcrumbs("first_resource", @skill)
   end
 
   # POST /skills

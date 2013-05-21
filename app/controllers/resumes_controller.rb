@@ -65,8 +65,10 @@ class ResumesController < ApplicationController
   # GET /resumes/1
   # GET /resumes/1.xml
   def show
-    @jobs = @jobs[0..6]
-    @softwares = @softwares[0..4]
+    @job_count = @jobs.count
+    @jobs = @jobs[0..6] if @job_count > 7
+    @software_count = @softwares.count
+    @softwares = @softwares[0..4] if @software_count > 5
     @uncategorized_skills = @resume.uncategorized_skills
     respond_to do |format|
       format.html # show.html.erb

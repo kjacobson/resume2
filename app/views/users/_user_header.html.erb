@@ -1,11 +1,15 @@
 <div class="user-header">
     <ul class="user-account-navigation">
-        <% if !@resume.nil? and !@resume.id.nil? %>
+        <% if !@resume.nil? && !@resume.id.nil? && !demo_resume? %>
             <li>
                 <%= render :partial => 'resumes/preview_form' %>
             </li>
+        <% elsif demo_resume? %>
+            <li>
+                <a href="/signup" class="action-button" title="">Create your own resume!</a>
+            </li>
         <% end %>
-        <% if !preview_mode? %>
+        <% if !preview_mode? && !demo_resume? %>
             <li>
                 <%= link_to "Home", account_path(current_user), :class => "home-link" %>
             </li>
@@ -16,5 +20,6 @@
                 <%= link_to "Log out", logout_path %>
             </li>
         <% end %>
+
     </ul>
 </div>

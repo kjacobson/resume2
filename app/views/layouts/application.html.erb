@@ -14,7 +14,7 @@
                     <p class="notice"><%= decode(flash[:notice]) %></p>
                 <% end %>
                 <%=  render :partial => 'common/breadcrumbs' %>
-                <% if is_user_match? or preview_mode? %>
+                <% if is_user_match? || preview_mode? || demo_resume? %>
                     <%=  render :partial => 'users/user_header' %>
                 <% end %>
                 <%=  yield :header %>

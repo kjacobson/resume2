@@ -8,10 +8,14 @@
 %>
 
 <nav class="breadcrumbs">
+    <h1>
+        <a href="/" title="Re-CV.com home">
+            Re&#45;CV.com
+        </a>
+    </h1>
     <ul>
         <% if @resume and !@resume.new_record? %>
             <li>
-                Resume:
                 <%=  render :partial => "resumes/link_to_resume", :locals => { :user => @user, :resume => @resume } %>
             </li>
         <% end %>

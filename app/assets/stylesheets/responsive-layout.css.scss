@@ -173,7 +173,7 @@ body {
 .breadcrumbs {
     background: $defaultText;
     background: rgba(0,0,0,0.7);
-    color: #fff;
+    color: #fff ;
     min-height: 42px;
     overflow: hidden;
     padding: 0 $smallestColumnWidth;
@@ -183,14 +183,14 @@ body {
         padding: 0 24px 0 44px;
 
         a {
-            color: #fff;
+            color: #fff !important;
             font-size: 22px;
             line-height: 29px;
             text-transform: uppercase;
 
             &:visited,
             &:active {
-                color: #fff;
+                color: #fff !important;
             }
         }
     }

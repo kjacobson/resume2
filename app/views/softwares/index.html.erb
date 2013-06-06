@@ -1,6 +1,6 @@
 <% content_for :head do %>
     <hgroup>
-        <h1>Softwares</h1>
+        <h1>Software/tools<% if !@job.nil? %> used at this job<% elsif !@year.nil? %> used in <%= @year.value %><% end %></h1>
     </hgroup>
 <% end %>
 

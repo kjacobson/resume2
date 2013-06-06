@@ -27,6 +27,9 @@ class YearsController < ApplicationController
       @jobs = @resume.jobs
       @years = @resume.years
       breadcrumbs("first_collection", "years")
+    else
+      @years = @user.years
+      breadcrumbs("first_collection", "years")
     end
 
     respond_to do |format|

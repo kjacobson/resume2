@@ -37,4 +37,8 @@ class User < ActiveRecord::Base
     res = self.resumes
     return res.size == 0 || DateTime.now.weeks_ago(1) < res.first.created_at
   end
+
+  def years
+    years = self.jobs.flat_map { |j| j.years }.uniq
+  end
 end

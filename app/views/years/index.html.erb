@@ -1,6 +1,6 @@
 <% content_for :head do %>
     <hgroup>
-        <h1>Years</h1>
+        <h1>Years <%= "covered by this resume" if !@resume.nil? %></h1>
     </hgroup>
 <% end %>
 

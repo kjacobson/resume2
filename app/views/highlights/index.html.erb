@@ -1,6 +1,15 @@
 <% content_for :head do %>
     <hgroup>
-        <h1>Listing highlights</h1>
+        <h1>Highlights</h1>
+        <% if !@job.nil? %>
+            <h2>
+                <%=  render :partial => 'jobs/link_to_job', :locals => {:job => @job, :user => @user, :resume => @resume} %>
+            </h2>
+        <% elsif !@skill.nil? %>
+            <h2>
+                <%= render :partial => 'skills/link_to_skill', :locals => {:skill => @skill, :user => @user, :resume => @resume} %>
+            </h2>
+        <% end %>
     </hgroup>
 <% end %>
 

@@ -8,7 +8,15 @@
 <ul class="highlight-list">
     <% highlights.each do |highlight| %>
         <li>
-            <%= render :partial => 'skills/link_to_skill', :locals => {:skill => highlight.skill, :user => user, :resume => resume} %>:
+            <% if !@skill.nil? %>
+                <%=  render :partial => 'jobs/link_to_job', :locals => {:job => highlight.job, :user => user, :resume => resume} %>:
+            <% elsif !@job.nil? %>
+                <%= render :partial => 'skills/link_to_skill', :locals => {:skill => highlight.skill, :user => user, :resume => resume} %>:
+            <% else %>
+                <%= render :partial => 'skills/link_to_skill', :locals => {:skill => highlight.skill, :user => user, :resume => resume} %>
+                /
+                <%=  render :partial => 'jobs/link_to_job', :locals => {:job => highlight.job, :user => user, :resume => resume} %>:
+            <% end %>
             <%= decode(highlight.description) %>
             <% if is_user_match? %>
                 <%= render :partial => "highlights/edit_highlight_link", :locals => { :user => user, :highlight => highlight } %>

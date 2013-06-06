@@ -1,7 +1,7 @@
 <% content_for :head do %>
     <hgroup>
         <h1>
-            Listing jobs
+            Jobs
             <% if !@skill.nil? %>
                 <%= ' involving ' + decode(@skill.title) %>
             <% elsif !@software.nil? %>

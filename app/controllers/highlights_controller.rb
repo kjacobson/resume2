@@ -54,9 +54,11 @@ class HighlightsController < ApplicationController
     @url = highlights_path(@user)
     if !params[:job_id].nil?
       @job = Job.find(params[:job_id])
+      @url += "?job=true"
     end
     if !params[:skill_id].nil?
       @skill = Skill.find(params[:skill_id])
+      @url += "?skill=true"
     end
     @jobs = @user.jobs.order("title ASC")
     @skills = @user.skills.order("title ASC")
@@ -89,10 +91,15 @@ class HighlightsController < ApplicationController
   # POST /highlights.json
   def create
     @highlight = Highlight.new(params[:highlight])
+    if params[:skill]
+      path = skill_path(:id => @highlight.skill.slug)
+    else
+      path = job_path(@user, @highlight.job)
+    end
 
     respond_to do |format|
       if @highlight.save
-        format.html { redirect_to(highlight_path(@user, @highlight), :notice => 'Highlight was successfully created.') }
+        format.html { redirect_to(path, :notice => 'Highlight was successfully created.') }
         format.json  { render :json => @highlight, :status => :created, :location => @highlight }
       else
         flash[:highlight] = @highlight
@@ -109,7 +116,7 @@ class HighlightsController < ApplicationController
 
     respond_to do |format|
       if @highlight.update_attributes(params[:highlight])
-        format.html { redirect_to(highlight_path(@user, @highlight), :notice => 'Highlight was successfully updated.') }
+        format.html { redirect_to(job_path(@user, @highlight.job), :notice => 'Highlight was successfully updated.') }
         format.json  { head :ok }
       else
         format.html { redirect_to request.referrer }

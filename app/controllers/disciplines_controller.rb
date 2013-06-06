@@ -36,6 +36,7 @@ class DisciplinesController < ApplicationController
   def show
     @discipline = Discipline.find(params[:id])
     @skills = @discipline.skills
+    @jobs = @discipline.jobs
     breadcrumbs("first_collection", "disciplines")
     breadcrumbs("first_resource", @discipline)
 

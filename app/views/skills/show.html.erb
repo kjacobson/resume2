@@ -6,6 +6,9 @@
                 <a href="<%= confirm_delete_skill_path({:user_id => @user.id, :id => @skill.slug}) %>" class="link-to-editable delete-link" title="Delete this skill">[delete]</a>
             <% end %>
         </h1>
+        <% if discipline = @skill.discipline(@user) %>
+            <h2>Discipline: <%= render :partial => 'disciplines/link_to_discipline', :locals => { :discipline => discipline, :user => @user, :resume => @resume } %></h2>
+        <% end %>
     </hgroup>
 <% end %>
 

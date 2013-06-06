@@ -1,7 +1,7 @@
 <% content_for :head do %>
     <hgroup>
         <h1>Editing discipline</h1>
-        <h2><%= decode(@discipline.title) %></h2>
+        <h2><%= decode(@discipline.title).titleize %></h2>
     </hgroup>
 <% end %>
 

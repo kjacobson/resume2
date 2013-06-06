@@ -104,7 +104,7 @@ body {
         overflow: hidden;
         padding: 0 $smallestColumnWidth 4em;
 
-        hgroup h1 {
+        header h1 {
             font-size: 3em;
             font-weight: normal;
             line-height: 1.5em;
@@ -116,7 +116,7 @@ body {
                 vertical-align: middle;
             }
         }
-        hgroup h2 {
+        header h2 {
             font-size: 1.5em;
             font-weight: normal;
             line-height: 1.5em;

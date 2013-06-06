@@ -1,7 +1,7 @@
 <% content_for :head do %>
     <hgroup>
         <h1>
-            <%= decode(@discipline.title) %>
+            <%= decode(@discipline.title).titleize %>
         </h1>
     </hgroup>
 <% end %>
@@ -18,5 +18,13 @@
                 Associate <%= 'more ' if @skills.count > 0 %>skills with this discipline
             </a>
         <% end %>
+    </section>
+
+    <section class="secondary">
+        <hgroup>
+            <h1>Jobs</h1>
+            <h2>Jobs involving skills in this discipline:</h2>
+        </hgroup>
+        <%= render :partial => 'jobs/small_list', :locals => { :jobs => @jobs, :user => @user, :resume => @resume } %>
     </section>
 <% end %>

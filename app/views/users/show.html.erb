@@ -37,9 +37,7 @@
     <section class="primary">
         <h1><a href="<%= jobs_path(@user) %>" title="See all your jobs">Your jobs</a></h1>
 
-        <% if @jobs %>
-            <%= render :partial => 'jobs/small_list', :locals => { :user => @user, :resume => nil, :jobs => @jobs } %>
-        <% end %>
+        <%= render :partial => 'jobs/small_list', :locals => { :user => @user, :resume => nil, :jobs => @jobs } %>
 
         <% if is_user_match? %>
             <a href="<%= new_job_path(:user_id => @user.id) %>" class="link-to-editable" title="Add a new job">

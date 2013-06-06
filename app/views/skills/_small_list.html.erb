@@ -1,8 +1,9 @@
 <%
    resume ||= nil
    user ||= nil
+   skills ||= nil
 %>
-<% if !@skills.nil? and @skills.count > 0 %>
+<% if !skills.nil? and skills.count > 0 %>
     <ol class="skill-list">
         <% skills.each do |skill| %>
             <li><%= render :partial => 'skills/link_to_skill', :locals => {:user => user, :resume => resume, :skill => skill} %></li>

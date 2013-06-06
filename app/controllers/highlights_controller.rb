@@ -24,8 +24,8 @@ class HighlightsController < ApplicationController
       breadcrumbs("second_collection", "highlights")
     else
       @highlights = @user.highlights.order(@order_by + " " + @direction)
+      breadcrumbs("first_collection", "highlights")
     end
-    breadcrumbs("first_collection", "highlights")
 
     respond_to do |format|
       format.html # index.html.erb

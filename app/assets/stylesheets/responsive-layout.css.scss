@@ -370,14 +370,18 @@ tr {
                 padding: 0 1.25% 0 0;
                 width: 38.75%;
             }
-            section.extended .sub-list-organizational-module {
-                float: left;
-                margin: 0 1.25% 0 0;
-                width: 18.75%;
+            section.extended .list-with-sub-lists {
+                overflow: hidden;
             }
-                section.extended .sub-list-organizational-module h2 {
-                    padding: 0;
-                }
+              section.extended .sub-list-organizational-module {
+                  float: left;
+                  margin: 0 1.25% 0 0;
+                  width: 18.75%;
+
+                  h2 {
+                      padding: 0;
+                  }
+              }
 }
 
 /* BASIC FORMATTING */

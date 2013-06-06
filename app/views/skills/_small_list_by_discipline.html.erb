@@ -4,34 +4,36 @@
    disciplines ||= nil
    skills ||= nil
 %>
-<% disciplines.each do |discipline| %>
-    <% skills_by_discipline = discipline.skills %>
-    <% if skills_by_discipline %>
+<div class="list-with-sub-lists">
+    <% disciplines.each do |discipline| %>
+        <% skills_by_discipline = discipline.skills %>
+        <% if skills_by_discipline %>
+            <div class="sub-list-organizational-module discipline-with-skills">
+                <h2>
+                    <%= render :partial => 'disciplines/link_to_discipline', :locals => {:user => user, :resume => resume, :discipline => discipline} %>
+                </h2>
+                <ol class="primary-type-sub-list skill-list">
+                    <% skills_by_discipline.each do |skill| %>
+                        <li>
+                            <%= render :partial => 'skills/link_to_skill', :locals => {:user => user, :resume => resume, :skill => skill} %>
+                        </li>
+                    <% end %>
+                </ol>
+            </div>
+        <% end %>
+    <% end %>
+    <% if skills %>
         <div class="sub-list-organizational-module discipline-with-skills">
-            <h2>
-                <%= render :partial => 'disciplines/link_to_discipline', :locals => {:user => user, :resume => resume, :discipline => discipline} %>
-            </h2>
-            <ol class="primary-type-sub-list skill-list">
-                <% skills_by_discipline.each do |skill| %>
-                    <li>
-                        <%= render :partial => 'skills/link_to_skill', :locals => {:user => user, :resume => resume, :skill => skill} %>
-                    </li>
-                <% end %>
-            </ol>
+                <h2>
+                    Uncategorized
+                </h2>
+                <ol class="primary-type-sub-list skill-list">
+                    <% skills.each do |skill| %>
+                        <li>
+                            <%= render :partial => 'skills/link_to_skill', :locals => {:user => user, :resume => resume, :skill => skill} %>
+                        </li>
+                    <% end %>
+                </ol>
         </div>
     <% end %>
-<% end %>
-<% if skills %>
-    <div class="sub-list-organizational-module discipline-with-skills">
-            <h2>
-                Uncategorized
-            </h2>
-            <ol class="primary-type-sub-list skill-list">
-                <% skills.each do |skill| %>
-                    <li>
-                        <%= render :partial => 'skills/link_to_skill', :locals => {:user => user, :resume => resume, :skill => skill} %>
-                    </li>
-                <% end %>
-            </ol>
-    </div>
-<% end %>
+</div>

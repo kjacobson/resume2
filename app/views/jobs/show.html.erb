@@ -103,13 +103,19 @@
                 <% end %>
                 <%=  render :partial => "skills/small_list", :locals => { :user => @user, :resume => @resume, :skills => @skills } %>
             <% end %>
+            <% if is_user_match? %>
+                <a href="<%= edit_job_path(@user, @job) %>" class="link-to-editable edit-link" title="Associate skills with this job">Add skills</a>
+            <% end %>
         </section>     
     <% end %>
 
     <% if @highlights.count >= 1 && @softwares.count >= 1 %>
         <section class="secondary extended associations associated-software">
-                <h1>Software used</h1>
-                <%= render :partial => 'softwares/list', :locals => { :user => @user, :resume => @resume, :softwares => @softwares, :abbreviated => false } %>
+            <h1>Software used</h1>
+            <%= render :partial => 'softwares/list', :locals => { :user => @user, :resume => @resume, :softwares => @softwares, :abbreviated => false } %>
+            <% if is_user_match? %>
+                <a href="<%= edit_job_path(@user, @job) %>" class="link-to-editable edit-link" title="Associate software/tools with this job">Add software/tools</a>
+            <% end %>
         </section>
     <% end %>
 <% end %>

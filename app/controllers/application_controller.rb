@@ -1,4 +1,4 @@
-class ApplicationController < ActionController::Base
+  class ApplicationController < ActionController::Base
   protect_from_forgery :secret => "g273o382g495e504o162d456u094c897k112s344g613o"
 
   helper_method :current_user_session, :current_user

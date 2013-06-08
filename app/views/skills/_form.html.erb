@@ -22,8 +22,9 @@
     <% if @disciplines %>
         <%= f.label :discipline_id %>
         <select id="discipline_id" name="discipline_id">
+            <option>[Uncategorized]</option>
             <% @disciplines.each do |discipline| %>
-                <option value="<%= discipline.id %>"><%= discipline.title %></option>
+                <option value="<%= discipline.id %>" <%= 'selected' if discipline == @skill.discipline(@user) %>><%= discipline.title %></option>
             <% end %>
         </select>
     <% end %>

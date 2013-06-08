@@ -104,7 +104,7 @@
     return @demo_resume
   end
 
-  MODELS = ["users","resumes","jobs","skills","softwares","highlights","disciplines","links","years","job_skills","job_software","resume_highlight","resume_job","user_skill","user_software"]
+  MODELS = ["users","resumes","jobs","skills","softwares","highlights","disciplines","links","years","job_skills","job_softwares","resume_highlights","resume_jobs","user_skills","user_softwares"]
   ACTIONS = ["index","show","new","edit","create","update","destroy","confirm_delete","preview"]
   # TODO: this REALLY needs a test
   def require_resource_match

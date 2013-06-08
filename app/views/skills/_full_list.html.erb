@@ -4,29 +4,57 @@
   skills ||= nil
 %>
 <table>
-    <tr>
-        <th class="d40">
-            <%= render :partial => 'shared/sortable_link', :locals => { :header => 'Title', :column_name => 'title' } %>
-        </th>
-        <th class="d40">
-            Jobs
-        </th>
-    </tr>
-
-    <% skills.each do |skill| %>
+    <thead>
         <tr>
-            <td>
-                <%= render :partial => 'link_to_skill', :locals => {:user => user, :resume => resume, :skill => skill } %>
-            </td>
-            <td>
-                <% if !resume.nil? %>
-                    <a href="<%= resume_skill_jobs_path({:user_id => user.id, :resume_id => resume.id, :skill_id => skill.id}) %>" title="See all the jobs using this skill">
-                <% end %>
-                    <%= skill.job_count %>
-                <% if !resume.nil? %></a><% end %>
-            </td>
+            <th class="d40">
+                <%= render :partial => 'shared/sortable_link', :locals => { :header => 'Title', :column_name => 'title' } %>
+            </th>
+            <th class="d40">
+                Discipline
+            </th>
+            <th class="d20">
+                Jobs
+            </th>
         </tr>
-    <% end %>
+    </thead>
+
+    <tbody>
+        <% skills.each do |skill| %>
+            <tr>
+                <td>
+                    <%= render :partial => 'link_to_skill', :locals => {:user => user, :resume => resume, :skill => skill } %>
+                </td>
+                <td>
+                    <% if is_user_match? %>
+                        <% user_skill = skill.user_skill(user) %>
+                        <%= form_for(user_skill, :method => "put", :url => u_skill_path(:user_id => user.id, :id => user_skill.id)) do |f| %>
+                            <select id="user_skill_discipline_id" name="user_skill[discipline_id]">
+                                <option>[Uncategorized]</option>
+                                <% @disciplines.each do |discipline| %>
+                                    <option value="<%= discipline.id %>" <%= 'selected' if discipline == skill.discipline(user) %>><%= discipline.title %></option>
+                                <% end %>
+                            </select>
+                            <%= f.submit "Save" %>
+                        <% end %>
+                    <% elsif skill.discipline %>
+                        <%= render :partial => 'disciplines/link_to_discipline', :locals => {:user => user, :resume => resume, :discipline => skill.discipline} %>
+                    <% else %>
+                        Uncategorized
+                    <% end %>
+                </td>
+                <td>
+                    <% if !resume.nil? %>
+                        <% jobs_path = resume_skill_jobs_path({:user_id => user.id, :resume_id => resume.id, :skill_id => skill.id}) %>
+                    <% else %>
+                        <% jobs_path = "/users/#{user.id}/skills/#{skill.slug}/jobs" %>
+                    <% end %>
+                    <a href="<%= jobs_path %>" title="See all the jobs using this skill">
+                        <%= skill.job_count %>
+                    </a>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
 </table>
 
 <% if is_user_match? %>

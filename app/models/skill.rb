@@ -22,13 +22,18 @@ class Skill < ActiveRecord::Base
     end
 
     def discipline(user)
-      user_skills = UserSkill.where(:user_id => user.id, :skill_id => self.id)
-      if user_skills.count == 1 and !user_skills.first.discipline_id.nil?
+      user_skill = self.user_skill(user)
+      if user_skill and !user_skill.discipline_id.nil?
         discipline = user_skills.first.discipline
         return discipline
       else
         return nil
       end
+    end
+
+    def user_skill(user)
+      user_skills = UserSkill.where(:user_id => user.id, :skill_id => self.id)
+      return user_skills.size > 0 ? user_skills[0] : nil
     end
 
     def self.rank_skills

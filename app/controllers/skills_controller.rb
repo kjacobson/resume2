@@ -1,17 +1,19 @@
 class SkillsController < ApplicationController
+  before_filter :require_admin, :only => [:edit, :update, :destroy]
   before_filter :require_known_user, :only => [:new, :create, :edit, :update, :destroy]
   before_filter :require_user_match, :only => [:new, :create, :edit, :update, :destroy]
 
   def save_user_skill(skill, user, discipline_id = nil)
     us = user.user_skills.find_by_skill_id(skill.id)
     if us.nil?
-      us = UserSkill.new({:user_id => user.id, :skill_id => skill.id, :discipline_id => discipline_id})
-      if us.save
+      if UserSkill.new({:user_id => user.id, :skill_id => skill.id, :discipline_id => discipline_id}).save
         logger.debug "Saved a user_skill!"
         logger.debug us.id
       else
         return false
       end
+    else
+      us.update_attributes({:discipline_id => discipline_id})
     end
   end
 
@@ -20,6 +22,7 @@ class SkillsController < ApplicationController
   def index
     @order_by = !params[:order_by].nil? ? params[:order_by] : "title"
     @direction = !params[:direction].nil? ? params[:direction] : "ASC"
+    @disciplines = @user.disciplines
 
     if !params[:job_id].nil?
       @job = Job.find_by_id(params[:job_id])

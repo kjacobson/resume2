@@ -199,7 +199,7 @@ class JobsController < ApplicationController
     end
     
     if !params[:skill_id].nil?
-      @skill = Skill.find_by_id(params[:skill_id])
+      @skill = Skill.find_by_slug(params[:skill_id])
       @jobs = @skill.jobs.order(@order_by + " " + @direction)
       breadcrumbs("first_collection", "skills")
       breadcrumbs("first_resource", @skill)

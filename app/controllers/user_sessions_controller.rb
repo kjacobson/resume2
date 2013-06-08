@@ -48,7 +48,7 @@ class UserSessionsController < ApplicationController
       if pass && @user_session.save
         @validation.destroy
         # TODO: smarter post-login logic
-        format.html { redirect_to(user_path(@user_session.user), :notice => 'Login Successful') }
+        format.html { redirect_to(user_path(@user_session.user)) }
         format.xml  { render :xml => @user_session, :status => :created, :location => @user_session }
       else
         format.html {

@@ -68,5 +68,5 @@ Resume2::Application.configure do
   config.assets.precompile << Proc.new{ |path| /^(?!_)[^\/]*\.css$/.match(File.basename(path)) }
 
   #
-  config.force_ssl = true
+  #config.force_ssl = true
 end

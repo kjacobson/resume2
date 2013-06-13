@@ -3,3 +3,6 @@
 # To ban all spiders from the entire site uncomment the next two lines:
 # User-Agent: *
 # Disallow: /
+Disallow: /users/
+# TODO: would like to allow access to demo resume. Requires nicer path.
+Disallow: /admin/

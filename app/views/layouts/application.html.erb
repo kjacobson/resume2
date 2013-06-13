@@ -2,9 +2,12 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <% auto_title if content_for(:title).blank? %>
         <title><%= yield :title %> &mdash; Re-CV.com</title>
+        <meta name="description" content="Make your resume make sense. Re-CV.com lets designers and developers build interactive resumes that give a fuller context to their work histories.">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="HandheldFriendly" content="True">
         <%= stylesheet_link_tag("master", :media => "all") %>
         <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet" type="text/css">
         <%= yield :stylesheets %>

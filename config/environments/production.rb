@@ -68,6 +68,10 @@ Resume2::Application.configure do
   #  Precompile should include all CSS files under app/assets path that begin with a non-underscore character
   config.assets.precompile << Proc.new{ |path| /^(?!_)[^\/]*\.css$/.match(File.basename(path)) }
 
+
+  # Force Expires Header to the maximum value
+  config.static_cache_control = "public, max-age=30758400"
+
   #
   #config.force_ssl = true
 end

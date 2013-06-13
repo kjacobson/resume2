@@ -71,10 +71,4 @@ Resume2::Application.configure do
 
   # Force Expires Header to the maximum value
   config.static_cache_control = "public, max-age=30758400"
-
-  #
-  #config.force_ssl = true
-  # Serve pre-gzipped static assets
-  config.middleware.insert_after(
-    'Rack::Cache', Middleware::CompressedStaticAssets, paths["public"].first, config.assets.prefix, config.static_cache_control)
 end

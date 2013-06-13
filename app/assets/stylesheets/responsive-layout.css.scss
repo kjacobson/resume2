@@ -103,24 +103,27 @@ body {
     #main {
         padding: 0 $smallestColumnWidth 4em;
 
-        header h1 {
-            font-size: 3em;
-            font-weight: normal;
-            line-height: 1.5em;
-            margin: 1em 0 0;
+        header {
+            overflow: auto;
+        }
+            header h1 {
+                font-size: 3em;
+                font-weight: normal;
+                line-height: 1.5em;
+                margin: 1em 0 0;
 
-            .link-to-editable {
-                font-size: 0.5em;
-                line-height: 3em;
-                vertical-align: middle;
+                .link-to-editable {
+                    font-size: 0.5em;
+                    line-height: 3em;
+                    vertical-align: middle;
+                }
             }
-        }
-        header h2 {
-            font-size: 1.5em;
-            font-weight: normal;
-            line-height: 1.5em;
-            margin: 0 0 0.5em;
-        }
+            header h2 {
+                font-size: 1.5em;
+                font-weight: normal;
+                line-height: 1.5em;
+                margin: 0 0 0.5em;
+            }
     }
           header .message,
           header .notice {

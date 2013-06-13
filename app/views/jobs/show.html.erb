@@ -93,13 +93,13 @@
         <% end %>
     </section>
 
-    <% if @skills.count >= 1 %>
-        <section class="secondary extended associations associated-skills">
-            <h1>Skills used</h1>
+    <section class="secondary extended associations associated-skills">
+        <h1>Skills used</h1>
 
+        <% if @skills.count >= 1 %>
             <% if @disciplines and @disciplines.count >= 1 %>
                 <%= render :partial => "skills/small_list_by_discipline", :locals => { :user => @user, :resume => @resume, :disciplines => @disciplines, :skills => @uncategorized_skills } %>
-            <% elsif @skills.count >= 1 %>
+            <% else %>
                 <% if is_user_match? %>
                     <p>
                         <strong>Your skills are orphans!</strong> Giving them disciplines will add some structure and clarity to your resume.
@@ -108,19 +108,24 @@
                 <% end %>
                 <%=  render :partial => "skills/small_list", :locals => { :user => @user, :resume => @resume, :skills => @skills } %>
             <% end %>
-            <% if is_user_match? %>
-                <a href="<%= edit_job_path(@user, @job) %>" class="link-to-editable edit-link" title="Associate skills with this job">Add skills</a>
-            <% end %>
-        </section>
-    <% end %>
+        <% end %>
+        <% if is_user_match? %>
+            <a href="<%= edit_job_path(@user, @job) + "#jobSkills" %>" class="link-to-editable edit-link" title="Associate skills with this job">Add skills</a>
+        <% else %>
+            <p>This user has not listed any skills.</p>
+        <% end %>
+    </section>
 
-    <% if @highlights.count >= 1 && @softwares.count >= 1 %>
-        <section class="secondary extended associations associated-software">
-            <h1>Software used</h1>
+
+    <section class="secondary extended associations associated-software">
+        <h1>Software/tools used</h1>
+        <% if @softwares.count >= 1 %>
             <%= render :partial => 'softwares/list', :locals => { :user => @user, :resume => @resume, :softwares => @softwares, :abbreviated => false } %>
-            <% if is_user_match? %>
-                <a href="<%= edit_job_path(@user, @job) %>" class="link-to-editable edit-link" title="Associate software/tools with this job">Add software/tools</a>
-            <% end %>
-        </section>
-    <% end %>
+        <% end %>
+        <% if is_user_match? %>
+            <a href="<%= edit_job_path(@user, @job) + "#jobSoftwares" %>" class="link-to-editable edit-link" title="Associate software/tools with this job">Add software/tools</a>
+        <% else %>
+            <p>This user has not listed any software programs or tools.</p>
+        <% end %>
+    </section>
 <% end %>

@@ -4,6 +4,8 @@
     </hgroup>
 <% end %>
 
+<% page_title "Viewing software programs/tools" %>
+
 <% content_for :main do %>
     <section class="primary extended">
         <%= render :partial => 'softwares/full_list', :locals => {:softwares => @softwares, :user => @user, :resume => @resume} %>

@@ -3,7 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title><%= yield :title %> Re-CV.com</title>
+        <% auto_title if content_for(:title).blank? %>
+        <title><%= yield :title %> &mdash; Re-CV.com</title>
         <%= stylesheet_link_tag("master", :media => "all") %>
         <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet" type="text/css">
         <%= yield :stylesheets %>

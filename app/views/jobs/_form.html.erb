@@ -65,7 +65,7 @@
         <%= render :partial => "common/form_error", :locals => { :model => @job, :field => "reason" } if @job.errors[:reason].count > 0 %>
     
 
-    <fieldset class="job-skills">
+    <fieldset class="job-skills" id="jobSkills">
         <h2>Skills</h2>
         <!--<label>Allowed characters: A-Z, 0-9, ., -, _, +</label>-->
         <textarea class="wide" rows="4" name="skills" placeholder="e.g. running, jumping, skipping, carpentry"><%= @skills.collect{ |x| x.title }.join(", ") %></textarea>
@@ -78,7 +78,7 @@
         <% end %>
     </fieldset>
 
-    <fieldset class="job-softwares">
+    <fieldset class="job-softwares" id="jobSoftwares">
         <h2>Software/tools</h2>
         <!--<label>Allowed characters: A-Z, 0-9, ., -, _, +</label>-->
         <textarea class="wide" rows="4" name="softwares" placeholder="e.g. photoshop, excel, illustrator"><%= @softwares.collect{ |x| x.title }.join(", ") %></textarea>

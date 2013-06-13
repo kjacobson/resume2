@@ -80,7 +80,12 @@
                 <p>
                     <strong>Highlights put your skills in context</strong> A highlight is an example of how you used a particular
                     skill at a particular job.
-                    <a href="<%= new_highlight_path(@user, :job_id => @job.id) %>" title="Add a highlight for this job">Here&rsquo;s your chance</a>.
+                    <% if @skills.count >=1 %>
+                        <a href="<%= new_highlight_path(@user, :job_id => @job.id) %>" title="Add a highlight for this job">Here&rsquo;s your chance</a>.
+                    <% else %>
+                        First things first:
+                        <a href="<%= edit_job_path(@user, :job_id => @job.id) + "#jobSkills" %>" title="Add skills to this job">add some skills</a>.
+                    <% end %>
                 </p>
             <% else %>
                 <p>This user hasn&rsquo;t listed highlights from this job.</p>

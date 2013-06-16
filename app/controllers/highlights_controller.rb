@@ -54,11 +54,11 @@ class HighlightsController < ApplicationController
     @url = highlights_path(@user)
     if !params[:job_id].nil?
       @job = Job.find(params[:job_id])
-      @url += "?job=true"
+      @url << "?job=true"
     end
     if !params[:skill_id].nil?
       @skill = Skill.find(params[:skill_id])
-      @url += "?skill=true"
+      @url << "?skill=true"
     end
     @jobs = @user.jobs.order("title ASC")
     @skills = @user.skills.order("title ASC")

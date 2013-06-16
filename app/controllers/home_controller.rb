@@ -4,6 +4,7 @@ class HomeController < ApplicationController
 
   def index
     if current_user
+      flash[:notice] = flash[:notice]
       redirect_to user_path(current_user) and return
     end
     @demo = Demo.first

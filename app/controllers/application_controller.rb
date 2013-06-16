@@ -127,7 +127,7 @@
       end
     end
     if query.nil?
-      flash[:notice] = "401"
+      flash[:notice] = "The page you requested couldn&rsquo;t be found"
       redirect_to :homepage and return
     end
   end

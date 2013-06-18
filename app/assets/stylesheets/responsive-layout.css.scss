@@ -174,10 +174,11 @@ body {
     color: #fff ;
     min-height: 42px;
     overflow: hidden;
-    padding: 6px $smallestColumnWidth;
+    padding: 6px 0 0;
 
     h1 {
         background: transparent url('/assets/re-cv_triangle_32x29.png') no-repeat 0 center;
+        margin: 0 4.16667%;
         padding: 0 24px 0 44px;
 
         a {
@@ -192,14 +193,32 @@ body {
             }
         }
     }
-
+    ul {
+        margin: 6px 0 0;
+    }
         li {
-            display: inline-block;
+            background-color: #555;
+            display: block;
+            margin: 0 0 6px;
         }
-        li:not(:first-child):before {
-            color: $lightest;
-            content: "\bb";
+        li:last-child {
+            background: #09c;
+            height: auto;
+            margin: 0;
         }
+            a {
+                display: block;
+                padding: 0 4.16667%;
+
+                &:hover,
+                &:focus {
+                    background: #09c;
+                }
+                &:link,
+                &:visited {
+                    color: #fff;
+                }
+            }
 }
 
 tr {
@@ -305,19 +324,47 @@ tr:last-child {
 
                 h1 {
                     float: left;
+                    margin: 0;
                 }
                 ul {
                     float: left;
                     line-height: 29px;
+                    margin: 0;
                 }
+                    li,
+                    li:last-child {
+                        background: transparent;
+                        border: 0;
+                        display: inline-block;
+                        height: auto;
+                        margin: 0;
+                    }
+                    li:before {
+                        color: $lightest;
+                        content: "\bb";
+                    }
+                    li:first-child:before {
+                        display: none;
+                    }
+                        a {
+                            display: inline;
+                            padding: 0;
+
+                            &:link {
+                                color: $middle;
+                            }
+                            &:visited {
+                                color: $darkest;
+                            }
+                            &:hover,
+                            &:focus {
+                                background: transparent;
+                            }
+                        }
+                        .spacer {
+                            display: none;
+                        }
             }
-                .breadcrumbs li {
-                    border: 0;
-                    padding: 0;
-                }
-                .breadcrumbs li:not(:first-child):before {
-                    margin: 0 6px;
-                }
 
         tr {
             border: none;

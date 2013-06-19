@@ -22,11 +22,13 @@
         <% if first_collection = @breadcrumbs.try(:[], 'first_collection') %>
             <li>
                 <a href="/users/<%= @user.id %><%= '/resumes/' + @resume.id.to_s if @resume %>/<%= first_collection %>" title="See the <%= first_collection %> for this resume">
+                    <% if @resume and !@resume.new_record? %><span class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;&#8627;</span><% end %>
                     <%= first_collection.capitalize %>
                 </a>
             </li>
             <% if params[:action] == "new" %>
                 <li>
+                    <span class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#8627;</span>
                     New <%= @breadcrumbs['first_collection'].singularize %>
                 </li>
             <% elsif resource = @breadcrumbs.try(:[], 'first_resource')%>
@@ -45,12 +47,14 @@
                       end
                     %>
                     <a href="/users/<%= @user.id %><%= '/resumes/' + @resume.id.to_s if @resume %>/<%= first_collection %>/<%= id %>">
+                        <span class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#8627;</span>
                         <%= title %>
                     </a>
                 </li>
                 <% if second_collection = @breadcrumbs.try(:[], 'second_collection') %>
                     <li>
                         <a href="/users/<%= @user.id %><%= '/resumes/' + @resume.id.to_s if @resume %>/<%= first_collection %>/<%= id %>/<%= second_collection %>" title="See the <%= second_collection %> for this <%= first_collection.singularize %>">
+                            <span class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#8627;</span>
                             <%=  second_collection.capitalize %>
                         </a>
                     </li>

@@ -54,18 +54,21 @@ input.narrow,
 select[multiple].narrow,
 textarea.narrow,
 .form-explanation.narrow {
+    max-width: 99%;
     width: 12em;
 }
 input.medium,
 select[multiple].medium,
 textarea.medium,
 .form-explanation.medium {
+    max-width: 99%;
     width: 24em;
 }
 input.wide,
 select[multiple].wide,
 textarea.wide,
 .form-explanation.wide {
+    max-width: 99%;
     width: 36em;
 }
 

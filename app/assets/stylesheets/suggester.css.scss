@@ -1,0 +1,30 @@
+@import 'color-vars';
+@import 'compass/css3';
+
+.suggester {
+    margin: 0 0 0.5em;
+
+    li {
+        background-color: $subtleAccent;
+        @include border-radius(4px);
+        color: #fff;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 0.875em;
+        margin: 3px;
+        padding: 0 6px;
+        @include transition(all 0.1s ease-in);
+    }
+    li:hover {
+        background-color: $accent;
+        @include transition(all 0.1s ease-in);
+    }
+    li.in-use {
+        background-color: #bff0ff;
+        color: $deemphasizedText;
+    }
+    li.in-use:hover {
+        background-color: #bff0ff;
+        color: $defaultText;
+    }
+}

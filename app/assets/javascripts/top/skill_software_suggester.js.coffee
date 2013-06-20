@@ -1,7 +1,7 @@
 define ['lib/zepto'], ($) ->
   init = (tag_selector, target_selector) ->
     script_tag = $(tag_selector)
-    datalist = script_tag.html()
+    datalist = $(script_tag.html())
     script_tag.replaceWith(datalist)
     textarea = $(target_selector)
     datalist.on("click", "li", (e) ->

@@ -27,7 +27,8 @@ unless Rails.configuration.assets.debug
         names << "pages/#{full_path.gsub(root, '').sub(/^\//, '').sub(/\.js($|.coffee$)/, '')}"
         names
     end
-    page_files = ", #{file_names.map{ |file| "'" + file + "'" }.join(', ')} "
+    # this will need a leading comma if shared_libraries is not blank
+    page_files = "#{file_names.map{ |file| "'" + file + "'" }.join(', ')} "
 end
 %>
 require <%= "[#{shared_libraries}#{page_files}]" %>

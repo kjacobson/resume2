@@ -19,7 +19,7 @@ page_files = " "
 unless Rails.configuration.assets.debug
     # Production mode manifest must also reference any top-level pages/*.js files so that the
     #  optimizer will include them along with all dependencies in compiled application-####.js file
-    root = File.join(asset_root, 'javascripts', 'pages')
+    root = File.join(asset_root, 'javascripts')
     files = Dir.glob(File.join(root, '**', '*.{js,js.coffee}'))
 
     file_names = []

@@ -11,7 +11,7 @@ gem 'htmlentities'
 gem 'haml', '= 3.1.6'
 gem 'sass'
 gem 'compass'
-gem 'requirejs-rails'
+gem 'requirejs-rails', :git => "git://github.com/jwhitley/requirejs-rails.git"
 
 # Use unicorn as the web server
 # gem 'unicorn'

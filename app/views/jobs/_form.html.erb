@@ -69,7 +69,11 @@
         <h2>Skills</h2>
         <!--<label>Allowed characters: A-Z, 0-9, ., -, _, +</label>-->
         <textarea class="wide" rows="4" name="skills" placeholder="e.g. running, jumping, skipping, carpentry"><%= @skills.collect{ |x| x.title }.join(", ") %></textarea>
-
+        <datalist id="jobSkillsDatalist">
+            <% @u_skills.each do |skill| %>
+                <option value="<%= skill.title %>"><%= skill.title %></option>
+            <% end %>
+        </datalist>
         <% if @job.skills.count <= 1 %>
             <p class="form-explanation wide">
                 <strong>What skills did you use in this job?</strong>
@@ -118,4 +122,11 @@
     <div class="actions">
         <%= f.submit "Save", :class => "action-button" %>
     </div>
+<% end %>
+<% content_for :body_scripts do %>
+    <script>
+        require(['skill_software_suggester'], function(SkillSoftwareSuggester) {
+            SkillSoftwareSuggester.init();
+        });
+    </script>
 <% end %>

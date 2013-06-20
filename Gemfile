@@ -11,6 +11,7 @@ gem 'htmlentities'
 gem 'haml', '= 3.1.6'
 gem 'sass'
 gem 'compass'
+gem 'requirejs-rails'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -47,6 +48,7 @@ group :development do
   #gem 'ZenTest'
 end
 group :assets do
+  gem 'coffee-rails'
   gem 'sass-rails'
   gem 'compass-rails'
   gem 'uglifier'

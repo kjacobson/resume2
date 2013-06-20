@@ -1,0 +1,33 @@
+<%
+# Dynamically render application.js based on the Rails environment when the file is requested
+#  Development mode downloads scripts individually and each page should already require() any script it needs,
+#   so the only files to require() through application.js should be core libraries common across all pages
+#  Non-development mode means require-rails optimizer is using this file as a manifest to compile the
+#   application-####.js file, so it needs *all* top-level script files in order to process their dependencies
+
+# Delete any leftover .orig or .rej artifacts from development environments
+#  RequireJS executes before Sprockets CSS compilation so this clears all CSS/JS remnants
+asset_root = File.join(Rails.root, 'app', 'assets')
+#leftover_files = Dir.glob(File.join(asset_root, '**', '*.{orig,rej}'))
+#leftover_files.each { |junk_file| `rm -rf #{junk_file}` }
+
+# Manually list common libraries not found in any require() call made by *any* other script files
+#  These files need to be included in require() call here in both development and production mode
+#shared_libraries = " 'foo', 'lib/foo' "
+shared_libraries = ""
+page_files = " "
+unless Rails.configuration.assets.debug
+    # Production mode manifest must also reference any top-level pages/*.js files so that the
+    #  optimizer will include them along with all dependencies in compiled application-####.js file
+    root = File.join(asset_root, 'javascripts', 'pages')
+    files = Dir.glob(File.join(root, '**', '*.{js,js.coffee}'))
+
+    file_names = []
+    files.inject(file_names) do |names, full_path|
+        names << "pages/#{full_path.gsub(root, '').sub(/^\//, '').sub(/\.js($|.coffee$)/, '')}"
+        names
+    end
+    page_files = ", #{file_names.map{ |file| "'" + file + "'" }.join(', ')} "
+end
+%>
+require <%= "[#{shared_libraries}#{page_files}]" %>

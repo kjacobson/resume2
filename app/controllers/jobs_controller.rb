@@ -259,6 +259,7 @@ class JobsController < ApplicationController
   # GET /jobs/new.json
   def new
     @job = Job.new
+    @u_skills = @user.skills.order("title ASC")
     new_instance_vars
     breadcrumbs("first_collection", "jobs")
 

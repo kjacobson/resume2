@@ -42,5 +42,8 @@
           ga('create', 'UA-39988296-1', 're-cv.com');
           ga('send', 'pageview');
         </script>
+        <%= javascript_include_tag("lib/zepto.min") %>
+        <%= requirejs_include_tag "application" %>
+        <%= yield :body_scripts %>
     </body>
 </html>

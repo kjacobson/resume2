@@ -43,7 +43,8 @@
           ga('send', 'pageview');
         </script>
         <%= javascript_include_tag("lib/zepto.min") %>
-        <%= requirejs_include_tag "application" %>
+        <%= javascript_include_tag("require") %>
+        <%= javascript_include_tag("application") %>
         <%= yield :body_scripts %>
     </body>
 </html>

@@ -143,7 +143,7 @@
 <% end %>
 <% content_for :body_scripts do %>
     <script>
-        require(['skill_software_suggester'], function(SkillSoftwareSuggester) {
+        require(['top/skill_software_suggester'], function(SkillSoftwareSuggester) {
             SkillSoftwareSuggester.init("#jobSkillsScriptTag", "[name='skills']");
             SkillSoftwareSuggester.init("#jobSoftwaresScriptTag", "[name='softwares']");
         });

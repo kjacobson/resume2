@@ -17,14 +17,14 @@ asset_root = File.join(Rails.root, 'app', 'assets')
 shared_libraries = ""
 page_files = " "
 unless Rails.configuration.assets.debug
-    # Production mode manifest must also reference any top-level *.js files so that the
+    # Production mode manifest must also reference any top-level top/*.js files so that the
     #  optimizer will include them along with all dependencies in compiled application-####.js file
-    root = File.join(asset_root, 'javascripts')
+    root = File.join(asset_root, 'javascripts', 'top')
     files = Dir.glob(File.join(root, '**', '*.{js,js.coffee}'))
 
     file_names = []
     files.inject(file_names) do |names, full_path|
-        names << "#{full_path.gsub(root, '').sub(/^\//, '').sub(/\.js($|.coffee$)/, '')}"
+        names << "top/#{full_path.gsub(root, '').sub(/^\//, '').sub(/\.js($|.coffee$)/, '')}"
         names
     end
     # this will need a leading comma if shared_libraries is not blank

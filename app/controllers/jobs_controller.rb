@@ -6,6 +6,8 @@ class JobsController < ApplicationController
     @resumes = current_user.resumes
     @skills = []
     @softwares = []
+    @u_skills = @user.skills.order("title ASC")
+    @u_softwares = @user.softwares.order("title ASC")
     if !params[:resume_id].nil?
       @resume = Resume.find(params[:resume_id])
     end
@@ -17,6 +19,8 @@ class JobsController < ApplicationController
     @softwares = @job.softwares
     @resumes = current_user.resumes
     @j_resumes = @job.resumes
+    @u_skills = @user.skills.order("title ASC")
+    @u_softwares = @user.softwares.order("title ASC")
     if !params[:resume_id].nil?
       @resume = Resume.find(params[:resume_id])
     end
@@ -259,7 +263,6 @@ class JobsController < ApplicationController
   # GET /jobs/new.json
   def new
     @job = Job.new
-    @u_skills = @user.skills.order("title ASC")
     new_instance_vars
     breadcrumbs("first_collection", "jobs")
 

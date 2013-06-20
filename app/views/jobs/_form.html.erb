@@ -67,14 +67,21 @@
 
     <fieldset class="job-skills" id="jobSkills">
         <h2>Skills</h2>
+        <script type="text/hide" id="jobSkillsScriptTag">
+            <ul class="suggester" id="jobSkillsDatalist">
+                <% @u_skills.each do |skill| %>
+                    <% if @skills.include?(skill) %>
+                        <li class="in-use" title="Remove &rsquo;<%= skill.title %>&lsquo; from this job"><%= skill.title %></li>
+                    <% else %>
+                        <li title="Add &rsquo;<%= skill.title %>&lsquo; to this job"><%= skill.title %></li>
+                    <% end %>
+                <% end %>
+            </ul>
+        </script>
         <!--<label>Allowed characters: A-Z, 0-9, ., -, _, +</label>-->
         <textarea class="wide" rows="4" name="skills" placeholder="e.g. running, jumping, skipping, carpentry"><%= @skills.collect{ |x| x.title }.join(", ") %></textarea>
-        <datalist id="jobSkillsDatalist">
-            <% @u_skills.each do |skill| %>
-                <option value="<%= skill.title %>"><%= skill.title %></option>
-            <% end %>
-        </datalist>
-        <% if @job.skills.count <= 1 %>
+
+      <% if @job.skills.count <= 1 %>
             <p class="form-explanation wide">
                 <strong>What skills did you use in this job?</strong>
                 Separated by commas. You&rsquo;ll be able to associate these same skills with other jobs, too.
@@ -84,6 +91,17 @@
 
     <fieldset class="job-softwares" id="jobSoftwares">
         <h2>Software/tools</h2>
+         <script type="text/hide" id="jobSoftwaresScriptTag">
+            <ul class="suggester" id="jobSoftwaresDatalist">
+                <% @u_softwares.each do |software| %>
+                    <% if @softwares.include?(software) %>
+                        <li class="in-use" title="Remove &rsquo;<%= software.title %>&lsquo; from this job"><%= software.title %></li>
+                    <% else %>
+                        <li title="Add &rsquo;<%= software.title %>&lsquo; to this job"><%= software.title %></li>
+                    <% end %>
+                <% end %>
+            </ul>
+        </script>
         <!--<label>Allowed characters: A-Z, 0-9, ., -, _, +</label>-->
         <textarea class="wide" rows="4" name="softwares" placeholder="e.g. photoshop, excel, illustrator"><%= @softwares.collect{ |x| x.title }.join(", ") %></textarea>
 
@@ -126,7 +144,8 @@
 <% content_for :body_scripts do %>
     <script>
         require(['skill_software_suggester'], function(SkillSoftwareSuggester) {
-            SkillSoftwareSuggester.init();
+            SkillSoftwareSuggester.init("#jobSkillsScriptTag", "[name='skills']");
+            SkillSoftwareSuggester.init("#jobSoftwaresScriptTag", "[name='softwares']");
         });
     </script>
 <% end %>

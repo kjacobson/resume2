@@ -36,8 +36,8 @@
                             </select>
                             <%= f.submit "Save" %>
                         <% end %>
-                    <% elsif skill.discipline %>
-                        <%= render :partial => 'disciplines/link_to_discipline', :locals => {:user => user, :resume => resume, :discipline => skill.discipline} %>
+                    <% elsif skill.discipline(user) %>
+                        <%= render :partial => 'disciplines/link_to_discipline', :locals => {:user => user, :resume => resume, :discipline => skill.discipline(user)} %>
                     <% else %>
                         Uncategorized
                     <% end %>

@@ -29,6 +29,11 @@ unless Rails.configuration.assets.debug
     end
     # this will need a leading comma if shared_libraries is not blank
     page_files = "#{file_names.map{ |file| "'" + file + "'" }.join(', ')} "
+else %>
+require.config({
+    baseUrl: "/assets"
+})
+<%
 end
 %>
 require <%= "[#{shared_libraries}#{page_files}]" %>

@@ -1,4 +1,4 @@
-define ['lib/zepto'], ($) ->
+define ['lib/jquery'], ($) ->
   init = (tag_selector, target_selector) ->
     script_tag = $(tag_selector)
     datalist = $(script_tag.html())

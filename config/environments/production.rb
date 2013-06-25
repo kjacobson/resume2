@@ -67,7 +67,7 @@ Resume2::Application.configure do
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   #  Precompile should include all CSS files under app/assets path that begin with a non-underscore character
   config.assets.precompile << Proc.new{ |path| /^(?!_)[^\/]*\.css$/.match(File.basename(path)) }
-  config.assets.precompile << %w( lib/zepto.min.js )
+  config.assets.precompile << %w( lib/jquery-1.10.1.min.js )
 
 
   # Force Expires Header to the maximum value

@@ -1,6 +1,7 @@
 <%
   messages ||= model.errors[field]
   field ||= ""
+  hide_attr_name = nil
 %>
 <% messages.each do |msg| %>
     <p class="form-error"><%= model.class.human_attribute_name(field) + " " unless hide_attr_name %><%= msg %></p>

@@ -4,6 +4,9 @@ class UserSessionsController < ApplicationController
   # GET /user_sessions/new.xml
   def new
     @user_session = UserSession.new
+    @user = User.find_by_email(params[:email])
+    @validation = LoginValidation.find_by_unique_key(params[:validation_key])
+    @valid_key = @validation && !@validation.expired? && @validation.user_id == @user.id
     errors = flash[:us_errors] || []
     errors.each do |k, v|
       @user_session.errors.add(k, v)

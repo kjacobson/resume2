@@ -7,21 +7,21 @@
 <% end %>
 
 <%= form_for(@user_session) do |f| %>
-    <% if params[:validation_key] && params[:email] %>
+    <% if @valid_key %>
         <input type="hidden" name="user_session[email]" value="<%= params[:email] %>" />
+        <input type="hidden" name="user_session[validation_key]" value="<%= params[:validation_key] %>" />
     <% else %>
         <%= f.label :email %>
         <%= f.text_field :email %>
         <%= render :partial => "common/form_error", :locals => { :model => @user_session, :field => "email", :hide_attr_name => true } if @user_session.errors[:email].count > 0 %>
     <% end %>
 
-    <% if params[:validation_key] %>
-        <input type="hidden" name="user_session[validation_key]" value="<%= params[:validation_key] %>" />
-    <% end %>
     <%= render :partial => "common/form_error", :locals => { :model => @user_session, :field => "validation_key", :hide_attr_name => true  } if @user_session.errors[:validation_key].count > 0 %>
-
+    <% if !params[:validation_key].nil? && !@valid_key %>
+        <%= render :partial => "common/form_error", :locals => { :model => @user_session, :field => "validation_key", :hide_attr_name => true, :messages => ["The link you followed here was invalid or expired. Please enter your email and try again."] } %>
+    <% end %>
     <div class="actions">
-        <%= f.submit "#{params[:validation_key] && params[:email] ? 'Finish login' : 'Send email'}", :class => "action-button" %>
+        <%= f.submit "#{@valid_key ? 'Finish login' : 'Send email'}", :class => "action-button" %>
     </div>
 <% end %>
 

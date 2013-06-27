@@ -108,11 +108,11 @@
                 <% end %>
                 <%=  render :partial => "skills/small_list", :locals => { :user => @user, :resume => @resume, :skills => @skills } %>
             <% end %>
+        <% else %>
+            <% if !is_user_match? %><p>This user has not listed any skills.</p><% end %>
         <% end %>
         <% if is_user_match? %>
             <a href="<%= edit_job_path(@user, @job) + "#jobSkills" %>" class="link-to-editable edit-link" title="Associate skills with this job">Add skills</a>
-        <% else %>
-            <p>This user has not listed any skills.</p>
         <% end %>
     </section>
 

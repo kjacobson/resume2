@@ -28,6 +28,14 @@
     &:active {
         @include background(linear-gradient($subtleAccent, $accent));
     }
+
+    &.disabled,
+    &.disabled:hover,
+    &.disabled:focus,
+    &.disabled:active {
+        background: $disabledBtnBg;
+        cursor: default;
+    }
 }
 @mixin huge-action-button {
     @include background(linear-gradient($accent, $subtleAccent));

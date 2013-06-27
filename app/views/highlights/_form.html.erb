@@ -10,7 +10,7 @@
     <input type="hidden" name="highlight[user_id]" id="highlight_user_id" value="<%= @user.id %>">
 
     <%= f.label :job_id %>
-    <select multiple name="highlight[job_id]" id="highlight_job_id">
+    <select name="highlight[job_id]" id="highlight_job_id">
         <% @jobs.each do |job| %>
             <option value="<%= job.id %>" <%= 'selected' if job == @job %>><%= job.title %></option>
         <% end %>
@@ -18,7 +18,7 @@
     <%= render :partial => "common/form_error", :locals => { :model => @highlight, :field => "job_id" } if @highlight.errors[:job_id].count > 0 %>
 
     <%= f.label :skill_id %>
-    <select multiple name="highlight[skill_id]" id="highlight_skill_id">
+    <select name="highlight[skill_id]" id="highlight_skill_id">
         <% @skills.each do |skill| %>
             <option value="<%= skill.id %>" <%= 'selected' if skill == @skill %>><%= skill.title %></option>
         <% end %>

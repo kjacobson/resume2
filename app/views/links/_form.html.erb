@@ -7,8 +7,9 @@
 <% end %>
 
 <%= form_for(@link, :url => @url) do |f| %>
+    <% this_year = Time.now.year %>
     <%= f.label :expiration_date %>
-    <%= f.date_select :expiration_date, :order => [:month, :day, :year] %>
+    <%= f.date_select :expiration_date, :order => [:month, :day, :year], :start_year => this_year, :end_year => this_year + 3 %>
     <%= render :partial => "common/form_error", :locals => { :model => @link, :field => "expiration_date" } if @link.errors[:expiration_date].count > 0 %>
 
     <input type="hidden" name="link[resume_id]" id="link_resume_id" value="<%= @resume_id %>">

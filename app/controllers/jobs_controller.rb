@@ -15,8 +15,8 @@ class JobsController < ApplicationController
 
   def edit_instance_vars
     @url = job_path({:user_id => current_user.id})
-    @skills = @job.skills
-    @softwares = @job.softwares
+    @skills = @job.skills.order("title ASC")
+    @softwares = @job.softwares.order("title ASC")
     @resumes = current_user.resumes
     @j_resumes = @job.resumes
     @u_skills = @user.skills.order("title ASC")

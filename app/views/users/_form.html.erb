@@ -23,9 +23,9 @@
                 <label for="resume_title">Give your first resume a name</label><br />
                 <%= text_field :resume, :title %>
                 <p class="form-explanation">
-                    <strong>Why do we ask for this?</strong> So you can keep track of your resumes, mostly. Not every job you
-                    apply for will be the same, so you might want multiple resumes. We make this easy: you only have to enter
-                    jobs and skills once, and you can choose which to include on each resume.
+                    <strong>Why do we ask for this?</strong> This will appear at the top of your resume. And because not
+                    every job you apply for will be the same, you might want multiple resumes. We make this easy: you
+                    only have to enter jobs and skills once, and you can choose which to include on each resume.
                 </p>
             </fieldset>
 
@@ -57,7 +57,7 @@
                     want to include your contact information on your resume(s). You&rsquo;ll be able to choose whether to show your
                     contact information separately for each resume.
                 </p>
-                <%= f.text_area :address %>
+                <%= f.text_area :address, :rows => 4, :cols => nil, :class => "medium" %>
                 <%= render :partial => "common/form_error", :locals => { :model => @user, :field => "address" } if @user.errors[:address].count > 0 %>
 
                 <%= f.label :phone %>

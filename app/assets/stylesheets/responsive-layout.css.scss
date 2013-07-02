@@ -556,11 +556,15 @@ section.primary .job-list.birds-eye .job-title {
     font-size: 1.3125em;
     line-height: 1.5em;
 }
-    .job-list.birds-eye .skill-list li:not(:last-child) a:after,
-    .job-list.birds-eye .software-list li:not(:last-child) a:after {
-        color: #444;
-        content: ",";
+    .job-list.birds-eye .skill-list li,
+    .job-list.birds-eye .software-list li {
+        display: inline;
     }
+        .job-list.birds-eye .skill-list li:not(:last-child) a:after,
+        .job-list.birds-eye .software-list li:not(:last-child) a:after {
+            color: #444;
+            content: ",";
+        }
 
 /* DETAILS (<dl>s) */
 .contact-information dt {

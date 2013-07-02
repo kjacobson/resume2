@@ -21,7 +21,7 @@ gem 'requirejs-rails', :git => "git://github.com/jwhitley/requirejs-rails.git"
 
 # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
 # gem 'ruby-debug'
-#gem 'ruby-debug19', :require => 'ruby-debug'
+# gem 'ruby-debug19', :require => 'ruby-debug'
 #gem 'debugger'
 #gem 'ruby-debug-base19'
 #gem 'linecache19'
@@ -41,6 +41,7 @@ gem 'requirejs-rails', :git => "git://github.com/jwhitley/requirejs-rails.git"
 gem 'pg'
 group :development do
   gem 'capybara'
+  gem 'debugger'
   gem 'rspec-rails', '~> 2.6'
   #gem 'sqlite3'
   gem 'test-unit'

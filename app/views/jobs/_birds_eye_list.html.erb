@@ -1,12 +1,17 @@
+<%
+  user ||= nil
+  resume ||= nil
+  jobs ||= []
+%>
 <ol class="job-list birds-eye">
-    <% @jobs.each do |job| %>
+    <% jobs.each do |job| %>
         <li>
             <%= decode(job.employer) %>,
-            <%= render :partial => 'years/link_to_year', :locals => {:year => job.start_year} %>
+            <%= render :partial => 'years/link_to_year', :locals => {:user => user, :resume => resume, :year => job.start_year} %>
             &ndash;
-            <%= render :partial => 'years/link_to_year', :locals => {:year => job.end_year} %>
+            <%= render :partial => 'years/link_to_year', :locals => {:user => user, :resume => resume, :year => job.end_year} %>
             <p>
-                <%= render :partial => 'jobs/link_to_job', :locals => { :job => job } %>,
+                <%= render :partial => 'jobs/link_to_job', :locals => {:user => user, :resume => resume,  :job => job } %>,
                 <span class="deemphasized job-status"><%= decode(job.status) %></span>
             </p>
             <p>
@@ -14,11 +19,10 @@
             </p>
 
             <strong>Skills used:</strong>
-            <%= render :partial => 'skills/small_list', :locals => {:skills => job.skills} %>
+            <%= render :partial => 'skills/small_list', :locals => {:user => user, :resume => resume, :skills => job.skills} %>
 
             <strong>Software used:</strong>
-            <%= render :partial => 'softwares/list', :locals => {:softwares => job.softwares, :abbreviated => false} %>
-
+            <%= render :partial => 'softwares/list', :locals => {:user => user, :resume => resume, :softwares => job.softwares, :abbreviated => false} %>
         </li>
     <% end %>
 </ol>

@@ -71,7 +71,13 @@ class ResumesController < ApplicationController
     @softwares = @softwares[0..4] if @software_count > 5
     @uncategorized_skills = @resume.uncategorized_skills
     respond_to do |format|
-      format.html # show.html.erb
+      format.html do
+        if params[:printable]
+          render :template => "resumes/printable"
+        else
+          render
+        end
+      end
       format.xml  { render :xml => @resume }
     end
   end
@@ -166,7 +172,8 @@ class ResumesController < ApplicationController
     else
       exit_preview_mode
     end
-    redirect_to request.referer
+    # klugey, but it'll do for now
+    redirect_to request.referer.gsub("printable=true","")
   end
 
   def enter_preview_mode(resume)

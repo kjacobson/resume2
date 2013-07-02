@@ -18,6 +18,10 @@
         <% if is_user_match? %>
             <a href="<%= resume_links_path(@user, @resume) %>" class="link-to-editable" title="Share this resume by giving out links">Share this resume</a>
         <% end %>
+        <% unless is_user_match? and !preview_mode? %>
+            <a href="<%= resume_path(@resume, :printable => true) %>" rel="canonical" title="">
+                View in printable format</a>
+        <% end %>
     </hgroup>
 <% end %>
 

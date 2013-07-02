@@ -1,0 +1,19 @@
+<% content_for :head do %>
+    <hgroup>
+        <h1><%= @user.name %></h1>
+        <h2><%= @resume.title %></h2>
+        <%=  render :partial => "users/contact_info", :locals => {:user => @user, :show_name => false } %>
+        <% unless is_user_match? and !preview_mode? %>
+            <a href="<%= resume_path(@resume) %>" rel="canonical" title="">
+                View in standard format</a>
+        <% end %>
+    </hgroup>
+<% end %>
+
+<% content_for :main do %>
+    <section class="primary">
+        <h1>All Positions/Projects</h1>
+
+        <%= render :partial => "jobs/birds_eye_list", :locals => { :user => @user, :resume => @resume, :jobs => @jobs } %>
+    </section>
+<% end %>

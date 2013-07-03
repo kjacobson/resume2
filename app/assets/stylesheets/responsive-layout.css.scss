@@ -552,10 +552,13 @@ ol.rhetorical > li {
         line-height: 1.333em;
         margin-right: 0.6667em;
     }
-section.primary .job-list.birds-eye .job-title {
-    font-size: 1.3125em;
-    line-height: 1.5em;
+.job-list.birds-eye > li {
+    margin-bottom: 4em;
 }
+    .job-list.birds-eye .job-title {
+        font-size: 1.3125em;
+        line-height: 1.5em;
+    }
     .job-list.birds-eye .skill-list li,
     .job-list.birds-eye .software-list li {
         display: inline;

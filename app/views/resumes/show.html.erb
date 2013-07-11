@@ -9,7 +9,7 @@
             <% end %>
         </h2>
         <% if is_user_match? && @user.novice? %>
-            <p class="form-explanation">
+            <p class="message explanation">
                 The line above is the title of this resume. Usually, you&rsquo;ll want to use the title of the job you hope to hold.
                 It&rsquo;s not as big as your name because, well, employers probably need to know your name.
             </p>
@@ -65,7 +65,7 @@
             <%= render :partial => "skills/small_list_by_discipline", :locals => { :user => @user, :resume => @resume, :disciplines => @disciplines, :skills => @uncategorized_skills } %>
         <% elsif @skills.count >= 1 %>
             <% if is_user_match? %>
-                <p>
+                <p class="message suggestion">
                     <strong>Your skills are orphans!</strong> Giving them disciplines will add some structure and clarity to your resume.
                     <a href="<%= skills_path(@user) %>" title="Organize skills under disciplines.">Right this way.</a>
                 </p>

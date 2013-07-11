@@ -1,5 +1,6 @@
 @import 'color-vars';
 @import 'compass/css3';
+@import 'mixins/explanatory-text';
 
 form {
     margin-bottom: 2.5em;
@@ -87,9 +88,5 @@ section p.form-error,
 
 section p.form-explanation,
 .form-explanation {
-    background-color: #ffc;
-    @include border-radius(4px);
-    font-size: 0.875em;
-    margin-top: -0.5em;
-    padding: 6px;
+    @include explanatory-text;
 }

@@ -24,7 +24,7 @@
             <%= render :partial => 'highlights/list', :locals => { :highlights => @highlights, :user => @user, :resume => @resume, :skill_id => @skill.id } %>
         <% else %>
             <% if is_user_match? %>
-                <p>
+                <p class="message explanation">
                     <strong>Highlights put your skills in context</strong> A highlight is an example of how you used a particular
                     skill at a particular job.
                     <a href="<%= new_highlight_path(@user, :skill_id => @skill.id) %>" title="Add a highlight for this skill">Here&rsquo;s your chance</a>.

@@ -1,0 +1,10 @@
+@import '../color-vars';
+@import 'compass/css3';
+
+@mixin explanatory-text {
+    background-color: $informationBg;
+    @include border-radius(4px);
+    font-size: 0.875em;
+    margin-top: -0.5em;
+    padding: 6px;
+}

@@ -28,7 +28,7 @@
                     <% if is_user_match? %>
                         <% user_skill = skill.user_skill(user) %>
                         <%= form_for(user_skill, :method => "put", :url => u_skill_path(:user_id => user.id, :id => user_skill.id)) do |f| %>
-                            <select id="user_skill_discipline_id" name="user_skill[discipline_id]">
+                            <select id="user_skill_discipline_id_<%=user_skill.id %>" class="select-discipline-for-skill" name="user_skill[discipline_id]">
                                 <option>[Uncategorized]</option>
                                 <% @disciplines.each do |discipline| %>
                                     <option value="<%= discipline.id %>" <%= 'selected' if discipline == skill.discipline(user) %>><%= discipline.title %></option>

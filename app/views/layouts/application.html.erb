@@ -44,6 +44,13 @@
         </script>
         <%= javascript_include_tag("lib/jquery-1.10.1.min") %>
         <%= javascript_include_tag("require") %>
+        <script>
+            require.config({
+                paths: {
+                    "lodash": "lib/lodash.compat.min"
+                }
+            });
+        </script>
         <%= javascript_include_tag("application") %>
         <%= yield :body_scripts %>
     </body>

@@ -1,3 +1,3 @@
 paths:
-  #zepto: 'libs/zepto.min'
-  jquery: 'libs/jquery'
+  jquery: 'lib/jquery'
+  lodash: 'lib/lodash.compat.min.js'

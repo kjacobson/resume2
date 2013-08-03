@@ -23,7 +23,7 @@ class UserSkillsController < ApplicationController
     respond_to do |format|
       if @user_skill.update_attributes(params[:user_skill])
         format.html { redirect_to request.referrer, :notice => @user_skill.discipline ? "Success. &ldquo;#{@user_skill.skill.title}&rdquo; is now categorized under &ldquo;#{@user_skill.discipline.title.titleize }&rdquo;." : "Success. #{@user_skill.skill.title } is no longer associated with a discipline."}
-        format.json { head :ok }
+        format.json { render :json => true }
       else
         format.html { redirect_to request.referrer }
         format.json { render :json => @user_skill.errors, :status => :unprocessable_entity }

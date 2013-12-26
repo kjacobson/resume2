@@ -1,6 +1,6 @@
 <% content_for :head do %>
     <hgroup>
-        <h1>Log in</h1>
+        <h1><% if @valid_key %>Success!<% else %>Log in<% end %></h1>
     </hgroup>
 <% end %>
 

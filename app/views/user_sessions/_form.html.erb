@@ -1,7 +1,7 @@
 <% content_for :head do %>
     <% if @user_session.errors.any? %>
         <p class="error-explanation">
-            <%= pluralize(@user_session.errors.count, "error") %> prohibited this skill from being saved.
+            Looks like there were <%= pluralize(@user_session.errors.count, "error") %> errors.
         </p>
     <% end %>
 <% end %>
@@ -25,20 +25,27 @@
     </div>
 <% end %>
 
-
-<h2>Login works a little differently here.</h2>
-<ol class="rhetorical">
-    <li>
-        You fill in your email.
-    </li>
-    <li>
-        We email you a link.
-    </li>
-    <li>
-        Click the link and you're logged in.
-    </li>
-</ol>
-<p>
-    <strong>That&rsquo;s it!</strong> We&rsquo;ll remember you until you
-    clear your cookies, so you&rsquo;ll only have to log in once in a while.
-</p>
+<% if @valid_key %>
+    <h2>You&rsquo;re all set!</h2>
+    <p>
+        We&rsquo;ll remember you until you
+        clear your cookies, so you&rsquo;ll only have to log in once in a while.
+    </p>
+<% else %>
+    <h2>Login works a little differently here.</h2>
+    <ol class="rhetorical">
+        <li>
+            You fill in your email.
+        </li>
+        <li>
+            We email you a link.
+        </li>
+        <li>
+            Click the link and you're logged in.
+        </li>
+    </ol>
+    <p>
+        <strong>That&rsquo;s it!</strong> We&rsquo;ll remember you until you
+        clear your cookies, so you&rsquo;ll only have to log in once in a while.
+    </p>
+<% end %>
